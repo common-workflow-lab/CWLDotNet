@@ -2,6 +2,7 @@ namespace CWLDotNet;
 
 public static class LoaderInstnaces {
 
+    public static readonly Loader<object> undefinedLoader = new NullLoader();
     public static readonly PrimitiveLoader<int> intLoader = new PrimitiveLoader<int>();
     public static readonly PrimitiveLoader<string> stringLoader = new PrimitiveLoader<string>();
     public static readonly RecordLoader<SimpleSchema> simpleSchemaLoader = new RecordLoader<SimpleSchema>();
@@ -10,4 +11,8 @@ public static class LoaderInstnaces {
 
     public static readonly Loader<object> unionOfArrayOfSimpleSchemaLoader = new UnionLoader(new List<Loader>{arrayOfSimpleSchemaLoader});
     public static readonly Loader<object> unionOfSimpleSchemaLoader = new UnionLoader(new List<Loader>{simpleSchemaLoader, arrayOfSimpleSchemaLoader});
+    
+
+    public static readonly Loader<object> unionOfundefinedtypeOrstrtype = new UnionLoader(new List<Loader>{undefinedLoader,stringLoader});
+    public static readonly Loader<object> uriunionOfundefinedtypeOrstrtypeTrueFalseNone = new UriLoader<object>(unionOfundefinedtypeOrstrtype, true, false, null);
 }

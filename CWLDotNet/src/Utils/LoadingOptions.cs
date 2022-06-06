@@ -86,10 +86,9 @@ public class LoadingOptions
             }
         }
 
-        var split = new Uri(url);
-        string scheme = split.Scheme;
-        bool hasFragment = split.Fragment != "";
-        if ((scheme.Length > 0 && (scheme.Equals("http") || scheme.Equals("https") || scheme.Equals("file"))) || url.StartsWith("$(") || url.StartsWith("${"))
+        var split = new Uri(url, UriKind.RelativeOrAbsolute);
+        bool hasFragment = split.IsAbsoluteUri && split.Fragment != "";
+        if ((split.IsAbsoluteUri && (split.Scheme.Equals("http") || split.Scheme.Equals("https") || split.Scheme.Equals("file"))) || url.StartsWith("$(") || url.StartsWith("${"))
         {
             // Do nothing
         }
@@ -103,7 +102,7 @@ public class LoadingOptions
             }
             else
             {
-                frg = split.AbsolutePath;
+                frg = split.IsAbsoluteUri ? split.AbsolutePath : split.OriginalString;
             }
             string pt;
             if (!splitbase.AbsolutePath.Equals(""))
@@ -144,21 +143,28 @@ public class LoadingOptions
             builder.Fragment = fragment;
 
             url = builder.ToString();
-        } else {
+        }
+        else
+        {
             url = this.fetcher.Urljoin(baseUrl, url);
         }
 
-        if(vocabTerm) {
-            split = new Uri(url);
-            if(split.Scheme.Length > 0) {
-                if(this.rvocab.ContainsKey(url)) {
+        if (vocabTerm)
+        {
+            split = new Uri(url, UriKind.RelativeOrAbsolute);
+            if (split.IsAbsoluteUri && split.Scheme.Length > 0)
+            {
+                if (this.rvocab.ContainsKey(url))
+                {
                     return this.rvocab[url];
                 }
+                else
+                {
+                    throw new ValidationException($"Term '{url}' not in vocabulary");
+                }
             }
-        } else {
-            throw new ValidationException($"Term '{url}' not in vocabulary");
         }
-        
+
         return url;
     }
 }

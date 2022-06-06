@@ -7,5 +7,6 @@ class Program
         string text = System.IO.File.ReadAllText(@"C:\simpleInstance.cwl");
         var test = RootLoader.LoadDocument(text, @"C:\simpleInstance", null);
         Console.WriteLine(test.GetType());
+        var x = ((SimpleSchema)test).Save(baseUrl: @"C:\simpleInstance");
     }
 }

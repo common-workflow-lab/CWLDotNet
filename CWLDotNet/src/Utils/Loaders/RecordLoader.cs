@@ -8,7 +8,7 @@ public class RecordLoader<T> : Loader<T> where T: Savable
         if(!(doc is IDictionary)) {
             throw new ValidationException($"Expected object with type of Dictionary but got {doc.GetType()}");
         }
-        return (T)T.fromDoc(doc, baseUri, loadingOptions, docRoot);
+        return (T)T.FromDoc(doc, baseUri, loadingOptions, docRoot);
     }
 
     object Loader.Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot)
