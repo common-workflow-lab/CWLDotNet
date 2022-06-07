@@ -1,0 +1,33 @@
+
+name: Continuous integration tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+concurrency:
+  group: build-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+env:
+  DOTNET_VERSION: '6.0.x'
+
+jobs:
+
+  CI:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-dotnet@v2
+        with:
+           dotnet-version: ${{ env.DOTNET_VERSION }}
+      - run: dotnet --version
+      # - run: npm install
+      # - run: npm test
+      # - name: Upload coverage to Codecov
+      #   uses: codecov/codecov-action@v2.1.0
+      #   with:
+      #     fail_ci_if_error: true
+      #     flags: unittests
