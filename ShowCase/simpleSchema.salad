@@ -1,0 +1,18 @@
+- name: SimpleSchema
+  type: record
+  documentRoot: true
+  fields:
+    - name: id
+      type: string?
+      jsonldPredicate: "@id"
+      doc: "The unique identifier for this object."
+    - name: labelField
+      type: string?
+    - name: numberField
+      type: int
+    - name: enumField
+      type: SimpleEnum
+
+- name: SimpleEnum
+  type: enum
+  symbols: [A, B, C]

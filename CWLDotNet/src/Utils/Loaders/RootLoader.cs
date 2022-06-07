@@ -12,7 +12,7 @@ public class RootLoader
         if(loadingOptions == null) {
             loadingOptions = new LoadingOptions(fileUri: baseUri);
         }
-        return LoaderInstnaces.unionOfSimpleSchemaLoader.Load(doc, baseUri, loadingOptions);
+        return LoaderInstnaces.unionOfSimpleSchemaLoader.Load(doc, baseUri, loadingOptions, baseUri);
     }
 
     public static object LoadDocument(in string doc, in string uri_, in LoadingOptions loadingOptions_)
@@ -34,7 +34,7 @@ public class RootLoader
         string baseUri = baseUri_;
         if (baseUri == null)
         {
-            baseUri = Environment.CurrentDirectory;
+            baseUri = new Uri(Environment.CurrentDirectory).AbsoluteUri;
         }
         return baseUri;
     }

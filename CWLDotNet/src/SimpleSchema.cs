@@ -67,12 +67,12 @@ public class SimpleSchema : Savable
             baseUri = id;
         }
 
-        string? label = null;
+        string? labelField = null;
         if (doc_.ContainsKey("labelField"))
         {
             try
             {
-                label = ((Loader<string>)LoaderInstnaces.stringLoader).LoadField(doc_["labelField"], baseUri, loadingOptions);
+                labelField = ((Loader<string>)LoaderInstnaces.stringLoader).LoadField(doc_["labelField"], baseUri, loadingOptions);
             }
             catch (ValidationException e)
             {
@@ -80,10 +80,10 @@ public class SimpleSchema : Savable
             }
         }
 
-        int number = 0;
+        int numberField = 0;
         try
         {
-            number = ((Loader<int>)LoaderInstnaces.intLoader).LoadField(doc_["numberField"], baseUri, loadingOptions);
+            numberField = ((Loader<int>)LoaderInstnaces.intLoader).LoadField(doc_["numberField"], baseUri, loadingOptions);
         }
         catch (ValidationException e)
         {
@@ -124,7 +124,7 @@ public class SimpleSchema : Savable
             throw new ValidationException("", errors);
         }
 
-        return new SimpleSchema(id, label, number, enumField, loadingOptions);
+        return new SimpleSchema(id, labelField, numberField, enumField, loadingOptions);
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "", bool relativeUris = true)
@@ -156,7 +156,7 @@ public class SimpleSchema : Savable
 
         if (this.enumField != null)
         {
-            r["enumField"] = Savable.SaveRelativeUri(this.enumField, false, relativeUris, null, this.id);
+            r["enumField"] = Savable.Save(this.enumField, false, this.id!, relativeUris);
         }
 
 

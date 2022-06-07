@@ -64,24 +64,18 @@ public interface Savable
                 throw new ValidationException("Uri or baseurl need to contain a path");
             }
 
-            if (uriSplit.IsAbsoluteUri && baseSplit.IsAbsoluteUri)
+            if (uriSplit.IsAbsoluteUri && baseSplit.IsAbsoluteUri && uriSplit.Scheme == baseSplit.Scheme && uriSplit.Host == baseSplit.Host)
             {
-                if (uriSplit.Scheme == baseSplit.Scheme && uriSplit.Host == baseSplit.Host)
+                if (uriSplit.AbsolutePath != baseSplit.AbsolutePath)
                 {
-                    if (uriSplit.AbsolutePath != baseSplit.AbsolutePath)
+                    var p = Path.GetRelativePath(Path.GetDirectoryName(baseSplit.AbsolutePath)!, uriSplit.AbsolutePath);
+                    if (uriSplit.Fragment.Length > 0)
                     {
-                        var p = Path.GetRelativePath(Path.GetDirectoryName(baseSplit.AbsolutePath)!, uriSplit.AbsolutePath);
-                        if (uriSplit.Fragment.Length > 0)
-                        {
-                            p = p + "#" + uriSplit.Fragment;
-                        }
-                        return p;
+                        p = p + "#" + uriSplit.Fragment;
                     }
+                    return p;
                 }
-            }
 
-            if (baseSplit.IsAbsoluteUri)
-            {
                 var baseFrag = baseSplit.Fragment + "/";
                 if (refScope != null)
                 {
@@ -94,24 +88,22 @@ public interface Savable
                     }
                     baseFrag = string.Join('/', sp);
                 }
-                string f = "";
-                if (uriSplit.IsAbsoluteUri && uriSplit.Fragment.StartsWith(baseFrag))
+
+                if (uriSplit.Fragment.StartsWith(baseFrag))
                 {
                     return uriSplit.Fragment.Substring(baseFrag.Length);
                 }
-                else if (uriSplit.IsAbsoluteUri)
+                else
                 {
                     return uriSplit.Fragment;
-                } else {
-                    return String.Empty;
                 }
             }
+            else
+            {
+                return Save(uri, false, baseUrl);
+            }
 
-            throw new ValidationException("BaseUrl needs to be absolute");
         }
-        else
-        {
-            return Save(uri, false, baseUrl);
-        }
+        throw new ValidationException("uri needs to be of type List or String");
     }
 }
