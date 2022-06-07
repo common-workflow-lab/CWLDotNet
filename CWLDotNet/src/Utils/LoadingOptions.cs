@@ -98,7 +98,7 @@ public class LoadingOptions
             string frg = "";
             if (splitbase.Fragment.Length > 0)
             {
-                frg = splitbase.Fragment + "/" + split.AbsolutePath;
+                frg = splitbase.FragmentWithoutFragmentation() + "/" + split.AbsolutePath;
             }
             else
             {
@@ -125,7 +125,7 @@ public class LoadingOptions
         else if (scopedRef != null && !hasFragment)
         {
             var splitbase = new Uri(baseUrl);
-            List<string> sp = new List<string>(splitbase.Fragment.Split("/").ToList());
+            List<string> sp = new List<string>(splitbase.FragmentWithoutFragmentation().Split("/").ToList());
             int? n = scopedRef;
             while (n > 0 && sp.Count > 0)
             {

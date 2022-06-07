@@ -71,12 +71,12 @@ public interface Savable
                     var p = Path.GetRelativePath(Path.GetDirectoryName(baseSplit.AbsolutePath)!, uriSplit.AbsolutePath);
                     if (uriSplit.Fragment.Length > 0)
                     {
-                        p = p + "#" + uriSplit.Fragment;
+                        p = p + "#" + uriSplit.FragmentWithoutFragmentation();
                     }
                     return p;
                 }
 
-                var baseFrag = baseSplit.Fragment + "/";
+                var baseFrag = baseSplit.FragmentWithoutFragmentation() + "/";
                 if (refScope != null)
                 {
                     var sp = baseFrag.Split('/').ToList();
@@ -89,13 +89,13 @@ public interface Savable
                     baseFrag = string.Join('/', sp);
                 }
 
-                if (uriSplit.Fragment.StartsWith(baseFrag))
+                if (uriSplit.FragmentWithoutFragmentation().StartsWith(baseFrag))
                 {
-                    return uriSplit.Fragment.Substring(baseFrag.Length);
+                    return uriSplit.FragmentWithoutFragmentation().Substring(baseFrag.Length);
                 }
                 else
                 {
-                    return uriSplit.Fragment;
+                    return uriSplit.FragmentWithoutFragmentation();
                 }
             }
             else
