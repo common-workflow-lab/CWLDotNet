@@ -17,7 +17,7 @@ public class EnumLoaderTest
     [TestMethod]
     public void TestMethod1()
     {
-        testLoader.Load("E", "", null, "");
+        //testLoader.Load("D", "", null, "");
 
     }
 }
