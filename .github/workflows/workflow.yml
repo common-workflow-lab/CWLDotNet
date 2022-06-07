@@ -23,9 +23,8 @@ jobs:
       - uses: actions/setup-dotnet@v2
         with:
            dotnet-version: ${{ env.DOTNET_VERSION }}
-      - run: dotnet --version
-      # - run: npm install
-      # - run: npm test
+      - run: dotnet restore
+      - run: dotnet test --collect:"XPlat Code Coverage" --settings Test/runsettings.xml
       # - name: Upload coverage to Codecov
       #   uses: codecov/codecov-action@v2.1.0
       #   with:
