@@ -2,7 +2,7 @@
 
 namespace CWLDotNet;
 
-public class IdMapLoader<T> : ILoader<T>
+internal class IdMapLoader<T> : ILoader<T>
 {
     readonly ILoader<T> inner;
     readonly string mapSubject;

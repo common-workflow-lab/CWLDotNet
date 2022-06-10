@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 
 namespace CWLDotNet;
-public class ArrayLoader<T> : ILoader<List<T>>
+
+internal class ArrayLoader<T> : ILoader<List<T>>
 {
     private readonly ILoader<T> itemLoader;
 

@@ -1,6 +1,6 @@
 ﻿namespace CWLDotNet;
 
-public class UnionLoader : ILoader<object>
+internal class UnionLoader : ILoader<object>
 {
     private readonly List<ILoader> alternatives;
 

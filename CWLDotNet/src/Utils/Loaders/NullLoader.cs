@@ -1,5 +1,5 @@
 ﻿namespace CWLDotNet;
-public class NullLoader : ILoader<object>
+internal class NullLoader : ILoader<object>
 {
     public object Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot = null)
     {

@@ -3,12 +3,12 @@ using YamlDotNet.Serialization;
 
 namespace CWLDotNet;
 
-public interface ILoader
+internal interface ILoader
 {
     object Load(in object doc, in string baseUri, in LoadingOptions loadingOptions, in string? docRoot = null);
 }
 
-public interface ILoader<T> : ILoader
+internal interface ILoader<T> : ILoader
 {
     new T Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot = null);
 

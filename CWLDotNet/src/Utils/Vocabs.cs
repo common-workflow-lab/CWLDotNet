@@ -1,5 +1,6 @@
 ﻿namespace CWLDotNet;
-public static class Vocabs
+
+internal static class Vocabs
 {
 
     public static readonly Dictionary<string, string> Vocab = new()

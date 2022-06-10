@@ -1,7 +1,7 @@
 ﻿#pragma warning disable IDE1006, IDE0090
 namespace CWLDotNet;
 
-public static class LoaderInstnaces
+internal static class LoaderInstnaces
 {
     public static readonly ILoader<object> undefinedLoader = new NullLoader();
     public static readonly PrimitiveLoader<int> intLoader = new PrimitiveLoader<int>();

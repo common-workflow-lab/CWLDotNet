@@ -4,7 +4,7 @@ using YamlDotNet.Core.Events;
 using YamlDotNet.Serialization;
 
 namespace CWLDotNet;
-public class ScalarNodeTypeResolver : INodeTypeResolver
+internal class ScalarNodeTypeResolver : INodeTypeResolver
 {
     bool INodeTypeResolver.Resolve(NodeEvent nodeEvent, ref Type currentType)
     {

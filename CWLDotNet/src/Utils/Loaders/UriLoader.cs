@@ -2,7 +2,7 @@
 
 namespace CWLDotNet;
 
-public class UriLoader<T> : ILoader<T>
+internal class UriLoader<T> : ILoader<T>
 {
     readonly ILoader<T> inner;
     readonly bool scopedID;

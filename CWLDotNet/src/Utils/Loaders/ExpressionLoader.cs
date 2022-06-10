@@ -1,5 +1,6 @@
 ﻿namespace CWLDotNet;
-public class ExpressionLoader : ILoader<string>
+
+internal class ExpressionLoader : ILoader<string>
 {
     public string Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot = null)
     {

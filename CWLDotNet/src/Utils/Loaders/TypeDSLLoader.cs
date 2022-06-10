@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace CWLDotNet;
 
-public class TypeDSLLoader<T> : ILoader<T>
+internal class TypeDSLLoader<T> : ILoader<T>
 {
     readonly ILoader<T> inner;
     readonly int refScope;

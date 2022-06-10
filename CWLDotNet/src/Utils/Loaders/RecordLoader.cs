@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 
 namespace CWLDotNet;
-public class RecordLoader<T> : ILoader<T> where T : ISavable
+
+internal class RecordLoader<T> : ILoader<T> where T : ISavable
 {
     public T Load(in object doc, in string baseUri, in LoadingOptions loadingOptions, in string? docRoot = null)
     {

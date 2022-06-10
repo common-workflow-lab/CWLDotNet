@@ -2,7 +2,7 @@
 
 namespace CWLDotNet;
 
-public class SecondaryDSLLoader<T> : ILoader<T>
+internal class SecondaryDSLLoader<T> : ILoader<T>
 {
     readonly ILoader<T> inner;
 

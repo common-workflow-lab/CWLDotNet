@@ -1,5 +1,6 @@
 ﻿namespace CWLDotNet;
-public class EnumLoader<T> : ILoader<T> where T : struct, Enum
+
+internal class EnumLoader<T> : ILoader<T> where T : struct, Enum
 {
     public T Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot = null)
     {
