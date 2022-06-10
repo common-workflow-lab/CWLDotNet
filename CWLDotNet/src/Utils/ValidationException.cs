@@ -2,6 +2,7 @@
 
 public class ValidationException : Exception
 {
+    readonly string currentMessage;
     static readonly int indentPerLevel = 2;
     string bullet = "";
     private readonly List<ValidationException> children = new();
@@ -22,6 +23,7 @@ public class ValidationException : Exception
 
     public ValidationException(string message, List<ValidationException> children) : base(message)
     {
+        currentMessage = message;
         foreach (ValidationException child in children)
         {
             this.children.AddRange(child.Simplify());
@@ -31,7 +33,7 @@ public class ValidationException : Exception
     private string Summary(int level)
     {
         string spaces = new(' ', level * indentPerLevel);
-        return spaces + bullet + this.Message;
+        return spaces + bullet + this.currentMessage;
     }
 
     public ValidationException WithBullet(string bullet)
@@ -53,7 +55,7 @@ public class ValidationException : Exception
     {
         List<string> parts = new();
         int nextlevel = level;
-        if (this.Message.Length > 0)
+        if (this.currentMessage.Length > 0)
         {
             parts.Add(this.Summary(level));
             nextlevel++;
@@ -67,8 +69,10 @@ public class ValidationException : Exception
         return string.Join('\n', parts);
     }
 
+    public override string Message => PrettyString();
+
     public override string ToString()
     {
-        return this.PrettyString();
+        return PrettyString();
     }
 }

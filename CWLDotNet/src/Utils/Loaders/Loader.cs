@@ -110,7 +110,6 @@ public interface ILoader<T> : ILoader
         }
 
         throw new NotImplementedException();
-
     }
 }
 
