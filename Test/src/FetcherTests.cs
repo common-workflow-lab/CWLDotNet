@@ -1,8 +1,8 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CWLDotNet;
-using RichardSzalay.MockHttp;
+﻿using System.Net;
 using System.Net.Http;
-using System.Net;
+using CWLDotNet;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RichardSzalay.MockHttp;
 
 namespace Test.Loader;
 
