@@ -1,23 +1,23 @@
-using System.Collections;
+﻿using System.Collections;
+namespace CWLDotNet;
 
-public interface Savable
+public interface ISavable
 {
-    public abstract static Savable FromDoc(object doc, string baseUri, LoadingOptions loadingOptions, string? docRoot = null);
+    public static abstract ISavable FromDoc(object doc, string baseUri, LoadingOptions loadingOptions, string? docRoot = null);
     public abstract Dictionary<object, object> Save(bool top, string baseUrl, bool relativeUris);
 
     public static object Save(object val, bool top = true, string baseurl = "", bool relativeUris = true)
     {
-        if (val is Savable)
+        if (val is ISavable valSaveable)
         {
-            var valSaveable = (Savable)val;
-            return (valSaveable).Save(top, baseurl, relativeUris);
+            return valSaveable.Save(top, baseurl, relativeUris);
         }
 
         if (val is IList)
         {
-            var r = new List<object>();
-            var valList = (List<object>)val;
-            foreach (var v in valList)
+            List<object> r = new();
+            List<object> valList = (List<object>)val;
+            foreach (object v in valList)
             {
                 r.Add(Save(v, false, baseurl, relativeUris));
             }
@@ -26,9 +26,9 @@ public interface Savable
 
         if (val is IDictionary)
         {
-            var valDict = (Dictionary<object, object>)val;
-            var newDict = new Dictionary<object, object>();
-            foreach (var entry in valDict)
+            Dictionary<object, object> valDict = (Dictionary<object, object>)val;
+            Dictionary<object, object> newDict = new();
+            foreach (KeyValuePair<object, object> entry in valDict)
             {
                 newDict[entry.Key] = Save(entry.Value, false, baseurl, relativeUris);
             }
@@ -39,26 +39,25 @@ public interface Savable
 
     public static object SaveRelativeUri(object uri, bool scopedId, bool relativeUris, int? refScope, string baseUrl = "")
     {
-        if (relativeUris == false || (uri is string && (string)uri == baseUrl))
+        if (relativeUris == false || (uri is string @string && @string == baseUrl))
         {
             return uri;
         }
 
         if (uri is IList)
         {
-            var uriList = (List<object>)uri;
-            var r = new List<object>();
-            foreach (var v in uriList)
+            List<object> uriList = (List<object>)uri;
+            List<object> r = new();
+            foreach (object v in uriList)
             {
                 r.Add(SaveRelativeUri(v, scopedId, relativeUris, refScope, baseUrl));
             }
             return r;
         }
-        else if (uri is string)
+        else if (uri is string uriString)
         {
-            var uriString = (string)uri;
-            var uriSplit = new Uri(uriString, UriKind.RelativeOrAbsolute);
-            var baseSplit = new Uri(baseUrl, UriKind.RelativeOrAbsolute);
+            Uri uriSplit = new(uriString, UriKind.RelativeOrAbsolute);
+            Uri baseSplit = new(baseUrl, UriKind.RelativeOrAbsolute);
             if ((!uriSplit.IsAbsoluteUri && !baseSplit.IsAbsoluteUri) || (uriSplit.IsAbsoluteUri && uriSplit.AbsolutePath.Length < 1) || (baseSplit.IsAbsoluteUri && baseSplit.AbsolutePath.Length < 1))
             {
                 throw new ValidationException("Uri or baseurl need to contain a path");
@@ -68,7 +67,7 @@ public interface Savable
             {
                 if (uriSplit.AbsolutePath != baseSplit.AbsolutePath)
                 {
-                    var p = Path.GetRelativePath(Path.GetDirectoryName(baseSplit.AbsolutePath)!, uriSplit.AbsolutePath);
+                    string p = Path.GetRelativePath(Path.GetDirectoryName(baseSplit.AbsolutePath)!, uriSplit.AbsolutePath);
                     if (uriSplit.Fragment.Length > 0)
                     {
                         p = p + "#" + uriSplit.FragmentWithoutFragmentation();
@@ -76,11 +75,11 @@ public interface Savable
                     return p;
                 }
 
-                var baseFrag = baseSplit.FragmentWithoutFragmentation() + "/";
+                string baseFrag = baseSplit.FragmentWithoutFragmentation() + "/";
                 if (refScope != null)
                 {
-                    var sp = baseFrag.Split('/').ToList();
-                    var i = 0;
+                    List<string> sp = baseFrag.Split('/').ToList();
+                    int i = 0;
                     while (i < refScope)
                     {
                         sp.RemoveAt(sp.Count - 1);

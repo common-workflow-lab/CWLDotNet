@@ -1,9 +1,8 @@
-using System.Collections.ObjectModel;
-
+﻿namespace CWLDotNet;
 public static class Vocabs
 {
 
-    public static readonly Dictionary<string, string> vocab = new Dictionary<string, string>
+    public static readonly Dictionary<string, string> Vocab = new()
     {
         ["Any"] = "https://w3id.org/cwl/salad#Any",
         ["ArraySchema"] = "https://w3id.org/cwl/salad#ArraySchema",
@@ -138,7 +137,7 @@ public static class Vocabs
         ["v1.2.0-dev4"] = "https://w3id.org/cwl/cwl#v1.2.0-dev4",
         ["v1.2.0-dev5"] = "https://w3id.org/cwl/cwl#v1.2.0-dev5"
     };
-    public static readonly Dictionary<string, string> rvocab = new Dictionary<string, string>
+    public static readonly Dictionary<string, string> Rvocab = new()
     {
         ["https://w3id.org/cwl/salad#Any"] = "Any",
         ["https://w3id.org/cwl/salad#ArraySchema"] = "ArraySchema",

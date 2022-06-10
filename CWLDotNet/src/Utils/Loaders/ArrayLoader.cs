@@ -1,39 +1,42 @@
-using System.Collections;
+﻿using System.Collections;
 
 namespace CWLDotNet;
-public class ArrayLoader<T> : Loader<List<T>>
+public class ArrayLoader<T> : ILoader<List<T>>
 {
-    private readonly Loader<T> itemLoader;
+    private readonly ILoader<T> itemLoader;
 
-    public ArrayLoader(in Loader<T> itemLoader)
+    public ArrayLoader(in ILoader<T> itemLoader)
     {
         this.itemLoader = itemLoader;
     }
 
     public List<T> Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot = null)
     {
-        if(doc == null) {
+        if (doc == null)
+        {
             throw new ValidationException("Expected non null");
         }
-        
-        if (!(doc is IList))
+
+        if (doc is not IList)
         {
             throw new ValidationException("Expected list");
         }
 
         IList docList = (IList)doc;
-        List<T> returnValue = new List<T>();
-        List<Loader> loaders = new List<Loader>();
-        loaders.Add(this);
-        loaders.Add(itemLoader);
-        UnionLoader unionLoader = new UnionLoader(loaders);
-        List<ValidationException> errors = new List<ValidationException>();
+        List<T> returnValue = new();
+        List<ILoader> loaders = new()
+        {
+            this,
+            itemLoader
+        };
+        UnionLoader unionLoader = new(loaders);
+        List<ValidationException> errors = new();
 
-        foreach (object e1 in docList)
+        foreach (object? e1 in docList)
         {
             try
             {
-                var loadedField = unionLoader.Load(e1, baseuri, loadingOptions, docRoot);
+                object loadedField = unionLoader.Load(e1, baseuri, loadingOptions, docRoot);
                 if (loadedField is IList)
                 {
                     returnValue.AddRange((List<T>)loadedField);
@@ -57,7 +60,7 @@ public class ArrayLoader<T> : Loader<List<T>>
         return returnValue;
     }
 
-    object Loader.Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot)
+    object ILoader.Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot)
     {
         return Load(doc, baseuri, loadingOptions, docRoot);
     }

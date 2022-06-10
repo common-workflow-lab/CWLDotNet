@@ -1,10 +1,11 @@
-namespace CWLDotNet;
+﻿namespace CWLDotNet;
 
-public class UnionLoader : Loader<object>
+public class UnionLoader : ILoader<object>
 {
-    private readonly List<Loader> alternatives;
+    private readonly List<ILoader> alternatives;
 
-    public UnionLoader(in List<Loader> alternatives) {
+    public UnionLoader(in List<ILoader> alternatives)
+    {
         this.alternatives = alternatives;
     }
 
@@ -12,10 +13,14 @@ public class UnionLoader : Loader<object>
     {
         List<ValidationException> errors = new();
 
-        foreach(var loader in this.alternatives) {
-            try {
+        foreach (ILoader loader in this.alternatives)
+        {
+            try
+            {
                 return loader.Load(doc, baseuri, loadingOptions, docRoot);
-            } catch (ValidationException e) {
+            }
+            catch (ValidationException e)
+            {
                 errors.Add(e);
             }
         }

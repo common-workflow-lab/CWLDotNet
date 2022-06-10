@@ -1,8 +1,10 @@
+﻿namespace CWLDotNet;
+
 public class ValidationException : Exception
 {
-    static int indentPerLevel = 2;
+    static readonly int indentPerLevel = 2;
     string bullet = "";
-    private List<ValidationException> children = new List<ValidationException>();
+    private readonly List<ValidationException> children = new();
 
     public ValidationException() : this("")
     {
@@ -14,42 +16,50 @@ public class ValidationException : Exception
     }
 
     public ValidationException(string message, ValidationException child)
-        : this(message, new List<ValidationException>{child})
+        : this(message, new List<ValidationException> { child })
     {
     }
     public ValidationException(string message, List<ValidationException> children) : base(message)
     {
-        foreach(var child in children) {
+        foreach (ValidationException child in children)
+        {
             this.children.AddRange(child.Simplify());
         }
     }
 
-    private String Summary(int level) {
-        string spaces = new string(' ',  level * indentPerLevel);
+    private string Summary(int level)
+    {
+        string spaces = new(' ', level * indentPerLevel);
         return spaces + bullet + this.Message;
     }
 
-    public ValidationException WithBullet(string bullet) {
+    public ValidationException WithBullet(string bullet)
+    {
         this.bullet = bullet;
         return this;
     }
 
-    List<ValidationException> Simplify() {
-        if(this.ToString().Length > 0){
-            return new List<ValidationException>{this};
+    List<ValidationException> Simplify()
+    {
+        if (this.ToString().Length > 0)
+        {
+            return new List<ValidationException> { this };
         }
         else return this.children;
     }
 
-    private String PrettyString(int level = 0) {
-        List<string> parts = new List<string>();
-        var nextlevel = level;
-        if(this.Message.Length > 0) {
+    private string PrettyString(int level = 0)
+    {
+        List<string> parts = new();
+        int nextlevel = level;
+        if (this.Message.Length > 0)
+        {
             parts.Add(this.Summary(level));
             nextlevel++;
         }
 
-        foreach(var child in children) {
+        foreach (ValidationException child in children)
+        {
             parts.Add(child.PrettyString(nextlevel));
         }
         return string.Join('\n', parts);

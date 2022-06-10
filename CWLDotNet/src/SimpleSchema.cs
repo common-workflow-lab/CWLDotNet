@@ -1,11 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 
 namespace CWLDotNet;
 
-public class SimpleSchema : Savable
+public class SimpleSchema : ISavable
 {
-
-    LoadingOptions loadingOptions;
+    readonly LoadingOptions loadingOptions;
 
     public string id;
 
@@ -14,8 +13,7 @@ public class SimpleSchema : Savable
     public int numberField;
 
     public SimpleEnum enumField;
-
-    Dictionary<object, object> extensionFields;
+    readonly Dictionary<object, object> extensionFields;
 
     public SimpleSchema(string id, string? labelField, int numberField, SimpleEnum enumField, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
     {
@@ -27,11 +25,11 @@ public class SimpleSchema : Savable
         this.enumField = enumField;
     }
 
-    public static Savable FromDoc(object doc, string baseUri, LoadingOptions loadingOptions, string? docRoot = null)
+    public static ISavable FromDoc(object doc, string baseUri, LoadingOptions loadingOptions, string? docRoot = null)
     {
         List<ValidationException> errors = new();
 
-        if (!(doc is IDictionary))
+        if (doc is not IDictionary)
         {
             throw new ValidationException("Document has to be of type map");
         }
@@ -43,7 +41,7 @@ public class SimpleSchema : Savable
         {
             try
             {
-                id = (string)((Loader<object>)LoaderInstnaces.uriunionOfundefinedtypeOrstrtypeTrueFalseNone).LoadField(doc_["id"], baseUri, loadingOptions);
+                id = (string)((ILoader<object>)LoaderInstnaces.uriunionOfundefinedtypeOrstrtypeTrueFalseNone).LoadField(doc_["id"], baseUri, loadingOptions);
             }
             catch (ValidationException e)
             {
@@ -72,7 +70,7 @@ public class SimpleSchema : Savable
         {
             try
             {
-                labelField = ((Loader<string>)LoaderInstnaces.stringLoader).LoadField(doc_["labelField"], baseUri, loadingOptions);
+                labelField = ((ILoader<string>)LoaderInstnaces.stringLoader).LoadField(doc_["labelField"], baseUri, loadingOptions);
             }
             catch (ValidationException e)
             {
@@ -83,7 +81,7 @@ public class SimpleSchema : Savable
         int numberField = 0;
         try
         {
-            numberField = ((Loader<int>)LoaderInstnaces.intLoader).LoadField(doc_["numberField"], baseUri, loadingOptions);
+            numberField = ((ILoader<int>)LoaderInstnaces.intLoader).LoadField(doc_["numberField"], baseUri, loadingOptions);
         }
         catch (ValidationException e)
         {
@@ -93,21 +91,21 @@ public class SimpleSchema : Savable
         SimpleEnum enumField = SimpleEnum.A;
         try
         {
-            enumField = ((Loader<SimpleEnum>)LoaderInstnaces.simpleEnumLoader).LoadField(doc_["enumField"], baseUri, loadingOptions);
+            enumField = ((ILoader<SimpleEnum>)LoaderInstnaces.simpleEnumLoader).LoadField(doc_["enumField"], baseUri, loadingOptions);
         }
         catch (ValidationException e)
         {
             errors.Add(new ValidationException("The `enumField` field ist not valid because: ", e));
         }
 
-        var extensionFields = new Dictionary<object, object>();
-        foreach (var v in doc_)
+        Dictionary<object, object> extensionFields = new();
+        foreach (KeyValuePair<object, object> v in doc_)
         {
             if (!attr.Contains(v.Key))
             {
-                if (((string)v.Key).Contains(":"))
+                if (((string)v.Key).Contains(':'))
                 {
-                    var ex = loadingOptions.ExpandUrl((string)v.Key, "", false, false, null);
+                    string ex = loadingOptions.ExpandUrl((string)v.Key, "", false, false, null);
                     extensionFields[ex] = v.Value;
                 }
                 else
@@ -129,14 +127,15 @@ public class SimpleSchema : Savable
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "", bool relativeUris = true)
     {
-        var r = new Dictionary<object, object>();
-        foreach(var ef in this.extensionFields){
+        Dictionary<object, object> r = new();
+        foreach (KeyValuePair<object, object> _ in extensionFields)
+        {
             // Todo prefixURL
         }
 
-        if (this.id != null)
+        if (id != null)
         {
-            var u = Savable.SaveRelativeUri(this.id, true, relativeUris, null, baseUrl);
+            object u = ISavable.SaveRelativeUri(this.id, true, relativeUris, null, baseUrl);
             if (u != null)
             {
                 r["id"] = u;
@@ -145,19 +144,12 @@ public class SimpleSchema : Savable
 
         if (this.labelField != null)
         {
-            r["labelField"] = Savable.Save(this.labelField, false, this.id!, relativeUris);
+            r["labelField"] = ISavable.Save(this.labelField, false, this.id!, relativeUris);
         }
 
-        if (this.numberField != null)
-        {
-            r["numberField"] = Savable.Save(this.numberField, false, this.id!, relativeUris);
-        }
+        r["numberField"] = ISavable.Save(this.numberField, false, this.id!, relativeUris);
 
-
-        if (this.enumField != null)
-        {
-            r["enumField"] = Savable.Save(this.enumField, false, this.id!, relativeUris);
-        }
+        r["enumField"] = ISavable.Save(this.enumField, false, this.id!, relativeUris);
 
 
         if (top)
@@ -175,5 +167,5 @@ public class SimpleSchema : Savable
         return r;
     }
 
-    static HashSet<string> attr = new HashSet<string> { "id", "labelField", "numberField", "enumField" };
+    static readonly HashSet<string> attr = new() { "id", "labelField", "numberField", "enumField" };
 }

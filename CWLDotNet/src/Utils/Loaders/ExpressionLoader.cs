@@ -1,16 +1,19 @@
-namespace CWLDotNet;
-public class ExpressionLoader : Loader<string>
+﻿namespace CWLDotNet;
+public class ExpressionLoader : ILoader<string>
 {
     public string Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot = null)
     {
-        if(doc is string) {
-            return (string) doc;
-        } else {
+        if (doc is string docString)
+        {
+            return docString;
+        }
+        else
+        {
             throw new ValidationException("Expected a string");
         }
     }
 
-    object Loader.Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot)
+    object ILoader.Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot)
     {
         return Load(doc,
                     baseuri,

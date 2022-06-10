@@ -1,4 +1,4 @@
-namespace CWLDotNet;
+﻿namespace CWLDotNet;
 
 public static class Utilities
 {
@@ -9,15 +9,15 @@ public static class Utilities
      */
     public static string Shortname(string inputId)
     {
-        var parsedId = new Uri(inputId);
+        Uri parsedId = new(inputId);
         if (parsedId.IsAbsoluteUri && parsedId.Fragment != "")
         {
-            var fragmentSplit = parsedId.FragmentWithoutFragmentation().Split('/');
+            string[] fragmentSplit = parsedId.FragmentWithoutFragmentation().Split('/');
             return fragmentSplit[fragmentSplit.Length - 1];
         }
         else if (parsedId.IsAbsoluteUri && parsedId.AbsolutePath != null)
         {
-            var pathSplit = parsedId.AbsolutePath.Split('/');
+            string[] pathSplit = parsedId.AbsolutePath.Split('/');
             return pathSplit[pathSplit.Length - 1];
         }
         else

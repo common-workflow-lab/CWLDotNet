@@ -1,16 +1,18 @@
-// Code implemented after https://github.com/common-workflow-language/schema_salad/blob/main/schema_salad/fetcher.py
-public interface Fetcher
+﻿// Code implemented after https://github.com/common-workflow-language/schema_salad/blob/main/schema_salad/fetcher.py
+namespace CWLDotNet;
+
+public interface IFetcher
 {
     string FetchText(string uri);
     bool CheckExists(string uri);
     string Urljoin(string baseUrl, string url);
-    static string[] schemes = new string[] { "file", "http", "https", "mailto" };
+    protected static readonly string[] Schemes = new string[] { "file", "http", "https", "mailto" };
 }
 
-public class DefaultFetcher : Fetcher
+public class DefaultFetcher : IFetcher
 {
 
-    private HttpClient client;
+    private readonly HttpClient client;
 
     public DefaultFetcher()
     {
@@ -27,15 +29,15 @@ public class DefaultFetcher : Fetcher
 
     public string FetchText(string uri)
     {
-        var split = new Uri(uri);
-        var scheme = split.Scheme;
-        if (Fetcher.schemes.Contains(scheme))
+        Uri split = new(uri);
+        string scheme = split.Scheme;
+        if (IFetcher.Schemes.Contains(scheme))
         {
             if ((new[] { "http", "https" }).Contains(scheme))
             {
                 try
                 {
-                    var response = client.GetAsync(uri).Result;
+                    HttpResponseMessage response = client.GetAsync(uri).Result;
                     response.EnsureSuccessStatusCode();
                     return response.Content.ReadAsStringAsync().Result;
                 }
@@ -48,7 +50,7 @@ public class DefaultFetcher : Fetcher
             {
                 try
                 {
-                    var fileContent = System.IO.File.ReadAllText(split.AbsolutePath);
+                    string fileContent = System.IO.File.ReadAllText(split.AbsolutePath);
                     return fileContent;
                 }
                 catch (Exception e)
@@ -67,9 +69,10 @@ public class DefaultFetcher : Fetcher
         {
             return url;
         }
-        var baseUri = new Uri(baseUrl);
-        var uri = new Uri(url, UriKind.Relative);
 
-        return new Uri(baseUri, url).ToString();
+        Uri baseUri = new(baseUrl);
+        Uri uri = new(url, UriKind.Relative);
+
+        return new Uri(baseUri, uri).ToString();
     }
 }

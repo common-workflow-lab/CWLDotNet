@@ -1,23 +1,23 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Text.RegularExpressions;
 
 namespace CWLDotNet;
 
-public class TypeDSLLoader<T> : Loader<T>
+public class TypeDSLLoader<T> : ILoader<T>
 {
-    Loader<T> inner;
-    int refScope;
+    readonly ILoader<T> inner;
+    readonly int refScope;
 
-    private static Regex TYPE_DSL_REGEX = new Regex(@"^([^\\[?]+)(\\[\\])?(\\?)?$");
-    public TypeDSLLoader(in Loader<T> inner, in int refScope)
+    private static readonly Regex typeDSLRegex = new(@"^([^\\[?]+)(\\[\\])?(\\?)?$");
+    public TypeDSLLoader(in ILoader<T> inner, in int refScope)
     {
         this.inner = inner;
         this.refScope = refScope;
     }
 
-    private object resolve(in string doc_, in string baseuri, in LoadingOptions loadingOptions)
+    private object Resolve(in string doc_, in string baseuri, in LoadingOptions loadingOptions)
     {
-        var m = TYPE_DSL_REGEX.Match(doc_);
+        Match m = typeDSLRegex.Match(doc_);
         if (m.Success)
         {
             string first = loadingOptions.ExpandUrl(m.Groups[1].ToString(), baseuri, false, true, this.refScope);
@@ -25,9 +25,11 @@ public class TypeDSLLoader<T> : Loader<T>
             object? third = null;
             if (m.Groups.Count >= 3 && m.Groups[2].Length > 0)
             {
-                Dictionary<string, object> resolveMap = new();
-                resolveMap.Add("type", "array");
-                resolveMap.Add("items", first);
+                Dictionary<string, object> resolveMap = new()
+                {
+                    { "type", "array" },
+                    { "items", first }
+                };
                 second = resolveMap;
             }
             if (m.Groups.Count >= 4 && m.Groups[3].Length > 0)
@@ -45,16 +47,16 @@ public class TypeDSLLoader<T> : Loader<T>
         if (doc is IList)
         {
             List<object> docList = (List<object>)doc;
-            List<object> r = new List<object>();
-            foreach (var d in docList)
+            List<object> r = new();
+            foreach (object d in docList)
             {
-                if (d is string)
+                if (d is string dString)
                 {
-                    var resolved = this.resolve((string)d, baseuri, loadingOptions);
+                    object resolved = Resolve(dString, baseuri, loadingOptions);
                     if (resolved is IList)
                     {
-                        var resolvedList = (List<object>)resolved;
-                        foreach (var i in resolvedList)
+                        List<object> resolvedList = (List<object>)resolved;
+                        foreach (object i in resolvedList)
                         {
                             if (!r.Contains(i))
                             {
@@ -69,18 +71,22 @@ public class TypeDSLLoader<T> : Loader<T>
                             r.Add(resolved);
                         }
                     }
-                } else {
+                }
+                else
+                {
                     r.Add(d);
                 }
             }
             doc = docList;
-        }else if(doc is string) {
-            doc = this.resolve((string) doc, baseuri, loadingOptions);
         }
-        return this.inner.Load(doc, baseuri, loadingOptions);
+        else if (doc is string docString)
+        {
+            doc = Resolve(docString, baseuri, loadingOptions);
+        }
+        return inner.Load(doc, baseuri, loadingOptions);
     }
 
-    object Loader.Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot)
+    object ILoader.Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot)
     {
         return Load(doc,
                     baseuri,

@@ -1,29 +1,27 @@
-using System.Collections;
+﻿using System.Collections;
 
 namespace CWLDotNet;
 
-public class SecondaryDSLLoader<T> : Loader<T>
+public class SecondaryDSLLoader<T> : ILoader<T>
 {
-    Loader<T> inner;
+    readonly ILoader<T> inner;
 
-    public SecondaryDSLLoader(Loader<T> inner)
+    public SecondaryDSLLoader(ILoader<T> inner)
     {
         this.inner = inner;
     }
     public T Load(in object doc_, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot = null)
     {
-        var r = new List<Dictionary<string, object>>();
-        var doc = doc_;
+        List<Dictionary<string, object>> r = new();
+        object doc = doc_;
         if (doc is IList)
         {
-            var docList = (List<object>)doc;
-            foreach (var d in docList)
+            List<object> docList = (List<object>)doc;
+            foreach (object d in docList)
             {
                 Dictionary<string, object> entry = new();
-                if (d is string)
+                if (d is string dString)
                 {
-
-                    var dString = (string)d;
                     if (dString.EndsWith("?"))
                     {
                         entry.Add("pattern", dString.Substring(0, dString.Length - 1));
@@ -38,7 +36,7 @@ public class SecondaryDSLLoader<T> : Loader<T>
                 }
                 else if (d is IDictionary)
                 {
-                    Dictionary<string, object> dMap = new Dictionary<string, object>((Dictionary<string, object>)d);
+                    Dictionary<string, object> dMap = new((Dictionary<string, object>)d);
                     if (dMap.ContainsKey("pattern"))
                     {
                         entry.Add("pattern", dMap["pattern"]);
@@ -69,8 +67,8 @@ public class SecondaryDSLLoader<T> : Loader<T>
         }
         else if (doc is IDictionary)
         {
-            Dictionary<string, object> entry = new Dictionary<string, object>();
-            Dictionary<string, object> dMap = new Dictionary<string, object>((Dictionary<string, object>)doc);
+            Dictionary<string, object> entry = new();
+            Dictionary<string, object> dMap = new((Dictionary<string, object>)doc);
             if (dMap.ContainsKey("pattern"))
             {
                 entry.Add("pattern", dMap["pattern"]);
@@ -91,10 +89,9 @@ public class SecondaryDSLLoader<T> : Loader<T>
             }
             r.Add(entry);
         }
-        else if (doc is String)
+        else if (doc is string dString)
         {
-            string dString = (string)doc;
-            Dictionary<string, object> entry = new Dictionary<string, object>();
+            Dictionary<string, object> entry = new();
             if (dString.EndsWith("?"))
             {
                 entry.Add("pattern", dString.Substring(0, dString.Length - 1));
@@ -110,10 +107,10 @@ public class SecondaryDSLLoader<T> : Loader<T>
         {
             throw new ValidationException("Expected a string or sequence of (strings or mappings).");
         }
-        return this.inner.Load(r, baseuri, loadingOptions, docRoot);
+        return inner.Load(r, baseuri, loadingOptions, docRoot);
     }
 
-    object Loader.Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot)
+    object ILoader.Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot)
     {
         return Load(doc,
                     baseuri,

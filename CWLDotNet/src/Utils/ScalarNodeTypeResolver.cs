@@ -1,4 +1,4 @@
-#pragma warning disable CS8769
+﻿#pragma warning disable CS8769
 using System.Text.RegularExpressions;
 using YamlDotNet.Core.Events;
 using YamlDotNet.Serialization;
@@ -10,8 +10,7 @@ public class ScalarNodeTypeResolver : INodeTypeResolver
     {
         if (currentType == typeof(object))
         {
-            var scalar = nodeEvent as Scalar;
-            if (scalar != null && !scalar.IsQuotedImplicit)
+            if (nodeEvent is Scalar scalar && !scalar.IsQuotedImplicit)
             {
                 // Expressions taken from https://github.com/aaubry/YamlDotNet/blob/feat-schemas/YamlDotNet/Core/Schemas/JsonSchema.cs
 

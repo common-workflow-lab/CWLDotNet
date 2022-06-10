@@ -1,13 +1,13 @@
-using System.Collections;
+﻿using System.Collections;
 using YamlDotNet.Serialization;
 
 namespace CWLDotNet;
 
-public interface Loader
+public interface ILoader
 {
     object Load(in object doc, in string baseUri, in LoadingOptions loadingOptions, in string? docRoot = null);
 }
-public interface Loader<T> : Loader
+public interface ILoader<T> : ILoader
 {
     new T Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot = null);
     T LoadField(in object value_, in string baseUri, in LoadingOptions loadingOptions)
@@ -22,7 +22,7 @@ public interface Loader<T> : Loader
                 {
                     throw new ValidationException("Cannot load $import without fileuri");
                 }
-                return documentLoadByUrl(loadingOptions.fetcher.Urljoin(loadingOptions.fileUri, (string)valMap["$import"]), loadingOptions);
+                return DocumentLoadByUrl(loadingOptions.fetcher.Urljoin(loadingOptions.fileUri, (string)valMap["$import"]), loadingOptions);
             }
             else if (valMap.ContainsKey("$include"))
             {
@@ -36,17 +36,17 @@ public interface Loader<T> : Loader
         return Load(value, baseUri, loadingOptions);
     }
 
-    T documentLoad(in string doc, in string baseUri, in LoadingOptions loadingOptions)
+    T DocumentLoad(in string doc, in string baseUri, in LoadingOptions loadingOptions)
     {
         return Load(doc, baseUri, loadingOptions);
     }
 
-    T documentLoad(in List<object> doc, in string baseUri, in LoadingOptions loadingOptions)
+    T DocumentLoad(in List<object> doc, in string baseUri, in LoadingOptions loadingOptions)
     {
         return Load(doc, baseUri, loadingOptions);
     }
 
-    T documentLoad(in Dictionary<object, object> doc_, in string baseUri_, in LoadingOptions loadingOptions_)
+    T DocumentLoad(in Dictionary<object, object> doc_, in string baseUri_, in LoadingOptions loadingOptions_)
     {
         Dictionary<object, object> doc = doc_;
         LoadingOptions loadingOptions = loadingOptions_;
@@ -72,31 +72,31 @@ public interface Loader<T> : Loader
         }
     }
 
-    T documentLoadByUrl(in string url, in LoadingOptions loadingOptions)
+    T DocumentLoadByUrl(in string url, in LoadingOptions loadingOptions)
     {
         if (loadingOptions.idx.ContainsKey(url))
         {
-            var result = loadingOptions.idx[url];
-            if (result is string)
+            object result = loadingOptions.idx[url];
+            if (result is string resultString)
             {
-                return documentLoad((string)result, url, loadingOptions);
+                return DocumentLoad(resultString, url, loadingOptions);
             }
             else if (result is IDictionary)
             {
-                return documentLoad((Dictionary<object, object>)result, url, loadingOptions);
+                return DocumentLoad((Dictionary<object, object>)result, url, loadingOptions);
             }
             return Load(result, url, loadingOptions);
         }
         string text = loadingOptions.fetcher.FetchText(url);
-        var deserializer = new DeserializerBuilder().WithNodeTypeResolver(new ScalarNodeTypeResolver()).Build();
-        var yamlObject = deserializer.Deserialize(new StringReader(text));
+        IDeserializer deserializer = new DeserializerBuilder().WithNodeTypeResolver(new ScalarNodeTypeResolver()).Build();
+        object? yamlObject = deserializer.Deserialize(new StringReader(text));
         if (yamlObject is IDictionary)
         {
-            return documentLoad((Dictionary<object, object>)yamlObject, url, new LoadingOptions(copyFrom: loadingOptions, fileUri: url));
+            return DocumentLoad((Dictionary<object, object>)yamlObject, url, new LoadingOptions(copyFrom: loadingOptions, fileUri: url));
         }
         else if (yamlObject is IList)
         {
-            return documentLoad((List<object>)yamlObject, url, new LoadingOptions(copyFrom: loadingOptions, fileUri: url));
+            return DocumentLoad((List<object>)yamlObject, url, new LoadingOptions(copyFrom: loadingOptions, fileUri: url));
         }
         throw new NotImplementedException();
 

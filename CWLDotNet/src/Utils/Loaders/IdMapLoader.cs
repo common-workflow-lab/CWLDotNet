@@ -1,44 +1,57 @@
-using System.Collections;
+﻿using System.Collections;
 
 namespace CWLDotNet;
 
-public class IdMapLoader<T> : Loader<T>
+public class IdMapLoader<T> : ILoader<T>
 {
-    Loader<T> inner;
-    string mapSubject;
-    string? mapPredicate;
-    public IdMapLoader(Loader<T> inner, string mapSubject, string? mapPredicate) {
+    readonly ILoader<T> inner;
+    readonly string mapSubject;
+    readonly string? mapPredicate;
+
+    public IdMapLoader(ILoader<T> inner, string mapSubject, string? mapPredicate)
+    {
         this.inner = inner;
         this.mapSubject = mapSubject;
         this.mapPredicate = mapPredicate;
     }
-    public T Load(in object doc_, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot = null) 
+
+    public T Load(in object doc_, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot = null)
     {
         object doc = doc_;
-        if(doc_ is IDictionary) {
-            List<object> r = new List<object>();
-            foreach(var k in ((Dictionary<string, object>)doc).Keys.OrderBy(p => p)) {
+        if (doc_ is IDictionary)
+        {
+            List<object> r = new();
+            foreach (string? k in ((Dictionary<string, object>)doc).Keys.OrderBy(p => p))
+            {
                 object val = ((Dictionary<string, object>)doc)[k];
-                if(val is IDictionary) {
-                    var v2 = new Dictionary<string, object>((Dictionary<string, object>)val);
+                if (val is IDictionary)
+                {
+                    Dictionary<string, object> v2 = new((Dictionary<string, object>)val);
                     r.Add(v2);
-                }else {
-                    if(mapPredicate != null) {
-                        var v3 = new Dictionary<string, object>();
-                        v3[mapPredicate] = val;
-                        v3[mapSubject] = k;
+                }
+                else
+                {
+                    if (mapPredicate != null)
+                    {
+                        Dictionary<string, object> v3 = new()
+                        {
+                            [mapPredicate] = val,
+                            [mapSubject] = k
+                        };
                         r.Add(v3);
-                    } else {
+                    }
+                    else
+                    {
                         throw new ValidationException("No mapPredicate was specified");
                     }
                 }
             }
             doc = r;
         }
-        return this.inner.Load(doc, baseuri, loadingOptions);
+        return inner.Load(doc, baseuri, loadingOptions);
     }
 
-    object Loader.Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot)
+    object ILoader.Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot)
     {
         return Load(doc,
                     baseuri,

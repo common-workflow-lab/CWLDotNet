@@ -1,6 +1,8 @@
+﻿namespace CWLDotNet;
+
 public class LoadingOptions
 {
-    public Fetcher fetcher;
+    public IFetcher fetcher;
     public string? fileUri;
     public Dictionary<string, string>? namespaces;
     public List<string>? schemas;
@@ -9,7 +11,7 @@ public class LoadingOptions
     public Dictionary<string, string> rvocab;
 
 
-    public LoadingOptions(in Fetcher? fetcher = null, in string? fileUri = null, in Dictionary<string, string>? namespaces = null, in List<string>? schemas = null, in Dictionary<string, object>? idx = null, LoadingOptions? copyFrom = null)
+    public LoadingOptions(in IFetcher? fetcher = null, in string? fileUri = null, in Dictionary<string, string>? namespaces = null, in List<string>? schemas = null, in Dictionary<string, object>? idx = null, LoadingOptions? copyFrom = null)
     {
         this.fileUri = fileUri;
         this.namespaces = namespaces;
@@ -49,14 +51,14 @@ public class LoadingOptions
             this.fetcher = new DefaultFetcher();
         }
 
-        this.vocab = Vocabs.vocab;
-        this.rvocab = Vocabs.rvocab;
+        this.vocab = Vocabs.Vocab;
+        this.rvocab = Vocabs.Rvocab;
 
         if (namespaces != null)
         {
-            this.vocab = new Dictionary<string, string>(Vocabs.vocab);
-            this.rvocab = new Dictionary<string, string>(Vocabs.rvocab);
-            foreach (var namespaceEntry in namespaces)
+            this.vocab = new Dictionary<string, string>(Vocabs.Vocab);
+            this.rvocab = new Dictionary<string, string>(Vocabs.Rvocab);
+            foreach (KeyValuePair<string, string> namespaceEntry in namespaces)
             {
                 this.vocab.Add(namespaceEntry.Key, namespaceEntry.Value);
                 this.rvocab.Add(namespaceEntry.Value, namespaceEntry.Key);
@@ -77,16 +79,16 @@ public class LoadingOptions
             return url;
         }
 
-        if (this.vocab.Count > 0 && url.Contains(":"))
+        if (vocab.Count > 0 && url.Contains(':'))
         {
             string prefix = url.Split(":", 1)[0];
-            if (this.vocab.ContainsKey(prefix))
+            if (vocab.ContainsKey(prefix))
             {
-                url = this.vocab[prefix] + url.Substring(prefix.Length + 1);
+                url = string.Concat(vocab[prefix], url.AsSpan(prefix.Length + 1));
             }
         }
 
-        var split = new Uri(url, UriKind.RelativeOrAbsolute);
+        Uri split = new(url, UriKind.RelativeOrAbsolute);
         bool hasFragment = split.IsAbsoluteUri && split.Fragment != "";
         if ((split.IsAbsoluteUri && (split.Scheme.Equals("http") || split.Scheme.Equals("https") || split.Scheme.Equals("file"))) || url.StartsWith("$(") || url.StartsWith("${"))
         {
@@ -94,8 +96,8 @@ public class LoadingOptions
         }
         else if (scopeId && !hasFragment)
         {
-            var splitbase = new Uri(baseUrl);
-            string frg = "";
+            Uri splitbase = new(baseUrl);
+            string frg;
             if (splitbase.Fragment.Length > 0)
             {
                 frg = splitbase.FragmentWithoutFragmentation() + "/" + split.AbsolutePath;
@@ -104,6 +106,7 @@ public class LoadingOptions
             {
                 frg = split.IsAbsoluteUri ? split.AbsolutePath : split.OriginalString;
             }
+
             string pt;
             if (!splitbase.AbsolutePath.Equals(""))
             {
@@ -114,39 +117,43 @@ public class LoadingOptions
                 pt = "/";
             }
 
-            var builder = new UriBuilder();
-            builder.Scheme = splitbase.Scheme;
-            builder.Host = splitbase.Host;
-            builder.Path = pt;
-            builder.Fragment = frg;
+            UriBuilder builder = new()
+            {
+                Scheme = splitbase.Scheme,
+                Host = splitbase.Host,
+                Path = pt,
+                Fragment = frg
+            };
 
             url = builder.ToString();
         }
         else if (scopedRef != null && !hasFragment)
         {
-            var splitbase = new Uri(baseUrl);
-            List<string> sp = new List<string>(splitbase.FragmentWithoutFragmentation().Split("/").ToList());
+            Uri splitbase = new(baseUrl);
+            List<string> sp = new(splitbase.FragmentWithoutFragmentation().Split("/").ToList());
             int? n = scopedRef;
             while (n > 0 && sp.Count > 0)
             {
                 sp.RemoveAt(sp.Count - 1);
-                n = n - 1;
+                n--;
             }
             sp.Add(url);
             string fragment = string.Join("/", sp);
 
-            var builder = new UriBuilder();
-            builder.Scheme = splitbase.Scheme;
-            builder.Host = splitbase.Host;
-            builder.Path = splitbase.AbsolutePath;
-            builder.Query = splitbase.Query;
-            builder.Fragment = fragment;
+            UriBuilder builder = new()
+            {
+                Scheme = splitbase.Scheme,
+                Host = splitbase.Host,
+                Path = splitbase.AbsolutePath,
+                Query = splitbase.Query,
+                Fragment = fragment
+            };
 
             url = builder.ToString();
         }
         else
         {
-            url = this.fetcher.Urljoin(baseUrl, url);
+            url = fetcher.Urljoin(baseUrl, url);
         }
 
         if (vocabTerm)
@@ -154,9 +161,9 @@ public class LoadingOptions
             split = new Uri(url, UriKind.RelativeOrAbsolute);
             if (split.IsAbsoluteUri && split.Scheme.Length > 0)
             {
-                if (this.rvocab.ContainsKey(url))
+                if (rvocab.ContainsKey(url))
                 {
-                    return this.rvocab[url];
+                    return rvocab[url];
                 }
                 else
                 {

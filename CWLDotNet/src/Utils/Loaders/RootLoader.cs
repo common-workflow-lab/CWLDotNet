@@ -1,15 +1,15 @@
-namespace CWLDotNet;
+﻿namespace CWLDotNet;
 using YamlDotNet.Serialization;
 
 public class RootLoader
 {
-
-
-    public static object LoadDocument(in object doc, in string baseUri_, in LoadingOptions loadingOptions_) {
+    public static object LoadDocument(in object doc, in string baseUri_, in LoadingOptions loadingOptions_)
+    {
         string baseUri = EnsureBaseUri(baseUri_);
         LoadingOptions loadingOptions = loadingOptions_;
 
-        if(loadingOptions == null) {
+        if (loadingOptions == null)
+        {
             loadingOptions = new LoadingOptions(fileUri: baseUri);
         }
         return LoaderInstnaces.unionOfSimpleSchemaLoader.Load(doc, baseUri, loadingOptions, baseUri);
@@ -23,8 +23,8 @@ public class RootLoader
         {
             loadingOptions = new LoadingOptions(fileUri: uri);
         }
-        var deserializer = new DeserializerBuilder().WithNodeTypeResolver(new ScalarNodeTypeResolver()).Build();
-        var yamlObject = deserializer.Deserialize(new StringReader(doc));
+        IDeserializer deserializer = new DeserializerBuilder().WithNodeTypeResolver(new ScalarNodeTypeResolver()).Build();
+        object? yamlObject = deserializer.Deserialize(new StringReader(doc));
         loadingOptions.idx.Add(uri, yamlObject!);
         return LoadDocument(yamlObject!, uri, loadingOptions);
 

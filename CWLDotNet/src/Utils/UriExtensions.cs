@@ -1,3 +1,5 @@
+﻿namespace CWLDotNet;
+
 public static class UriExtensions
 {
     /// Because DotNets URI leaves in the # when parsing Fragments, we need a function that removes the # character
