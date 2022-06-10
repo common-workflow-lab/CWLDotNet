@@ -8,7 +8,7 @@ internal class IdMapLoader<T> : ILoader<T>
     readonly string mapSubject;
     readonly string? mapPredicate;
 
-    public IdMapLoader(ILoader<T> inner, string mapSubject, string? mapPredicate)
+    public IdMapLoader(ILoader<T> inner, string mapSubject, string? mapPredicate = null)
     {
         this.inner = inner;
         this.mapSubject = mapSubject;
@@ -24,9 +24,13 @@ internal class IdMapLoader<T> : ILoader<T>
             foreach (string? k in ((Dictionary<string, object>)doc).Keys.OrderBy(p => p))
             {
                 object val = ((Dictionary<string, object>)doc)[k];
-                if (val is IDictionary)
+                if (val is IDictionary dictionary)
                 {
-                    Dictionary<string, object> v2 = new((Dictionary<string, object>)val);
+                    Dictionary<string, object> v2 = new(
+                        dictionary.Cast<dynamic>().ToDictionary(entry => (string)entry.Key, entry => entry.Value))
+                    {
+                        [mapSubject] = k
+                    };
                     r.Add(v2);
                 }
                 else
