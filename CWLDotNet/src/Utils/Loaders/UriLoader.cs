@@ -35,12 +35,14 @@ public class UriLoader<T> : ILoader<T>
                     docWithExpansion.Add(val);
                 }
             }
+
             doc = docWithExpansion;
         }
         else if (doc is string docString)
         {
             doc = loadingOptions.ExpandUrl(docString, baseuri, scopedID, vocabTerm, scopedRef);
         }
+
         return this.inner.Load(doc, baseuri, loadingOptions);
     }
 

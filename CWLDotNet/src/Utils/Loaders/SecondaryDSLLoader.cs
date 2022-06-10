@@ -10,6 +10,7 @@ public class SecondaryDSLLoader<T> : ILoader<T>
     {
         this.inner = inner;
     }
+
     public T Load(in object doc_, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot = null)
     {
         List<Dictionary<string, object>> r = new();
@@ -32,6 +33,7 @@ public class SecondaryDSLLoader<T> : ILoader<T>
                     {
                         entry.Add("pattern", dString);
                     }
+
                     r.Add(entry);
                 }
                 else if (d is IDictionary)
@@ -57,6 +59,7 @@ public class SecondaryDSLLoader<T> : ILoader<T>
                     {
                         throw new ValidationException("Unallowed values in secondaryFiles specification entry");
                     }
+
                     r.Add(entry);
                 }
                 else
@@ -78,15 +81,18 @@ public class SecondaryDSLLoader<T> : ILoader<T>
             {
                 throw new ValidationException("Missing 'pattern' in secondaryFiles specification entry.");
             }
+
             if (dMap.ContainsKey("required"))
             {
                 entry.Add("required", dMap["required"]);
                 dMap.Remove("required");
             }
+
             if (dMap.Count > 0)
             {
                 throw new ValidationException("Unallowed values in secondaryFiles specification entry.");
             }
+
             r.Add(entry);
         }
         else if (doc is string dString)
@@ -101,12 +107,14 @@ public class SecondaryDSLLoader<T> : ILoader<T>
             {
                 entry.Add("pattern", dString);
             }
+
             r.Add(entry);
         }
         else
         {
             throw new ValidationException("Expected a string or sequence of (strings or mappings).");
         }
+
         return inner.Load(r, baseuri, loadingOptions, docRoot);
     }
 

@@ -15,7 +15,8 @@ public class EnumLoader<T> : ILoader<T> where T : struct, Enum
         }
         else
         {
-            throw new ValidationException($"Symbol not contained in {typeof(T).Name} Enum, expected one of {string.Join(", ", Enum.GetNames(typeof(T)))}");
+            throw new ValidationException(
+                $"Symbol not contained in {typeof(T).Name} Enum, expected one of {string.Join(", ", Enum.GetNames(typeof(T)))}");
         }
     }
 

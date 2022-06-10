@@ -158,6 +158,12 @@ dotnet_diagnostic.IDE1006.severity = warning
 
 dotnet_diagnostic.IDE0005.severity = warning
 
+dotnet_diagnostic.RCS0008.severity = warning
+dotnet_diagnostic.RCS0056.severity = warning
+dotnet_diagnostic.RCS0003.severity = warning
+dotnet_diagnostic.RCS0010.severity = warning
+dotnet_diagnostic.RCS0050.severity = warning
+
 # CSharp code style settings:
 [*.cs]
 # Newline settings

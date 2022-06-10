@@ -11,7 +11,13 @@ public class LoadingOptions
     public Dictionary<string, string> rvocab;
 
 
-    public LoadingOptions(in IFetcher? fetcher = null, in string? fileUri = null, in Dictionary<string, string>? namespaces = null, in List<string>? schemas = null, in Dictionary<string, object>? idx = null, LoadingOptions? copyFrom = null)
+    public LoadingOptions(
+        in IFetcher? fetcher = null,
+        in string? fileUri = null,
+        in Dictionary<string, string>? namespaces = null,
+        in List<string>? schemas = null,
+        in Dictionary<string, object>? idx = null,
+        LoadingOptions? copyFrom = null)
     {
         this.fileUri = fileUri;
         this.namespaces = namespaces;
@@ -90,7 +96,9 @@ public class LoadingOptions
 
         Uri split = new(url, UriKind.RelativeOrAbsolute);
         bool hasFragment = split.IsAbsoluteUri && split.Fragment != "";
-        if ((split.IsAbsoluteUri && (split.Scheme.Equals("http") || split.Scheme.Equals("https") || split.Scheme.Equals("file"))) || url.StartsWith("$(") || url.StartsWith("${"))
+        if ((split.IsAbsoluteUri && (split.Scheme.Equals("http") || split.Scheme.Equals("https") || split.Scheme.Equals("file")))
+            || url.StartsWith("$(")
+            || url.StartsWith("${"))
         {
             // Do nothing
         }
@@ -137,6 +145,7 @@ public class LoadingOptions
                 sp.RemoveAt(sp.Count - 1);
                 n--;
             }
+
             sp.Add(url);
             string fragment = string.Join("/", sp);
 

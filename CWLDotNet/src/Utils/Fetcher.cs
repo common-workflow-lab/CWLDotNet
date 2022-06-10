@@ -18,10 +18,12 @@ public class DefaultFetcher : IFetcher
     {
         this.client = new HttpClient();
     }
+
     public DefaultFetcher(HttpClient client)
     {
         this.client = client;
     }
+
     public bool CheckExists(string uri)
     {
         throw new NotImplementedException();

@@ -12,6 +12,7 @@ public class RootLoader
         {
             loadingOptions = new LoadingOptions(fileUri: baseUri);
         }
+
         return LoaderInstnaces.unionOfSimpleSchemaLoader.Load(doc, baseUri, loadingOptions, baseUri);
     }
 
@@ -23,12 +24,14 @@ public class RootLoader
         {
             loadingOptions = new LoadingOptions(fileUri: uri);
         }
+
         IDeserializer deserializer = new DeserializerBuilder().WithNodeTypeResolver(new ScalarNodeTypeResolver()).Build();
         object? yamlObject = deserializer.Deserialize(new StringReader(doc));
         loadingOptions.idx.Add(uri, yamlObject!);
         return LoadDocument(yamlObject!, uri, loadingOptions);
 
     }
+
     static string EnsureBaseUri(in string baseUri_)
     {
         string baseUri = baseUri_;
@@ -36,6 +39,7 @@ public class RootLoader
         {
             baseUri = new Uri(Environment.CurrentDirectory).AbsoluteUri;
         }
+
         return baseUri;
     }
 }

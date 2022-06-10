@@ -46,8 +46,10 @@ public class IdMapLoader<T> : ILoader<T>
                     }
                 }
             }
+
             doc = r;
         }
+
         return inner.Load(doc, baseuri, loadingOptions);
     }
 

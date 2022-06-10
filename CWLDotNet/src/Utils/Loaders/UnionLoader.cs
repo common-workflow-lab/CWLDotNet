@@ -24,6 +24,7 @@ public class UnionLoader : ILoader<object>
                 errors.Add(e);
             }
         }
+
         throw new ValidationException("Failed to match union type", errors);
     }
 }

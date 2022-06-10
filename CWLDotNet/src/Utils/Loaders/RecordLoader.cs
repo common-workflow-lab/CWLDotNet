@@ -9,6 +9,7 @@ public class RecordLoader<T> : ILoader<T> where T : ISavable
         {
             throw new ValidationException($"Expected object with type of Dictionary but got {doc.GetType()}");
         }
+
         return (T)T.FromDoc(doc, baseUri, loadingOptions, docRoot);
     }
 

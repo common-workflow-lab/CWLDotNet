@@ -9,6 +9,7 @@ public class TypeDSLLoader<T> : ILoader<T>
     readonly int refScope;
 
     private static readonly Regex typeDSLRegex = new(@"^([^\\[?]+)(\\[\\])?(\\?)?$");
+
     public TypeDSLLoader(in ILoader<T> inner, in int refScope)
     {
         this.inner = inner;
@@ -32,12 +33,15 @@ public class TypeDSLLoader<T> : ILoader<T>
                 };
                 second = resolveMap;
             }
+
             if (m.Groups.Count >= 4 && m.Groups[3].Length > 0)
             {
                 third = new List<object> { "null", second ?? first };
             }
+
             return third ?? second ?? first;
         }
+
         return doc_;
     }
 
@@ -77,12 +81,14 @@ public class TypeDSLLoader<T> : ILoader<T>
                     r.Add(d);
                 }
             }
+
             doc = docList;
         }
         else if (doc is string docString)
         {
             doc = Resolve(docString, baseuri, loadingOptions);
         }
+
         return inner.Load(doc, baseuri, loadingOptions);
     }
 

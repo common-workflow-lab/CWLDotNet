@@ -26,7 +26,10 @@ public class ScalarNodeTypeResolver : INodeTypeResolver
                     return true;
                 }
 
-                if (Regex.IsMatch(scalar.Value, @"^-? ( 0 | [1-9] [0-9]* ) ( \. [0-9]* )? ( [eE] [-+]? [0-9]+ )?$", RegexOptions.IgnorePatternWhitespace))
+                if (Regex.IsMatch(
+                    scalar.Value,
+                    @"^-? ( 0 | [1-9] [0-9]* ) ( \. [0-9]* )? ( [eE] [-+]? [0-9]+ )?$",
+                    RegexOptions.IgnorePatternWhitespace))
                 {
                     currentType = typeof(float);
                     return true;
@@ -35,6 +38,7 @@ public class ScalarNodeTypeResolver : INodeTypeResolver
                 // Add more cases here if needed
             }
         }
+
         return false;
     }
 }

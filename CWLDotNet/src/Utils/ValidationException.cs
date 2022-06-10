@@ -19,6 +19,7 @@ public class ValidationException : Exception
         : this(message, new List<ValidationException> { child })
     {
     }
+
     public ValidationException(string message, List<ValidationException> children) : base(message)
     {
         foreach (ValidationException child in children)
@@ -62,6 +63,7 @@ public class ValidationException : Exception
         {
             parts.Add(child.PrettyString(nextlevel));
         }
+
         return string.Join('\n', parts);
     }
 

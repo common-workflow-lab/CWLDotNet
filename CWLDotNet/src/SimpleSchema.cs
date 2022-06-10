@@ -15,7 +15,13 @@ public class SimpleSchema : ISavable
     public SimpleEnum enumField;
     readonly Dictionary<object, object> extensionFields;
 
-    public SimpleSchema(string id, string? labelField, int numberField, SimpleEnum enumField, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    public SimpleSchema(
+        string id,
+        string? labelField,
+        int numberField,
+        SimpleEnum enumField,
+        LoadingOptions? loadingOptions = null,
+        Dictionary<object, object>? extensionFields = null)
     {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
@@ -41,7 +47,10 @@ public class SimpleSchema : ISavable
         {
             try
             {
-                id = (string)((ILoader<object>)LoaderInstnaces.uriunionOfundefinedtypeOrstrtypeTrueFalseNone).LoadField(doc_["id"], baseUri, loadingOptions);
+                id = (string)((ILoader<object>)LoaderInstnaces.uriunionOfundefinedtypeOrstrtypeTrueFalseNone).LoadField(
+                    doc_["id"],
+                    baseUri,
+                    loadingOptions);
             }
             catch (ValidationException e)
             {
@@ -110,7 +119,8 @@ public class SimpleSchema : ISavable
                 }
                 else
                 {
-                    errors.Add(new ValidationException($"invalid field {v.Key}, expected one of 'id', 'labelField', 'enumField', 'numberField'"));
+                    errors.Add(
+                        new ValidationException($"invalid field {v.Key}, expected one of 'id', 'labelField', 'enumField', 'numberField'"));
                     break;
                 }
             }
@@ -158,6 +168,7 @@ public class SimpleSchema : ISavable
             {
                 r["$namespaces"] = this.loadingOptions.namespaces;
             }
+
             if (this.loadingOptions.schemas != null)
             {
                 r["$schemas"] = this.loadingOptions.schemas;

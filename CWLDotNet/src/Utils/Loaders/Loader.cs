@@ -7,9 +7,11 @@ public interface ILoader
 {
     object Load(in object doc, in string baseUri, in LoadingOptions loadingOptions, in string? docRoot = null);
 }
+
 public interface ILoader<T> : ILoader
 {
     new T Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot = null);
+
     T LoadField(in object value_, in string baseUri, in LoadingOptions loadingOptions)
     {
         object value = value_;
@@ -22,6 +24,7 @@ public interface ILoader<T> : ILoader
                 {
                     throw new ValidationException("Cannot load $import without fileuri");
                 }
+
                 return DocumentLoadByUrl(loadingOptions.fetcher.Urljoin(loadingOptions.fileUri, (string)valMap["$import"]), loadingOptions);
             }
             else if (valMap.ContainsKey("$include"))
@@ -30,9 +33,12 @@ public interface ILoader<T> : ILoader
                 {
                     throw new ValidationException("Cannot load $import without fileuri");
                 }
-                value = loadingOptions.fetcher.FetchText(loadingOptions.fetcher.Urljoin(loadingOptions.fileUri, (string)valMap["$include"]));
+
+                value = loadingOptions.fetcher
+                    .FetchText(loadingOptions.fetcher.Urljoin(loadingOptions.fileUri, (string)valMap["$include"]));
             }
         }
+
         return Load(value, baseUri, loadingOptions);
     }
 
@@ -57,11 +63,13 @@ public interface ILoader<T> : ILoader
             doc = new Dictionary<object, object>(doc);
             doc.Remove("$namespaces");
         }
+
         string baseUri = baseUri_;
         if (doc.ContainsKey("$base"))
         {
             baseUri = (string)doc["$base"];
         }
+
         if (doc.ContainsKey("$graph"))
         {
             return Load(doc["$graph"], baseUri, loadingOptions);
@@ -85,8 +93,10 @@ public interface ILoader<T> : ILoader
             {
                 return DocumentLoad((Dictionary<object, object>)result, url, loadingOptions);
             }
+
             return Load(result, url, loadingOptions);
         }
+
         string text = loadingOptions.fetcher.FetchText(url);
         IDeserializer deserializer = new DeserializerBuilder().WithNodeTypeResolver(new ScalarNodeTypeResolver()).Build();
         object? yamlObject = deserializer.Deserialize(new StringReader(text));
@@ -98,6 +108,7 @@ public interface ILoader<T> : ILoader
         {
             return DocumentLoad((List<object>)yamlObject, url, new LoadingOptions(copyFrom: loadingOptions, fileUri: url));
         }
+
         throw new NotImplementedException();
 
     }

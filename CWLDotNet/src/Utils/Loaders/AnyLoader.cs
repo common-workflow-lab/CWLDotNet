@@ -7,6 +7,7 @@ internal class AnyLoader : ILoader<object>
         {
             throw new ValidationException("Expected non null");
         }
+
         return doc;
     }
 }

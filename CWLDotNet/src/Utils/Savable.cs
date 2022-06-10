@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+
 namespace CWLDotNet;
 
 public interface ISavable
@@ -21,6 +22,7 @@ public interface ISavable
             {
                 r.Add(Save(v, false, baseurl, relativeUris));
             }
+
             return r;
         }
 
@@ -32,8 +34,10 @@ public interface ISavable
             {
                 newDict[entry.Key] = Save(entry.Value, false, baseurl, relativeUris);
             }
+
             return newDict;
         }
+
         return val;
     }
 
@@ -52,13 +56,15 @@ public interface ISavable
             {
                 r.Add(SaveRelativeUri(v, scopedId, relativeUris, refScope, baseUrl));
             }
+
             return r;
         }
         else if (uri is string uriString)
         {
             Uri uriSplit = new(uriString, UriKind.RelativeOrAbsolute);
             Uri baseSplit = new(baseUrl, UriKind.RelativeOrAbsolute);
-            if ((!uriSplit.IsAbsoluteUri && !baseSplit.IsAbsoluteUri) || (uriSplit.IsAbsoluteUri && uriSplit.AbsolutePath.Length < 1) || (baseSplit.IsAbsoluteUri && baseSplit.AbsolutePath.Length < 1))
+            if ((!uriSplit.IsAbsoluteUri && !baseSplit.IsAbsoluteUri) || (uriSplit.IsAbsoluteUri && uriSplit.AbsolutePath.Length < 1)
+                || (baseSplit.IsAbsoluteUri && baseSplit.AbsolutePath.Length < 1))
             {
                 throw new ValidationException("Uri or baseurl need to contain a path");
             }
@@ -72,6 +78,7 @@ public interface ISavable
                     {
                         p = p + "#" + uriSplit.FragmentWithoutFragmentation();
                     }
+
                     return p;
                 }
 
@@ -85,6 +92,7 @@ public interface ISavable
                         sp.RemoveAt(sp.Count - 1);
                         i += 1;
                     }
+
                     baseFrag = string.Join('/', sp);
                 }
 
@@ -103,6 +111,7 @@ public interface ISavable
             }
 
         }
+
         throw new ValidationException("uri needs to be of type List or String");
     }
 }

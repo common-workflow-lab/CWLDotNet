@@ -137,6 +137,7 @@ public static class Vocabs
         ["v1.2.0-dev4"] = "https://w3id.org/cwl/cwl#v1.2.0-dev4",
         ["v1.2.0-dev5"] = "https://w3id.org/cwl/cwl#v1.2.0-dev5"
     };
+
     public static readonly Dictionary<string, string> Rvocab = new()
     {
         ["https://w3id.org/cwl/salad#Any"] = "Any",
