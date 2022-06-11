@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System;
+using System.IO;
+using System.Net;
 using System.Net.Http;
 using CWLDotNet;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -32,9 +34,8 @@ public class FetcherTests
     [TestMethod]
     public void TestFetchTextFile()
     {
-        // TODO
-        //DefaultFetcher fetcher = new DefaultFetcher();
-        //Assert.AreEqual("test", fetcher.FetchText(Path.Combine(Environment.CurrentDirectory,"data/test.txt")));
+        DefaultFetcher fetcher = new();
+        Assert.AreEqual("test", fetcher.FetchText(Path.Combine(Environment.CurrentDirectory, "data/test.txt")));
     }
 
     [TestMethod]
