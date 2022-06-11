@@ -1,5 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CWLDotNet;
+﻿using CWLDotNet;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test.Loader;
 
