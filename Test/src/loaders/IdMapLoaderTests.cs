@@ -45,10 +45,11 @@ public class IdMapLoaderTests
         }
         catch (ValidationException e)
         {
+            Assert.IsInstanceOfType(e, typeof(ValidationException));
             Assert.AreEqual("No mapPredicate was specified", e.Message);
             return;
         }
 
-        Assert.Fail("No ValidationException with the correct message was thrown");
+        Assert.Fail("No ValidationException thrown");
     }
 }

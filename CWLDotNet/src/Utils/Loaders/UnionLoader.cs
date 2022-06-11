@@ -25,6 +25,6 @@ internal class UnionLoader : ILoader<object>
             }
         }
 
-        throw new ValidationException("Failed to match union type", errors);
+        throw new ValidationException("Failed to match union type:", errors);
     }
 }

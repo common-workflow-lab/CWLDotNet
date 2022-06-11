@@ -43,7 +43,7 @@ internal class UriLoader<T> : ILoader<T>
             doc = loadingOptions.ExpandUrl(docString, baseuri, scopedID, vocabTerm, scopedRef);
         }
 
-        return this.inner.Load(doc, baseuri, loadingOptions);
+        return inner.Load(doc, baseuri, loadingOptions);
     }
 
     object ILoader.Load(in object doc, in string baseuri, in LoadingOptions loadingOptions, in string? docRoot)
