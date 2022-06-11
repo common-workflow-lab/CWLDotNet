@@ -138,9 +138,9 @@ public class SimpleSchema : ISavable
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "", bool relativeUris = true)
     {
         Dictionary<object, object> r = new();
-        foreach (KeyValuePair<object, object> _ in extensionFields)
+        foreach (KeyValuePair<object, object> ef in extensionFields)
         {
-            // Todo prefixURL
+            r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
         if (id != null)

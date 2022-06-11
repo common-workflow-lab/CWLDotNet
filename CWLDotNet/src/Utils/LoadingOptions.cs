@@ -4,7 +4,7 @@ public class LoadingOptions
 {
     public IFetcher fetcher;
     public string? fileUri;
-    public Dictionary<string, string>? namespaces;
+    public Dictionary<string, string> namespaces;
     public List<string>? schemas;
     public Dictionary<string, object> idx;
     public Dictionary<string, string> vocab;
@@ -20,7 +20,7 @@ public class LoadingOptions
         LoadingOptions? copyFrom = null)
     {
         this.fileUri = fileUri;
-        this.namespaces = namespaces;
+        this.namespaces = namespaces ?? new Dictionary<string, string>();
         this.schemas = schemas;
         this.idx = idx ?? new Dictionary<string, object>();
 
@@ -178,6 +178,19 @@ public class LoadingOptions
                 {
                     throw new ValidationException($"Term '{url}' not in vocabulary");
                 }
+            }
+        }
+
+        return url;
+    }
+
+    public string PrefixUrl(in string url)
+    {
+        foreach (KeyValuePair<string, string> k in vocab)
+        {
+            if (url.StartsWith(k.Value))
+            {
+                return k + ":" + url.Substring(0, k.Value.Length);
             }
         }
 
