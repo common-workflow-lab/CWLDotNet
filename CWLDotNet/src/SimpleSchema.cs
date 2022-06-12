@@ -2,17 +2,23 @@
 
 namespace CWLDotNet;
 
-public class SimpleSchema : ISavable
+public class SimpleSchema : ISimpleSchema, ISavable
 {
     readonly LoadingOptions loadingOptions;
 
-    public string id;
+    public string id { get; set; }
 
-    public string? labelField;
+    public string? labelField { get; set; }
 
-    public int numberField;
+    public int numberField { get; set; }
 
-    public SimpleEnum enumField;
+    public SimpleEnum enumField { get; set; }
+
+    // Inherited fields
+    public int someIntProperty { get; set; }
+
+    public string anotherMandatoryStringProperty { get; set; }
+
     readonly Dictionary<object, object> extensionFields;
 
     public SimpleSchema(
@@ -20,6 +26,8 @@ public class SimpleSchema : ISavable
         string? labelField,
         int numberField,
         SimpleEnum enumField,
+        int someIntProperty,
+        string anotherMandatoryStringProperty,
         LoadingOptions? loadingOptions = null,
         Dictionary<object, object>? extensionFields = null)
     {
@@ -29,6 +37,8 @@ public class SimpleSchema : ISavable
         this.labelField = labelField;
         this.numberField = numberField;
         this.enumField = enumField;
+        this.someIntProperty = someIntProperty;
+        this.anotherMandatoryStringProperty = anotherMandatoryStringProperty;
     }
 
     public static ISavable FromDoc(object doc, string baseUri, LoadingOptions loadingOptions, string? docRoot = null)
@@ -107,6 +117,29 @@ public class SimpleSchema : ISavable
             errors.Add(new ValidationException("The `enumField` field ist not valid because: ", e));
         }
 
+        int someIntProperty = 0;
+        try
+        {
+            someIntProperty = ((ILoader<int>)LoaderInstnaces.intLoader).LoadField(doc_["someIntProperty"], baseUri, loadingOptions);
+        }
+        catch (ValidationException e)
+        {
+            errors.Add(new ValidationException("The `someIntProperty` field ist not valid because: ", e));
+        }
+
+        string anotherMandatoryStringProperty = "";
+        try
+        {
+            anotherMandatoryStringProperty = ((ILoader<string>)LoaderInstnaces.stringLoader).LoadField(
+                doc_["anotherMandatoryStringProperty"],
+                baseUri,
+                loadingOptions);
+        }
+        catch (ValidationException e)
+        {
+            errors.Add(new ValidationException("The `anotherMandatoryStringProperty` field ist not valid because: ", e));
+        }
+
         Dictionary<object, object> extensionFields = new();
         foreach (KeyValuePair<object, object> v in doc_)
         {
@@ -132,7 +165,7 @@ public class SimpleSchema : ISavable
             throw new ValidationException("", errors);
         }
 
-        return new SimpleSchema(id, labelField, numberField, enumField, loadingOptions);
+        return new SimpleSchema(id, labelField, numberField, enumField, someIntProperty, anotherMandatoryStringProperty, loadingOptions);
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "", bool relativeUris = true)
@@ -161,6 +194,9 @@ public class SimpleSchema : ISavable
 
         r["enumField"] = ISavable.Save(this.enumField, false, this.id!, relativeUris);
 
+        r["someIntProperty"] = ISavable.Save(this.someIntProperty, false, this.id!, relativeUris);
+
+        r["anotherMandatoryStringProperty"] = ISavable.Save(this.anotherMandatoryStringProperty, false, this.id!, relativeUris);
 
         if (top)
         {
