@@ -2,21 +2,21 @@ using System.Collections;
 
 namespace CWLDotNet;
 
-/**
- * Auto-generated class implementation for https://w3id.org/cwl/cwl#LoadListingRequirement
- *
- * Specify the desired behavior for loading the `listing` field of
- * a Directory object for use by expressions.
- * 
- */
+/// <summary>
+/// Auto-generated class implementation for https://w3id.org/cwl/cwl#LoadListingRequirement
+///
+/// Specify the desired behavior for loading the `listing` field of
+/// a Directory object for use by expressions.
+/// 
+/// </summary>
 public class LoadListingRequirement : ILoadListingRequirement, ISavable {
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
 
-  /**
-   * Always 'LoadListingRequirement'
-   */
+    /// <summary>
+    /// Always 'LoadListingRequirement'
+    /// </summary>
     public LoadListingRequirement_class class_ { get; set; }
     public object? loadListing { get; set; }
 

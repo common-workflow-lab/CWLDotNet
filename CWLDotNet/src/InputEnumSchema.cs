@@ -2,37 +2,37 @@ using System.Collections;
 
 namespace CWLDotNet;
 
-/**
- * Auto-generated class implementation for https://w3id.org/cwl/cwl#InputEnumSchema
- */
+/// <summary>
+/// Auto-generated class implementation for https://w3id.org/cwl/cwl#InputEnumSchema
+/// </summary>
 public class InputEnumSchema : IInputEnumSchema, ISavable {
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
 
-  /**
-   * The identifier for this type
-   */
+    /// <summary>
+    /// The identifier for this type
+    /// </summary>
     public object? name { get; set; }
 
-  /**
-   * Defines the set of valid symbols.
-   */
+    /// <summary>
+    /// Defines the set of valid symbols.
+    /// </summary>
     public List<string> symbols { get; set; }
 
-  /**
-   * Must be `enum`
-   */
+    /// <summary>
+    /// Must be `enum`
+    /// </summary>
     public enum_d961d79c225752b9fadb617367615ab176b47d77 type { get; set; }
 
-  /**
-   * A short, human-readable label of this object.
-   */
+    /// <summary>
+    /// A short, human-readable label of this object.
+    /// </summary>
     public object? label { get; set; }
 
-  /**
-   * A documentation string for this object, or an array of strings which should be concatenated.
-   */
+    /// <summary>
+    /// A documentation string for this object, or an array of strings which should be concatenated.
+    /// </summary>
     public object doc { get; set; }
 
 

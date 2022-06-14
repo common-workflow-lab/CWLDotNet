@@ -1,7 +1,7 @@
 namespace CWLDotNet;
 
-/**
- * Auto-generated interface for https://w3id.org/cwl/cwl#CommandOutputEnumSchema
- */
+/// <summary>
+/// Auto-generated interface for https://w3id.org/cwl/cwl#CommandOutputEnumSchema
+/// </summary>
 public interface ICommandOutputEnumSchema : IOutputEnumSchema {
                     }

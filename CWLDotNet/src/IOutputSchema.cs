@@ -1,7 +1,7 @@
 namespace CWLDotNet;
 
-/**
- * Auto-generated interface for https://w3id.org/cwl/cwl#OutputSchema
- */
+/// <summary>
+/// Auto-generated interface for https://w3id.org/cwl/cwl#OutputSchema
+/// </summary>
 public interface IOutputSchema : IIOSchema {
                     }

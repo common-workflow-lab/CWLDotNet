@@ -2,21 +2,21 @@ using System.Collections;
 
 namespace CWLDotNet;
 
-/**
- * Auto-generated class implementation for https://w3id.org/cwl/cwl#MultipleInputFeatureRequirement
- *
- * Indicates that the workflow platform must support multiple inbound data links
- * listed in the `source` field of [WorkflowStepInput](#WorkflowStepInput).
- * 
- */
+/// <summary>
+/// Auto-generated class implementation for https://w3id.org/cwl/cwl#MultipleInputFeatureRequirement
+///
+/// Indicates that the workflow platform must support multiple inbound data links
+/// listed in the `source` field of [WorkflowStepInput](#WorkflowStepInput).
+/// 
+/// </summary>
 public class MultipleInputFeatureRequirement : IMultipleInputFeatureRequirement, ISavable {
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
 
-  /**
-   * Always 'MultipleInputFeatureRequirement'
-   */
+    /// <summary>
+    /// Always 'MultipleInputFeatureRequirement'
+    /// </summary>
     public MultipleInputFeatureRequirement_class class_ { get; set; }
 
 

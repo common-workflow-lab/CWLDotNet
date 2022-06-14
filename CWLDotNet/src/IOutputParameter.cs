@@ -1,7 +1,7 @@
 namespace CWLDotNet;
 
-/**
- * Auto-generated interface for https://w3id.org/cwl/cwl#OutputParameter
- */
+/// <summary>
+/// Auto-generated interface for https://w3id.org/cwl/cwl#OutputParameter
+/// </summary>
 public interface IOutputParameter : IParameter,IOutputFormat {
                     }

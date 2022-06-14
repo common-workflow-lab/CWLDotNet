@@ -1,7 +1,7 @@
 namespace CWLDotNet;
 
-/**
- * Auto-generated interface for https://w3id.org/cwl/cwl#InputArraySchema
- */
+/// <summary>
+/// Auto-generated interface for https://w3id.org/cwl/cwl#InputArraySchema
+/// </summary>
 public interface IInputArraySchema : IArraySchema,IInputSchema {
                     }

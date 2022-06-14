@@ -2,27 +2,27 @@ using System.Collections;
 
 namespace CWLDotNet;
 
-/**
- * Auto-generated class implementation for https://w3id.org/cwl/cwl#EnvironmentDef
- *
- * Define an environment variable that will be set in the runtime environment
- * by the workflow platform when executing the command line tool.  May be the
- * result of executing an expression, such as getting a parameter from input.
- * 
- */
+/// <summary>
+/// Auto-generated class implementation for https://w3id.org/cwl/cwl#EnvironmentDef
+///
+/// Define an environment variable that will be set in the runtime environment
+/// by the workflow platform when executing the command line tool.  May be the
+/// result of executing an expression, such as getting a parameter from input.
+/// 
+/// </summary>
 public class EnvironmentDef : IEnvironmentDef, ISavable {
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
 
-  /**
-   * The environment variable name
-   */
+    /// <summary>
+    /// The environment variable name
+    /// </summary>
     public string envName { get; set; }
 
-  /**
-   * The environment variable value
-   */
+    /// <summary>
+    /// The environment variable value
+    /// </summary>
     public object envValue { get; set; }
 
 

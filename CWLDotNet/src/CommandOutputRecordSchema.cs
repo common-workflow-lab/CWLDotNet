@@ -2,37 +2,37 @@ using System.Collections;
 
 namespace CWLDotNet;
 
-/**
- * Auto-generated class implementation for https://w3id.org/cwl/cwl#CommandOutputRecordSchema
- */
+/// <summary>
+/// Auto-generated class implementation for https://w3id.org/cwl/cwl#CommandOutputRecordSchema
+/// </summary>
 public class CommandOutputRecordSchema : ICommandOutputRecordSchema, ISavable {
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
 
-  /**
-   * The identifier for this type
-   */
+    /// <summary>
+    /// The identifier for this type
+    /// </summary>
     public object? name { get; set; }
 
-  /**
-   * Defines the fields of the record.
-   */
+    /// <summary>
+    /// Defines the fields of the record.
+    /// </summary>
     public object? fields { get; set; }
 
-  /**
-   * Must be `record`
-   */
+    /// <summary>
+    /// Must be `record`
+    /// </summary>
     public enum_d9cba076fca539106791a4f46d198c7fcfbdb779 type { get; set; }
 
-  /**
-   * A short, human-readable label of this object.
-   */
+    /// <summary>
+    /// A short, human-readable label of this object.
+    /// </summary>
     public object? label { get; set; }
 
-  /**
-   * A documentation string for this object, or an array of strings which should be concatenated.
-   */
+    /// <summary>
+    /// A documentation string for this object, or an array of strings which should be concatenated.
+    /// </summary>
     public object doc { get; set; }
 
 

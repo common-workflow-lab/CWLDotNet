@@ -2,31 +2,31 @@ using System.Collections;
 
 namespace CWLDotNet;
 
-/**
- * Auto-generated class implementation for https://w3id.org/cwl/salad#RecordField
- *
- * A field of a record.
- */
+/// <summary>
+/// Auto-generated class implementation for https://w3id.org/cwl/salad#RecordField
+///
+/// A field of a record.
+/// </summary>
 public class RecordField : IRecordField, ISavable {
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
 
-  /**
-   * The name of the field
-   * 
-   */
+    /// <summary>
+    /// The name of the field
+    /// 
+    /// </summary>
     public string name { get; set; }
 
-  /**
-   * A documentation string for this object, or an array of strings which should be concatenated.
-   */
+    /// <summary>
+    /// A documentation string for this object, or an array of strings which should be concatenated.
+    /// </summary>
     public object doc { get; set; }
 
-  /**
-   * The field type
-   * 
-   */
+    /// <summary>
+    /// The field type
+    /// 
+    /// </summary>
     public object type { get; set; }
 
 

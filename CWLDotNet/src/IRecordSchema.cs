@@ -1,7 +1,7 @@
 namespace CWLDotNet;
 
-/**
- * Auto-generated interface for https://w3id.org/cwl/salad#RecordSchema
- */
+/// <summary>
+/// Auto-generated interface for https://w3id.org/cwl/salad#RecordSchema
+/// </summary>
 public interface IRecordSchema  {
                     }

@@ -2,37 +2,37 @@ using System.Collections;
 
 namespace CWLDotNet;
 
-/**
- * Auto-generated class implementation for https://w3id.org/cwl/cwl#OutputArraySchema
- */
+/// <summary>
+/// Auto-generated class implementation for https://w3id.org/cwl/cwl#OutputArraySchema
+/// </summary>
 public class OutputArraySchema : IOutputArraySchema, ISavable {
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
 
-  /**
-   * The identifier for this type
-   */
+    /// <summary>
+    /// The identifier for this type
+    /// </summary>
     public object? name { get; set; }
 
-  /**
-   * Defines the type of the array elements.
-   */
+    /// <summary>
+    /// Defines the type of the array elements.
+    /// </summary>
     public object items { get; set; }
 
-  /**
-   * Must be `array`
-   */
+    /// <summary>
+    /// Must be `array`
+    /// </summary>
     public enum_d062602be0b4b8fd33e69e29a841317b6ab665bc type { get; set; }
 
-  /**
-   * A short, human-readable label of this object.
-   */
+    /// <summary>
+    /// A short, human-readable label of this object.
+    /// </summary>
     public object? label { get; set; }
 
-  /**
-   * A documentation string for this object, or an array of strings which should be concatenated.
-   */
+    /// <summary>
+    /// A documentation string for this object, or an array of strings which should be concatenated.
+    /// </summary>
     public object doc { get; set; }
 
 

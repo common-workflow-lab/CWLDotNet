@@ -1,7 +1,7 @@
 namespace CWLDotNet;
 
-/**
- * Auto-generated interface for https://w3id.org/cwl/cwl#CommandLineBindable
- */
+/// <summary>
+/// Auto-generated interface for https://w3id.org/cwl/cwl#CommandLineBindable
+/// </summary>
 public interface ICommandLineBindable  {
                     }

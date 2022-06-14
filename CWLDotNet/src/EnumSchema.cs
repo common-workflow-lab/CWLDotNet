@@ -2,25 +2,25 @@ using System.Collections;
 
 namespace CWLDotNet;
 
-/**
- * Auto-generated class implementation for https://w3id.org/cwl/salad#EnumSchema
- *
- * Define an enumerated type.
- * 
- */
+/// <summary>
+/// Auto-generated class implementation for https://w3id.org/cwl/salad#EnumSchema
+///
+/// Define an enumerated type.
+/// 
+/// </summary>
 public class EnumSchema : IEnumSchema, ISavable {
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
 
-  /**
-   * Defines the set of valid symbols.
-   */
+    /// <summary>
+    /// Defines the set of valid symbols.
+    /// </summary>
     public List<string> symbols { get; set; }
 
-  /**
-   * Must be `enum`
-   */
+    /// <summary>
+    /// Must be `enum`
+    /// </summary>
     public enum_d961d79c225752b9fadb617367615ab176b47d77 type { get; set; }
 
 

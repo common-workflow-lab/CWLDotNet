@@ -2,20 +2,20 @@ using System.Collections;
 
 namespace CWLDotNet;
 
-/**
- * Auto-generated class implementation for https://w3id.org/cwl/cwl#InputBinding
- */
+/// <summary>
+/// Auto-generated class implementation for https://w3id.org/cwl/cwl#InputBinding
+/// </summary>
 public class InputBinding : IInputBinding, ISavable {
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
 
-  /**
-   * Use of `loadContents` in `InputBinding` is deprecated.
-   * Preserved for v1.0 backwards compatibility.  Will be removed in
-   * CWL v2.0.  Use `InputParameter.loadContents` instead.
-   * 
-   */
+    /// <summary>
+    /// Use of `loadContents` in `InputBinding` is deprecated.
+    /// Preserved for v1.0 backwards compatibility.  Will be removed in
+    /// CWL v2.0.  Use `InputParameter.loadContents` instead.
+    /// 
+    /// </summary>
     public object? loadContents { get; set; }
 
 

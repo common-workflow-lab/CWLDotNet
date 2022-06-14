@@ -2,26 +2,26 @@ using System.Collections;
 
 namespace CWLDotNet;
 
-/**
- * Auto-generated class implementation for https://w3id.org/cwl/cwl#EnvVarRequirement
- *
- * Define a list of environment variables which will be set in the
- * execution environment of the tool.  See `EnvironmentDef` for details.
- * 
- */
+/// <summary>
+/// Auto-generated class implementation for https://w3id.org/cwl/cwl#EnvVarRequirement
+///
+/// Define a list of environment variables which will be set in the
+/// execution environment of the tool.  See `EnvironmentDef` for details.
+/// 
+/// </summary>
 public class EnvVarRequirement : IEnvVarRequirement, ISavable {
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
 
-  /**
-   * Always 'EnvVarRequirement'
-   */
+    /// <summary>
+    /// Always 'EnvVarRequirement'
+    /// </summary>
     public EnvVarRequirement_class class_ { get; set; }
 
-  /**
-   * The list of environment variables.
-   */
+    /// <summary>
+    /// The list of environment variables.
+    /// </summary>
     public List<EnvironmentDef> envDef { get; set; }
 
 

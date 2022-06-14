@@ -1,7 +1,7 @@
 namespace CWLDotNet;
 
-/**
- * Auto-generated interface for https://w3id.org/cwl/salad#Documented
- */
+/// <summary>
+/// Auto-generated interface for https://w3id.org/cwl/salad#Documented
+/// </summary>
 public interface IDocumented  {
                     }

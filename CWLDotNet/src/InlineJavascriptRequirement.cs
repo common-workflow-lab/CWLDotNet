@@ -2,30 +2,30 @@ using System.Collections;
 
 namespace CWLDotNet;
 
-/**
- * Auto-generated class implementation for https://w3id.org/cwl/cwl#InlineJavascriptRequirement
- *
- * Indicates that the workflow platform must support inline Javascript expressions.
- * If this requirement is not present, the workflow platform must not perform expression
- * interpolatation.
- * 
- */
+/// <summary>
+/// Auto-generated class implementation for https://w3id.org/cwl/cwl#InlineJavascriptRequirement
+///
+/// Indicates that the workflow platform must support inline Javascript expressions.
+/// If this requirement is not present, the workflow platform must not perform expression
+/// interpolatation.
+/// 
+/// </summary>
 public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavable {
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
 
-  /**
-   * Always 'InlineJavascriptRequirement'
-   */
+    /// <summary>
+    /// Always 'InlineJavascriptRequirement'
+    /// </summary>
     public InlineJavascriptRequirement_class class_ { get; set; }
 
-  /**
-   * Additional code fragments that will also be inserted
-   * before executing the expression code.  Allows for function definitions that may
-   * be called from CWL expressions.
-   * 
-   */
+    /// <summary>
+    /// Additional code fragments that will also be inserted
+    /// before executing the expression code.  Allows for function definitions that may
+    /// be called from CWL expressions.
+    /// 
+    /// </summary>
     public object? expressionLib { get; set; }
 
 

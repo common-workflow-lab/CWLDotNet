@@ -2,26 +2,26 @@ using System.Collections;
 
 namespace CWLDotNet;
 
-/**
- * Auto-generated class implementation for https://w3id.org/cwl/cwl#SoftwareRequirement
- *
- * A list of software packages that should be configured in the environment of
- * the defined process.
- * 
- */
+/// <summary>
+/// Auto-generated class implementation for https://w3id.org/cwl/cwl#SoftwareRequirement
+///
+/// A list of software packages that should be configured in the environment of
+/// the defined process.
+/// 
+/// </summary>
 public class SoftwareRequirement : ISoftwareRequirement, ISavable {
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
 
-  /**
-   * Always 'SoftwareRequirement'
-   */
+    /// <summary>
+    /// Always 'SoftwareRequirement'
+    /// </summary>
     public SoftwareRequirement_class class_ { get; set; }
 
-  /**
-   * The list of software to be configured.
-   */
+    /// <summary>
+    /// The list of software to be configured.
+    /// </summary>
     public List<SoftwarePackage> packages { get; set; }
 
 

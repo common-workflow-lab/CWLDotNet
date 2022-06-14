@@ -1,7 +1,7 @@
 namespace CWLDotNet;
 
-/**
- * Auto-generated interface for https://w3id.org/cwl/cwl#InputRecordSchema
- */
+/// <summary>
+/// Auto-generated interface for https://w3id.org/cwl/cwl#InputRecordSchema
+/// </summary>
 public interface IInputRecordSchema : IRecordSchema,IInputSchema {
                     }

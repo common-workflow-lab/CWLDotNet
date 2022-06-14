@@ -2,21 +2,21 @@ using System.Collections;
 
 namespace CWLDotNet;
 
-/**
- * Auto-generated class implementation for https://w3id.org/cwl/cwl#StepInputExpressionRequirement
- *
- * Indicate that the workflow platform must support the `valueFrom` field
- * of [WorkflowStepInput](#WorkflowStepInput).
- * 
- */
+/// <summary>
+/// Auto-generated class implementation for https://w3id.org/cwl/cwl#StepInputExpressionRequirement
+///
+/// Indicate that the workflow platform must support the `valueFrom` field
+/// of [WorkflowStepInput](#WorkflowStepInput).
+/// 
+/// </summary>
 public class StepInputExpressionRequirement : IStepInputExpressionRequirement, ISavable {
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
 
-  /**
-   * Always 'StepInputExpressionRequirement'
-   */
+    /// <summary>
+    /// Always 'StepInputExpressionRequirement'
+    /// </summary>
     public StepInputExpressionRequirement_class class_ { get; set; }
 
 

@@ -2,21 +2,21 @@ using System.Collections;
 
 namespace CWLDotNet;
 
-/**
- * Auto-generated class implementation for https://w3id.org/cwl/cwl#ScatterFeatureRequirement
- *
- * Indicates that the workflow platform must support the `scatter` and
- * `scatterMethod` fields of [WorkflowStep](#WorkflowStep).
- * 
- */
+/// <summary>
+/// Auto-generated class implementation for https://w3id.org/cwl/cwl#ScatterFeatureRequirement
+///
+/// Indicates that the workflow platform must support the `scatter` and
+/// `scatterMethod` fields of [WorkflowStep](#WorkflowStep).
+/// 
+/// </summary>
 public class ScatterFeatureRequirement : IScatterFeatureRequirement, ISavable {
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
 
-  /**
-   * Always 'ScatterFeatureRequirement'
-   */
+    /// <summary>
+    /// Always 'ScatterFeatureRequirement'
+    /// </summary>
     public ScatterFeatureRequirement_class class_ { get; set; }
 
 

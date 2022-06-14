@@ -2,17 +2,17 @@ using System.Collections;
 
 namespace CWLDotNet;
 
-/**
- * Auto-generated class implementation for https://w3id.org/cwl/cwl#CommandLineBindable
- */
+/// <summary>
+/// Auto-generated class implementation for https://w3id.org/cwl/cwl#CommandLineBindable
+/// </summary>
 public class CommandLineBindable : ICommandLineBindable, ISavable {
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
 
-  /**
-   * Describes how to turn this object into command line arguments.
-   */
+    /// <summary>
+    /// Describes how to turn this object into command line arguments.
+    /// </summary>
     public object? inputBinding { get; set; }
 
 

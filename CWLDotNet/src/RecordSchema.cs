@@ -2,22 +2,22 @@ using System.Collections;
 
 namespace CWLDotNet;
 
-/**
- * Auto-generated class implementation for https://w3id.org/cwl/salad#RecordSchema
- */
+/// <summary>
+/// Auto-generated class implementation for https://w3id.org/cwl/salad#RecordSchema
+/// </summary>
 public class RecordSchema : IRecordSchema, ISavable {
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
 
-  /**
-   * Defines the fields of the record.
-   */
+    /// <summary>
+    /// Defines the fields of the record.
+    /// </summary>
     public object? fields { get; set; }
 
-  /**
-   * Must be `record`
-   */
+    /// <summary>
+    /// Must be `record`
+    /// </summary>
     public enum_d9cba076fca539106791a4f46d198c7fcfbdb779 type { get; set; }
 
 

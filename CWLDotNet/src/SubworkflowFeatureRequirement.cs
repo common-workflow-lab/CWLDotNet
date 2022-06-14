@@ -2,21 +2,21 @@ using System.Collections;
 
 namespace CWLDotNet;
 
-/**
- * Auto-generated class implementation for https://w3id.org/cwl/cwl#SubworkflowFeatureRequirement
- *
- * Indicates that the workflow platform must support nested workflows in
- * the `run` field of [WorkflowStep](#WorkflowStep).
- * 
- */
+/// <summary>
+/// Auto-generated class implementation for https://w3id.org/cwl/cwl#SubworkflowFeatureRequirement
+///
+/// Indicates that the workflow platform must support nested workflows in
+/// the `run` field of [WorkflowStep](#WorkflowStep).
+/// 
+/// </summary>
 public class SubworkflowFeatureRequirement : ISubworkflowFeatureRequirement, ISavable {
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
 
-  /**
-   * Always 'SubworkflowFeatureRequirement'
-   */
+    /// <summary>
+    /// Always 'SubworkflowFeatureRequirement'
+    /// </summary>
     public SubworkflowFeatureRequirement_class class_ { get; set; }
 
 
