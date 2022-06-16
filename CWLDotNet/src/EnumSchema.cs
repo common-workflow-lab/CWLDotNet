@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -115,9 +116,8 @@ public class EnumSchema : IEnumSchema, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["symbols"] = ISavable.SaveRelativeUri(this.symbols, true,
+        r["symbols"] = ISavable.SaveRelativeUri(symbols, true,
                                   relativeUris, null, (string)baseUrl!);
-
         r["type"] =
            ISavable.Save(type, false, (string)baseUrl!, relativeUris);
         if (top)
@@ -137,5 +137,5 @@ public class EnumSchema : IEnumSchema, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "symbols", "type" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "symbols", "type" };
 }

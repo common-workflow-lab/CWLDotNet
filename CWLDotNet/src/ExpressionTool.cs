@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -22,13 +23,13 @@ public class ExpressionTool : IExpressionTool, ISavable {
     /// <summary>
     /// The unique identifier for this object.
     /// </summary>
-    public object? id { get; set; }
+    public Option<string> id { get; set; }
     public ExpressionTool_class class_ { get; set; }
 
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public object? label { get; set; }
+    public Option<string> label { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
@@ -49,14 +50,14 @@ public class ExpressionTool : IExpressionTool, ISavable {
     /// of expressions.
     /// 
     /// </summary>
-    public List<WorkflowInputParameter> inputs { get; set; }
+    public List<object> inputs { get; set; }
 
     /// <summary>
     /// Defines the parameters representing the output of the process.  May be
     /// used to generate and/or validate the output object.
     /// 
     /// </summary>
-    public List<ExpressionToolOutputParameter> outputs { get; set; }
+    public List<object> outputs { get; set; }
 
     /// <summary>
     /// Declares requirements that apply to either the runtime environment or the
@@ -67,7 +68,7 @@ public class ExpressionTool : IExpressionTool, ISavable {
     /// unless overridden at user option.
     /// 
     /// </summary>
-    public object? requirements { get; set; }
+    public Option<List<object>> requirements { get; set; }
 
     /// <summary>
     /// Declares hints applying to either the runtime environment or the
@@ -76,14 +77,14 @@ public class ExpressionTool : IExpressionTool, ISavable {
     /// the implementation may report a warning.
     /// 
     /// </summary>
-    public object? hints { get; set; }
+    public Option<List<object>> hints { get; set; }
 
     /// <summary>
     /// CWL document version. Always required at the document root. Not
     /// required for a Process embedded inside another Process.
     /// 
     /// </summary>
-    public object? cwlVersion { get; set; }
+    public Option<CWLVersion> cwlVersion { get; set; }
 
     /// <summary>
     /// An identifier for the type of computational operation, of this Process.
@@ -101,7 +102,7 @@ public class ExpressionTool : IExpressionTool, ISavable {
     /// [Split read mapping](http://edamontology.org/operation_3199).
     /// 
     /// </summary>
-    public object? intent { get; set; }
+    public Option<List<string>> intent { get; set; }
 
     /// <summary>
     /// The expression to execute.  The expression must return a plain
@@ -112,7 +113,7 @@ public class ExpressionTool : IExpressionTool, ISavable {
     public string expression { get; set; }
 
 
-    public ExpressionTool (object id,ExpressionTool_class class_,object label,object doc,List<WorkflowInputParameter> inputs,List<ExpressionToolOutputParameter> outputs,object requirements,object hints,object cwlVersion,object intent,string expression,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public ExpressionTool (Option<string> id,ExpressionTool_class class_,Option<string> label,object doc,List<object> inputs,List<object> outputs,Option<List<object>> requirements,Option<List<object>> hints,Option<CWLVersion> cwlVersion,Option<List<string>> intent,string expression,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.id = id;
@@ -142,12 +143,12 @@ public class ExpressionTool : IExpressionTool, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        object id = default!;
+        Option<string> id = default!;
         if (doc_.ContainsKey("id"))
         {
             try
             {
-                id = (object)LoaderInstances.urioptional_StringInstanceTrueFalseNone
+                id = (Option<string>)LoaderInstances.urioptional_StringInstanceTrueFalseNone
                    .LoadField(doc_.GetValueOrDefault("id", null!), baseUri,
                        loadingOptions);
             }
@@ -189,12 +190,12 @@ public class ExpressionTool : IExpressionTool, ISavable {
             );
         }
 
-        object label = default!;
+        Option<string> label = default!;
         if (doc_.ContainsKey("label"))
         {
             try
             {
-                label = (object)LoaderInstances.optional_StringInstance
+                label = (Option<string>)LoaderInstances.optional_StringInstance
                    .LoadField(doc_.GetValueOrDefault("label", null!), baseUri,
                        loadingOptions);
             }
@@ -223,10 +224,10 @@ public class ExpressionTool : IExpressionTool, ISavable {
             }
         }
 
-        List<WorkflowInputParameter> inputs = default!;
+        List<object> inputs = default!;
         try
         {
-            inputs = (List<WorkflowInputParameter>)LoaderInstances.idmapinputsarray_of_WorkflowInputParameterLoader
+            inputs = (List<object>)LoaderInstances.idmapinputsarray_of_WorkflowInputParameterLoader
                .LoadField(doc_.GetValueOrDefault("inputs", null!), baseUri,
                    loadingOptions);
         }
@@ -237,10 +238,10 @@ public class ExpressionTool : IExpressionTool, ISavable {
             );
         }
 
-        List<ExpressionToolOutputParameter> outputs = default!;
+        List<object> outputs = default!;
         try
         {
-            outputs = (List<ExpressionToolOutputParameter>)LoaderInstances.idmapoutputsarray_of_ExpressionToolOutputParameterLoader
+            outputs = (List<object>)LoaderInstances.idmapoutputsarray_of_ExpressionToolOutputParameterLoader
                .LoadField(doc_.GetValueOrDefault("outputs", null!), baseUri,
                    loadingOptions);
         }
@@ -251,12 +252,12 @@ public class ExpressionTool : IExpressionTool, ISavable {
             );
         }
 
-        object requirements = default!;
+        Option<List<object>> requirements = default!;
         if (doc_.ContainsKey("requirements"))
         {
             try
             {
-                requirements = (object)LoaderInstances.idmaprequirementsoptional_array_of_union_of_InlineJavascriptRequirementLoader_or_SchemaDefRequirementLoader_or_LoadListingRequirementLoader_or_DockerRequirementLoader_or_SoftwareRequirementLoader_or_InitialWorkDirRequirementLoader_or_EnvVarRequirementLoader_or_ShellCommandRequirementLoader_or_ResourceRequirementLoader_or_WorkReuseLoader_or_NetworkAccessLoader_or_InplaceUpdateRequirementLoader_or_ToolTimeLimitLoader_or_SubworkflowFeatureRequirementLoader_or_ScatterFeatureRequirementLoader_or_MultipleInputFeatureRequirementLoader_or_StepInputExpressionRequirementLoader
+                requirements = (Option<List<object>>)LoaderInstances.idmaprequirementsoptional_array_of_union_of_InlineJavascriptRequirementLoader_or_SchemaDefRequirementLoader_or_LoadListingRequirementLoader_or_DockerRequirementLoader_or_SoftwareRequirementLoader_or_InitialWorkDirRequirementLoader_or_EnvVarRequirementLoader_or_ShellCommandRequirementLoader_or_ResourceRequirementLoader_or_WorkReuseLoader_or_NetworkAccessLoader_or_InplaceUpdateRequirementLoader_or_ToolTimeLimitLoader_or_SubworkflowFeatureRequirementLoader_or_ScatterFeatureRequirementLoader_or_MultipleInputFeatureRequirementLoader_or_StepInputExpressionRequirementLoader
                    .LoadField(doc_.GetValueOrDefault("requirements", null!), baseUri,
                        loadingOptions);
             }
@@ -268,12 +269,12 @@ public class ExpressionTool : IExpressionTool, ISavable {
             }
         }
 
-        object hints = default!;
+        Option<List<object>> hints = default!;
         if (doc_.ContainsKey("hints"))
         {
             try
             {
-                hints = (object)LoaderInstances.idmaphintsoptional_array_of_AnyInstance
+                hints = (Option<List<object>>)LoaderInstances.idmaphintsoptional_array_of_AnyInstance
                    .LoadField(doc_.GetValueOrDefault("hints", null!), baseUri,
                        loadingOptions);
             }
@@ -285,12 +286,12 @@ public class ExpressionTool : IExpressionTool, ISavable {
             }
         }
 
-        object cwlVersion = default!;
+        Option<CWLVersion> cwlVersion = default!;
         if (doc_.ContainsKey("cwlVersion"))
         {
             try
             {
-                cwlVersion = (object)LoaderInstances.urioptional_CWLVersionLoaderFalseTrueNone
+                cwlVersion = (Option<CWLVersion>)LoaderInstances.urioptional_CWLVersionLoaderFalseTrueNone
                    .LoadField(doc_.GetValueOrDefault("cwlVersion", null!), baseUri,
                        loadingOptions);
             }
@@ -302,12 +303,12 @@ public class ExpressionTool : IExpressionTool, ISavable {
             }
         }
 
-        object intent = default!;
+        Option<List<string>> intent = default!;
         if (doc_.ContainsKey("intent"))
         {
             try
             {
-                intent = (object)LoaderInstances.urioptional_array_of_StringInstanceTrueFalseNone
+                intent = (Option<List<string>>)LoaderInstances.urioptional_array_of_StringInstanceTrueFalseNone
                    .LoadField(doc_.GetValueOrDefault("intent", null!), baseUri,
                        loadingOptions);
             }
@@ -384,58 +385,54 @@ public class ExpressionTool : IExpressionTool, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        if (this.id != null)
+        id.IfSome(id =>
         {
-            r["id"] = ISavable.SaveRelativeUri(this.id, true,
+            r["id"] = ISavable.SaveRelativeUri(id, true,
                                       relativeUris, null, (string)baseUrl!);
-
-        }
-                
-        r["class"] = ISavable.SaveRelativeUri(this.class_, false,
+        });
+                    
+        r["class"] = ISavable.SaveRelativeUri(class_, false,
                                   relativeUris, null, (string)this.id!);
-
-        if (this.label != null)
+        label.IfSome(label =>
         {
             r["label"] =
                ISavable.Save(label, false, (string)this.id!, relativeUris);
-        }
-                
-        if (this.doc != null)
+        });
+                    
+        if(doc != null)
         {
             r["doc"] =
                ISavable.Save(doc, false, (string)this.id!, relativeUris);
         }
-                
+                    
         r["inputs"] =
            ISavable.Save(inputs, false, (string)this.id!, relativeUris);
         r["outputs"] =
            ISavable.Save(outputs, false, (string)this.id!, relativeUris);
-        if (this.requirements != null)
+        requirements.IfSome(requirements =>
         {
             r["requirements"] =
                ISavable.Save(requirements, false, (string)this.id!, relativeUris);
-        }
-                
-        if (this.hints != null)
+        });
+                    
+        hints.IfSome(hints =>
         {
             r["hints"] =
                ISavable.Save(hints, false, (string)this.id!, relativeUris);
-        }
-                
-        if (this.cwlVersion != null)
+        });
+                    
+        cwlVersion.IfSome(cwlVersion =>
         {
-            r["cwlVersion"] = ISavable.SaveRelativeUri(this.cwlVersion, false,
+            r["cwlVersion"] = ISavable.SaveRelativeUri(cwlVersion, false,
                                       relativeUris, null, (string)this.id!);
-
-        }
-                
-        if (this.intent != null)
+        });
+                    
+        intent.IfSome(intent =>
         {
-            r["intent"] = ISavable.SaveRelativeUri(this.intent, true,
+            r["intent"] = ISavable.SaveRelativeUri(intent, true,
                                       relativeUris, null, (string)this.id!);
-
-        }
-                
+        });
+                    
         r["expression"] =
            ISavable.Save(expression, false, (string)this.id!, relativeUris);
         if (top)
@@ -455,5 +452,5 @@ public class ExpressionTool : IExpressionTool, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "id", "label", "doc", "inputs", "outputs", "requirements", "hints", "cwlVersion", "intent", "class", "expression" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "id", "label", "doc", "inputs", "outputs", "requirements", "hints", "cwlVersion", "intent", "class", "expression" };
 }

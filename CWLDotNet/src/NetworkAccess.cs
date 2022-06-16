@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -125,9 +126,8 @@ public class NetworkAccess : INetworkAccess, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(this.class_, false,
+        r["class"] = ISavable.SaveRelativeUri(class_, false,
                                   relativeUris, null, (string)baseUrl!);
-
         r["networkAccess"] =
            ISavable.Save(networkAccess, false, (string)baseUrl!, relativeUris);
         if (top)
@@ -147,5 +147,5 @@ public class NetworkAccess : INetworkAccess, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "class", "networkAccess" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "networkAccess" };
 }

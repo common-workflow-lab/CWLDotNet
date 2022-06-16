@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -23,10 +24,10 @@ public class WorkflowStepOutput : IWorkflowStepOutput, ISavable {
     /// <summary>
     /// The unique identifier for this object.
     /// </summary>
-    public object? id { get; set; }
+    public Option<string> id { get; set; }
 
 
-    public WorkflowStepOutput (object id,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public WorkflowStepOutput (Option<string> id,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.id = id;
@@ -46,12 +47,12 @@ public class WorkflowStepOutput : IWorkflowStepOutput, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        object id = default!;
+        Option<string> id = default!;
         if (doc_.ContainsKey("id"))
         {
             try
             {
-                id = (object)LoaderInstances.urioptional_StringInstanceTrueFalseNone
+                id = (Option<string>)LoaderInstances.urioptional_StringInstanceTrueFalseNone
                    .LoadField(doc_.GetValueOrDefault("id", null!), baseUri,
                        loadingOptions);
             }
@@ -120,13 +121,12 @@ public class WorkflowStepOutput : IWorkflowStepOutput, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        if (this.id != null)
+        id.IfSome(id =>
         {
-            r["id"] = ISavable.SaveRelativeUri(this.id, true,
+            r["id"] = ISavable.SaveRelativeUri(id, true,
                                       relativeUris, null, (string)baseUrl!);
-
-        }
-                
+        });
+                    
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -144,5 +144,5 @@ public class WorkflowStepOutput : IWorkflowStepOutput, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "id" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "id" };
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -119,9 +120,8 @@ public class WorkReuse : IWorkReuse, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(this.class_, false,
+        r["class"] = ISavable.SaveRelativeUri(class_, false,
                                   relativeUris, null, (string)baseUrl!);
-
         r["enableReuse"] =
            ISavable.Save(enableReuse, false, (string)baseUrl!, relativeUris);
         if (top)
@@ -141,5 +141,5 @@ public class WorkReuse : IWorkReuse, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "class", "enableReuse" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "enableReuse" };
 }

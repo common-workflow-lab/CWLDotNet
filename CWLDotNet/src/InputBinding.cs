@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -16,10 +17,10 @@ public class InputBinding : IInputBinding, ISavable {
     /// CWL v2.0.  Use `InputParameter.loadContents` instead.
     /// 
     /// </summary>
-    public object? loadContents { get; set; }
+    public Option<bool> loadContents { get; set; }
 
 
-    public InputBinding (object loadContents,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public InputBinding (Option<bool> loadContents,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.loadContents = loadContents;
@@ -39,12 +40,12 @@ public class InputBinding : IInputBinding, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        object loadContents = default!;
+        Option<bool> loadContents = default!;
         if (doc_.ContainsKey("loadContents"))
         {
             try
             {
-                loadContents = (object)LoaderInstances.optional_BooleanInstance
+                loadContents = (Option<bool>)LoaderInstances.optional_BooleanInstance
                    .LoadField(doc_.GetValueOrDefault("loadContents", null!), baseUri,
                        loadingOptions);
             }
@@ -97,12 +98,12 @@ public class InputBinding : IInputBinding, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        if (this.loadContents != null)
+        loadContents.IfSome(loadContents =>
         {
             r["loadContents"] =
                ISavable.Save(loadContents, false, (string)baseUrl!, relativeUris);
-        }
-                
+        });
+                    
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -120,5 +121,5 @@ public class InputBinding : IInputBinding, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "loadContents" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "loadContents" };
 }

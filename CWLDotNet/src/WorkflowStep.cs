@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -94,12 +95,12 @@ public class WorkflowStep : IWorkflowStep, ISavable {
     /// <summary>
     /// The unique identifier for this object.
     /// </summary>
-    public object? id { get; set; }
+    public Option<string> id { get; set; }
 
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public object? label { get; set; }
+    public Option<string> label { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
@@ -114,7 +115,7 @@ public class WorkflowStep : IWorkflowStep, ISavable {
     /// interface for constructing the input object.
     /// 
     /// </summary>
-    public List<WorkflowStepInput> in_ { get; set; }
+    public List<object> in_ { get; set; }
 
     /// <summary>
     /// Defines the parameters representing the output of the process.  May be
@@ -132,7 +133,7 @@ public class WorkflowStep : IWorkflowStep, ISavable {
     /// unless overridden at user option.
     /// 
     /// </summary>
-    public object? requirements { get; set; }
+    public Option<List<object>> requirements { get; set; }
 
     /// <summary>
     /// Declares hints applying to either the runtime environment or the
@@ -141,7 +142,7 @@ public class WorkflowStep : IWorkflowStep, ISavable {
     /// the implementation may report a warning.
     /// 
     /// </summary>
-    public object? hints { get; set; }
+    public Option<List<object>> hints { get; set; }
 
     /// <summary>
     /// Specifies the process to run.  If `run` is a string, it must be an absolute IRI
@@ -156,17 +157,17 @@ public class WorkflowStep : IWorkflowStep, ISavable {
     /// produces a `null` on each output.
     /// 
     /// </summary>
-    public object? when { get; set; }
+    public Option<string> when { get; set; }
     public object scatter { get; set; }
 
     /// <summary>
     /// Required if `scatter` is an array of more than one element.
     /// 
     /// </summary>
-    public object? scatterMethod { get; set; }
+    public Option<ScatterMethod> scatterMethod { get; set; }
 
 
-    public WorkflowStep (object id,object label,object doc,List<WorkflowStepInput> in_,List<object> out_,object requirements,object hints,object run,object when,object scatter,object scatterMethod,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public WorkflowStep (Option<string> id,Option<string> label,object doc,List<object> in_,List<object> out_,Option<List<object>> requirements,Option<List<object>> hints,object run,Option<string> when,object scatter,Option<ScatterMethod> scatterMethod,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.id = id;
@@ -196,12 +197,12 @@ public class WorkflowStep : IWorkflowStep, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        object id = default!;
+        Option<string> id = default!;
         if (doc_.ContainsKey("id"))
         {
             try
             {
-                id = (object)LoaderInstances.urioptional_StringInstanceTrueFalseNone
+                id = (Option<string>)LoaderInstances.urioptional_StringInstanceTrueFalseNone
                    .LoadField(doc_.GetValueOrDefault("id", null!), baseUri,
                        loadingOptions);
             }
@@ -229,12 +230,12 @@ public class WorkflowStep : IWorkflowStep, ISavable {
             baseUri = (string)id;
         }
             
-        object label = default!;
+        Option<string> label = default!;
         if (doc_.ContainsKey("label"))
         {
             try
             {
-                label = (object)LoaderInstances.optional_StringInstance
+                label = (Option<string>)LoaderInstances.optional_StringInstance
                    .LoadField(doc_.GetValueOrDefault("label", null!), baseUri,
                        loadingOptions);
             }
@@ -263,10 +264,10 @@ public class WorkflowStep : IWorkflowStep, ISavable {
             }
         }
 
-        List<WorkflowStepInput> in_ = default!;
+        List<object> in_ = default!;
         try
         {
-            in_ = (List<WorkflowStepInput>)LoaderInstances.idmapin_array_of_WorkflowStepInputLoader
+            in_ = (List<object>)LoaderInstances.idmapin_array_of_WorkflowStepInputLoader
                .LoadField(doc_.GetValueOrDefault("in", null!), baseUri,
                    loadingOptions);
         }
@@ -291,12 +292,12 @@ public class WorkflowStep : IWorkflowStep, ISavable {
             );
         }
 
-        object requirements = default!;
+        Option<List<object>> requirements = default!;
         if (doc_.ContainsKey("requirements"))
         {
             try
             {
-                requirements = (object)LoaderInstances.idmaprequirementsoptional_array_of_union_of_InlineJavascriptRequirementLoader_or_SchemaDefRequirementLoader_or_LoadListingRequirementLoader_or_DockerRequirementLoader_or_SoftwareRequirementLoader_or_InitialWorkDirRequirementLoader_or_EnvVarRequirementLoader_or_ShellCommandRequirementLoader_or_ResourceRequirementLoader_or_WorkReuseLoader_or_NetworkAccessLoader_or_InplaceUpdateRequirementLoader_or_ToolTimeLimitLoader_or_SubworkflowFeatureRequirementLoader_or_ScatterFeatureRequirementLoader_or_MultipleInputFeatureRequirementLoader_or_StepInputExpressionRequirementLoader
+                requirements = (Option<List<object>>)LoaderInstances.idmaprequirementsoptional_array_of_union_of_InlineJavascriptRequirementLoader_or_SchemaDefRequirementLoader_or_LoadListingRequirementLoader_or_DockerRequirementLoader_or_SoftwareRequirementLoader_or_InitialWorkDirRequirementLoader_or_EnvVarRequirementLoader_or_ShellCommandRequirementLoader_or_ResourceRequirementLoader_or_WorkReuseLoader_or_NetworkAccessLoader_or_InplaceUpdateRequirementLoader_or_ToolTimeLimitLoader_or_SubworkflowFeatureRequirementLoader_or_ScatterFeatureRequirementLoader_or_MultipleInputFeatureRequirementLoader_or_StepInputExpressionRequirementLoader
                    .LoadField(doc_.GetValueOrDefault("requirements", null!), baseUri,
                        loadingOptions);
             }
@@ -308,12 +309,12 @@ public class WorkflowStep : IWorkflowStep, ISavable {
             }
         }
 
-        object hints = default!;
+        Option<List<object>> hints = default!;
         if (doc_.ContainsKey("hints"))
         {
             try
             {
-                hints = (object)LoaderInstances.idmaphintsoptional_array_of_AnyInstance
+                hints = (Option<List<object>>)LoaderInstances.idmaphintsoptional_array_of_AnyInstance
                    .LoadField(doc_.GetValueOrDefault("hints", null!), baseUri,
                        loadingOptions);
             }
@@ -339,12 +340,12 @@ public class WorkflowStep : IWorkflowStep, ISavable {
             );
         }
 
-        object when = default!;
+        Option<string> when = default!;
         if (doc_.ContainsKey("when"))
         {
             try
             {
-                when = (object)LoaderInstances.optional_ExpressionLoader
+                when = (Option<string>)LoaderInstances.optional_ExpressionLoader
                    .LoadField(doc_.GetValueOrDefault("when", null!), baseUri,
                        loadingOptions);
             }
@@ -373,12 +374,12 @@ public class WorkflowStep : IWorkflowStep, ISavable {
             }
         }
 
-        object scatterMethod = default!;
+        Option<ScatterMethod> scatterMethod = default!;
         if (doc_.ContainsKey("scatterMethod"))
         {
             try
             {
-                scatterMethod = (object)LoaderInstances.urioptional_ScatterMethodLoaderFalseTrueNone
+                scatterMethod = (Option<ScatterMethod>)LoaderInstances.urioptional_ScatterMethodLoaderFalseTrueNone
                    .LoadField(doc_.GetValueOrDefault("scatterMethod", null!), baseUri,
                        loadingOptions);
             }
@@ -441,64 +442,60 @@ public class WorkflowStep : IWorkflowStep, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        if (this.id != null)
+        id.IfSome(id =>
         {
-            r["id"] = ISavable.SaveRelativeUri(this.id, true,
+            r["id"] = ISavable.SaveRelativeUri(id, true,
                                       relativeUris, null, (string)baseUrl!);
-
-        }
-                
-        if (this.label != null)
+        });
+                    
+        label.IfSome(label =>
         {
             r["label"] =
                ISavable.Save(label, false, (string)this.id!, relativeUris);
-        }
-                
-        if (this.doc != null)
+        });
+                    
+        if(doc != null)
         {
             r["doc"] =
                ISavable.Save(doc, false, (string)this.id!, relativeUris);
         }
-                
+                    
         r["in"] =
            ISavable.Save(in_, false, (string)this.id!, relativeUris);
-        r["out"] = ISavable.SaveRelativeUri(this.out_, true,
+        r["out"] = ISavable.SaveRelativeUri(out_, true,
                                   relativeUris, null, (string)this.id!);
-
-        if (this.requirements != null)
+        requirements.IfSome(requirements =>
         {
             r["requirements"] =
                ISavable.Save(requirements, false, (string)this.id!, relativeUris);
-        }
-                
-        if (this.hints != null)
+        });
+                    
+        hints.IfSome(hints =>
         {
             r["hints"] =
                ISavable.Save(hints, false, (string)this.id!, relativeUris);
-        }
-                
+        });
+                    
         r["run"] =
            ISavable.Save(run, false, (string)this.id!, relativeUris);
-        if (this.when != null)
+        when.IfSome(when =>
         {
             r["when"] =
                ISavable.Save(when, false, (string)this.id!, relativeUris);
-        }
-                
-        if (this.scatter != null)
+        });
+                    
+        if(scatter != null)
         {
-            r["scatter"] = ISavable.SaveRelativeUri(this.scatter, false,
+            r["scatter"] = ISavable.SaveRelativeUri(scatter, false,
                                       relativeUris, 0, (string)this.id!);
-
         }
-                
-        if (this.scatterMethod != null)
+                    
+        scatterMethod.IfSome(scatterMethod =>
         {
-            r["scatterMethod"] = ISavable.SaveRelativeUri(this.scatterMethod, false,
+            r["scatterMethod"] = ISavable.SaveRelativeUri(scatterMethod, false,
                                       relativeUris, null, (string)this.id!);
-
-        }
-                
+        });
+                    
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -516,5 +513,5 @@ public class WorkflowStep : IWorkflowStep, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "id", "label", "doc", "in", "out", "requirements", "hints", "run", "when", "scatter", "scatterMethod" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "id", "label", "doc", "in", "out", "requirements", "hints", "run", "when", "scatter", "scatterMethod" };
 }

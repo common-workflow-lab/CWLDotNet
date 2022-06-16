@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -22,10 +23,10 @@ public class SoftwareRequirement : ISoftwareRequirement, ISavable {
     /// <summary>
     /// The list of software to be configured.
     /// </summary>
-    public List<SoftwarePackage> packages { get; set; }
+    public List<object> packages { get; set; }
 
 
-    public SoftwareRequirement (SoftwareRequirement_class class_,List<SoftwarePackage> packages,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public SoftwareRequirement (SoftwareRequirement_class class_,List<object> packages,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.class_ = class_;
@@ -60,10 +61,10 @@ public class SoftwareRequirement : ISoftwareRequirement, ISavable {
             );
         }
 
-        List<SoftwarePackage> packages = default!;
+        List<object> packages = default!;
         try
         {
-            packages = (List<SoftwarePackage>)LoaderInstances.idmappackagesarray_of_SoftwarePackageLoader
+            packages = (List<object>)LoaderInstances.idmappackagesarray_of_SoftwarePackageLoader
                .LoadField(doc_.GetValueOrDefault("packages", null!), baseUri,
                    loadingOptions);
         }
@@ -116,9 +117,8 @@ public class SoftwareRequirement : ISoftwareRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(this.class_, false,
+        r["class"] = ISavable.SaveRelativeUri(class_, false,
                                   relativeUris, null, (string)baseUrl!);
-
         r["packages"] =
            ISavable.Save(packages, false, (string)baseUrl!, relativeUris);
         if (top)
@@ -138,5 +138,5 @@ public class SoftwareRequirement : ISoftwareRequirement, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "class", "packages" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "packages" };
 }

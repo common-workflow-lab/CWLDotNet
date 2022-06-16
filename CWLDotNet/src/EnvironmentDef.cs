@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -138,5 +139,5 @@ public class EnvironmentDef : IEnvironmentDef, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "envName", "envValue" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "envName", "envValue" };
 }

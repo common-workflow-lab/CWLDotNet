@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -368,57 +369,56 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(this.class_, false,
+        r["class"] = ISavable.SaveRelativeUri(class_, false,
                                   relativeUris, null, (string)baseUrl!);
-
-        if (this.coresMin != null)
+        if(coresMin != null)
         {
             r["coresMin"] =
                ISavable.Save(coresMin, false, (string)baseUrl!, relativeUris);
         }
-                
-        if (this.coresMax != null)
+                    
+        if(coresMax != null)
         {
             r["coresMax"] =
                ISavable.Save(coresMax, false, (string)baseUrl!, relativeUris);
         }
-                
-        if (this.ramMin != null)
+                    
+        if(ramMin != null)
         {
             r["ramMin"] =
                ISavable.Save(ramMin, false, (string)baseUrl!, relativeUris);
         }
-                
-        if (this.ramMax != null)
+                    
+        if(ramMax != null)
         {
             r["ramMax"] =
                ISavable.Save(ramMax, false, (string)baseUrl!, relativeUris);
         }
-                
-        if (this.tmpdirMin != null)
+                    
+        if(tmpdirMin != null)
         {
             r["tmpdirMin"] =
                ISavable.Save(tmpdirMin, false, (string)baseUrl!, relativeUris);
         }
-                
-        if (this.tmpdirMax != null)
+                    
+        if(tmpdirMax != null)
         {
             r["tmpdirMax"] =
                ISavable.Save(tmpdirMax, false, (string)baseUrl!, relativeUris);
         }
-                
-        if (this.outdirMin != null)
+                    
+        if(outdirMin != null)
         {
             r["outdirMin"] =
                ISavable.Save(outdirMin, false, (string)baseUrl!, relativeUris);
         }
-                
-        if (this.outdirMax != null)
+                    
+        if(outdirMax != null)
         {
             r["outdirMax"] =
                ISavable.Save(outdirMax, false, (string)baseUrl!, relativeUris);
         }
-                
+                    
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -436,5 +436,5 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "class", "coresMin", "coresMax", "ramMin", "ramMax", "tmpdirMin", "tmpdirMax", "outdirMin", "outdirMax" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "coresMin", "coresMax", "ramMin", "ramMax", "tmpdirMin", "tmpdirMax", "outdirMin", "outdirMax" };
 }

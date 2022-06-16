@@ -1,3 +1,5 @@
+using LanguageExt;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -36,4 +38,10 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface IInplaceUpdateRequirement : IProcessRequirement {
-                    }
+
+    /// <summary>
+    /// Always 'InplaceUpdateRequirement'
+    /// </summary>
+    public new InplaceUpdateRequirement_class class_ { get; set; }
+    public bool inplaceUpdate { get; set; }
+}

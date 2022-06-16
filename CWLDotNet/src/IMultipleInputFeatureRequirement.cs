@@ -1,3 +1,5 @@
+using LanguageExt;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -8,4 +10,9 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface IMultipleInputFeatureRequirement : IProcessRequirement {
-                    }
+
+    /// <summary>
+    /// Always 'MultipleInputFeatureRequirement'
+    /// </summary>
+    public new MultipleInputFeatureRequirement_class class_ { get; set; }
+}

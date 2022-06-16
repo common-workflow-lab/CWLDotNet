@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -13,7 +14,7 @@ public class RecordSchema : IRecordSchema, ISavable {
     /// <summary>
     /// Defines the fields of the record.
     /// </summary>
-    public object? fields { get; set; }
+    public Option<List<object>> fields { get; set; }
 
     /// <summary>
     /// Must be `record`
@@ -21,7 +22,7 @@ public class RecordSchema : IRecordSchema, ISavable {
     public enum_d9cba076fca539106791a4f46d198c7fcfbdb779 type { get; set; }
 
 
-    public RecordSchema (object fields,enum_d9cba076fca539106791a4f46d198c7fcfbdb779 type,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public RecordSchema (Option<List<object>> fields,enum_d9cba076fca539106791a4f46d198c7fcfbdb779 type,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.fields = fields;
@@ -42,12 +43,12 @@ public class RecordSchema : IRecordSchema, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        object fields = default!;
+        Option<List<object>> fields = default!;
         if (doc_.ContainsKey("fields"))
         {
             try
             {
-                fields = (object)LoaderInstances.idmapfieldsoptional_array_of_RecordFieldLoader
+                fields = (Option<List<object>>)LoaderInstances.idmapfieldsoptional_array_of_RecordFieldLoader
                    .LoadField(doc_.GetValueOrDefault("fields", null!), baseUri,
                        loadingOptions);
             }
@@ -115,12 +116,12 @@ public class RecordSchema : IRecordSchema, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        if (this.fields != null)
+        fields.IfSome(fields =>
         {
             r["fields"] =
                ISavable.Save(fields, false, (string)baseUrl!, relativeUris);
-        }
-                
+        });
+                    
         r["type"] =
            ISavable.Save(type, false, (string)baseUrl!, relativeUris);
         if (top)
@@ -140,5 +141,5 @@ public class RecordSchema : IRecordSchema, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "fields", "type" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "fields", "type" };
 }

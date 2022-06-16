@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -123,7 +124,7 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
     /// <summary>
     /// The unique identifier for this object.
     /// </summary>
-    public object? id { get; set; }
+    public Option<string> id { get; set; }
 
     /// <summary>
     /// Specifies one or more workflow parameters that will provide input to
@@ -137,13 +138,13 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
     /// If not specified, the default method is "merge_nested".
     /// 
     /// </summary>
-    public object? linkMerge { get; set; }
+    public Option<LinkMergeMethod> linkMerge { get; set; }
 
     /// <summary>
     /// The method to use to choose non-null elements among multiple sources.
     /// 
     /// </summary>
-    public object? pickValue { get; set; }
+    public Option<PickValueMethod> pickValue { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -156,7 +157,7 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
     /// the implementation must raise a fatal error.
     /// 
     /// </summary>
-    public object? loadContents { get; set; }
+    public Option<bool> loadContents { get; set; }
 
     /// <summary>
     /// Only valid when `type: Directory` or is an array of `items: Directory`.
@@ -171,12 +172,12 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
     ///   3. By default: `no_listing`
     /// 
     /// </summary>
-    public object? loadListing { get; set; }
+    public Option<LoadListingEnum> loadListing { get; set; }
 
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public object? label { get; set; }
+    public Option<string> label { get; set; }
 
     /// <summary>
     /// The default value for this parameter to use if either there is no
@@ -184,7 +185,7 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
     /// default must be applied prior to scattering or evaluating `valueFrom`.
     /// 
     /// </summary>
-    public object? default_ { get; set; }
+    public Option<object> default_ { get; set; }
 
     /// <summary>
     /// To use valueFrom, [StepInputExpressionRequirement](#StepInputExpressionRequirement) must
@@ -214,7 +215,7 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
     public object valueFrom { get; set; }
 
 
-    public WorkflowStepInput (object id,object source,object linkMerge,object pickValue,object loadContents,object loadListing,object label,object default_,object valueFrom,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public WorkflowStepInput (Option<string> id,object source,Option<LinkMergeMethod> linkMerge,Option<PickValueMethod> pickValue,Option<bool> loadContents,Option<LoadListingEnum> loadListing,Option<string> label,Option<object> default_,object valueFrom,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.id = id;
@@ -242,12 +243,12 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        object id = default!;
+        Option<string> id = default!;
         if (doc_.ContainsKey("id"))
         {
             try
             {
-                id = (object)LoaderInstances.urioptional_StringInstanceTrueFalseNone
+                id = (Option<string>)LoaderInstances.urioptional_StringInstanceTrueFalseNone
                    .LoadField(doc_.GetValueOrDefault("id", null!), baseUri,
                        loadingOptions);
             }
@@ -292,12 +293,12 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
             }
         }
 
-        object linkMerge = default!;
+        Option<LinkMergeMethod> linkMerge = default!;
         if (doc_.ContainsKey("linkMerge"))
         {
             try
             {
-                linkMerge = (object)LoaderInstances.optional_LinkMergeMethodLoader
+                linkMerge = (Option<LinkMergeMethod>)LoaderInstances.optional_LinkMergeMethodLoader
                    .LoadField(doc_.GetValueOrDefault("linkMerge", null!), baseUri,
                        loadingOptions);
             }
@@ -309,12 +310,12 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
             }
         }
 
-        object pickValue = default!;
+        Option<PickValueMethod> pickValue = default!;
         if (doc_.ContainsKey("pickValue"))
         {
             try
             {
-                pickValue = (object)LoaderInstances.optional_PickValueMethodLoader
+                pickValue = (Option<PickValueMethod>)LoaderInstances.optional_PickValueMethodLoader
                    .LoadField(doc_.GetValueOrDefault("pickValue", null!), baseUri,
                        loadingOptions);
             }
@@ -326,12 +327,12 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
             }
         }
 
-        object loadContents = default!;
+        Option<bool> loadContents = default!;
         if (doc_.ContainsKey("loadContents"))
         {
             try
             {
-                loadContents = (object)LoaderInstances.optional_BooleanInstance
+                loadContents = (Option<bool>)LoaderInstances.optional_BooleanInstance
                    .LoadField(doc_.GetValueOrDefault("loadContents", null!), baseUri,
                        loadingOptions);
             }
@@ -343,12 +344,12 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
             }
         }
 
-        object loadListing = default!;
+        Option<LoadListingEnum> loadListing = default!;
         if (doc_.ContainsKey("loadListing"))
         {
             try
             {
-                loadListing = (object)LoaderInstances.optional_LoadListingEnumLoader
+                loadListing = (Option<LoadListingEnum>)LoaderInstances.optional_LoadListingEnumLoader
                    .LoadField(doc_.GetValueOrDefault("loadListing", null!), baseUri,
                        loadingOptions);
             }
@@ -360,12 +361,12 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
             }
         }
 
-        object label = default!;
+        Option<string> label = default!;
         if (doc_.ContainsKey("label"))
         {
             try
             {
-                label = (object)LoaderInstances.optional_StringInstance
+                label = (Option<string>)LoaderInstances.optional_StringInstance
                    .LoadField(doc_.GetValueOrDefault("label", null!), baseUri,
                        loadingOptions);
             }
@@ -377,12 +378,12 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
             }
         }
 
-        object default_ = default!;
+        Option<object> default_ = default!;
         if (doc_.ContainsKey("default"))
         {
             try
             {
-                default_ = (object)LoaderInstances.optional_AnyInstance
+                default_ = (Option<object>)LoaderInstances.optional_AnyInstance
                    .LoadField(doc_.GetValueOrDefault("default", null!), baseUri,
                        loadingOptions);
             }
@@ -460,62 +461,60 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        if (this.id != null)
+        id.IfSome(id =>
         {
-            r["id"] = ISavable.SaveRelativeUri(this.id, true,
+            r["id"] = ISavable.SaveRelativeUri(id, true,
                                       relativeUris, null, (string)baseUrl!);
-
-        }
-                
-        if (this.source != null)
+        });
+                    
+        if(source != null)
         {
-            r["source"] = ISavable.SaveRelativeUri(this.source, false,
+            r["source"] = ISavable.SaveRelativeUri(source, false,
                                       relativeUris, 2, (string)this.id!);
-
         }
-                
-        if (this.linkMerge != null)
+                    
+        linkMerge.IfSome(linkMerge =>
         {
             r["linkMerge"] =
                ISavable.Save(linkMerge, false, (string)this.id!, relativeUris);
-        }
-                
-        if (this.pickValue != null)
+        });
+                    
+        pickValue.IfSome(pickValue =>
         {
             r["pickValue"] =
                ISavable.Save(pickValue, false, (string)this.id!, relativeUris);
-        }
-                
-        if (this.loadContents != null)
+        });
+                    
+        loadContents.IfSome(loadContents =>
         {
             r["loadContents"] =
                ISavable.Save(loadContents, false, (string)this.id!, relativeUris);
-        }
-                
-        if (this.loadListing != null)
+        });
+                    
+        loadListing.IfSome(loadListing =>
         {
             r["loadListing"] =
                ISavable.Save(loadListing, false, (string)this.id!, relativeUris);
-        }
-                
-        if (this.label != null)
+        });
+                    
+        label.IfSome(label =>
         {
             r["label"] =
                ISavable.Save(label, false, (string)this.id!, relativeUris);
-        }
-                
-        if (this.default_ != null)
+        });
+                    
+        default_.IfSome(default_ =>
         {
             r["default"] =
                ISavable.Save(default_, false, (string)this.id!, relativeUris);
-        }
-                
-        if (this.valueFrom != null)
+        });
+                    
+        if(valueFrom != null)
         {
             r["valueFrom"] =
                ISavable.Save(valueFrom, false, (string)this.id!, relativeUris);
         }
-                
+                    
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -533,5 +532,5 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "id", "source", "linkMerge", "pickValue", "loadContents", "loadListing", "label", "default", "valueFrom" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "id", "source", "linkMerge", "pickValue", "loadContents", "loadListing", "label", "default", "valueFrom" };
 }

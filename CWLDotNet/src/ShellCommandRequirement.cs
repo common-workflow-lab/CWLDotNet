@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -100,9 +101,8 @@ public class ShellCommandRequirement : IShellCommandRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(this.class_, false,
+        r["class"] = ISavable.SaveRelativeUri(class_, false,
                                   relativeUris, null, (string)baseUrl!);
-
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -120,5 +120,5 @@ public class ShellCommandRequirement : IShellCommandRequirement, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "class" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class" };
 }

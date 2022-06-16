@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -13,12 +14,12 @@ public class WorkflowInputParameter : IWorkflowInputParameter, ISavable {
     /// <summary>
     /// The unique identifier for this object.
     /// </summary>
-    public object? id { get; set; }
+    public Option<string> id { get; set; }
 
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public object? label { get; set; }
+    public Option<string> label { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -75,7 +76,7 @@ public class WorkflowInputParameter : IWorkflowInputParameter, ISavable {
     /// pipe.  Default: `false`.
     /// 
     /// </summary>
-    public object? streamable { get; set; }
+    public Option<bool> streamable { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
@@ -104,7 +105,7 @@ public class WorkflowInputParameter : IWorkflowInputParameter, ISavable {
     /// the implementation must raise a fatal error.
     /// 
     /// </summary>
-    public object? loadContents { get; set; }
+    public Option<bool> loadContents { get; set; }
 
     /// <summary>
     /// Only valid when `type: Directory` or is an array of `items: Directory`.
@@ -119,7 +120,7 @@ public class WorkflowInputParameter : IWorkflowInputParameter, ISavable {
     ///   3. By default: `no_listing`
     /// 
     /// </summary>
-    public object? loadListing { get; set; }
+    public Option<LoadListingEnum> loadListing { get; set; }
 
     /// <summary>
     /// The default value to use for this parameter if the parameter is missing
@@ -128,7 +129,7 @@ public class WorkflowInputParameter : IWorkflowInputParameter, ISavable {
     /// (e.g. dependent `valueFrom` fields).
     /// 
     /// </summary>
-    public object? default_ { get; set; }
+    public Option<object> default_ { get; set; }
 
     /// <summary>
     /// Specify valid types of data that may be assigned to this parameter.
@@ -141,10 +142,10 @@ public class WorkflowInputParameter : IWorkflowInputParameter, ISavable {
     /// CWL v2.0.  Use `WorkflowInputParameter.loadContents` instead.
     /// 
     /// </summary>
-    public object? inputBinding { get; set; }
+    public Option<InputBinding> inputBinding { get; set; }
 
 
-    public WorkflowInputParameter (object id,object label,object secondaryFiles,object streamable,object doc,object format,object loadContents,object loadListing,object default_,object type,object inputBinding,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public WorkflowInputParameter (Option<string> id,Option<string> label,object secondaryFiles,Option<bool> streamable,object doc,object format,Option<bool> loadContents,Option<LoadListingEnum> loadListing,Option<object> default_,object type,Option<InputBinding> inputBinding,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.id = id;
@@ -174,12 +175,12 @@ public class WorkflowInputParameter : IWorkflowInputParameter, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        object id = default!;
+        Option<string> id = default!;
         if (doc_.ContainsKey("id"))
         {
             try
             {
-                id = (object)LoaderInstances.urioptional_StringInstanceTrueFalseNone
+                id = (Option<string>)LoaderInstances.urioptional_StringInstanceTrueFalseNone
                    .LoadField(doc_.GetValueOrDefault("id", null!), baseUri,
                        loadingOptions);
             }
@@ -207,12 +208,12 @@ public class WorkflowInputParameter : IWorkflowInputParameter, ISavable {
             baseUri = (string)id;
         }
             
-        object label = default!;
+        Option<string> label = default!;
         if (doc_.ContainsKey("label"))
         {
             try
             {
-                label = (object)LoaderInstances.optional_StringInstance
+                label = (Option<string>)LoaderInstances.optional_StringInstance
                    .LoadField(doc_.GetValueOrDefault("label", null!), baseUri,
                        loadingOptions);
             }
@@ -241,12 +242,12 @@ public class WorkflowInputParameter : IWorkflowInputParameter, ISavable {
             }
         }
 
-        object streamable = default!;
+        Option<bool> streamable = default!;
         if (doc_.ContainsKey("streamable"))
         {
             try
             {
-                streamable = (object)LoaderInstances.optional_BooleanInstance
+                streamable = (Option<bool>)LoaderInstances.optional_BooleanInstance
                    .LoadField(doc_.GetValueOrDefault("streamable", null!), baseUri,
                        loadingOptions);
             }
@@ -292,12 +293,12 @@ public class WorkflowInputParameter : IWorkflowInputParameter, ISavable {
             }
         }
 
-        object loadContents = default!;
+        Option<bool> loadContents = default!;
         if (doc_.ContainsKey("loadContents"))
         {
             try
             {
-                loadContents = (object)LoaderInstances.optional_BooleanInstance
+                loadContents = (Option<bool>)LoaderInstances.optional_BooleanInstance
                    .LoadField(doc_.GetValueOrDefault("loadContents", null!), baseUri,
                        loadingOptions);
             }
@@ -309,12 +310,12 @@ public class WorkflowInputParameter : IWorkflowInputParameter, ISavable {
             }
         }
 
-        object loadListing = default!;
+        Option<LoadListingEnum> loadListing = default!;
         if (doc_.ContainsKey("loadListing"))
         {
             try
             {
-                loadListing = (object)LoaderInstances.optional_LoadListingEnumLoader
+                loadListing = (Option<LoadListingEnum>)LoaderInstances.optional_LoadListingEnumLoader
                    .LoadField(doc_.GetValueOrDefault("loadListing", null!), baseUri,
                        loadingOptions);
             }
@@ -326,12 +327,12 @@ public class WorkflowInputParameter : IWorkflowInputParameter, ISavable {
             }
         }
 
-        object default_ = default!;
+        Option<object> default_ = default!;
         if (doc_.ContainsKey("default"))
         {
             try
             {
-                default_ = (object)LoaderInstances.optional_AnyInstance
+                default_ = (Option<object>)LoaderInstances.optional_AnyInstance
                    .LoadField(doc_.GetValueOrDefault("default", null!), baseUri,
                        loadingOptions);
             }
@@ -357,12 +358,12 @@ public class WorkflowInputParameter : IWorkflowInputParameter, ISavable {
             );
         }
 
-        object inputBinding = default!;
+        Option<InputBinding> inputBinding = default!;
         if (doc_.ContainsKey("inputBinding"))
         {
             try
             {
-                inputBinding = (object)LoaderInstances.optional_InputBindingLoader
+                inputBinding = (Option<InputBinding>)LoaderInstances.optional_InputBindingLoader
                    .LoadField(doc_.GetValueOrDefault("inputBinding", null!), baseUri,
                        loadingOptions);
             }
@@ -425,70 +426,68 @@ public class WorkflowInputParameter : IWorkflowInputParameter, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        if (this.id != null)
+        id.IfSome(id =>
         {
-            r["id"] = ISavable.SaveRelativeUri(this.id, true,
+            r["id"] = ISavable.SaveRelativeUri(id, true,
                                       relativeUris, null, (string)baseUrl!);
-
-        }
-                
-        if (this.label != null)
+        });
+                    
+        label.IfSome(label =>
         {
             r["label"] =
                ISavable.Save(label, false, (string)this.id!, relativeUris);
-        }
-                
-        if (this.secondaryFiles != null)
+        });
+                    
+        if(secondaryFiles != null)
         {
             r["secondaryFiles"] =
                ISavable.Save(secondaryFiles, false, (string)this.id!, relativeUris);
         }
-                
-        if (this.streamable != null)
+                    
+        streamable.IfSome(streamable =>
         {
             r["streamable"] =
                ISavable.Save(streamable, false, (string)this.id!, relativeUris);
-        }
-                
-        if (this.doc != null)
+        });
+                    
+        if(doc != null)
         {
             r["doc"] =
                ISavable.Save(doc, false, (string)this.id!, relativeUris);
         }
-                
-        if (this.format != null)
+                    
+        if(format != null)
         {
-            r["format"] = ISavable.SaveRelativeUri(this.format, true,
+            r["format"] = ISavable.SaveRelativeUri(format, true,
                                       relativeUris, null, (string)this.id!);
-
         }
-                
-        if (this.loadContents != null)
+                    
+        loadContents.IfSome(loadContents =>
         {
             r["loadContents"] =
                ISavable.Save(loadContents, false, (string)this.id!, relativeUris);
-        }
-                
-        if (this.loadListing != null)
+        });
+                    
+        loadListing.IfSome(loadListing =>
         {
             r["loadListing"] =
                ISavable.Save(loadListing, false, (string)this.id!, relativeUris);
-        }
-                
-        if (this.default_ != null)
+        });
+                    
+        default_.IfSome(default_ =>
         {
             r["default"] =
                ISavable.Save(default_, false, (string)this.id!, relativeUris);
-        }
-                
+        });
+                    
         r["type"] =
            ISavable.Save(type, false, (string)this.id!, relativeUris);
-        if (this.inputBinding != null)
+        inputBinding.IfSome(inputBinding =>
         {
             r["inputBinding"] =
                ISavable.Save(inputBinding, false, (string)this.id!, relativeUris);
-        }
-                
+        });
+                    
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -506,5 +505,5 @@ public class WorkflowInputParameter : IWorkflowInputParameter, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "label", "secondaryFiles", "streamable", "doc", "id", "format", "loadContents", "loadListing", "default", "type", "inputBinding" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "label", "secondaryFiles", "streamable", "doc", "id", "format", "loadContents", "loadListing", "default", "type", "inputBinding" };
 }

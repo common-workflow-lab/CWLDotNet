@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -23,7 +24,7 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
     /// compatible.
     /// 
     /// </summary>
-    public object? version { get; set; }
+    public Option<List<string>> version { get; set; }
 
     /// <summary>
     /// One or more [IRI](https://en.wikipedia.org/wiki/Internationalized_Resource_Identifier)s
@@ -69,10 +70,10 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
     /// clutter.
     /// 
     /// </summary>
-    public object? specs { get; set; }
+    public Option<List<string>> specs { get; set; }
 
 
-    public SoftwarePackage (string package_,object version,object specs,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public SoftwarePackage (string package_,Option<List<string>> version,Option<List<string>> specs,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.package_ = package_;
@@ -108,12 +109,12 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
             );
         }
 
-        object version = default!;
+        Option<List<string>> version = default!;
         if (doc_.ContainsKey("version"))
         {
             try
             {
-                version = (object)LoaderInstances.optional_array_of_StringInstance
+                version = (Option<List<string>>)LoaderInstances.optional_array_of_StringInstance
                    .LoadField(doc_.GetValueOrDefault("version", null!), baseUri,
                        loadingOptions);
             }
@@ -125,12 +126,12 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
             }
         }
 
-        object specs = default!;
+        Option<List<string>> specs = default!;
         if (doc_.ContainsKey("specs"))
         {
             try
             {
-                specs = (object)LoaderInstances.urioptional_array_of_StringInstanceFalseFalseNone
+                specs = (Option<List<string>>)LoaderInstances.urioptional_array_of_StringInstanceFalseFalseNone
                    .LoadField(doc_.GetValueOrDefault("specs", null!), baseUri,
                        loadingOptions);
             }
@@ -187,19 +188,18 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
 
         r["package"] =
            ISavable.Save(package_, false, (string)baseUrl!, relativeUris);
-        if (this.version != null)
+        version.IfSome(version =>
         {
             r["version"] =
                ISavable.Save(version, false, (string)baseUrl!, relativeUris);
-        }
-                
-        if (this.specs != null)
+        });
+                    
+        specs.IfSome(specs =>
         {
-            r["specs"] = ISavable.SaveRelativeUri(this.specs, false,
+            r["specs"] = ISavable.SaveRelativeUri(specs, false,
                                       relativeUris, null, (string)baseUrl!);
-
-        }
-                
+        });
+                    
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -217,5 +217,5 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "package", "version", "specs" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "package", "version", "specs" };
 }

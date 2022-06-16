@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -13,7 +14,7 @@ public class CommandInputArraySchema : ICommandInputArraySchema, ISavable {
     /// <summary>
     /// The identifier for this type
     /// </summary>
-    public object? name { get; set; }
+    public Option<string> name { get; set; }
 
     /// <summary>
     /// Defines the type of the array elements.
@@ -28,7 +29,7 @@ public class CommandInputArraySchema : ICommandInputArraySchema, ISavable {
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public object? label { get; set; }
+    public Option<string> label { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
@@ -38,10 +39,10 @@ public class CommandInputArraySchema : ICommandInputArraySchema, ISavable {
     /// <summary>
     /// Describes how to turn this object into command line arguments.
     /// </summary>
-    public object? inputBinding { get; set; }
+    public Option<CommandLineBinding> inputBinding { get; set; }
 
 
-    public CommandInputArraySchema (object name,object items,enum_d062602be0b4b8fd33e69e29a841317b6ab665bc type,object label,object doc,object inputBinding,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public CommandInputArraySchema (Option<string> name,object items,enum_d062602be0b4b8fd33e69e29a841317b6ab665bc type,Option<string> label,object doc,Option<CommandLineBinding> inputBinding,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.name = name;
@@ -66,12 +67,12 @@ public class CommandInputArraySchema : ICommandInputArraySchema, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        object name = default!;
+        Option<string> name = default!;
         if (doc_.ContainsKey("name"))
         {
             try
             {
-                name = (object)LoaderInstances.urioptional_StringInstanceTrueFalseNone
+                name = (Option<string>)LoaderInstances.urioptional_StringInstanceTrueFalseNone
                    .LoadField(doc_.GetValueOrDefault("name", null!), baseUri,
                        loadingOptions);
             }
@@ -127,12 +128,12 @@ public class CommandInputArraySchema : ICommandInputArraySchema, ISavable {
             );
         }
 
-        object label = default!;
+        Option<string> label = default!;
         if (doc_.ContainsKey("label"))
         {
             try
             {
-                label = (object)LoaderInstances.optional_StringInstance
+                label = (Option<string>)LoaderInstances.optional_StringInstance
                    .LoadField(doc_.GetValueOrDefault("label", null!), baseUri,
                        loadingOptions);
             }
@@ -161,12 +162,12 @@ public class CommandInputArraySchema : ICommandInputArraySchema, ISavable {
             }
         }
 
-        object inputBinding = default!;
+        Option<CommandLineBinding> inputBinding = default!;
         if (doc_.ContainsKey("inputBinding"))
         {
             try
             {
-                inputBinding = (object)LoaderInstances.optional_CommandLineBindingLoader
+                inputBinding = (Option<CommandLineBinding>)LoaderInstances.optional_CommandLineBindingLoader
                    .LoadField(doc_.GetValueOrDefault("inputBinding", null!), baseUri,
                        loadingOptions);
             }
@@ -224,35 +225,34 @@ public class CommandInputArraySchema : ICommandInputArraySchema, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        if (this.name != null)
+        name.IfSome(name =>
         {
-            r["name"] = ISavable.SaveRelativeUri(this.name, true,
+            r["name"] = ISavable.SaveRelativeUri(name, true,
                                       relativeUris, null, (string)baseUrl!);
-
-        }
-                
+        });
+                    
         r["items"] =
            ISavable.Save(items, false, (string)this.name!, relativeUris);
         r["type"] =
            ISavable.Save(type, false, (string)this.name!, relativeUris);
-        if (this.label != null)
+        label.IfSome(label =>
         {
             r["label"] =
                ISavable.Save(label, false, (string)this.name!, relativeUris);
-        }
-                
-        if (this.doc != null)
+        });
+                    
+        if(doc != null)
         {
             r["doc"] =
                ISavable.Save(doc, false, (string)this.name!, relativeUris);
         }
-                
-        if (this.inputBinding != null)
+                    
+        inputBinding.IfSome(inputBinding =>
         {
             r["inputBinding"] =
                ISavable.Save(inputBinding, false, (string)this.name!, relativeUris);
-        }
-                
+        });
+                    
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -270,5 +270,5 @@ public class CommandInputArraySchema : ICommandInputArraySchema, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "items", "type", "label", "doc", "name", "inputBinding" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "items", "type", "label", "doc", "name", "inputBinding" };
 }

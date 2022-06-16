@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -185,12 +186,12 @@ public class SecondaryFileSchema : ISecondaryFileSchema, ISavable {
 
         r["pattern"] =
            ISavable.Save(pattern, false, (string)baseUrl!, relativeUris);
-        if (this.required != null)
+        if(required != null)
         {
             r["required"] =
                ISavable.Save(required, false, (string)baseUrl!, relativeUris);
         }
-                
+                    
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -208,5 +209,5 @@ public class SecondaryFileSchema : ISecondaryFileSchema, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "pattern", "required" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "pattern", "required" };
 }

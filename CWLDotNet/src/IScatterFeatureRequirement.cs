@@ -1,3 +1,5 @@
+using LanguageExt;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -8,4 +10,9 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface IScatterFeatureRequirement : IProcessRequirement {
-                    }
+
+    /// <summary>
+    /// Always 'ScatterFeatureRequirement'
+    /// </summary>
+    public new ScatterFeatureRequirement_class class_ { get; set; }
+}

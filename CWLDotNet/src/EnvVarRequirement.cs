@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -22,10 +23,10 @@ public class EnvVarRequirement : IEnvVarRequirement, ISavable {
     /// <summary>
     /// The list of environment variables.
     /// </summary>
-    public List<EnvironmentDef> envDef { get; set; }
+    public List<object> envDef { get; set; }
 
 
-    public EnvVarRequirement (EnvVarRequirement_class class_,List<EnvironmentDef> envDef,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public EnvVarRequirement (EnvVarRequirement_class class_,List<object> envDef,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.class_ = class_;
@@ -60,10 +61,10 @@ public class EnvVarRequirement : IEnvVarRequirement, ISavable {
             );
         }
 
-        List<EnvironmentDef> envDef = default!;
+        List<object> envDef = default!;
         try
         {
-            envDef = (List<EnvironmentDef>)LoaderInstances.idmapenvDefarray_of_EnvironmentDefLoader
+            envDef = (List<object>)LoaderInstances.idmapenvDefarray_of_EnvironmentDefLoader
                .LoadField(doc_.GetValueOrDefault("envDef", null!), baseUri,
                    loadingOptions);
         }
@@ -116,9 +117,8 @@ public class EnvVarRequirement : IEnvVarRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(this.class_, false,
+        r["class"] = ISavable.SaveRelativeUri(class_, false,
                                   relativeUris, null, (string)baseUrl!);
-
         r["envDef"] =
            ISavable.Save(envDef, false, (string)baseUrl!, relativeUris);
         if (top)
@@ -138,5 +138,5 @@ public class EnvVarRequirement : IEnvVarRequirement, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "class", "envDef" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "envDef" };
 }

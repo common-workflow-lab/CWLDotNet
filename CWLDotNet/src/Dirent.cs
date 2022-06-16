@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -98,10 +99,10 @@ public class Dirent : IDirent, ISavable {
     /// not explicitly marked as writable.
     /// 
     /// </summary>
-    public object? writable { get; set; }
+    public Option<bool> writable { get; set; }
 
 
-    public Dirent (object entryname,object entry,object writable,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public Dirent (object entryname,object entry,Option<bool> writable,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.entryname = entryname;
@@ -154,12 +155,12 @@ public class Dirent : IDirent, ISavable {
             );
         }
 
-        object writable = default!;
+        Option<bool> writable = default!;
         if (doc_.ContainsKey("writable"))
         {
             try
             {
-                writable = (object)LoaderInstances.optional_BooleanInstance
+                writable = (Option<bool>)LoaderInstances.optional_BooleanInstance
                    .LoadField(doc_.GetValueOrDefault("writable", null!), baseUri,
                        loadingOptions);
             }
@@ -214,20 +215,20 @@ public class Dirent : IDirent, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        if (this.entryname != null)
+        if(entryname != null)
         {
             r["entryname"] =
                ISavable.Save(entryname, false, (string)baseUrl!, relativeUris);
         }
-                
+                    
         r["entry"] =
            ISavable.Save(entry, false, (string)baseUrl!, relativeUris);
-        if (this.writable != null)
+        writable.IfSome(writable =>
         {
             r["writable"] =
                ISavable.Save(writable, false, (string)baseUrl!, relativeUris);
-        }
-                
+        });
+                    
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -245,5 +246,5 @@ public class Dirent : IDirent, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "entryname", "entry", "writable" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "entryname", "entry", "writable" };
 }

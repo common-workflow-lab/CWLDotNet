@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -18,10 +19,10 @@ public class LoadListingRequirement : ILoadListingRequirement, ISavable {
     /// Always 'LoadListingRequirement'
     /// </summary>
     public LoadListingRequirement_class class_ { get; set; }
-    public object? loadListing { get; set; }
+    public Option<LoadListingEnum> loadListing { get; set; }
 
 
-    public LoadListingRequirement (LoadListingRequirement_class class_,object loadListing,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public LoadListingRequirement (LoadListingRequirement_class class_,Option<LoadListingEnum> loadListing,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.class_ = class_;
@@ -56,12 +57,12 @@ public class LoadListingRequirement : ILoadListingRequirement, ISavable {
             );
         }
 
-        object loadListing = default!;
+        Option<LoadListingEnum> loadListing = default!;
         if (doc_.ContainsKey("loadListing"))
         {
             try
             {
-                loadListing = (object)LoaderInstances.optional_LoadListingEnumLoader
+                loadListing = (Option<LoadListingEnum>)LoaderInstances.optional_LoadListingEnumLoader
                    .LoadField(doc_.GetValueOrDefault("loadListing", null!), baseUri,
                        loadingOptions);
             }
@@ -115,15 +116,14 @@ public class LoadListingRequirement : ILoadListingRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(this.class_, false,
+        r["class"] = ISavable.SaveRelativeUri(class_, false,
                                   relativeUris, null, (string)baseUrl!);
-
-        if (this.loadListing != null)
+        loadListing.IfSome(loadListing =>
         {
             r["loadListing"] =
                ISavable.Save(loadListing, false, (string)baseUrl!, relativeUris);
-        }
-                
+        });
+                    
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -141,5 +141,5 @@ public class LoadListingRequirement : ILoadListingRequirement, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "class", "loadListing" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "loadListing" };
 }

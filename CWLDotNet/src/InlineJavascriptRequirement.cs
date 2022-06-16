@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -26,10 +27,10 @@ public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavabl
     /// be called from CWL expressions.
     /// 
     /// </summary>
-    public object? expressionLib { get; set; }
+    public Option<List<string>> expressionLib { get; set; }
 
 
-    public InlineJavascriptRequirement (InlineJavascriptRequirement_class class_,object expressionLib,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public InlineJavascriptRequirement (InlineJavascriptRequirement_class class_,Option<List<string>> expressionLib,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.class_ = class_;
@@ -64,12 +65,12 @@ public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavabl
             );
         }
 
-        object expressionLib = default!;
+        Option<List<string>> expressionLib = default!;
         if (doc_.ContainsKey("expressionLib"))
         {
             try
             {
-                expressionLib = (object)LoaderInstances.optional_array_of_StringInstance
+                expressionLib = (Option<List<string>>)LoaderInstances.optional_array_of_StringInstance
                    .LoadField(doc_.GetValueOrDefault("expressionLib", null!), baseUri,
                        loadingOptions);
             }
@@ -123,15 +124,14 @@ public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavabl
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(this.class_, false,
+        r["class"] = ISavable.SaveRelativeUri(class_, false,
                                   relativeUris, null, (string)baseUrl!);
-
-        if (this.expressionLib != null)
+        expressionLib.IfSome(expressionLib =>
         {
             r["expressionLib"] =
                ISavable.Save(expressionLib, false, (string)baseUrl!, relativeUris);
-        }
-                
+        });
+                    
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -149,5 +149,5 @@ public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavabl
     }
 
             
-    static readonly HashSet<string> attr = new() { "class", "expressionLib" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "expressionLib" };
 }

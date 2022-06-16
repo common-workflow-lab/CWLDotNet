@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -30,7 +31,7 @@ public class InputRecordField : IInputRecordField, ISavable {
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public object? label { get; set; }
+    public Option<string> label { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -87,7 +88,7 @@ public class InputRecordField : IInputRecordField, ISavable {
     /// pipe.  Default: `false`.
     /// 
     /// </summary>
-    public object? streamable { get; set; }
+    public Option<bool> streamable { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -111,7 +112,7 @@ public class InputRecordField : IInputRecordField, ISavable {
     /// the implementation must raise a fatal error.
     /// 
     /// </summary>
-    public object? loadContents { get; set; }
+    public Option<bool> loadContents { get; set; }
 
     /// <summary>
     /// Only valid when `type: Directory` or is an array of `items: Directory`.
@@ -126,10 +127,10 @@ public class InputRecordField : IInputRecordField, ISavable {
     ///   3. By default: `no_listing`
     /// 
     /// </summary>
-    public object? loadListing { get; set; }
+    public Option<LoadListingEnum> loadListing { get; set; }
 
 
-    public InputRecordField (string name,object doc,object type,object label,object secondaryFiles,object streamable,object format,object loadContents,object loadListing,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public InputRecordField (string name,object doc,object type,Option<string> label,object secondaryFiles,Option<bool> streamable,object format,Option<bool> loadContents,Option<LoadListingEnum> loadListing,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.name = name;
@@ -221,12 +222,12 @@ public class InputRecordField : IInputRecordField, ISavable {
             );
         }
 
-        object label = default!;
+        Option<string> label = default!;
         if (doc_.ContainsKey("label"))
         {
             try
             {
-                label = (object)LoaderInstances.optional_StringInstance
+                label = (Option<string>)LoaderInstances.optional_StringInstance
                    .LoadField(doc_.GetValueOrDefault("label", null!), baseUri,
                        loadingOptions);
             }
@@ -255,12 +256,12 @@ public class InputRecordField : IInputRecordField, ISavable {
             }
         }
 
-        object streamable = default!;
+        Option<bool> streamable = default!;
         if (doc_.ContainsKey("streamable"))
         {
             try
             {
-                streamable = (object)LoaderInstances.optional_BooleanInstance
+                streamable = (Option<bool>)LoaderInstances.optional_BooleanInstance
                    .LoadField(doc_.GetValueOrDefault("streamable", null!), baseUri,
                        loadingOptions);
             }
@@ -289,12 +290,12 @@ public class InputRecordField : IInputRecordField, ISavable {
             }
         }
 
-        object loadContents = default!;
+        Option<bool> loadContents = default!;
         if (doc_.ContainsKey("loadContents"))
         {
             try
             {
-                loadContents = (object)LoaderInstances.optional_BooleanInstance
+                loadContents = (Option<bool>)LoaderInstances.optional_BooleanInstance
                    .LoadField(doc_.GetValueOrDefault("loadContents", null!), baseUri,
                        loadingOptions);
             }
@@ -306,12 +307,12 @@ public class InputRecordField : IInputRecordField, ISavable {
             }
         }
 
-        object loadListing = default!;
+        Option<LoadListingEnum> loadListing = default!;
         if (doc_.ContainsKey("loadListing"))
         {
             try
             {
-                loadListing = (object)LoaderInstances.optional_LoadListingEnumLoader
+                loadListing = (Option<LoadListingEnum>)LoaderInstances.optional_LoadListingEnumLoader
                    .LoadField(doc_.GetValueOrDefault("loadListing", null!), baseUri,
                        loadingOptions);
             }
@@ -372,58 +373,56 @@ public class InputRecordField : IInputRecordField, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        if (this.name != null)
+        if(name != null)
         {
-            r["name"] = ISavable.SaveRelativeUri(this.name, true,
+            r["name"] = ISavable.SaveRelativeUri(name, true,
                                       relativeUris, null, (string)baseUrl!);
-
         }
-                
-        if (this.doc != null)
+                    
+        if(doc != null)
         {
             r["doc"] =
                ISavable.Save(doc, false, (string)this.name!, relativeUris);
         }
-                
+                    
         r["type"] =
            ISavable.Save(type, false, (string)this.name!, relativeUris);
-        if (this.label != null)
+        label.IfSome(label =>
         {
             r["label"] =
                ISavable.Save(label, false, (string)this.name!, relativeUris);
-        }
-                
-        if (this.secondaryFiles != null)
+        });
+                    
+        if(secondaryFiles != null)
         {
             r["secondaryFiles"] =
                ISavable.Save(secondaryFiles, false, (string)this.name!, relativeUris);
         }
-                
-        if (this.streamable != null)
+                    
+        streamable.IfSome(streamable =>
         {
             r["streamable"] =
                ISavable.Save(streamable, false, (string)this.name!, relativeUris);
-        }
-                
-        if (this.format != null)
+        });
+                    
+        if(format != null)
         {
-            r["format"] = ISavable.SaveRelativeUri(this.format, true,
+            r["format"] = ISavable.SaveRelativeUri(format, true,
                                       relativeUris, null, (string)this.name!);
-
         }
-                
-        if (this.loadContents != null)
+                    
+        loadContents.IfSome(loadContents =>
         {
             r["loadContents"] =
                ISavable.Save(loadContents, false, (string)this.name!, relativeUris);
-        }
-                
-        if (this.loadListing != null)
+        });
+                    
+        loadListing.IfSome(loadListing =>
         {
             r["loadListing"] =
                ISavable.Save(loadListing, false, (string)this.name!, relativeUris);
-        }
-                
+        });
+                    
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -441,5 +440,5 @@ public class InputRecordField : IInputRecordField, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "doc", "name", "type", "label", "secondaryFiles", "streamable", "format", "loadContents", "loadListing" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "doc", "name", "type", "label", "secondaryFiles", "streamable", "format", "loadContents", "loadListing" };
 }

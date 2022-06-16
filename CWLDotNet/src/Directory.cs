@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -79,7 +80,7 @@ public class Directory : IDirectory, ISavable {
     /// then follow the rules above.
     /// 
     /// </summary>
-    public object? location { get; set; }
+    public Option<string> location { get; set; }
 
     /// <summary>
     /// The local path where the Directory is made available prior to executing a
@@ -97,7 +98,7 @@ public class Directory : IDirectory, ISavable {
     /// `permanentFailure`.
     /// 
     /// </summary>
-    public object? path { get; set; }
+    public Option<string> path { get; set; }
 
     /// <summary>
     /// The base name of the directory, that is, the name of the file without any
@@ -113,7 +114,7 @@ public class Directory : IDirectory, ISavable {
     /// `basename`.
     /// 
     /// </summary>
-    public object? basename { get; set; }
+    public Option<string> basename { get; set; }
 
     /// <summary>
     /// List of files or subdirectories contained in this directory.  The name
@@ -125,10 +126,10 @@ public class Directory : IDirectory, ISavable {
     /// merged.
     /// 
     /// </summary>
-    public object? listing { get; set; }
+    public Option<List<object>> listing { get; set; }
 
 
-    public Directory (Directory_class class_,object location,object path,object basename,object listing,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public Directory (Directory_class class_,Option<string> location,Option<string> path,Option<string> basename,Option<List<object>> listing,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.class_ = class_;
@@ -166,12 +167,12 @@ public class Directory : IDirectory, ISavable {
             );
         }
 
-        object location = default!;
+        Option<string> location = default!;
         if (doc_.ContainsKey("location"))
         {
             try
             {
-                location = (object)LoaderInstances.urioptional_StringInstanceFalseFalseNone
+                location = (Option<string>)LoaderInstances.urioptional_StringInstanceFalseFalseNone
                    .LoadField(doc_.GetValueOrDefault("location", null!), baseUri,
                        loadingOptions);
             }
@@ -183,12 +184,12 @@ public class Directory : IDirectory, ISavable {
             }
         }
 
-        object path = default!;
+        Option<string> path = default!;
         if (doc_.ContainsKey("path"))
         {
             try
             {
-                path = (object)LoaderInstances.urioptional_StringInstanceFalseFalseNone
+                path = (Option<string>)LoaderInstances.urioptional_StringInstanceFalseFalseNone
                    .LoadField(doc_.GetValueOrDefault("path", null!), baseUri,
                        loadingOptions);
             }
@@ -200,12 +201,12 @@ public class Directory : IDirectory, ISavable {
             }
         }
 
-        object basename = default!;
+        Option<string> basename = default!;
         if (doc_.ContainsKey("basename"))
         {
             try
             {
-                basename = (object)LoaderInstances.optional_StringInstance
+                basename = (Option<string>)LoaderInstances.optional_StringInstance
                    .LoadField(doc_.GetValueOrDefault("basename", null!), baseUri,
                        loadingOptions);
             }
@@ -217,12 +218,12 @@ public class Directory : IDirectory, ISavable {
             }
         }
 
-        object listing = default!;
+        Option<List<object>> listing = default!;
         if (doc_.ContainsKey("listing"))
         {
             try
             {
-                listing = (object)LoaderInstances.optional_array_of_union_of_FileLoader_or_DirectoryLoader
+                listing = (Option<List<object>>)LoaderInstances.optional_array_of_union_of_FileLoader_or_DirectoryLoader
                    .LoadField(doc_.GetValueOrDefault("listing", null!), baseUri,
                        loadingOptions);
             }
@@ -279,35 +280,32 @@ public class Directory : IDirectory, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(this.class_, false,
+        r["class"] = ISavable.SaveRelativeUri(class_, false,
                                   relativeUris, null, (string)baseUrl!);
-
-        if (this.location != null)
+        location.IfSome(location =>
         {
-            r["location"] = ISavable.SaveRelativeUri(this.location, false,
+            r["location"] = ISavable.SaveRelativeUri(location, false,
                                       relativeUris, null, (string)baseUrl!);
-
-        }
-                
-        if (this.path != null)
+        });
+                    
+        path.IfSome(path =>
         {
-            r["path"] = ISavable.SaveRelativeUri(this.path, false,
+            r["path"] = ISavable.SaveRelativeUri(path, false,
                                       relativeUris, null, (string)baseUrl!);
-
-        }
-                
-        if (this.basename != null)
+        });
+                    
+        basename.IfSome(basename =>
         {
             r["basename"] =
                ISavable.Save(basename, false, (string)baseUrl!, relativeUris);
-        }
-                
-        if (this.listing != null)
+        });
+                    
+        listing.IfSome(listing =>
         {
             r["listing"] =
                ISavable.Save(listing, false, (string)baseUrl!, relativeUris);
-        }
-                
+        });
+                    
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -325,5 +323,5 @@ public class Directory : IDirectory, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "class", "location", "path", "basename", "listing" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "location", "path", "basename", "listing" };
 }

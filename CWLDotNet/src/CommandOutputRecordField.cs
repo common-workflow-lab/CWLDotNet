@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -30,7 +31,7 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable {
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public object? label { get; set; }
+    public Option<string> label { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -87,7 +88,7 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable {
     /// pipe.  Default: `false`.
     /// 
     /// </summary>
-    public object? streamable { get; set; }
+    public Option<bool> streamable { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -103,10 +104,10 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable {
     /// produced by a CommandLineTool
     /// 
     /// </summary>
-    public object? outputBinding { get; set; }
+    public Option<CommandOutputBinding> outputBinding { get; set; }
 
 
-    public CommandOutputRecordField (string name,object doc,object type,object label,object secondaryFiles,object streamable,object format,object outputBinding,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public CommandOutputRecordField (string name,object doc,object type,Option<string> label,object secondaryFiles,Option<bool> streamable,object format,Option<CommandOutputBinding> outputBinding,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.name = name;
@@ -197,12 +198,12 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable {
             );
         }
 
-        object label = default!;
+        Option<string> label = default!;
         if (doc_.ContainsKey("label"))
         {
             try
             {
-                label = (object)LoaderInstances.optional_StringInstance
+                label = (Option<string>)LoaderInstances.optional_StringInstance
                    .LoadField(doc_.GetValueOrDefault("label", null!), baseUri,
                        loadingOptions);
             }
@@ -231,12 +232,12 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable {
             }
         }
 
-        object streamable = default!;
+        Option<bool> streamable = default!;
         if (doc_.ContainsKey("streamable"))
         {
             try
             {
-                streamable = (object)LoaderInstances.optional_BooleanInstance
+                streamable = (Option<bool>)LoaderInstances.optional_BooleanInstance
                    .LoadField(doc_.GetValueOrDefault("streamable", null!), baseUri,
                        loadingOptions);
             }
@@ -265,12 +266,12 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable {
             }
         }
 
-        object outputBinding = default!;
+        Option<CommandOutputBinding> outputBinding = default!;
         if (doc_.ContainsKey("outputBinding"))
         {
             try
             {
-                outputBinding = (object)LoaderInstances.optional_CommandOutputBindingLoader
+                outputBinding = (Option<CommandOutputBinding>)LoaderInstances.optional_CommandOutputBindingLoader
                    .LoadField(doc_.GetValueOrDefault("outputBinding", null!), baseUri,
                        loadingOptions);
             }
@@ -330,52 +331,50 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        if (this.name != null)
+        if(name != null)
         {
-            r["name"] = ISavable.SaveRelativeUri(this.name, true,
+            r["name"] = ISavable.SaveRelativeUri(name, true,
                                       relativeUris, null, (string)baseUrl!);
-
         }
-                
-        if (this.doc != null)
+                    
+        if(doc != null)
         {
             r["doc"] =
                ISavable.Save(doc, false, (string)this.name!, relativeUris);
         }
-                
+                    
         r["type"] =
            ISavable.Save(type, false, (string)this.name!, relativeUris);
-        if (this.label != null)
+        label.IfSome(label =>
         {
             r["label"] =
                ISavable.Save(label, false, (string)this.name!, relativeUris);
-        }
-                
-        if (this.secondaryFiles != null)
+        });
+                    
+        if(secondaryFiles != null)
         {
             r["secondaryFiles"] =
                ISavable.Save(secondaryFiles, false, (string)this.name!, relativeUris);
         }
-                
-        if (this.streamable != null)
+                    
+        streamable.IfSome(streamable =>
         {
             r["streamable"] =
                ISavable.Save(streamable, false, (string)this.name!, relativeUris);
-        }
-                
-        if (this.format != null)
+        });
+                    
+        if(format != null)
         {
-            r["format"] = ISavable.SaveRelativeUri(this.format, true,
+            r["format"] = ISavable.SaveRelativeUri(format, true,
                                       relativeUris, null, (string)this.name!);
-
         }
-                
-        if (this.outputBinding != null)
+                    
+        outputBinding.IfSome(outputBinding =>
         {
             r["outputBinding"] =
                ISavable.Save(outputBinding, false, (string)this.name!, relativeUris);
-        }
-                
+        });
+                    
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -393,5 +392,5 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "doc", "name", "type", "label", "secondaryFiles", "streamable", "format", "outputBinding" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "doc", "name", "type", "label", "secondaryFiles", "streamable", "format", "outputBinding" };
 }

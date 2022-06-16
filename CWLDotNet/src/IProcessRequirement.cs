@@ -1,3 +1,5 @@
+using LanguageExt;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -12,4 +14,4 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface IProcessRequirement  {
-                    }
+}

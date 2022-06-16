@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -13,7 +14,7 @@ public class OutputEnumSchema : IOutputEnumSchema, ISavable {
     /// <summary>
     /// The identifier for this type
     /// </summary>
-    public object? name { get; set; }
+    public Option<string> name { get; set; }
 
     /// <summary>
     /// Defines the set of valid symbols.
@@ -28,7 +29,7 @@ public class OutputEnumSchema : IOutputEnumSchema, ISavable {
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public object? label { get; set; }
+    public Option<string> label { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
@@ -36,7 +37,7 @@ public class OutputEnumSchema : IOutputEnumSchema, ISavable {
     public object doc { get; set; }
 
 
-    public OutputEnumSchema (object name,List<string> symbols,enum_d961d79c225752b9fadb617367615ab176b47d77 type,object label,object doc,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public OutputEnumSchema (Option<string> name,List<string> symbols,enum_d961d79c225752b9fadb617367615ab176b47d77 type,Option<string> label,object doc,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.name = name;
@@ -60,12 +61,12 @@ public class OutputEnumSchema : IOutputEnumSchema, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        object name = default!;
+        Option<string> name = default!;
         if (doc_.ContainsKey("name"))
         {
             try
             {
-                name = (object)LoaderInstances.urioptional_StringInstanceTrueFalseNone
+                name = (Option<string>)LoaderInstances.urioptional_StringInstanceTrueFalseNone
                    .LoadField(doc_.GetValueOrDefault("name", null!), baseUri,
                        loadingOptions);
             }
@@ -121,12 +122,12 @@ public class OutputEnumSchema : IOutputEnumSchema, ISavable {
             );
         }
 
-        object label = default!;
+        Option<string> label = default!;
         if (doc_.ContainsKey("label"))
         {
             try
             {
-                label = (object)LoaderInstances.optional_StringInstance
+                label = (Option<string>)LoaderInstances.optional_StringInstance
                    .LoadField(doc_.GetValueOrDefault("label", null!), baseUri,
                        loadingOptions);
             }
@@ -200,30 +201,28 @@ public class OutputEnumSchema : IOutputEnumSchema, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        if (this.name != null)
+        name.IfSome(name =>
         {
-            r["name"] = ISavable.SaveRelativeUri(this.name, true,
+            r["name"] = ISavable.SaveRelativeUri(name, true,
                                       relativeUris, null, (string)baseUrl!);
-
-        }
-                
-        r["symbols"] = ISavable.SaveRelativeUri(this.symbols, true,
+        });
+                    
+        r["symbols"] = ISavable.SaveRelativeUri(symbols, true,
                                   relativeUris, null, (string)this.name!);
-
         r["type"] =
            ISavable.Save(type, false, (string)this.name!, relativeUris);
-        if (this.label != null)
+        label.IfSome(label =>
         {
             r["label"] =
                ISavable.Save(label, false, (string)this.name!, relativeUris);
-        }
-                
-        if (this.doc != null)
+        });
+                    
+        if(doc != null)
         {
             r["doc"] =
                ISavable.Save(doc, false, (string)this.name!, relativeUris);
         }
-                
+                    
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -241,5 +240,5 @@ public class OutputEnumSchema : IOutputEnumSchema, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "symbols", "type", "label", "doc", "name" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "symbols", "type", "label", "doc", "name" };
 }

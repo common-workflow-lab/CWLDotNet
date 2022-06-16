@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -13,10 +14,10 @@ public class CommandLineBindable : ICommandLineBindable, ISavable {
     /// <summary>
     /// Describes how to turn this object into command line arguments.
     /// </summary>
-    public object? inputBinding { get; set; }
+    public Option<CommandLineBinding> inputBinding { get; set; }
 
 
-    public CommandLineBindable (object inputBinding,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public CommandLineBindable (Option<CommandLineBinding> inputBinding,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.inputBinding = inputBinding;
@@ -36,12 +37,12 @@ public class CommandLineBindable : ICommandLineBindable, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        object inputBinding = default!;
+        Option<CommandLineBinding> inputBinding = default!;
         if (doc_.ContainsKey("inputBinding"))
         {
             try
             {
-                inputBinding = (object)LoaderInstances.optional_CommandLineBindingLoader
+                inputBinding = (Option<CommandLineBinding>)LoaderInstances.optional_CommandLineBindingLoader
                    .LoadField(doc_.GetValueOrDefault("inputBinding", null!), baseUri,
                        loadingOptions);
             }
@@ -94,12 +95,12 @@ public class CommandLineBindable : ICommandLineBindable, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        if (this.inputBinding != null)
+        inputBinding.IfSome(inputBinding =>
         {
             r["inputBinding"] =
                ISavable.Save(inputBinding, false, (string)baseUrl!, relativeUris);
-        }
-                
+        });
+                    
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -117,5 +118,5 @@ public class CommandLineBindable : ICommandLineBindable, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "inputBinding" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "inputBinding" };
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -133,5 +134,5 @@ public class ArraySchema : IArraySchema, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "items", "type" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "items", "type" };
 }

@@ -1,3 +1,5 @@
+using LanguageExt;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -14,4 +16,9 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface IWorkflowStepOutput : IIdentified {
-                    }
+
+    /// <summary>
+    /// The unique identifier for this object.
+    /// </summary>
+    public Option<string> id { get; set; }
+}

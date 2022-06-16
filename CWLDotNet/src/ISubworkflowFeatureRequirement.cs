@@ -1,3 +1,5 @@
+using LanguageExt;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -8,4 +10,9 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface ISubworkflowFeatureRequirement : IProcessRequirement {
-                    }
+
+    /// <summary>
+    /// Always 'SubworkflowFeatureRequirement'
+    /// </summary>
+    public new SubworkflowFeatureRequirement_class class_ { get; set; }
+}

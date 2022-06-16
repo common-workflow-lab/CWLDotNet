@@ -1,3 +1,5 @@
+using LanguageExt;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -13,4 +15,9 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface IShellCommandRequirement : IProcessRequirement {
-                    }
+
+    /// <summary>
+    /// Always 'ShellCommandRequirement'
+    /// </summary>
+    public new ShellCommandRequirement_class class_ { get; set; }
+}

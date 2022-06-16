@@ -1,3 +1,5 @@
+using LanguageExt;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -114,4 +116,97 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface IWorkflowStepInput : IIdentified,ISink,ILoadContents,ILabeled {
-                    }
+
+    /// <summary>
+    /// The unique identifier for this object.
+    /// </summary>
+    public Option<string> id { get; set; }
+
+    /// <summary>
+    /// Specifies one or more workflow parameters that will provide input to
+    /// the underlying step parameter.
+    /// 
+    /// </summary>
+    public object source { get; set; }
+
+    /// <summary>
+    /// The method to use to merge multiple inbound links into a single array.
+    /// If not specified, the default method is "merge_nested".
+    /// 
+    /// </summary>
+    public Option<LinkMergeMethod> linkMerge { get; set; }
+
+    /// <summary>
+    /// The method to use to choose non-null elements among multiple sources.
+    /// 
+    /// </summary>
+    public Option<PickValueMethod> pickValue { get; set; }
+
+    /// <summary>
+    /// Only valid when `type: File` or is an array of `items: File`.
+    /// 
+    /// If true, the file (or each file in the array) must be a UTF-8
+    /// text file 64 KiB or smaller, and the implementation must read
+    /// the entire contents of the file (or file array) and place it
+    /// in the `contents` field of the File object for use by
+    /// expressions.  If the size of the file is greater than 64 KiB,
+    /// the implementation must raise a fatal error.
+    /// 
+    /// </summary>
+    public Option<bool> loadContents { get; set; }
+
+    /// <summary>
+    /// Only valid when `type: Directory` or is an array of `items: Directory`.
+    /// 
+    /// Specify the desired behavior for loading the `listing` field of
+    /// a Directory object for use by expressions.
+    /// 
+    /// The order of precedence for loadListing is:
+    /// 
+    ///   1. `loadListing` on an individual parameter
+    ///   2. Inherited from `LoadListingRequirement`
+    ///   3. By default: `no_listing`
+    /// 
+    /// </summary>
+    public Option<LoadListingEnum> loadListing { get; set; }
+
+    /// <summary>
+    /// A short, human-readable label of this object.
+    /// </summary>
+    public Option<string> label { get; set; }
+
+    /// <summary>
+    /// The default value for this parameter to use if either there is no
+    /// `source` field, or the value produced by the `source` is `null`.  The
+    /// default must be applied prior to scattering or evaluating `valueFrom`.
+    /// 
+    /// </summary>
+    public Option<object> default_ { get; set; }
+
+    /// <summary>
+    /// To use valueFrom, [StepInputExpressionRequirement](#StepInputExpressionRequirement) must
+    /// be specified in the workflow or workflow step requirements.
+    /// 
+    /// If `valueFrom` is a constant string value, use this as the value for
+    /// this input parameter.
+    /// 
+    /// If `valueFrom` is a parameter reference or expression, it must be
+    /// evaluated to yield the actual value to be assiged to the input field.
+    /// 
+    /// The `self` value in the parameter reference or expression must be
+    /// 1. `null` if there is no `source` field
+    /// 2. the value of the parameter(s) specified in the `source` field when this
+    /// workflow input parameter **is not** specified in this workflow step's `scatter` field.
+    /// 3. an element of the parameter specified in the `source` field when this workflow input
+    /// parameter **is** specified in this workflow step's `scatter` field.
+    /// 
+    /// The value of `inputs` in the parameter reference or expression must be
+    /// the input object to the workflow step after assigning the `source`
+    /// values, applying `default`, and then scattering.  The order of
+    /// evaluating `valueFrom` among step input parameters is undefined and the
+    /// result of evaluating `valueFrom` on a parameter must not be visible to
+    /// evaluation of `valueFrom` on other parameters.
+    /// 
+    /// </summary>
+    public object valueFrom { get; set; }
+}

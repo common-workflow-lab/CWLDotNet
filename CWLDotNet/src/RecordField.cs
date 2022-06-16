@@ -1,4 +1,5 @@
 using System.Collections;
+using LanguageExt;
 
 namespace CWLDotNet;
 
@@ -159,19 +160,18 @@ public class RecordField : IRecordField, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        if (this.name != null)
+        if(name != null)
         {
-            r["name"] = ISavable.SaveRelativeUri(this.name, true,
+            r["name"] = ISavable.SaveRelativeUri(name, true,
                                       relativeUris, null, (string)baseUrl!);
-
         }
-                
-        if (this.doc != null)
+                    
+        if(doc != null)
         {
             r["doc"] =
                ISavable.Save(doc, false, (string)this.name!, relativeUris);
         }
-                
+                    
         r["type"] =
            ISavable.Save(type, false, (string)this.name!, relativeUris);
         if (top)
@@ -191,5 +191,5 @@ public class RecordField : IRecordField, ISavable {
     }
 
             
-    static readonly HashSet<string> attr = new() { "doc", "name", "type" };
+    static readonly System.Collections.Generic.HashSet<string>attr = new() { "doc", "name", "type" };
 }
