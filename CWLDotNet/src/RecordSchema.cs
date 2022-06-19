@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -14,7 +14,7 @@ public class RecordSchema : IRecordSchema, ISavable {
     /// <summary>
     /// Defines the fields of the record.
     /// </summary>
-    public Option<List<object>> fields { get; set; }
+    public OneOf<None , List<RecordField>> fields { get; set; }
 
     /// <summary>
     /// Must be `record`
@@ -22,7 +22,7 @@ public class RecordSchema : IRecordSchema, ISavable {
     public enum_d9cba076fca539106791a4f46d198c7fcfbdb779 type { get; set; }
 
 
-    public RecordSchema (Option<List<object>> fields,enum_d9cba076fca539106791a4f46d198c7fcfbdb779 type,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public RecordSchema (enum_d9cba076fca539106791a4f46d198c7fcfbdb779 type, OneOf<None , List<RecordField>> fields = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.fields = fields;
@@ -43,12 +43,12 @@ public class RecordSchema : IRecordSchema, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        Option<List<object>> fields = default!;
+        dynamic fields = default!;
         if (doc_.ContainsKey("fields"))
         {
             try
             {
-                fields = (Option<List<object>>)LoaderInstances.idmapfieldsoptional_array_of_RecordFieldLoader
+                fields = LoaderInstances.idmapfieldsunion_of_NullInstance_or_array_of_RecordFieldLoader
                    .LoadField(doc_.GetValueOrDefault("fields", null!), baseUri,
                        loadingOptions);
             }
@@ -60,10 +60,10 @@ public class RecordSchema : IRecordSchema, ISavable {
             }
         }
 
-        enum_d9cba076fca539106791a4f46d198c7fcfbdb779 type = default!;
+        dynamic type = default!;
         try
         {
-            type = (enum_d9cba076fca539106791a4f46d198c7fcfbdb779)LoaderInstances.typedslenum_d9cba076fca539106791a4f46d198c7fcfbdb779Loader2
+            type = LoaderInstances.typedslenum_d9cba076fca539106791a4f46d198c7fcfbdb779Loader2
                .LoadField(doc_.GetValueOrDefault("type", null!), baseUri,
                    loadingOptions);
         }
@@ -100,11 +100,17 @@ public class RecordSchema : IRecordSchema, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new RecordSchema(
-          fields: fields,
-          type: type,
-          loadingOptions: loadingOptions
+        var res__ = new RecordSchema(
+          loadingOptions: loadingOptions,
+          type: type
         );
+
+        if(fields != null) 
+        {
+            res__.fields = fields;
+        }                      
+        
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -116,14 +122,16 @@ public class RecordSchema : IRecordSchema, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        fields.IfSome(fields =>
-        {
-            r["fields"] =
-               ISavable.Save(fields, false, (string)baseUrl!, relativeUris);
-        });
-                    
-        r["type"] =
-           ISavable.Save(type, false, (string)baseUrl!, relativeUris);
+        var fieldsVal = ISavable.Save(fields, false, (string)baseUrl!, relativeUris);
+        if(fieldsVal is not None) {
+            r["fields"] = fieldsVal;
+        }
+
+        var typeVal = ISavable.Save(type, false, (string)baseUrl!, relativeUris);
+        if(typeVal is not None) {
+            r["type"] = typeVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -140,6 +148,5 @@ public class RecordSchema : IRecordSchema, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "fields", "type" };
 }

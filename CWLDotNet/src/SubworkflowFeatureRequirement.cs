@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -21,10 +21,10 @@ public class SubworkflowFeatureRequirement : ISubworkflowFeatureRequirement, ISa
     public SubworkflowFeatureRequirement_class class_ { get; set; }
 
 
-    public SubworkflowFeatureRequirement (SubworkflowFeatureRequirement_class class_,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public SubworkflowFeatureRequirement (SubworkflowFeatureRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
-        this.class_ = class_;
+        this.class_ = class_ ?? SubworkflowFeatureRequirement_class.SUBWORKFLOWFEATUREREQUIREMENT;
     }
 
     public static ISavable FromDoc(object doc__, string baseUri, LoadingOptions loadingOptions,
@@ -41,10 +41,10 @@ public class SubworkflowFeatureRequirement : ISubworkflowFeatureRequirement, ISa
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        SubworkflowFeatureRequirement_class class_ = default!;
+        dynamic class_ = default!;
         try
         {
-            class_ = (SubworkflowFeatureRequirement_class)LoaderInstances.uriSubworkflowFeatureRequirement_classLoaderFalseTrueNone
+            class_ = LoaderInstances.uriSubworkflowFeatureRequirement_classLoaderFalseTrueNone
                .LoadField(doc_.GetValueOrDefault("class", null!), baseUri,
                    loadingOptions);
         }
@@ -81,10 +81,12 @@ public class SubworkflowFeatureRequirement : ISubworkflowFeatureRequirement, ISa
             throw new ValidationException("", errors);
         }
 
-        return new SubworkflowFeatureRequirement(
-          class_: class_,
-          loadingOptions: loadingOptions
+        var res__ = new SubworkflowFeatureRequirement(
+          loadingOptions: loadingOptions,
+          class_: class_
         );
+
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -96,8 +98,12 @@ public class SubworkflowFeatureRequirement : ISubworkflowFeatureRequirement, ISa
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(class_, false,
-                                  relativeUris, null, (string)baseUrl!);
+        var class_Val = ISavable.SaveRelativeUri(class_, false,
+            relativeUris, null, (string)baseUrl!);
+        if(class_Val is not None) {
+            r["class"] = class_Val;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -114,6 +120,5 @@ public class SubworkflowFeatureRequirement : ISubworkflowFeatureRequirement, ISa
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "class" };
 }

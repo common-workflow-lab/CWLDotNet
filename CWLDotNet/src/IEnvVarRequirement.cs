@@ -1,5 +1,4 @@
-using LanguageExt;
-
+#pragma warning disable CS0108
 namespace CWLDotNet;
 
 /// <summary>
@@ -10,14 +9,4 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface IEnvVarRequirement : IProcessRequirement {
-
-    /// <summary>
-    /// Always 'EnvVarRequirement'
-    /// </summary>
-    public new EnvVarRequirement_class class_ { get; set; }
-
-    /// <summary>
-    /// The list of environment variables.
-    /// </summary>
-    public List<object> envDef { get; set; }
 }

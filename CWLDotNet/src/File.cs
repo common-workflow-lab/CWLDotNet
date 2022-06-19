@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -102,7 +102,7 @@ public class File : IFile, ISavable {
     /// then follow the rules above.
     /// 
     /// </summary>
-    public Option<string> location { get; set; }
+    public OneOf<None , string> location { get; set; }
 
     /// <summary>
     /// The local host path where the File is available when a CommandLineTool is
@@ -125,7 +125,7 @@ public class File : IFile, ISavable {
     /// `permanentFailure`.
     /// 
     /// </summary>
-    public Option<string> path { get; set; }
+    public OneOf<None , string> path { get; set; }
 
     /// <summary>
     /// The base name of the file, that is, the name of the file without any
@@ -141,7 +141,7 @@ public class File : IFile, ISavable {
     /// `basename`.
     /// 
     /// </summary>
-    public Option<string> basename { get; set; }
+    public OneOf<None , string> basename { get; set; }
 
     /// <summary>
     /// The name of the directory containing file, that is, the path leading up
@@ -154,7 +154,7 @@ public class File : IFile, ISavable {
     /// context.
     /// 
     /// </summary>
-    public Option<string> dirname { get; set; }
+    public OneOf<None , string> dirname { get; set; }
 
     /// <summary>
     /// The basename root such that `nameroot + nameext == basename`, and
@@ -167,7 +167,7 @@ public class File : IFile, ISavable {
     /// of `basename` prior to evaluating parameter references or expressions.
     /// 
     /// </summary>
-    public Option<string> nameroot { get; set; }
+    public OneOf<None , string> nameroot { get; set; }
 
     /// <summary>
     /// The basename extension such that `nameroot + nameext == basename`, and
@@ -179,19 +179,19 @@ public class File : IFile, ISavable {
     /// of `basename` prior to evaluating parameter references or expressions.
     /// 
     /// </summary>
-    public Option<string> nameext { get; set; }
+    public OneOf<None , string> nameext { get; set; }
 
     /// <summary>
     /// Optional hash code for validating file integrity.  Currently must be in the form
     /// "sha1$ + hexadecimal string" using the SHA-1 algorithm.
     /// 
     /// </summary>
-    public Option<string> checksum { get; set; }
+    public OneOf<None , string> checksum { get; set; }
 
     /// <summary>
     /// Optional file size (in bytes)
     /// </summary>
-    public object size { get; set; }
+    public OneOf<None , int , long> size { get; set; }
 
     /// <summary>
     /// A list of additional files or directories that are associated with the
@@ -202,7 +202,7 @@ public class File : IFile, ISavable {
     /// which the same rules apply.
     /// 
     /// </summary>
-    public Option<List<object>> secondaryFiles { get; set; }
+    public OneOf<None , List<OneOf<File , Directory>>> secondaryFiles { get; set; }
 
     /// <summary>
     /// The format of the file: this must be an IRI of a concept node that
@@ -221,7 +221,7 @@ public class File : IFile, ISavable {
     /// runtime may perform exact file format matches.
     /// 
     /// </summary>
-    public Option<string> format { get; set; }
+    public OneOf<None , string> format { get; set; }
 
     /// <summary>
     /// File contents literal.
@@ -247,13 +247,13 @@ public class File : IFile, ISavable {
     /// implementation must raise a fatal error.
     /// 
     /// </summary>
-    public Option<string> contents { get; set; }
+    public OneOf<None , string> contents { get; set; }
 
 
-    public File (File_class class_,Option<string> location,Option<string> path,Option<string> basename,Option<string> dirname,Option<string> nameroot,Option<string> nameext,Option<string> checksum,object size,Option<List<object>> secondaryFiles,Option<string> format,Option<string> contents,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public File (File_class? class_ = null, OneOf<None , string> location = default, OneOf<None , string> path = default, OneOf<None , string> basename = default, OneOf<None , string> dirname = default, OneOf<None , string> nameroot = default, OneOf<None , string> nameext = default, OneOf<None , string> checksum = default, OneOf<None , int , long> size = default, OneOf<None , List<OneOf<File , Directory>>> secondaryFiles = default, OneOf<None , string> format = default, OneOf<None , string> contents = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
-        this.class_ = class_;
+        this.class_ = class_ ?? File_class.FILE;
         this.location = location;
         this.path = path;
         this.basename = basename;
@@ -281,10 +281,10 @@ public class File : IFile, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        File_class class_ = default!;
+        dynamic class_ = default!;
         try
         {
-            class_ = (File_class)LoaderInstances.uriFile_classLoaderFalseTrueNone
+            class_ = LoaderInstances.uriFile_classLoaderFalseTrueNone
                .LoadField(doc_.GetValueOrDefault("class", null!), baseUri,
                    loadingOptions);
         }
@@ -295,12 +295,12 @@ public class File : IFile, ISavable {
             );
         }
 
-        Option<string> location = default!;
+        dynamic location = default!;
         if (doc_.ContainsKey("location"))
         {
             try
             {
-                location = (Option<string>)LoaderInstances.urioptional_StringInstanceFalseFalseNone
+                location = LoaderInstances.uriunion_of_NullInstance_or_StringInstanceFalseFalseNone
                    .LoadField(doc_.GetValueOrDefault("location", null!), baseUri,
                        loadingOptions);
             }
@@ -312,12 +312,12 @@ public class File : IFile, ISavable {
             }
         }
 
-        Option<string> path = default!;
+        dynamic path = default!;
         if (doc_.ContainsKey("path"))
         {
             try
             {
-                path = (Option<string>)LoaderInstances.urioptional_StringInstanceFalseFalseNone
+                path = LoaderInstances.uriunion_of_NullInstance_or_StringInstanceFalseFalseNone
                    .LoadField(doc_.GetValueOrDefault("path", null!), baseUri,
                        loadingOptions);
             }
@@ -329,12 +329,12 @@ public class File : IFile, ISavable {
             }
         }
 
-        Option<string> basename = default!;
+        dynamic basename = default!;
         if (doc_.ContainsKey("basename"))
         {
             try
             {
-                basename = (Option<string>)LoaderInstances.optional_StringInstance
+                basename = LoaderInstances.union_of_NullInstance_or_StringInstance
                    .LoadField(doc_.GetValueOrDefault("basename", null!), baseUri,
                        loadingOptions);
             }
@@ -346,12 +346,12 @@ public class File : IFile, ISavable {
             }
         }
 
-        Option<string> dirname = default!;
+        dynamic dirname = default!;
         if (doc_.ContainsKey("dirname"))
         {
             try
             {
-                dirname = (Option<string>)LoaderInstances.optional_StringInstance
+                dirname = LoaderInstances.union_of_NullInstance_or_StringInstance
                    .LoadField(doc_.GetValueOrDefault("dirname", null!), baseUri,
                        loadingOptions);
             }
@@ -363,12 +363,12 @@ public class File : IFile, ISavable {
             }
         }
 
-        Option<string> nameroot = default!;
+        dynamic nameroot = default!;
         if (doc_.ContainsKey("nameroot"))
         {
             try
             {
-                nameroot = (Option<string>)LoaderInstances.optional_StringInstance
+                nameroot = LoaderInstances.union_of_NullInstance_or_StringInstance
                    .LoadField(doc_.GetValueOrDefault("nameroot", null!), baseUri,
                        loadingOptions);
             }
@@ -380,12 +380,12 @@ public class File : IFile, ISavable {
             }
         }
 
-        Option<string> nameext = default!;
+        dynamic nameext = default!;
         if (doc_.ContainsKey("nameext"))
         {
             try
             {
-                nameext = (Option<string>)LoaderInstances.optional_StringInstance
+                nameext = LoaderInstances.union_of_NullInstance_or_StringInstance
                    .LoadField(doc_.GetValueOrDefault("nameext", null!), baseUri,
                        loadingOptions);
             }
@@ -397,12 +397,12 @@ public class File : IFile, ISavable {
             }
         }
 
-        Option<string> checksum = default!;
+        dynamic checksum = default!;
         if (doc_.ContainsKey("checksum"))
         {
             try
             {
-                checksum = (Option<string>)LoaderInstances.optional_StringInstance
+                checksum = LoaderInstances.union_of_NullInstance_or_StringInstance
                    .LoadField(doc_.GetValueOrDefault("checksum", null!), baseUri,
                        loadingOptions);
             }
@@ -414,12 +414,12 @@ public class File : IFile, ISavable {
             }
         }
 
-        object size = default!;
+        dynamic size = default!;
         if (doc_.ContainsKey("size"))
         {
             try
             {
-                size = (object)LoaderInstances.union_of_NullInstance_or_IntegerInstance_or_LongInstance
+                size = LoaderInstances.union_of_NullInstance_or_IntegerInstance_or_LongInstance
                    .LoadField(doc_.GetValueOrDefault("size", null!), baseUri,
                        loadingOptions);
             }
@@ -431,12 +431,12 @@ public class File : IFile, ISavable {
             }
         }
 
-        Option<List<object>> secondaryFiles = default!;
+        dynamic secondaryFiles = default!;
         if (doc_.ContainsKey("secondaryFiles"))
         {
             try
             {
-                secondaryFiles = (Option<List<object>>)LoaderInstances.secondaryfilesdsloptional_array_of_union_of_FileLoader_or_DirectoryLoader
+                secondaryFiles = LoaderInstances.secondaryfilesdslunion_of_NullInstance_or_array_of_union_of_FileLoader_or_DirectoryLoader
                    .LoadField(doc_.GetValueOrDefault("secondaryFiles", null!), baseUri,
                        loadingOptions);
             }
@@ -448,12 +448,12 @@ public class File : IFile, ISavable {
             }
         }
 
-        Option<string> format = default!;
+        dynamic format = default!;
         if (doc_.ContainsKey("format"))
         {
             try
             {
-                format = (Option<string>)LoaderInstances.urioptional_StringInstanceTrueFalseNone
+                format = LoaderInstances.uriunion_of_NullInstance_or_StringInstanceTrueFalseNone
                    .LoadField(doc_.GetValueOrDefault("format", null!), baseUri,
                        loadingOptions);
             }
@@ -465,12 +465,12 @@ public class File : IFile, ISavable {
             }
         }
 
-        Option<string> contents = default!;
+        dynamic contents = default!;
         if (doc_.ContainsKey("contents"))
         {
             try
             {
-                contents = (Option<string>)LoaderInstances.optional_StringInstance
+                contents = LoaderInstances.union_of_NullInstance_or_StringInstance
                    .LoadField(doc_.GetValueOrDefault("contents", null!), baseUri,
                        loadingOptions);
             }
@@ -508,21 +508,67 @@ public class File : IFile, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new File(
-          class_: class_,
-          location: location,
-          path: path,
-          basename: basename,
-          dirname: dirname,
-          nameroot: nameroot,
-          nameext: nameext,
-          checksum: checksum,
-          size: size,
-          secondaryFiles: secondaryFiles,
-          format: format,
-          contents: contents,
-          loadingOptions: loadingOptions
+        var res__ = new File(
+          loadingOptions: loadingOptions,
+          class_: class_
         );
+
+        if(location != null) 
+        {
+            res__.location = location;
+        }                      
+        
+        if(path != null) 
+        {
+            res__.path = path;
+        }                      
+        
+        if(basename != null) 
+        {
+            res__.basename = basename;
+        }                      
+        
+        if(dirname != null) 
+        {
+            res__.dirname = dirname;
+        }                      
+        
+        if(nameroot != null) 
+        {
+            res__.nameroot = nameroot;
+        }                      
+        
+        if(nameext != null) 
+        {
+            res__.nameext = nameext;
+        }                      
+        
+        if(checksum != null) 
+        {
+            res__.checksum = checksum;
+        }                      
+        
+        if(size != null) 
+        {
+            res__.size = size;
+        }                      
+        
+        if(secondaryFiles != null) 
+        {
+            res__.secondaryFiles = secondaryFiles;
+        }                      
+        
+        if(format != null) 
+        {
+            res__.format = format;
+        }                      
+        
+        if(contents != null) 
+        {
+            res__.contents = contents;
+        }                      
+        
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -534,74 +580,70 @@ public class File : IFile, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(class_, false,
-                                  relativeUris, null, (string)baseUrl!);
-        location.IfSome(location =>
-        {
-            r["location"] = ISavable.SaveRelativeUri(location, false,
-                                      relativeUris, null, (string)baseUrl!);
-        });
-                    
-        path.IfSome(path =>
-        {
-            r["path"] = ISavable.SaveRelativeUri(path, false,
-                                      relativeUris, null, (string)baseUrl!);
-        });
-                    
-        basename.IfSome(basename =>
-        {
-            r["basename"] =
-               ISavable.Save(basename, false, (string)baseUrl!, relativeUris);
-        });
-                    
-        dirname.IfSome(dirname =>
-        {
-            r["dirname"] =
-               ISavable.Save(dirname, false, (string)baseUrl!, relativeUris);
-        });
-                    
-        nameroot.IfSome(nameroot =>
-        {
-            r["nameroot"] =
-               ISavable.Save(nameroot, false, (string)baseUrl!, relativeUris);
-        });
-                    
-        nameext.IfSome(nameext =>
-        {
-            r["nameext"] =
-               ISavable.Save(nameext, false, (string)baseUrl!, relativeUris);
-        });
-                    
-        checksum.IfSome(checksum =>
-        {
-            r["checksum"] =
-               ISavable.Save(checksum, false, (string)baseUrl!, relativeUris);
-        });
-                    
-        if(size != null)
-        {
-            r["size"] =
-               ISavable.Save(size, false, (string)baseUrl!, relativeUris);
+        var class_Val = ISavable.SaveRelativeUri(class_, false,
+            relativeUris, null, (string)baseUrl!);
+        if(class_Val is not None) {
+            r["class"] = class_Val;
         }
-                    
-        secondaryFiles.IfSome(secondaryFiles =>
-        {
-            r["secondaryFiles"] =
-               ISavable.Save(secondaryFiles, false, (string)baseUrl!, relativeUris);
-        });
-                    
-        format.IfSome(format =>
-        {
-            r["format"] = ISavable.SaveRelativeUri(format, true,
-                                      relativeUris, null, (string)baseUrl!);
-        });
-                    
-        contents.IfSome(contents =>
-        {
-            r["contents"] =
-               ISavable.Save(contents, false, (string)baseUrl!, relativeUris);
-        });
-                    
+
+        var locationVal = ISavable.SaveRelativeUri(location, false,
+            relativeUris, null, (string)baseUrl!);
+        if(locationVal is not None) {
+            r["location"] = locationVal;
+        }
+
+        var pathVal = ISavable.SaveRelativeUri(path, false,
+            relativeUris, null, (string)baseUrl!);
+        if(pathVal is not None) {
+            r["path"] = pathVal;
+        }
+
+        var basenameVal = ISavable.Save(basename, false, (string)baseUrl!, relativeUris);
+        if(basenameVal is not None) {
+            r["basename"] = basenameVal;
+        }
+
+        var dirnameVal = ISavable.Save(dirname, false, (string)baseUrl!, relativeUris);
+        if(dirnameVal is not None) {
+            r["dirname"] = dirnameVal;
+        }
+
+        var namerootVal = ISavable.Save(nameroot, false, (string)baseUrl!, relativeUris);
+        if(namerootVal is not None) {
+            r["nameroot"] = namerootVal;
+        }
+
+        var nameextVal = ISavable.Save(nameext, false, (string)baseUrl!, relativeUris);
+        if(nameextVal is not None) {
+            r["nameext"] = nameextVal;
+        }
+
+        var checksumVal = ISavable.Save(checksum, false, (string)baseUrl!, relativeUris);
+        if(checksumVal is not None) {
+            r["checksum"] = checksumVal;
+        }
+
+        var sizeVal = ISavable.Save(size, false, (string)baseUrl!, relativeUris);
+        if(sizeVal is not None) {
+            r["size"] = sizeVal;
+        }
+
+        var secondaryFilesVal = ISavable.Save(secondaryFiles, false, (string)baseUrl!, relativeUris);
+        if(secondaryFilesVal is not None) {
+            r["secondaryFiles"] = secondaryFilesVal;
+        }
+
+        var formatVal = ISavable.SaveRelativeUri(format, true,
+            relativeUris, null, (string)baseUrl!);
+        if(formatVal is not None) {
+            r["format"] = formatVal;
+        }
+
+        var contentsVal = ISavable.Save(contents, false, (string)baseUrl!, relativeUris);
+        if(contentsVal is not None) {
+            r["contents"] = contentsVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -618,6 +660,5 @@ public class File : IFile, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "location", "path", "basename", "dirname", "nameroot", "nameext", "checksum", "size", "secondaryFiles", "format", "contents" };
 }

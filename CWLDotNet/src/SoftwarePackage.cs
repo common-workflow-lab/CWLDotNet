@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -24,7 +24,7 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
     /// compatible.
     /// 
     /// </summary>
-    public Option<List<string>> version { get; set; }
+    public OneOf<None , List<string>> version { get; set; }
 
     /// <summary>
     /// One or more [IRI](https://en.wikipedia.org/wiki/Internationalized_Resource_Identifier)s
@@ -70,10 +70,10 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
     /// clutter.
     /// 
     /// </summary>
-    public Option<List<string>> specs { get; set; }
+    public OneOf<None , List<string>> specs { get; set; }
 
 
-    public SoftwarePackage (string package_,Option<List<string>> version,Option<List<string>> specs,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public SoftwarePackage (string package_, OneOf<None , List<string>> version = default, OneOf<None , List<string>> specs = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.package_ = package_;
@@ -95,10 +95,10 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        string package_ = default!;
+        dynamic package_ = default!;
         try
         {
-            package_ = (string)LoaderInstances.StringInstance
+            package_ = LoaderInstances.StringInstance
                .LoadField(doc_.GetValueOrDefault("package", null!), baseUri,
                    loadingOptions);
         }
@@ -109,12 +109,12 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
             );
         }
 
-        Option<List<string>> version = default!;
+        dynamic version = default!;
         if (doc_.ContainsKey("version"))
         {
             try
             {
-                version = (Option<List<string>>)LoaderInstances.optional_array_of_StringInstance
+                version = LoaderInstances.union_of_NullInstance_or_array_of_StringInstance
                    .LoadField(doc_.GetValueOrDefault("version", null!), baseUri,
                        loadingOptions);
             }
@@ -126,12 +126,12 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
             }
         }
 
-        Option<List<string>> specs = default!;
+        dynamic specs = default!;
         if (doc_.ContainsKey("specs"))
         {
             try
             {
-                specs = (Option<List<string>>)LoaderInstances.urioptional_array_of_StringInstanceFalseFalseNone
+                specs = LoaderInstances.uriunion_of_NullInstance_or_array_of_StringInstanceFalseFalseNone
                    .LoadField(doc_.GetValueOrDefault("specs", null!), baseUri,
                        loadingOptions);
             }
@@ -169,12 +169,22 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new SoftwarePackage(
-          package_: package_,
-          version: version,
-          specs: specs,
-          loadingOptions: loadingOptions
+        var res__ = new SoftwarePackage(
+          loadingOptions: loadingOptions,
+          package_: package_
         );
+
+        if(version != null) 
+        {
+            res__.version = version;
+        }                      
+        
+        if(specs != null) 
+        {
+            res__.specs = specs;
+        }                      
+        
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -186,20 +196,22 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["package"] =
-           ISavable.Save(package_, false, (string)baseUrl!, relativeUris);
-        version.IfSome(version =>
-        {
-            r["version"] =
-               ISavable.Save(version, false, (string)baseUrl!, relativeUris);
-        });
-                    
-        specs.IfSome(specs =>
-        {
-            r["specs"] = ISavable.SaveRelativeUri(specs, false,
-                                      relativeUris, null, (string)baseUrl!);
-        });
-                    
+        var package_Val = ISavable.Save(package_, false, (string)baseUrl!, relativeUris);
+        if(package_Val is not None) {
+            r["package"] = package_Val;
+        }
+
+        var versionVal = ISavable.Save(version, false, (string)baseUrl!, relativeUris);
+        if(versionVal is not None) {
+            r["version"] = versionVal;
+        }
+
+        var specsVal = ISavable.SaveRelativeUri(specs, false,
+            relativeUris, null, (string)baseUrl!);
+        if(specsVal is not None) {
+            r["specs"] = specsVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -216,6 +228,5 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "package", "version", "specs" };
 }

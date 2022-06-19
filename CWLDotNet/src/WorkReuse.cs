@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -26,13 +26,13 @@ public class WorkReuse : IWorkReuse, ISavable {
     /// Always 'WorkReuse'
     /// </summary>
     public WorkReuse_class class_ { get; set; }
-    public object enableReuse { get; set; }
+    public OneOf<bool , string> enableReuse { get; set; }
 
 
-    public WorkReuse (WorkReuse_class class_,object enableReuse,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public WorkReuse (OneOf<bool , string> enableReuse, WorkReuse_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
-        this.class_ = class_;
+        this.class_ = class_ ?? WorkReuse_class.WORKREUSE;
         this.enableReuse = enableReuse;
     }
 
@@ -50,10 +50,10 @@ public class WorkReuse : IWorkReuse, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        WorkReuse_class class_ = default!;
+        dynamic class_ = default!;
         try
         {
-            class_ = (WorkReuse_class)LoaderInstances.uriWorkReuse_classLoaderFalseTrueNone
+            class_ = LoaderInstances.uriWorkReuse_classLoaderFalseTrueNone
                .LoadField(doc_.GetValueOrDefault("class", null!), baseUri,
                    loadingOptions);
         }
@@ -64,10 +64,10 @@ public class WorkReuse : IWorkReuse, ISavable {
             );
         }
 
-        object enableReuse = default!;
+        dynamic enableReuse = default!;
         try
         {
-            enableReuse = (object)LoaderInstances.union_of_BooleanInstance_or_ExpressionLoader
+            enableReuse = LoaderInstances.union_of_BooleanInstance_or_ExpressionLoader
                .LoadField(doc_.GetValueOrDefault("enableReuse", null!), baseUri,
                    loadingOptions);
         }
@@ -104,11 +104,13 @@ public class WorkReuse : IWorkReuse, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new WorkReuse(
+        var res__ = new WorkReuse(
+          loadingOptions: loadingOptions,
           class_: class_,
-          enableReuse: enableReuse,
-          loadingOptions: loadingOptions
+          enableReuse: enableReuse
         );
+
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -120,10 +122,17 @@ public class WorkReuse : IWorkReuse, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(class_, false,
-                                  relativeUris, null, (string)baseUrl!);
-        r["enableReuse"] =
-           ISavable.Save(enableReuse, false, (string)baseUrl!, relativeUris);
+        var class_Val = ISavable.SaveRelativeUri(class_, false,
+            relativeUris, null, (string)baseUrl!);
+        if(class_Val is not None) {
+            r["class"] = class_Val;
+        }
+
+        var enableReuseVal = ISavable.Save(enableReuse, false, (string)baseUrl!, relativeUris);
+        if(enableReuseVal is not None) {
+            r["enableReuse"] = enableReuseVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -140,6 +149,5 @@ public class WorkReuse : IWorkReuse, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "enableReuse" };
 }

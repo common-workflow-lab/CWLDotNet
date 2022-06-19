@@ -1,5 +1,4 @@
-using LanguageExt;
-
+#pragma warning disable CS0108
 namespace CWLDotNet;
 
 /// <summary>
@@ -59,48 +58,4 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface IDockerRequirement : IProcessRequirement {
-
-    /// <summary>
-    /// Always 'DockerRequirement'
-    /// </summary>
-    public new DockerRequirement_class class_ { get; set; }
-
-    /// <summary>
-    /// Specify a Docker image to retrieve using `docker pull`. Can contain the
-    /// immutable digest to ensure an exact container is used:
-    /// `dockerPull: ubuntu@sha256:45b23dee08af5e43a7fea6c4cf9c25ccf269ee113168c19722f87876677c5cb2`
-    /// 
-    /// </summary>
-    public Option<string> dockerPull { get; set; }
-
-    /// <summary>
-    /// Specify a HTTP URL from which to download a Docker image using `docker load`.
-    /// </summary>
-    public Option<string> dockerLoad { get; set; }
-
-    /// <summary>
-    /// Supply the contents of a Dockerfile which will be built using `docker build`.
-    /// </summary>
-    public Option<string> dockerFile { get; set; }
-
-    /// <summary>
-    /// Provide HTTP URL to download and gunzip a Docker images using `docker import.
-    /// </summary>
-    public Option<string> dockerImport { get; set; }
-
-    /// <summary>
-    /// The image id that will be used for `docker run`.  May be a
-    /// human-readable image name or the image identifier hash.  May be skipped
-    /// if `dockerPull` is specified, in which case the `dockerPull` image id
-    /// must be used.
-    /// 
-    /// </summary>
-    public Option<string> dockerImageId { get; set; }
-
-    /// <summary>
-    /// Set the designated output directory to a specific location inside the
-    /// Docker container.
-    /// 
-    /// </summary>
-    public Option<string> dockerOutputDirectory { get; set; }
 }

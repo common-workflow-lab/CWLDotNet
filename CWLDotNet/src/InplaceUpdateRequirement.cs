@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -50,10 +50,10 @@ public class InplaceUpdateRequirement : IInplaceUpdateRequirement, ISavable {
     public bool inplaceUpdate { get; set; }
 
 
-    public InplaceUpdateRequirement (InplaceUpdateRequirement_class class_,bool inplaceUpdate,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public InplaceUpdateRequirement (bool inplaceUpdate, InplaceUpdateRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
-        this.class_ = class_;
+        this.class_ = class_ ?? InplaceUpdateRequirement_class.INPLACEUPDATEREQUIREMENT;
         this.inplaceUpdate = inplaceUpdate;
     }
 
@@ -71,10 +71,10 @@ public class InplaceUpdateRequirement : IInplaceUpdateRequirement, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        InplaceUpdateRequirement_class class_ = default!;
+        dynamic class_ = default!;
         try
         {
-            class_ = (InplaceUpdateRequirement_class)LoaderInstances.uriInplaceUpdateRequirement_classLoaderFalseTrueNone
+            class_ = LoaderInstances.uriInplaceUpdateRequirement_classLoaderFalseTrueNone
                .LoadField(doc_.GetValueOrDefault("class", null!), baseUri,
                    loadingOptions);
         }
@@ -85,10 +85,10 @@ public class InplaceUpdateRequirement : IInplaceUpdateRequirement, ISavable {
             );
         }
 
-        bool inplaceUpdate = default!;
+        dynamic inplaceUpdate = default!;
         try
         {
-            inplaceUpdate = (bool)LoaderInstances.BooleanInstance
+            inplaceUpdate = LoaderInstances.BooleanInstance
                .LoadField(doc_.GetValueOrDefault("inplaceUpdate", null!), baseUri,
                    loadingOptions);
         }
@@ -125,11 +125,13 @@ public class InplaceUpdateRequirement : IInplaceUpdateRequirement, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new InplaceUpdateRequirement(
+        var res__ = new InplaceUpdateRequirement(
+          loadingOptions: loadingOptions,
           class_: class_,
-          inplaceUpdate: inplaceUpdate,
-          loadingOptions: loadingOptions
+          inplaceUpdate: inplaceUpdate
         );
+
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -141,10 +143,17 @@ public class InplaceUpdateRequirement : IInplaceUpdateRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(class_, false,
-                                  relativeUris, null, (string)baseUrl!);
-        r["inplaceUpdate"] =
-           ISavable.Save(inplaceUpdate, false, (string)baseUrl!, relativeUris);
+        var class_Val = ISavable.SaveRelativeUri(class_, false,
+            relativeUris, null, (string)baseUrl!);
+        if(class_Val is not None) {
+            r["class"] = class_Val;
+        }
+
+        var inplaceUpdateVal = ISavable.Save(inplaceUpdate, false, (string)baseUrl!, relativeUris);
+        if(inplaceUpdateVal is not None) {
+            r["inplaceUpdate"] = inplaceUpdateVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -161,6 +170,5 @@ public class InplaceUpdateRequirement : IInplaceUpdateRequirement, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "inplaceUpdate" };
 }

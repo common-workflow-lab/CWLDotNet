@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -17,18 +17,18 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// <summary>
     /// The unique identifier for this object.
     /// </summary>
-    public Option<string> id { get; set; }
+    public OneOf<None , string> id { get; set; }
     public CommandLineTool_class class_ { get; set; }
 
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public Option<string> label { get; set; }
+    public OneOf<None , string> label { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
     /// </summary>
-    public object doc { get; set; }
+    public OneOf<None , string , List<string>> doc { get; set; }
 
     /// <summary>
     /// Defines the input parameters of the process.  The process is ready to
@@ -44,14 +44,14 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// of expressions.
     /// 
     /// </summary>
-    public List<object> inputs { get; set; }
+    public List<CommandInputParameter> inputs { get; set; }
 
     /// <summary>
     /// Defines the parameters representing the output of the process.  May be
     /// used to generate and/or validate the output object.
     /// 
     /// </summary>
-    public List<object> outputs { get; set; }
+    public List<CommandOutputParameter> outputs { get; set; }
 
     /// <summary>
     /// Declares requirements that apply to either the runtime environment or the
@@ -62,7 +62,7 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// unless overridden at user option.
     /// 
     /// </summary>
-    public Option<List<object>> requirements { get; set; }
+    public OneOf<None , List<OneOf<InlineJavascriptRequirement , SchemaDefRequirement , LoadListingRequirement , DockerRequirement , SoftwareRequirement , InitialWorkDirRequirement , EnvVarRequirement , ShellCommandRequirement , ResourceRequirement , WorkReuse , NetworkAccess , InplaceUpdateRequirement , ToolTimeLimit , SubworkflowFeatureRequirement , ScatterFeatureRequirement , MultipleInputFeatureRequirement , StepInputExpressionRequirement>>> requirements { get; set; }
 
     /// <summary>
     /// Declares hints applying to either the runtime environment or the
@@ -71,14 +71,14 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// the implementation may report a warning.
     /// 
     /// </summary>
-    public Option<List<object>> hints { get; set; }
+    public OneOf<None , List<object>> hints { get; set; }
 
     /// <summary>
     /// CWL document version. Always required at the document root. Not
     /// required for a Process embedded inside another Process.
     /// 
     /// </summary>
-    public Option<CWLVersion> cwlVersion { get; set; }
+    public OneOf<None , CWLVersion> cwlVersion { get; set; }
 
     /// <summary>
     /// An identifier for the type of computational operation, of this Process.
@@ -96,7 +96,7 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// [Split read mapping](http://edamontology.org/operation_3199).
     /// 
     /// </summary>
-    public Option<List<string>> intent { get; set; }
+    public OneOf<None , List<string>> intent { get; set; }
 
     /// <summary>
     /// Specifies the program to execute.  If an array, the first element of
@@ -116,7 +116,7 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// executable.
     /// 
     /// </summary>
-    public object baseCommand { get; set; }
+    public OneOf<None , string , List<string>> baseCommand { get; set; }
 
     /// <summary>
     /// Command line bindings which are not directly associated with input
@@ -125,14 +125,14 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// as an argument.
     /// 
     /// </summary>
-    public Option<List<object>> arguments_ { get; set; }
+    public OneOf<None , List<OneOf<string , CommandLineBinding>>> arguments_ { get; set; }
 
     /// <summary>
     /// A path to a file whose contents must be piped into the command's
     /// standard input stream.
     /// 
     /// </summary>
-    public object stdin { get; set; }
+    public OneOf<None , string> stdin { get; set; }
 
     /// <summary>
     /// Capture the command's standard error stream to a file written to
@@ -146,7 +146,7 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// characters (such as the path separator `/`) it is an error.
     /// 
     /// </summary>
-    public object stderr { get; set; }
+    public OneOf<None , string> stderr { get; set; }
 
     /// <summary>
     /// Capture the command's standard output stream to a file written to
@@ -160,7 +160,7 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// characters (such as the path separator `/`) it is an error.
     /// 
     /// </summary>
-    public object stdout { get; set; }
+    public OneOf<None , string> stdout { get; set; }
 
     /// <summary>
     /// Exit codes that indicate the process completed successfully.
@@ -168,7 +168,7 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// If not specified, only exit code 0 is considered success.
     /// 
     /// </summary>
-    public Option<List<object>> successCodes { get; set; }
+    public OneOf<None , List<int>> successCodes { get; set; }
 
     /// <summary>
     /// Exit codes that indicate the process failed due to a possibly
@@ -178,20 +178,20 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// If not specified, no exit codes are considered temporary failure.
     /// 
     /// </summary>
-    public Option<List<object>> temporaryFailCodes { get; set; }
+    public OneOf<None , List<int>> temporaryFailCodes { get; set; }
 
     /// <summary>
     /// Exit codes that indicate the process failed due to a permanent logic error, where executing the process with the same runtime environment and same inputs is expected to always fail.
     /// If not specified, all exit codes except 0 are considered permanent failure.
     /// </summary>
-    public Option<List<object>> permanentFailCodes { get; set; }
+    public OneOf<None , List<int>> permanentFailCodes { get; set; }
 
 
-    public CommandLineTool (Option<string> id,CommandLineTool_class class_,Option<string> label,object doc,List<object> inputs,List<object> outputs,Option<List<object>> requirements,Option<List<object>> hints,Option<CWLVersion> cwlVersion,Option<List<string>> intent,object baseCommand,Option<List<object>> arguments_,object stdin,object stderr,object stdout,Option<List<object>> successCodes,Option<List<object>> temporaryFailCodes,Option<List<object>> permanentFailCodes,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public CommandLineTool (List<CommandInputParameter> inputs, List<CommandOutputParameter> outputs, OneOf<None , string> id = default, CommandLineTool_class? class_ = null, OneOf<None , string> label = default, OneOf<None , string , List<string>> doc = default, OneOf<None , List<OneOf<InlineJavascriptRequirement , SchemaDefRequirement , LoadListingRequirement , DockerRequirement , SoftwareRequirement , InitialWorkDirRequirement , EnvVarRequirement , ShellCommandRequirement , ResourceRequirement , WorkReuse , NetworkAccess , InplaceUpdateRequirement , ToolTimeLimit , SubworkflowFeatureRequirement , ScatterFeatureRequirement , MultipleInputFeatureRequirement , StepInputExpressionRequirement>>> requirements = default, OneOf<None , List<object>> hints = default, OneOf<None , CWLVersion> cwlVersion = default, OneOf<None , List<string>> intent = default, OneOf<None , string , List<string>> baseCommand = default, OneOf<None , List<OneOf<string , CommandLineBinding>>> arguments_ = default, OneOf<None , string> stdin = default, OneOf<None , string> stderr = default, OneOf<None , string> stdout = default, OneOf<None , List<int>> successCodes = default, OneOf<None , List<int>> temporaryFailCodes = default, OneOf<None , List<int>> permanentFailCodes = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.id = id;
-        this.class_ = class_;
+        this.class_ = class_ ?? CommandLineTool_class.COMMANDLINETOOL;
         this.label = label;
         this.doc = doc;
         this.inputs = inputs;
@@ -224,12 +224,12 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        Option<string> id = default!;
+        dynamic id = default!;
         if (doc_.ContainsKey("id"))
         {
             try
             {
-                id = (Option<string>)LoaderInstances.urioptional_StringInstanceTrueFalseNone
+                id = LoaderInstances.uriunion_of_NullInstance_or_StringInstanceTrueFalseNone
                    .LoadField(doc_.GetValueOrDefault("id", null!), baseUri,
                        loadingOptions);
             }
@@ -257,10 +257,10 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             baseUri = (string)id;
         }
             
-        CommandLineTool_class class_ = default!;
+        dynamic class_ = default!;
         try
         {
-            class_ = (CommandLineTool_class)LoaderInstances.uriCommandLineTool_classLoaderFalseTrueNone
+            class_ = LoaderInstances.uriCommandLineTool_classLoaderFalseTrueNone
                .LoadField(doc_.GetValueOrDefault("class", null!), baseUri,
                    loadingOptions);
         }
@@ -271,12 +271,12 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             );
         }
 
-        Option<string> label = default!;
+        dynamic label = default!;
         if (doc_.ContainsKey("label"))
         {
             try
             {
-                label = (Option<string>)LoaderInstances.optional_StringInstance
+                label = LoaderInstances.union_of_NullInstance_or_StringInstance
                    .LoadField(doc_.GetValueOrDefault("label", null!), baseUri,
                        loadingOptions);
             }
@@ -288,12 +288,12 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             }
         }
 
-        object doc = default!;
+        dynamic doc = default!;
         if (doc_.ContainsKey("doc"))
         {
             try
             {
-                doc = (object)LoaderInstances.union_of_NullInstance_or_StringInstance_or_array_of_StringInstance
+                doc = LoaderInstances.union_of_NullInstance_or_StringInstance_or_array_of_StringInstance
                    .LoadField(doc_.GetValueOrDefault("doc", null!), baseUri,
                        loadingOptions);
             }
@@ -305,10 +305,10 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             }
         }
 
-        List<object> inputs = default!;
+        dynamic inputs = default!;
         try
         {
-            inputs = (List<object>)LoaderInstances.idmapinputsarray_of_CommandInputParameterLoader
+            inputs = LoaderInstances.idmapinputsarray_of_CommandInputParameterLoader
                .LoadField(doc_.GetValueOrDefault("inputs", null!), baseUri,
                    loadingOptions);
         }
@@ -319,10 +319,10 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             );
         }
 
-        List<object> outputs = default!;
+        dynamic outputs = default!;
         try
         {
-            outputs = (List<object>)LoaderInstances.idmapoutputsarray_of_CommandOutputParameterLoader
+            outputs = LoaderInstances.idmapoutputsarray_of_CommandOutputParameterLoader
                .LoadField(doc_.GetValueOrDefault("outputs", null!), baseUri,
                    loadingOptions);
         }
@@ -333,12 +333,12 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             );
         }
 
-        Option<List<object>> requirements = default!;
+        dynamic requirements = default!;
         if (doc_.ContainsKey("requirements"))
         {
             try
             {
-                requirements = (Option<List<object>>)LoaderInstances.idmaprequirementsoptional_array_of_union_of_InlineJavascriptRequirementLoader_or_SchemaDefRequirementLoader_or_LoadListingRequirementLoader_or_DockerRequirementLoader_or_SoftwareRequirementLoader_or_InitialWorkDirRequirementLoader_or_EnvVarRequirementLoader_or_ShellCommandRequirementLoader_or_ResourceRequirementLoader_or_WorkReuseLoader_or_NetworkAccessLoader_or_InplaceUpdateRequirementLoader_or_ToolTimeLimitLoader_or_SubworkflowFeatureRequirementLoader_or_ScatterFeatureRequirementLoader_or_MultipleInputFeatureRequirementLoader_or_StepInputExpressionRequirementLoader
+                requirements = LoaderInstances.idmaprequirementsunion_of_NullInstance_or_array_of_union_of_InlineJavascriptRequirementLoader_or_SchemaDefRequirementLoader_or_LoadListingRequirementLoader_or_DockerRequirementLoader_or_SoftwareRequirementLoader_or_InitialWorkDirRequirementLoader_or_EnvVarRequirementLoader_or_ShellCommandRequirementLoader_or_ResourceRequirementLoader_or_WorkReuseLoader_or_NetworkAccessLoader_or_InplaceUpdateRequirementLoader_or_ToolTimeLimitLoader_or_SubworkflowFeatureRequirementLoader_or_ScatterFeatureRequirementLoader_or_MultipleInputFeatureRequirementLoader_or_StepInputExpressionRequirementLoader
                    .LoadField(doc_.GetValueOrDefault("requirements", null!), baseUri,
                        loadingOptions);
             }
@@ -350,12 +350,12 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             }
         }
 
-        Option<List<object>> hints = default!;
+        dynamic hints = default!;
         if (doc_.ContainsKey("hints"))
         {
             try
             {
-                hints = (Option<List<object>>)LoaderInstances.idmaphintsoptional_array_of_AnyInstance
+                hints = LoaderInstances.idmaphintsunion_of_NullInstance_or_array_of_AnyInstance
                    .LoadField(doc_.GetValueOrDefault("hints", null!), baseUri,
                        loadingOptions);
             }
@@ -367,12 +367,12 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             }
         }
 
-        Option<CWLVersion> cwlVersion = default!;
+        dynamic cwlVersion = default!;
         if (doc_.ContainsKey("cwlVersion"))
         {
             try
             {
-                cwlVersion = (Option<CWLVersion>)LoaderInstances.urioptional_CWLVersionLoaderFalseTrueNone
+                cwlVersion = LoaderInstances.uriunion_of_NullInstance_or_CWLVersionLoaderFalseTrueNone
                    .LoadField(doc_.GetValueOrDefault("cwlVersion", null!), baseUri,
                        loadingOptions);
             }
@@ -384,12 +384,12 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             }
         }
 
-        Option<List<string>> intent = default!;
+        dynamic intent = default!;
         if (doc_.ContainsKey("intent"))
         {
             try
             {
-                intent = (Option<List<string>>)LoaderInstances.urioptional_array_of_StringInstanceTrueFalseNone
+                intent = LoaderInstances.uriunion_of_NullInstance_or_array_of_StringInstanceTrueFalseNone
                    .LoadField(doc_.GetValueOrDefault("intent", null!), baseUri,
                        loadingOptions);
             }
@@ -401,12 +401,12 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             }
         }
 
-        object baseCommand = default!;
+        dynamic baseCommand = default!;
         if (doc_.ContainsKey("baseCommand"))
         {
             try
             {
-                baseCommand = (object)LoaderInstances.union_of_NullInstance_or_StringInstance_or_array_of_StringInstance
+                baseCommand = LoaderInstances.union_of_NullInstance_or_StringInstance_or_array_of_StringInstance
                    .LoadField(doc_.GetValueOrDefault("baseCommand", null!), baseUri,
                        loadingOptions);
             }
@@ -418,12 +418,12 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             }
         }
 
-        Option<List<object>> arguments_ = default!;
+        dynamic arguments_ = default!;
         if (doc_.ContainsKey("arguments"))
         {
             try
             {
-                arguments_ = (Option<List<object>>)LoaderInstances.optional_array_of_union_of_StringInstance_or_ExpressionLoader_or_CommandLineBindingLoader
+                arguments_ = LoaderInstances.union_of_NullInstance_or_array_of_union_of_StringInstance_or_ExpressionLoader_or_CommandLineBindingLoader
                    .LoadField(doc_.GetValueOrDefault("arguments", null!), baseUri,
                        loadingOptions);
             }
@@ -435,12 +435,12 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             }
         }
 
-        object stdin = default!;
+        dynamic stdin = default!;
         if (doc_.ContainsKey("stdin"))
         {
             try
             {
-                stdin = (object)LoaderInstances.union_of_NullInstance_or_StringInstance_or_ExpressionLoader
+                stdin = LoaderInstances.union_of_NullInstance_or_StringInstance_or_ExpressionLoader
                    .LoadField(doc_.GetValueOrDefault("stdin", null!), baseUri,
                        loadingOptions);
             }
@@ -452,12 +452,12 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             }
         }
 
-        object stderr = default!;
+        dynamic stderr = default!;
         if (doc_.ContainsKey("stderr"))
         {
             try
             {
-                stderr = (object)LoaderInstances.union_of_NullInstance_or_StringInstance_or_ExpressionLoader
+                stderr = LoaderInstances.union_of_NullInstance_or_StringInstance_or_ExpressionLoader
                    .LoadField(doc_.GetValueOrDefault("stderr", null!), baseUri,
                        loadingOptions);
             }
@@ -469,12 +469,12 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             }
         }
 
-        object stdout = default!;
+        dynamic stdout = default!;
         if (doc_.ContainsKey("stdout"))
         {
             try
             {
-                stdout = (object)LoaderInstances.union_of_NullInstance_or_StringInstance_or_ExpressionLoader
+                stdout = LoaderInstances.union_of_NullInstance_or_StringInstance_or_ExpressionLoader
                    .LoadField(doc_.GetValueOrDefault("stdout", null!), baseUri,
                        loadingOptions);
             }
@@ -486,12 +486,12 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             }
         }
 
-        Option<List<object>> successCodes = default!;
+        dynamic successCodes = default!;
         if (doc_.ContainsKey("successCodes"))
         {
             try
             {
-                successCodes = (Option<List<object>>)LoaderInstances.optional_array_of_IntegerInstance
+                successCodes = LoaderInstances.union_of_NullInstance_or_array_of_IntegerInstance
                    .LoadField(doc_.GetValueOrDefault("successCodes", null!), baseUri,
                        loadingOptions);
             }
@@ -503,12 +503,12 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             }
         }
 
-        Option<List<object>> temporaryFailCodes = default!;
+        dynamic temporaryFailCodes = default!;
         if (doc_.ContainsKey("temporaryFailCodes"))
         {
             try
             {
-                temporaryFailCodes = (Option<List<object>>)LoaderInstances.optional_array_of_IntegerInstance
+                temporaryFailCodes = LoaderInstances.union_of_NullInstance_or_array_of_IntegerInstance
                    .LoadField(doc_.GetValueOrDefault("temporaryFailCodes", null!), baseUri,
                        loadingOptions);
             }
@@ -520,12 +520,12 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             }
         }
 
-        Option<List<object>> permanentFailCodes = default!;
+        dynamic permanentFailCodes = default!;
         if (doc_.ContainsKey("permanentFailCodes"))
         {
             try
             {
-                permanentFailCodes = (Option<List<object>>)LoaderInstances.optional_array_of_IntegerInstance
+                permanentFailCodes = LoaderInstances.union_of_NullInstance_or_array_of_IntegerInstance
                    .LoadField(doc_.GetValueOrDefault("permanentFailCodes", null!), baseUri,
                        loadingOptions);
             }
@@ -563,27 +563,89 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new CommandLineTool(
-          id: id,
-          label: label,
-          doc: doc,
-          inputs: inputs,
-          outputs: outputs,
-          requirements: requirements,
-          hints: hints,
-          cwlVersion: cwlVersion,
-          intent: intent,
+        var res__ = new CommandLineTool(
+          loadingOptions: loadingOptions,
           class_: class_,
-          baseCommand: baseCommand,
-          arguments_: arguments_,
-          stdin: stdin,
-          stderr: stderr,
-          stdout: stdout,
-          successCodes: successCodes,
-          temporaryFailCodes: temporaryFailCodes,
-          permanentFailCodes: permanentFailCodes,
-          loadingOptions: loadingOptions
+          inputs: inputs,
+          outputs: outputs
         );
+
+        if(id != null) 
+        {
+            res__.id = id;
+        }                      
+        
+        if(label != null) 
+        {
+            res__.label = label;
+        }                      
+        
+        if(doc != null) 
+        {
+            res__.doc = doc;
+        }                      
+        
+        if(requirements != null) 
+        {
+            res__.requirements = requirements;
+        }                      
+        
+        if(hints != null) 
+        {
+            res__.hints = hints;
+        }                      
+        
+        if(cwlVersion != null) 
+        {
+            res__.cwlVersion = cwlVersion;
+        }                      
+        
+        if(intent != null) 
+        {
+            res__.intent = intent;
+        }                      
+        
+        if(baseCommand != null) 
+        {
+            res__.baseCommand = baseCommand;
+        }                      
+        
+        if(arguments_ != null) 
+        {
+            res__.arguments_ = arguments_;
+        }                      
+        
+        if(stdin != null) 
+        {
+            res__.stdin = stdin;
+        }                      
+        
+        if(stderr != null) 
+        {
+            res__.stderr = stderr;
+        }                      
+        
+        if(stdout != null) 
+        {
+            res__.stdout = stdout;
+        }                      
+        
+        if(successCodes != null) 
+        {
+            res__.successCodes = successCodes;
+        }                      
+        
+        if(temporaryFailCodes != null) 
+        {
+            res__.temporaryFailCodes = temporaryFailCodes;
+        }                      
+        
+        if(permanentFailCodes != null) 
+        {
+            res__.permanentFailCodes = permanentFailCodes;
+        }                      
+        
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -595,102 +657,100 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        id.IfSome(id =>
-        {
-            r["id"] = ISavable.SaveRelativeUri(id, true,
-                                      relativeUris, null, (string)baseUrl!);
-        });
-                    
-        r["class"] = ISavable.SaveRelativeUri(class_, false,
-                                  relativeUris, null, (string)this.id!);
-        label.IfSome(label =>
-        {
-            r["label"] =
-               ISavable.Save(label, false, (string)this.id!, relativeUris);
-        });
-                    
-        if(doc != null)
-        {
-            r["doc"] =
-               ISavable.Save(doc, false, (string)this.id!, relativeUris);
+        var idVal = ISavable.SaveRelativeUri(id, true,
+            relativeUris, null, (string)baseUrl!);
+        if(idVal is not None) {
+            r["id"] = idVal;
         }
-                    
-        r["inputs"] =
-           ISavable.Save(inputs, false, (string)this.id!, relativeUris);
-        r["outputs"] =
-           ISavable.Save(outputs, false, (string)this.id!, relativeUris);
-        requirements.IfSome(requirements =>
-        {
-            r["requirements"] =
-               ISavable.Save(requirements, false, (string)this.id!, relativeUris);
-        });
-                    
-        hints.IfSome(hints =>
-        {
-            r["hints"] =
-               ISavable.Save(hints, false, (string)this.id!, relativeUris);
-        });
-                    
-        cwlVersion.IfSome(cwlVersion =>
-        {
-            r["cwlVersion"] = ISavable.SaveRelativeUri(cwlVersion, false,
-                                      relativeUris, null, (string)this.id!);
-        });
-                    
-        intent.IfSome(intent =>
-        {
-            r["intent"] = ISavable.SaveRelativeUri(intent, true,
-                                      relativeUris, null, (string)this.id!);
-        });
-                    
-        if(baseCommand != null)
-        {
-            r["baseCommand"] =
-               ISavable.Save(baseCommand, false, (string)this.id!, relativeUris);
+
+        var class_Val = ISavable.SaveRelativeUri(class_, false,
+            relativeUris, null, (string)this.id.AsT1!);
+        if(class_Val is not None) {
+            r["class"] = class_Val;
         }
-                    
-        arguments_.IfSome(arguments_ =>
-        {
-            r["arguments"] =
-               ISavable.Save(arguments_, false, (string)this.id!, relativeUris);
-        });
-                    
-        if(stdin != null)
-        {
-            r["stdin"] =
-               ISavable.Save(stdin, false, (string)this.id!, relativeUris);
+
+        var labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
+        if(labelVal is not None) {
+            r["label"] = labelVal;
         }
-                    
-        if(stderr != null)
-        {
-            r["stderr"] =
-               ISavable.Save(stderr, false, (string)this.id!, relativeUris);
+
+        var docVal = ISavable.Save(doc, false, (string)this.id.AsT1!, relativeUris);
+        if(docVal is not None) {
+            r["doc"] = docVal;
         }
-                    
-        if(stdout != null)
-        {
-            r["stdout"] =
-               ISavable.Save(stdout, false, (string)this.id!, relativeUris);
+
+        var inputsVal = ISavable.Save(inputs, false, (string)this.id.AsT1!, relativeUris);
+        if(inputsVal is not None) {
+            r["inputs"] = inputsVal;
         }
-                    
-        successCodes.IfSome(successCodes =>
-        {
-            r["successCodes"] =
-               ISavable.Save(successCodes, false, (string)this.id!, relativeUris);
-        });
-                    
-        temporaryFailCodes.IfSome(temporaryFailCodes =>
-        {
-            r["temporaryFailCodes"] =
-               ISavable.Save(temporaryFailCodes, false, (string)this.id!, relativeUris);
-        });
-                    
-        permanentFailCodes.IfSome(permanentFailCodes =>
-        {
-            r["permanentFailCodes"] =
-               ISavable.Save(permanentFailCodes, false, (string)this.id!, relativeUris);
-        });
-                    
+
+        var outputsVal = ISavable.Save(outputs, false, (string)this.id.AsT1!, relativeUris);
+        if(outputsVal is not None) {
+            r["outputs"] = outputsVal;
+        }
+
+        var requirementsVal = ISavable.Save(requirements, false, (string)this.id.AsT1!, relativeUris);
+        if(requirementsVal is not None) {
+            r["requirements"] = requirementsVal;
+        }
+
+        var hintsVal = ISavable.Save(hints, false, (string)this.id.AsT1!, relativeUris);
+        if(hintsVal is not None) {
+            r["hints"] = hintsVal;
+        }
+
+        var cwlVersionVal = ISavable.SaveRelativeUri(cwlVersion, false,
+            relativeUris, null, (string)this.id.AsT1!);
+        if(cwlVersionVal is not None) {
+            r["cwlVersion"] = cwlVersionVal;
+        }
+
+        var intentVal = ISavable.SaveRelativeUri(intent, true,
+            relativeUris, null, (string)this.id.AsT1!);
+        if(intentVal is not None) {
+            r["intent"] = intentVal;
+        }
+
+        var baseCommandVal = ISavable.Save(baseCommand, false, (string)this.id.AsT1!, relativeUris);
+        if(baseCommandVal is not None) {
+            r["baseCommand"] = baseCommandVal;
+        }
+
+        var arguments_Val = ISavable.Save(arguments_, false, (string)this.id.AsT1!, relativeUris);
+        if(arguments_Val is not None) {
+            r["arguments"] = arguments_Val;
+        }
+
+        var stdinVal = ISavable.Save(stdin, false, (string)this.id.AsT1!, relativeUris);
+        if(stdinVal is not None) {
+            r["stdin"] = stdinVal;
+        }
+
+        var stderrVal = ISavable.Save(stderr, false, (string)this.id.AsT1!, relativeUris);
+        if(stderrVal is not None) {
+            r["stderr"] = stderrVal;
+        }
+
+        var stdoutVal = ISavable.Save(stdout, false, (string)this.id.AsT1!, relativeUris);
+        if(stdoutVal is not None) {
+            r["stdout"] = stdoutVal;
+        }
+
+        var successCodesVal = ISavable.Save(successCodes, false, (string)this.id.AsT1!, relativeUris);
+        if(successCodesVal is not None) {
+            r["successCodes"] = successCodesVal;
+        }
+
+        var temporaryFailCodesVal = ISavable.Save(temporaryFailCodes, false, (string)this.id.AsT1!, relativeUris);
+        if(temporaryFailCodesVal is not None) {
+            r["temporaryFailCodes"] = temporaryFailCodesVal;
+        }
+
+        var permanentFailCodesVal = ISavable.Save(permanentFailCodes, false, (string)this.id.AsT1!, relativeUris);
+        if(permanentFailCodesVal is not None) {
+            r["permanentFailCodes"] = permanentFailCodesVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -707,6 +767,5 @@ public class CommandLineTool : ICommandLineTool, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "id", "label", "doc", "inputs", "outputs", "requirements", "hints", "cwlVersion", "intent", "class", "baseCommand", "arguments", "stdin", "stderr", "stdout", "successCodes", "temporaryFailCodes", "permanentFailCodes" };
 }

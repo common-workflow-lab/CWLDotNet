@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -30,13 +30,13 @@ public class ToolTimeLimit : IToolTimeLimit, ISavable {
     /// time limit.  Negative time limits are an error.
     /// 
     /// </summary>
-    public object timelimit { get; set; }
+    public OneOf<int , long , string> timelimit { get; set; }
 
 
-    public ToolTimeLimit (ToolTimeLimit_class class_,object timelimit,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public ToolTimeLimit (OneOf<int , long , string> timelimit, ToolTimeLimit_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
-        this.class_ = class_;
+        this.class_ = class_ ?? ToolTimeLimit_class.TOOLTIMELIMIT;
         this.timelimit = timelimit;
     }
 
@@ -54,10 +54,10 @@ public class ToolTimeLimit : IToolTimeLimit, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        ToolTimeLimit_class class_ = default!;
+        dynamic class_ = default!;
         try
         {
-            class_ = (ToolTimeLimit_class)LoaderInstances.uriToolTimeLimit_classLoaderFalseTrueNone
+            class_ = LoaderInstances.uriToolTimeLimit_classLoaderFalseTrueNone
                .LoadField(doc_.GetValueOrDefault("class", null!), baseUri,
                    loadingOptions);
         }
@@ -68,10 +68,10 @@ public class ToolTimeLimit : IToolTimeLimit, ISavable {
             );
         }
 
-        object timelimit = default!;
+        dynamic timelimit = default!;
         try
         {
-            timelimit = (object)LoaderInstances.union_of_IntegerInstance_or_LongInstance_or_ExpressionLoader
+            timelimit = LoaderInstances.union_of_IntegerInstance_or_LongInstance_or_ExpressionLoader
                .LoadField(doc_.GetValueOrDefault("timelimit", null!), baseUri,
                    loadingOptions);
         }
@@ -108,11 +108,13 @@ public class ToolTimeLimit : IToolTimeLimit, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new ToolTimeLimit(
+        var res__ = new ToolTimeLimit(
+          loadingOptions: loadingOptions,
           class_: class_,
-          timelimit: timelimit,
-          loadingOptions: loadingOptions
+          timelimit: timelimit
         );
+
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -124,10 +126,17 @@ public class ToolTimeLimit : IToolTimeLimit, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(class_, false,
-                                  relativeUris, null, (string)baseUrl!);
-        r["timelimit"] =
-           ISavable.Save(timelimit, false, (string)baseUrl!, relativeUris);
+        var class_Val = ISavable.SaveRelativeUri(class_, false,
+            relativeUris, null, (string)baseUrl!);
+        if(class_Val is not None) {
+            r["class"] = class_Val;
+        }
+
+        var timelimitVal = ISavable.Save(timelimit, false, (string)baseUrl!, relativeUris);
+        if(timelimitVal is not None) {
+            r["timelimit"] = timelimitVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -144,6 +153,5 @@ public class ToolTimeLimit : IToolTimeLimit, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "timelimit" };
 }

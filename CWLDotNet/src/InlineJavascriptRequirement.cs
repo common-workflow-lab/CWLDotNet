@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -27,13 +27,13 @@ public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavabl
     /// be called from CWL expressions.
     /// 
     /// </summary>
-    public Option<List<string>> expressionLib { get; set; }
+    public OneOf<None , List<string>> expressionLib { get; set; }
 
 
-    public InlineJavascriptRequirement (InlineJavascriptRequirement_class class_,Option<List<string>> expressionLib,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public InlineJavascriptRequirement (InlineJavascriptRequirement_class? class_ = null, OneOf<None , List<string>> expressionLib = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
-        this.class_ = class_;
+        this.class_ = class_ ?? InlineJavascriptRequirement_class.INLINEJAVASCRIPTREQUIREMENT;
         this.expressionLib = expressionLib;
     }
 
@@ -51,10 +51,10 @@ public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavabl
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        InlineJavascriptRequirement_class class_ = default!;
+        dynamic class_ = default!;
         try
         {
-            class_ = (InlineJavascriptRequirement_class)LoaderInstances.uriInlineJavascriptRequirement_classLoaderFalseTrueNone
+            class_ = LoaderInstances.uriInlineJavascriptRequirement_classLoaderFalseTrueNone
                .LoadField(doc_.GetValueOrDefault("class", null!), baseUri,
                    loadingOptions);
         }
@@ -65,12 +65,12 @@ public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavabl
             );
         }
 
-        Option<List<string>> expressionLib = default!;
+        dynamic expressionLib = default!;
         if (doc_.ContainsKey("expressionLib"))
         {
             try
             {
-                expressionLib = (Option<List<string>>)LoaderInstances.optional_array_of_StringInstance
+                expressionLib = LoaderInstances.union_of_NullInstance_or_array_of_StringInstance
                    .LoadField(doc_.GetValueOrDefault("expressionLib", null!), baseUri,
                        loadingOptions);
             }
@@ -108,11 +108,17 @@ public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavabl
             throw new ValidationException("", errors);
         }
 
-        return new InlineJavascriptRequirement(
-          class_: class_,
-          expressionLib: expressionLib,
-          loadingOptions: loadingOptions
+        var res__ = new InlineJavascriptRequirement(
+          loadingOptions: loadingOptions,
+          class_: class_
         );
+
+        if(expressionLib != null) 
+        {
+            res__.expressionLib = expressionLib;
+        }                      
+        
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -124,14 +130,17 @@ public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavabl
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(class_, false,
-                                  relativeUris, null, (string)baseUrl!);
-        expressionLib.IfSome(expressionLib =>
-        {
-            r["expressionLib"] =
-               ISavable.Save(expressionLib, false, (string)baseUrl!, relativeUris);
-        });
-                    
+        var class_Val = ISavable.SaveRelativeUri(class_, false,
+            relativeUris, null, (string)baseUrl!);
+        if(class_Val is not None) {
+            r["class"] = class_Val;
+        }
+
+        var expressionLibVal = ISavable.Save(expressionLib, false, (string)baseUrl!, relativeUris);
+        if(expressionLibVal is not None) {
+            r["expressionLib"] = expressionLibVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -148,6 +157,5 @@ public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavabl
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "expressionLib" };
 }

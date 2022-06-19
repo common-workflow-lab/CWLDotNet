@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -48,7 +48,7 @@ public class Dirent : IDirent, ISavable {
     /// where the file or directory must be placed.
     /// 
     /// </summary>
-    public object entryname { get; set; }
+    public OneOf<None , string> entryname { get; set; }
 
     /// <summary>
     /// If the value is a string literal or an expression which evaluates to a
@@ -73,7 +73,7 @@ public class Dirent : IDirent, ISavable {
     /// references](#Parameter_references).
     /// 
     /// </summary>
-    public object entry { get; set; }
+    public OneOf<string> entry { get; set; }
 
     /// <summary>
     /// If true, the File or Directory (or array of Files or
@@ -99,10 +99,10 @@ public class Dirent : IDirent, ISavable {
     /// not explicitly marked as writable.
     /// 
     /// </summary>
-    public Option<bool> writable { get; set; }
+    public OneOf<None , bool> writable { get; set; }
 
 
-    public Dirent (object entryname,object entry,Option<bool> writable,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public Dirent (OneOf<string> entry, OneOf<None , string> entryname = default, OneOf<None , bool> writable = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.entryname = entryname;
@@ -124,12 +124,12 @@ public class Dirent : IDirent, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        object entryname = default!;
+        dynamic entryname = default!;
         if (doc_.ContainsKey("entryname"))
         {
             try
             {
-                entryname = (object)LoaderInstances.union_of_NullInstance_or_StringInstance_or_ExpressionLoader
+                entryname = LoaderInstances.union_of_NullInstance_or_StringInstance_or_ExpressionLoader
                    .LoadField(doc_.GetValueOrDefault("entryname", null!), baseUri,
                        loadingOptions);
             }
@@ -141,10 +141,10 @@ public class Dirent : IDirent, ISavable {
             }
         }
 
-        object entry = default!;
+        dynamic entry = default!;
         try
         {
-            entry = (object)LoaderInstances.union_of_StringInstance_or_ExpressionLoader
+            entry = LoaderInstances.union_of_StringInstance_or_ExpressionLoader
                .LoadField(doc_.GetValueOrDefault("entry", null!), baseUri,
                    loadingOptions);
         }
@@ -155,12 +155,12 @@ public class Dirent : IDirent, ISavable {
             );
         }
 
-        Option<bool> writable = default!;
+        dynamic writable = default!;
         if (doc_.ContainsKey("writable"))
         {
             try
             {
-                writable = (Option<bool>)LoaderInstances.optional_BooleanInstance
+                writable = LoaderInstances.union_of_NullInstance_or_BooleanInstance
                    .LoadField(doc_.GetValueOrDefault("writable", null!), baseUri,
                        loadingOptions);
             }
@@ -198,12 +198,22 @@ public class Dirent : IDirent, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new Dirent(
-          entryname: entryname,
-          entry: entry,
-          writable: writable,
-          loadingOptions: loadingOptions
+        var res__ = new Dirent(
+          loadingOptions: loadingOptions,
+          entry: entry
         );
+
+        if(entryname != null) 
+        {
+            res__.entryname = entryname;
+        }                      
+        
+        if(writable != null) 
+        {
+            res__.writable = writable;
+        }                      
+        
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -215,20 +225,21 @@ public class Dirent : IDirent, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        if(entryname != null)
-        {
-            r["entryname"] =
-               ISavable.Save(entryname, false, (string)baseUrl!, relativeUris);
+        var entrynameVal = ISavable.Save(entryname, false, (string)baseUrl!, relativeUris);
+        if(entrynameVal is not None) {
+            r["entryname"] = entrynameVal;
         }
-                    
-        r["entry"] =
-           ISavable.Save(entry, false, (string)baseUrl!, relativeUris);
-        writable.IfSome(writable =>
-        {
-            r["writable"] =
-               ISavable.Save(writable, false, (string)baseUrl!, relativeUris);
-        });
-                    
+
+        var entryVal = ISavable.Save(entry, false, (string)baseUrl!, relativeUris);
+        if(entryVal is not None) {
+            r["entry"] = entryVal;
+        }
+
+        var writableVal = ISavable.Save(writable, false, (string)baseUrl!, relativeUris);
+        if(writableVal is not None) {
+            r["writable"] = writableVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -245,6 +256,5 @@ public class Dirent : IDirent, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "entryname", "entry", "writable" };
 }

@@ -1,5 +1,4 @@
-using LanguageExt;
-
+#pragma warning disable CS0108
 namespace CWLDotNet;
 
 /// <summary>
@@ -10,9 +9,4 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface IStepInputExpressionRequirement : IProcessRequirement {
-
-    /// <summary>
-    /// Always 'StepInputExpressionRequirement'
-    /// </summary>
-    public new StepInputExpressionRequirement_class class_ { get; set; }
 }

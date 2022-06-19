@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -33,13 +33,13 @@ public class SchemaDefRequirement : ISchemaDefRequirement, ISavable {
     /// <summary>
     /// The list of type definitions.
     /// </summary>
-    public List<object> types { get; set; }
+    public List<OneOf<CommandInputRecordSchema , CommandInputEnumSchema , CommandInputArraySchema>> types { get; set; }
 
 
-    public SchemaDefRequirement (SchemaDefRequirement_class class_,List<object> types,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public SchemaDefRequirement (List<OneOf<CommandInputRecordSchema , CommandInputEnumSchema , CommandInputArraySchema>> types, SchemaDefRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
-        this.class_ = class_;
+        this.class_ = class_ ?? SchemaDefRequirement_class.SCHEMADEFREQUIREMENT;
         this.types = types;
     }
 
@@ -57,10 +57,10 @@ public class SchemaDefRequirement : ISchemaDefRequirement, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        SchemaDefRequirement_class class_ = default!;
+        dynamic class_ = default!;
         try
         {
-            class_ = (SchemaDefRequirement_class)LoaderInstances.uriSchemaDefRequirement_classLoaderFalseTrueNone
+            class_ = LoaderInstances.uriSchemaDefRequirement_classLoaderFalseTrueNone
                .LoadField(doc_.GetValueOrDefault("class", null!), baseUri,
                    loadingOptions);
         }
@@ -71,10 +71,10 @@ public class SchemaDefRequirement : ISchemaDefRequirement, ISavable {
             );
         }
 
-        List<object> types = default!;
+        dynamic types = default!;
         try
         {
-            types = (List<object>)LoaderInstances.array_of_union_of_CommandInputRecordSchemaLoader_or_CommandInputEnumSchemaLoader_or_CommandInputArraySchemaLoader
+            types = LoaderInstances.array_of_union_of_CommandInputRecordSchemaLoader_or_CommandInputEnumSchemaLoader_or_CommandInputArraySchemaLoader
                .LoadField(doc_.GetValueOrDefault("types", null!), baseUri,
                    loadingOptions);
         }
@@ -111,11 +111,13 @@ public class SchemaDefRequirement : ISchemaDefRequirement, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new SchemaDefRequirement(
+        var res__ = new SchemaDefRequirement(
+          loadingOptions: loadingOptions,
           class_: class_,
-          types: types,
-          loadingOptions: loadingOptions
+          types: types
         );
+
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -127,10 +129,17 @@ public class SchemaDefRequirement : ISchemaDefRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(class_, false,
-                                  relativeUris, null, (string)baseUrl!);
-        r["types"] =
-           ISavable.Save(types, false, (string)baseUrl!, relativeUris);
+        var class_Val = ISavable.SaveRelativeUri(class_, false,
+            relativeUris, null, (string)baseUrl!);
+        if(class_Val is not None) {
+            r["class"] = class_Val;
+        }
+
+        var typesVal = ISavable.Save(types, false, (string)baseUrl!, relativeUris);
+        if(typesVal is not None) {
+            r["types"] = typesVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -147,6 +156,5 @@ public class SchemaDefRequirement : ISchemaDefRequirement, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "types" };
 }

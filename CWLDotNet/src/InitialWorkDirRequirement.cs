@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -46,13 +46,13 @@ public class InitialWorkDirRequirement : IInitialWorkDirRequirement, ISavable {
     /// is undefined.
     /// 
     /// </summary>
-    public object listing { get; set; }
+    public OneOf<string , List<OneOf<None , Dirent , string , File , Directory , List<OneOf<File , Directory>>>>> listing { get; set; }
 
 
-    public InitialWorkDirRequirement (InitialWorkDirRequirement_class class_,object listing,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public InitialWorkDirRequirement (OneOf<string , List<OneOf<None , Dirent , string , File , Directory , List<OneOf<File , Directory>>>>> listing, InitialWorkDirRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
-        this.class_ = class_;
+        this.class_ = class_ ?? InitialWorkDirRequirement_class.INITIALWORKDIRREQUIREMENT;
         this.listing = listing;
     }
 
@@ -70,10 +70,10 @@ public class InitialWorkDirRequirement : IInitialWorkDirRequirement, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        InitialWorkDirRequirement_class class_ = default!;
+        dynamic class_ = default!;
         try
         {
-            class_ = (InitialWorkDirRequirement_class)LoaderInstances.uriInitialWorkDirRequirement_classLoaderFalseTrueNone
+            class_ = LoaderInstances.uriInitialWorkDirRequirement_classLoaderFalseTrueNone
                .LoadField(doc_.GetValueOrDefault("class", null!), baseUri,
                    loadingOptions);
         }
@@ -84,10 +84,10 @@ public class InitialWorkDirRequirement : IInitialWorkDirRequirement, ISavable {
             );
         }
 
-        object listing = default!;
+        dynamic listing = default!;
         try
         {
-            listing = (object)LoaderInstances.union_of_ExpressionLoader_or_array_of_union_of_NullInstance_or_DirentLoader_or_ExpressionLoader_or_FileLoader_or_DirectoryLoader_or_array_of_union_of_FileLoader_or_DirectoryLoader
+            listing = LoaderInstances.union_of_ExpressionLoader_or_array_of_union_of_NullInstance_or_DirentLoader_or_ExpressionLoader_or_FileLoader_or_DirectoryLoader_or_array_of_union_of_FileLoader_or_DirectoryLoader
                .LoadField(doc_.GetValueOrDefault("listing", null!), baseUri,
                    loadingOptions);
         }
@@ -124,11 +124,13 @@ public class InitialWorkDirRequirement : IInitialWorkDirRequirement, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new InitialWorkDirRequirement(
+        var res__ = new InitialWorkDirRequirement(
+          loadingOptions: loadingOptions,
           class_: class_,
-          listing: listing,
-          loadingOptions: loadingOptions
+          listing: listing
         );
+
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -140,10 +142,17 @@ public class InitialWorkDirRequirement : IInitialWorkDirRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(class_, false,
-                                  relativeUris, null, (string)baseUrl!);
-        r["listing"] =
-           ISavable.Save(listing, false, (string)baseUrl!, relativeUris);
+        var class_Val = ISavable.SaveRelativeUri(class_, false,
+            relativeUris, null, (string)baseUrl!);
+        if(class_Val is not None) {
+            r["class"] = class_Val;
+        }
+
+        var listingVal = ISavable.Save(listing, false, (string)baseUrl!, relativeUris);
+        if(listingVal is not None) {
+            r["listing"] = listingVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -160,6 +169,5 @@ public class InitialWorkDirRequirement : IInitialWorkDirRequirement, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "listing" };
 }

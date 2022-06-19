@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -15,23 +15,23 @@ public class OutputRecordField : IOutputRecordField, ISavable {
     /// The name of the field
     /// 
     /// </summary>
-    public string name { get; set; }
+    public string? name { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
     /// </summary>
-    public object doc { get; set; }
+    public OneOf<None , string , List<string>> doc { get; set; }
 
     /// <summary>
     /// The field type
     /// 
     /// </summary>
-    public object type { get; set; }
+    public OneOf<CWLType , OutputRecordSchema , OutputEnumSchema , OutputArraySchema , string , List<OneOf<CWLType , OutputRecordSchema , OutputEnumSchema , OutputArraySchema , string>>> type { get; set; }
 
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public Option<string> label { get; set; }
+    public OneOf<None , string> label { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -77,7 +77,7 @@ public class OutputRecordField : IOutputRecordField, ISavable {
     ///   3. Append the remainder of the string to the end of the file path.
     /// 
     /// </summary>
-    public object secondaryFiles { get; set; }
+    public OneOf<None , SecondaryFileSchema , List<SecondaryFileSchema>> secondaryFiles { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -88,7 +88,7 @@ public class OutputRecordField : IOutputRecordField, ISavable {
     /// pipe.  Default: `false`.
     /// 
     /// </summary>
-    public Option<bool> streamable { get; set; }
+    public OneOf<None , bool> streamable { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -97,10 +97,10 @@ public class OutputRecordField : IOutputRecordField, ISavable {
     /// File object.
     /// 
     /// </summary>
-    public object format { get; set; }
+    public OneOf<None , string> format { get; set; }
 
 
-    public OutputRecordField (string name,object doc,object type,Option<string> label,object secondaryFiles,Option<bool> streamable,object format,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public OutputRecordField (OneOf<CWLType , OutputRecordSchema , OutputEnumSchema , OutputArraySchema , string , List<OneOf<CWLType , OutputRecordSchema , OutputEnumSchema , OutputArraySchema , string>>> type, string? name = null, OneOf<None , string , List<string>> doc = default, OneOf<None , string> label = default, OneOf<None , SecondaryFileSchema , List<SecondaryFileSchema>> secondaryFiles = default, OneOf<None , bool> streamable = default, OneOf<None , string> format = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.name = name;
@@ -126,12 +126,12 @@ public class OutputRecordField : IOutputRecordField, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        string name = default!;
+        dynamic name = default!;
         if (doc_.ContainsKey("name"))
         {
             try
             {
-                name = (string)LoaderInstances.uriStringInstanceTrueFalseNone
+                name = LoaderInstances.uriStringInstanceTrueFalseNone
                    .LoadField(doc_.GetValueOrDefault("name", null!), baseUri,
                        loadingOptions);
             }
@@ -159,12 +159,12 @@ public class OutputRecordField : IOutputRecordField, ISavable {
             baseUri = (string)name;
         }
             
-        object doc = default!;
+        dynamic doc = default!;
         if (doc_.ContainsKey("doc"))
         {
             try
             {
-                doc = (object)LoaderInstances.union_of_NullInstance_or_StringInstance_or_array_of_StringInstance
+                doc = LoaderInstances.union_of_NullInstance_or_StringInstance_or_array_of_StringInstance
                    .LoadField(doc_.GetValueOrDefault("doc", null!), baseUri,
                        loadingOptions);
             }
@@ -176,10 +176,10 @@ public class OutputRecordField : IOutputRecordField, ISavable {
             }
         }
 
-        object type = default!;
+        dynamic type = default!;
         try
         {
-            type = (object)LoaderInstances.typedslunion_of_CWLTypeLoader_or_OutputRecordSchemaLoader_or_OutputEnumSchemaLoader_or_OutputArraySchemaLoader_or_StringInstance_or_array_of_union_of_CWLTypeLoader_or_OutputRecordSchemaLoader_or_OutputEnumSchemaLoader_or_OutputArraySchemaLoader_or_StringInstance2
+            type = LoaderInstances.typedslunion_of_CWLTypeLoader_or_OutputRecordSchemaLoader_or_OutputEnumSchemaLoader_or_OutputArraySchemaLoader_or_StringInstance_or_array_of_union_of_CWLTypeLoader_or_OutputRecordSchemaLoader_or_OutputEnumSchemaLoader_or_OutputArraySchemaLoader_or_StringInstance2
                .LoadField(doc_.GetValueOrDefault("type", null!), baseUri,
                    loadingOptions);
         }
@@ -190,12 +190,12 @@ public class OutputRecordField : IOutputRecordField, ISavable {
             );
         }
 
-        Option<string> label = default!;
+        dynamic label = default!;
         if (doc_.ContainsKey("label"))
         {
             try
             {
-                label = (Option<string>)LoaderInstances.optional_StringInstance
+                label = LoaderInstances.union_of_NullInstance_or_StringInstance
                    .LoadField(doc_.GetValueOrDefault("label", null!), baseUri,
                        loadingOptions);
             }
@@ -207,12 +207,12 @@ public class OutputRecordField : IOutputRecordField, ISavable {
             }
         }
 
-        object secondaryFiles = default!;
+        dynamic secondaryFiles = default!;
         if (doc_.ContainsKey("secondaryFiles"))
         {
             try
             {
-                secondaryFiles = (object)LoaderInstances.secondaryfilesdslunion_of_NullInstance_or_SecondaryFileSchemaLoader_or_array_of_SecondaryFileSchemaLoader
+                secondaryFiles = LoaderInstances.secondaryfilesdslunion_of_NullInstance_or_SecondaryFileSchemaLoader_or_array_of_SecondaryFileSchemaLoader
                    .LoadField(doc_.GetValueOrDefault("secondaryFiles", null!), baseUri,
                        loadingOptions);
             }
@@ -224,12 +224,12 @@ public class OutputRecordField : IOutputRecordField, ISavable {
             }
         }
 
-        Option<bool> streamable = default!;
+        dynamic streamable = default!;
         if (doc_.ContainsKey("streamable"))
         {
             try
             {
-                streamable = (Option<bool>)LoaderInstances.optional_BooleanInstance
+                streamable = LoaderInstances.union_of_NullInstance_or_BooleanInstance
                    .LoadField(doc_.GetValueOrDefault("streamable", null!), baseUri,
                        loadingOptions);
             }
@@ -241,12 +241,12 @@ public class OutputRecordField : IOutputRecordField, ISavable {
             }
         }
 
-        object format = default!;
+        dynamic format = default!;
         if (doc_.ContainsKey("format"))
         {
             try
             {
-                format = (object)LoaderInstances.uriunion_of_NullInstance_or_StringInstance_or_ExpressionLoaderTrueFalseNone
+                format = LoaderInstances.uriunion_of_NullInstance_or_StringInstance_or_ExpressionLoaderTrueFalseNone
                    .LoadField(doc_.GetValueOrDefault("format", null!), baseUri,
                        loadingOptions);
             }
@@ -284,16 +284,42 @@ public class OutputRecordField : IOutputRecordField, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new OutputRecordField(
-          doc: doc,
-          name: name,
-          type: type,
-          label: label,
-          secondaryFiles: secondaryFiles,
-          streamable: streamable,
-          format: format,
-          loadingOptions: loadingOptions
+        var res__ = new OutputRecordField(
+          loadingOptions: loadingOptions,
+          type: type
         );
+
+        if(name != null) 
+        {
+            res__.name = name;
+        }                      
+        
+        if(doc != null) 
+        {
+            res__.doc = doc;
+        }                      
+        
+        if(label != null) 
+        {
+            res__.label = label;
+        }                      
+        
+        if(secondaryFiles != null) 
+        {
+            res__.secondaryFiles = secondaryFiles;
+        }                      
+        
+        if(streamable != null) 
+        {
+            res__.streamable = streamable;
+        }                      
+        
+        if(format != null) 
+        {
+            res__.format = format;
+        }                      
+        
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -305,44 +331,43 @@ public class OutputRecordField : IOutputRecordField, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        if(name != null)
-        {
-            r["name"] = ISavable.SaveRelativeUri(name, true,
-                                      relativeUris, null, (string)baseUrl!);
+        var nameVal = ISavable.SaveRelativeUri(name, true,
+            relativeUris, null, (string)baseUrl!);
+        if(nameVal is not None) {
+            r["name"] = nameVal;
         }
-                    
-        if(doc != null)
-        {
-            r["doc"] =
-               ISavable.Save(doc, false, (string)this.name!, relativeUris);
+
+        var docVal = ISavable.Save(doc, false, (string)this.name!, relativeUris);
+        if(docVal is not None) {
+            r["doc"] = docVal;
         }
-                    
-        r["type"] =
-           ISavable.Save(type, false, (string)this.name!, relativeUris);
-        label.IfSome(label =>
-        {
-            r["label"] =
-               ISavable.Save(label, false, (string)this.name!, relativeUris);
-        });
-                    
-        if(secondaryFiles != null)
-        {
-            r["secondaryFiles"] =
-               ISavable.Save(secondaryFiles, false, (string)this.name!, relativeUris);
+
+        var typeVal = ISavable.Save(type, false, (string)this.name!, relativeUris);
+        if(typeVal is not None) {
+            r["type"] = typeVal;
         }
-                    
-        streamable.IfSome(streamable =>
-        {
-            r["streamable"] =
-               ISavable.Save(streamable, false, (string)this.name!, relativeUris);
-        });
-                    
-        if(format != null)
-        {
-            r["format"] = ISavable.SaveRelativeUri(format, true,
-                                      relativeUris, null, (string)this.name!);
+
+        var labelVal = ISavable.Save(label, false, (string)this.name!, relativeUris);
+        if(labelVal is not None) {
+            r["label"] = labelVal;
         }
-                    
+
+        var secondaryFilesVal = ISavable.Save(secondaryFiles, false, (string)this.name!, relativeUris);
+        if(secondaryFilesVal is not None) {
+            r["secondaryFiles"] = secondaryFilesVal;
+        }
+
+        var streamableVal = ISavable.Save(streamable, false, (string)this.name!, relativeUris);
+        if(streamableVal is not None) {
+            r["streamable"] = streamableVal;
+        }
+
+        var formatVal = ISavable.SaveRelativeUri(format, true,
+            relativeUris, null, (string)this.name!);
+        if(formatVal is not None) {
+            r["format"] = formatVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -359,6 +384,5 @@ public class OutputRecordField : IOutputRecordField, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "doc", "name", "type", "label", "secondaryFiles", "streamable", "format" };
 }

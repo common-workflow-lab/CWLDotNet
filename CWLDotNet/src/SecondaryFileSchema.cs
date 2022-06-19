@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -78,7 +78,7 @@ public class SecondaryFileSchema : ISecondaryFileSchema, ISavable {
     ///   3. Append the remainder of the string to the end of the file path.
     /// 
     /// </summary>
-    public object pattern { get; set; }
+    public OneOf<string> pattern { get; set; }
 
     /// <summary>
     /// An implementation must not fail workflow execution if `required` is
@@ -87,10 +87,10 @@ public class SecondaryFileSchema : ISecondaryFileSchema, ISavable {
     /// input and `false` for secondary files on output.
     /// 
     /// </summary>
-    public object required { get; set; }
+    public OneOf<None , bool , string> required { get; set; }
 
 
-    public SecondaryFileSchema (object pattern,object required,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public SecondaryFileSchema (OneOf<string> pattern, OneOf<None , bool , string> required = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.pattern = pattern;
@@ -111,10 +111,10 @@ public class SecondaryFileSchema : ISecondaryFileSchema, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        object pattern = default!;
+        dynamic pattern = default!;
         try
         {
-            pattern = (object)LoaderInstances.union_of_StringInstance_or_ExpressionLoader
+            pattern = LoaderInstances.union_of_StringInstance_or_ExpressionLoader
                .LoadField(doc_.GetValueOrDefault("pattern", null!), baseUri,
                    loadingOptions);
         }
@@ -125,12 +125,12 @@ public class SecondaryFileSchema : ISecondaryFileSchema, ISavable {
             );
         }
 
-        object required = default!;
+        dynamic required = default!;
         if (doc_.ContainsKey("required"))
         {
             try
             {
-                required = (object)LoaderInstances.union_of_NullInstance_or_BooleanInstance_or_ExpressionLoader
+                required = LoaderInstances.union_of_NullInstance_or_BooleanInstance_or_ExpressionLoader
                    .LoadField(doc_.GetValueOrDefault("required", null!), baseUri,
                        loadingOptions);
             }
@@ -168,11 +168,17 @@ public class SecondaryFileSchema : ISecondaryFileSchema, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new SecondaryFileSchema(
-          pattern: pattern,
-          required: required,
-          loadingOptions: loadingOptions
+        var res__ = new SecondaryFileSchema(
+          loadingOptions: loadingOptions,
+          pattern: pattern
         );
+
+        if(required != null) 
+        {
+            res__.required = required;
+        }                      
+        
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -184,14 +190,16 @@ public class SecondaryFileSchema : ISecondaryFileSchema, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["pattern"] =
-           ISavable.Save(pattern, false, (string)baseUrl!, relativeUris);
-        if(required != null)
-        {
-            r["required"] =
-               ISavable.Save(required, false, (string)baseUrl!, relativeUris);
+        var patternVal = ISavable.Save(pattern, false, (string)baseUrl!, relativeUris);
+        if(patternVal is not None) {
+            r["pattern"] = patternVal;
         }
-                    
+
+        var requiredVal = ISavable.Save(required, false, (string)baseUrl!, relativeUris);
+        if(requiredVal is not None) {
+            r["required"] = requiredVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -208,6 +216,5 @@ public class SecondaryFileSchema : ISecondaryFileSchema, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "pattern", "required" };
 }

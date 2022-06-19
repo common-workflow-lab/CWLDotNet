@@ -1,5 +1,4 @@
-using LanguageExt;
-
+#pragma warning disable CS0108
 namespace CWLDotNet;
 
 /// <summary>
@@ -10,10 +9,4 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface ILoadListingRequirement : IProcessRequirement {
-
-    /// <summary>
-    /// Always 'LoadListingRequirement'
-    /// </summary>
-    public new LoadListingRequirement_class class_ { get; set; }
-    public Option<LoadListingEnum> loadListing { get; set; }
 }

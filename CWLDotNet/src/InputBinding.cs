@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -17,10 +17,10 @@ public class InputBinding : IInputBinding, ISavable {
     /// CWL v2.0.  Use `InputParameter.loadContents` instead.
     /// 
     /// </summary>
-    public Option<bool> loadContents { get; set; }
+    public OneOf<None , bool> loadContents { get; set; }
 
 
-    public InputBinding (Option<bool> loadContents,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public InputBinding (OneOf<None , bool> loadContents = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.loadContents = loadContents;
@@ -40,12 +40,12 @@ public class InputBinding : IInputBinding, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        Option<bool> loadContents = default!;
+        dynamic loadContents = default!;
         if (doc_.ContainsKey("loadContents"))
         {
             try
             {
-                loadContents = (Option<bool>)LoaderInstances.optional_BooleanInstance
+                loadContents = LoaderInstances.union_of_NullInstance_or_BooleanInstance
                    .LoadField(doc_.GetValueOrDefault("loadContents", null!), baseUri,
                        loadingOptions);
             }
@@ -83,10 +83,16 @@ public class InputBinding : IInputBinding, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new InputBinding(
-          loadContents: loadContents,
+        var res__ = new InputBinding(
           loadingOptions: loadingOptions
         );
+
+        if(loadContents != null) 
+        {
+            res__.loadContents = loadContents;
+        }                      
+        
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -98,12 +104,11 @@ public class InputBinding : IInputBinding, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        loadContents.IfSome(loadContents =>
-        {
-            r["loadContents"] =
-               ISavable.Save(loadContents, false, (string)baseUrl!, relativeUris);
-        });
-                    
+        var loadContentsVal = ISavable.Save(loadContents, false, (string)baseUrl!, relativeUris);
+        if(loadContentsVal is not None) {
+            r["loadContents"] = loadContentsVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -120,6 +125,5 @@ public class InputBinding : IInputBinding, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "loadContents" };
 }

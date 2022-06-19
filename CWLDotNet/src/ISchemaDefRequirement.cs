@@ -1,5 +1,4 @@
-using LanguageExt;
-
+#pragma warning disable CS0108
 namespace CWLDotNet;
 
 /// <summary>
@@ -20,14 +19,4 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface ISchemaDefRequirement : IProcessRequirement {
-
-    /// <summary>
-    /// Always 'SchemaDefRequirement'
-    /// </summary>
-    public new SchemaDefRequirement_class class_ { get; set; }
-
-    /// <summary>
-    /// The list of type definitions.
-    /// </summary>
-    public List<object> types { get; set; }
 }

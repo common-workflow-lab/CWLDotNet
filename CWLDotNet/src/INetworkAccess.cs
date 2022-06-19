@@ -1,5 +1,4 @@
-using LanguageExt;
-
+#pragma warning disable CS0108
 namespace CWLDotNet;
 
 /// <summary>
@@ -23,10 +22,4 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface INetworkAccess : IProcessRequirement {
-
-    /// <summary>
-    /// Always 'NetworkAccess'
-    /// </summary>
-    public new NetworkAccess_class class_ { get; set; }
-    public object networkAccess { get; set; }
 }

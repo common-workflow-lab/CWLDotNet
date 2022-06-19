@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -14,12 +14,12 @@ public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
     /// <summary>
     /// The identifier for this type
     /// </summary>
-    public Option<string> name { get; set; }
+    public OneOf<None , string> name { get; set; }
 
     /// <summary>
     /// Defines the fields of the record.
     /// </summary>
-    public Option<List<object>> fields { get; set; }
+    public OneOf<None , List<CommandInputRecordField>> fields { get; set; }
 
     /// <summary>
     /// Must be `record`
@@ -29,20 +29,20 @@ public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public Option<string> label { get; set; }
+    public OneOf<None , string> label { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
     /// </summary>
-    public object doc { get; set; }
+    public OneOf<None , string , List<string>> doc { get; set; }
 
     /// <summary>
     /// Describes how to turn this object into command line arguments.
     /// </summary>
-    public Option<CommandLineBinding> inputBinding { get; set; }
+    public OneOf<None , CommandLineBinding> inputBinding { get; set; }
 
 
-    public CommandInputRecordSchema (Option<string> name,Option<List<object>> fields,enum_d9cba076fca539106791a4f46d198c7fcfbdb779 type,Option<string> label,object doc,Option<CommandLineBinding> inputBinding,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public CommandInputRecordSchema (enum_d9cba076fca539106791a4f46d198c7fcfbdb779 type, OneOf<None , string> name = default, OneOf<None , List<CommandInputRecordField>> fields = default, OneOf<None , string> label = default, OneOf<None , string , List<string>> doc = default, OneOf<None , CommandLineBinding> inputBinding = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.name = name;
@@ -67,12 +67,12 @@ public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        Option<string> name = default!;
+        dynamic name = default!;
         if (doc_.ContainsKey("name"))
         {
             try
             {
-                name = (Option<string>)LoaderInstances.urioptional_StringInstanceTrueFalseNone
+                name = LoaderInstances.uriunion_of_NullInstance_or_StringInstanceTrueFalseNone
                    .LoadField(doc_.GetValueOrDefault("name", null!), baseUri,
                        loadingOptions);
             }
@@ -100,12 +100,12 @@ public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
             baseUri = (string)name;
         }
             
-        Option<List<object>> fields = default!;
+        dynamic fields = default!;
         if (doc_.ContainsKey("fields"))
         {
             try
             {
-                fields = (Option<List<object>>)LoaderInstances.idmapfieldsoptional_array_of_CommandInputRecordFieldLoader
+                fields = LoaderInstances.idmapfieldsunion_of_NullInstance_or_array_of_CommandInputRecordFieldLoader
                    .LoadField(doc_.GetValueOrDefault("fields", null!), baseUri,
                        loadingOptions);
             }
@@ -117,10 +117,10 @@ public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
             }
         }
 
-        enum_d9cba076fca539106791a4f46d198c7fcfbdb779 type = default!;
+        dynamic type = default!;
         try
         {
-            type = (enum_d9cba076fca539106791a4f46d198c7fcfbdb779)LoaderInstances.typedslenum_d9cba076fca539106791a4f46d198c7fcfbdb779Loader2
+            type = LoaderInstances.typedslenum_d9cba076fca539106791a4f46d198c7fcfbdb779Loader2
                .LoadField(doc_.GetValueOrDefault("type", null!), baseUri,
                    loadingOptions);
         }
@@ -131,12 +131,12 @@ public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
             );
         }
 
-        Option<string> label = default!;
+        dynamic label = default!;
         if (doc_.ContainsKey("label"))
         {
             try
             {
-                label = (Option<string>)LoaderInstances.optional_StringInstance
+                label = LoaderInstances.union_of_NullInstance_or_StringInstance
                    .LoadField(doc_.GetValueOrDefault("label", null!), baseUri,
                        loadingOptions);
             }
@@ -148,12 +148,12 @@ public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
             }
         }
 
-        object doc = default!;
+        dynamic doc = default!;
         if (doc_.ContainsKey("doc"))
         {
             try
             {
-                doc = (object)LoaderInstances.union_of_NullInstance_or_StringInstance_or_array_of_StringInstance
+                doc = LoaderInstances.union_of_NullInstance_or_StringInstance_or_array_of_StringInstance
                    .LoadField(doc_.GetValueOrDefault("doc", null!), baseUri,
                        loadingOptions);
             }
@@ -165,12 +165,12 @@ public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
             }
         }
 
-        Option<CommandLineBinding> inputBinding = default!;
+        dynamic inputBinding = default!;
         if (doc_.ContainsKey("inputBinding"))
         {
             try
             {
-                inputBinding = (Option<CommandLineBinding>)LoaderInstances.optional_CommandLineBindingLoader
+                inputBinding = LoaderInstances.union_of_NullInstance_or_CommandLineBindingLoader
                    .LoadField(doc_.GetValueOrDefault("inputBinding", null!), baseUri,
                        loadingOptions);
             }
@@ -208,15 +208,37 @@ public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new CommandInputRecordSchema(
-          fields: fields,
-          type: type,
-          label: label,
-          doc: doc,
-          name: name,
-          inputBinding: inputBinding,
-          loadingOptions: loadingOptions
+        var res__ = new CommandInputRecordSchema(
+          loadingOptions: loadingOptions,
+          type: type
         );
+
+        if(name != null) 
+        {
+            res__.name = name;
+        }                      
+        
+        if(fields != null) 
+        {
+            res__.fields = fields;
+        }                      
+        
+        if(label != null) 
+        {
+            res__.label = label;
+        }                      
+        
+        if(doc != null) 
+        {
+            res__.doc = doc;
+        }                      
+        
+        if(inputBinding != null) 
+        {
+            res__.inputBinding = inputBinding;
+        }                      
+        
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -228,38 +250,37 @@ public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        name.IfSome(name =>
-        {
-            r["name"] = ISavable.SaveRelativeUri(name, true,
-                                      relativeUris, null, (string)baseUrl!);
-        });
-                    
-        fields.IfSome(fields =>
-        {
-            r["fields"] =
-               ISavable.Save(fields, false, (string)this.name!, relativeUris);
-        });
-                    
-        r["type"] =
-           ISavable.Save(type, false, (string)this.name!, relativeUris);
-        label.IfSome(label =>
-        {
-            r["label"] =
-               ISavable.Save(label, false, (string)this.name!, relativeUris);
-        });
-                    
-        if(doc != null)
-        {
-            r["doc"] =
-               ISavable.Save(doc, false, (string)this.name!, relativeUris);
+        var nameVal = ISavable.SaveRelativeUri(name, true,
+            relativeUris, null, (string)baseUrl!);
+        if(nameVal is not None) {
+            r["name"] = nameVal;
         }
-                    
-        inputBinding.IfSome(inputBinding =>
-        {
-            r["inputBinding"] =
-               ISavable.Save(inputBinding, false, (string)this.name!, relativeUris);
-        });
-                    
+
+        var fieldsVal = ISavable.Save(fields, false, (string)this.name.AsT1!, relativeUris);
+        if(fieldsVal is not None) {
+            r["fields"] = fieldsVal;
+        }
+
+        var typeVal = ISavable.Save(type, false, (string)this.name.AsT1!, relativeUris);
+        if(typeVal is not None) {
+            r["type"] = typeVal;
+        }
+
+        var labelVal = ISavable.Save(label, false, (string)this.name.AsT1!, relativeUris);
+        if(labelVal is not None) {
+            r["label"] = labelVal;
+        }
+
+        var docVal = ISavable.Save(doc, false, (string)this.name.AsT1!, relativeUris);
+        if(docVal is not None) {
+            r["doc"] = docVal;
+        }
+
+        var inputBindingVal = ISavable.Save(inputBinding, false, (string)this.name.AsT1!, relativeUris);
+        if(inputBindingVal is not None) {
+            r["inputBinding"] = inputBindingVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -276,6 +297,5 @@ public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "fields", "type", "label", "doc", "name", "inputBinding" };
 }

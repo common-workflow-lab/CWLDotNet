@@ -1,5 +1,4 @@
-using LanguageExt;
-
+#pragma warning disable CS0108
 namespace CWLDotNet;
 
 /// <summary>
@@ -17,10 +16,4 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface IWorkReuse : IProcessRequirement {
-
-    /// <summary>
-    /// Always 'WorkReuse'
-    /// </summary>
-    public new WorkReuse_class class_ { get; set; }
-    public object enableReuse { get; set; }
 }

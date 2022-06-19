@@ -1,5 +1,4 @@
-using LanguageExt;
-
+#pragma warning disable CS0108
 namespace CWLDotNet;
 
 /// <summary>
@@ -11,17 +10,4 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface IInlineJavascriptRequirement : IProcessRequirement {
-
-    /// <summary>
-    /// Always 'InlineJavascriptRequirement'
-    /// </summary>
-    public new InlineJavascriptRequirement_class class_ { get; set; }
-
-    /// <summary>
-    /// Additional code fragments that will also be inserted
-    /// before executing the expression code.  Allows for function definitions that may
-    /// be called from CWL expressions.
-    /// 
-    /// </summary>
-    public Option<List<string>> expressionLib { get; set; }
 }

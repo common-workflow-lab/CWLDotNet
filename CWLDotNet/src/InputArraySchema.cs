@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -14,12 +14,12 @@ public class InputArraySchema : IInputArraySchema, ISavable {
     /// <summary>
     /// The identifier for this type
     /// </summary>
-    public Option<string> name { get; set; }
+    public OneOf<None , string> name { get; set; }
 
     /// <summary>
     /// Defines the type of the array elements.
     /// </summary>
-    public object items { get; set; }
+    public OneOf<CWLType , InputRecordSchema , InputEnumSchema , InputArraySchema , string , List<OneOf<CWLType , InputRecordSchema , InputEnumSchema , InputArraySchema , string>>> items { get; set; }
 
     /// <summary>
     /// Must be `array`
@@ -29,15 +29,15 @@ public class InputArraySchema : IInputArraySchema, ISavable {
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public Option<string> label { get; set; }
+    public OneOf<None , string> label { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
     /// </summary>
-    public object doc { get; set; }
+    public OneOf<None , string , List<string>> doc { get; set; }
 
 
-    public InputArraySchema (Option<string> name,object items,enum_d062602be0b4b8fd33e69e29a841317b6ab665bc type,Option<string> label,object doc,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public InputArraySchema (OneOf<CWLType , InputRecordSchema , InputEnumSchema , InputArraySchema , string , List<OneOf<CWLType , InputRecordSchema , InputEnumSchema , InputArraySchema , string>>> items, enum_d062602be0b4b8fd33e69e29a841317b6ab665bc type, OneOf<None , string> name = default, OneOf<None , string> label = default, OneOf<None , string , List<string>> doc = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.name = name;
@@ -61,12 +61,12 @@ public class InputArraySchema : IInputArraySchema, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        Option<string> name = default!;
+        dynamic name = default!;
         if (doc_.ContainsKey("name"))
         {
             try
             {
-                name = (Option<string>)LoaderInstances.urioptional_StringInstanceTrueFalseNone
+                name = LoaderInstances.uriunion_of_NullInstance_or_StringInstanceTrueFalseNone
                    .LoadField(doc_.GetValueOrDefault("name", null!), baseUri,
                        loadingOptions);
             }
@@ -94,10 +94,10 @@ public class InputArraySchema : IInputArraySchema, ISavable {
             baseUri = (string)name;
         }
             
-        object items = default!;
+        dynamic items = default!;
         try
         {
-            items = (object)LoaderInstances.typedslunion_of_CWLTypeLoader_or_InputRecordSchemaLoader_or_InputEnumSchemaLoader_or_InputArraySchemaLoader_or_StringInstance_or_array_of_union_of_CWLTypeLoader_or_InputRecordSchemaLoader_or_InputEnumSchemaLoader_or_InputArraySchemaLoader_or_StringInstance2
+            items = LoaderInstances.typedslunion_of_CWLTypeLoader_or_InputRecordSchemaLoader_or_InputEnumSchemaLoader_or_InputArraySchemaLoader_or_StringInstance_or_array_of_union_of_CWLTypeLoader_or_InputRecordSchemaLoader_or_InputEnumSchemaLoader_or_InputArraySchemaLoader_or_StringInstance2
                .LoadField(doc_.GetValueOrDefault("items", null!), baseUri,
                    loadingOptions);
         }
@@ -108,10 +108,10 @@ public class InputArraySchema : IInputArraySchema, ISavable {
             );
         }
 
-        enum_d062602be0b4b8fd33e69e29a841317b6ab665bc type = default!;
+        dynamic type = default!;
         try
         {
-            type = (enum_d062602be0b4b8fd33e69e29a841317b6ab665bc)LoaderInstances.typedslenum_d062602be0b4b8fd33e69e29a841317b6ab665bcLoader2
+            type = LoaderInstances.typedslenum_d062602be0b4b8fd33e69e29a841317b6ab665bcLoader2
                .LoadField(doc_.GetValueOrDefault("type", null!), baseUri,
                    loadingOptions);
         }
@@ -122,12 +122,12 @@ public class InputArraySchema : IInputArraySchema, ISavable {
             );
         }
 
-        Option<string> label = default!;
+        dynamic label = default!;
         if (doc_.ContainsKey("label"))
         {
             try
             {
-                label = (Option<string>)LoaderInstances.optional_StringInstance
+                label = LoaderInstances.union_of_NullInstance_or_StringInstance
                    .LoadField(doc_.GetValueOrDefault("label", null!), baseUri,
                        loadingOptions);
             }
@@ -139,12 +139,12 @@ public class InputArraySchema : IInputArraySchema, ISavable {
             }
         }
 
-        object doc = default!;
+        dynamic doc = default!;
         if (doc_.ContainsKey("doc"))
         {
             try
             {
-                doc = (object)LoaderInstances.union_of_NullInstance_or_StringInstance_or_array_of_StringInstance
+                doc = LoaderInstances.union_of_NullInstance_or_StringInstance_or_array_of_StringInstance
                    .LoadField(doc_.GetValueOrDefault("doc", null!), baseUri,
                        loadingOptions);
             }
@@ -182,14 +182,28 @@ public class InputArraySchema : IInputArraySchema, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new InputArraySchema(
+        var res__ = new InputArraySchema(
+          loadingOptions: loadingOptions,
           items: items,
-          type: type,
-          label: label,
-          doc: doc,
-          name: name,
-          loadingOptions: loadingOptions
+          type: type
         );
+
+        if(name != null) 
+        {
+            res__.name = name;
+        }                      
+        
+        if(label != null) 
+        {
+            res__.label = label;
+        }                      
+        
+        if(doc != null) 
+        {
+            res__.doc = doc;
+        }                      
+        
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -201,28 +215,32 @@ public class InputArraySchema : IInputArraySchema, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        name.IfSome(name =>
-        {
-            r["name"] = ISavable.SaveRelativeUri(name, true,
-                                      relativeUris, null, (string)baseUrl!);
-        });
-                    
-        r["items"] =
-           ISavable.Save(items, false, (string)this.name!, relativeUris);
-        r["type"] =
-           ISavable.Save(type, false, (string)this.name!, relativeUris);
-        label.IfSome(label =>
-        {
-            r["label"] =
-               ISavable.Save(label, false, (string)this.name!, relativeUris);
-        });
-                    
-        if(doc != null)
-        {
-            r["doc"] =
-               ISavable.Save(doc, false, (string)this.name!, relativeUris);
+        var nameVal = ISavable.SaveRelativeUri(name, true,
+            relativeUris, null, (string)baseUrl!);
+        if(nameVal is not None) {
+            r["name"] = nameVal;
         }
-                    
+
+        var itemsVal = ISavable.Save(items, false, (string)this.name.AsT1!, relativeUris);
+        if(itemsVal is not None) {
+            r["items"] = itemsVal;
+        }
+
+        var typeVal = ISavable.Save(type, false, (string)this.name.AsT1!, relativeUris);
+        if(typeVal is not None) {
+            r["type"] = typeVal;
+        }
+
+        var labelVal = ISavable.Save(label, false, (string)this.name.AsT1!, relativeUris);
+        if(labelVal is not None) {
+            r["label"] = labelVal;
+        }
+
+        var docVal = ISavable.Save(doc, false, (string)this.name.AsT1!, relativeUris);
+        if(docVal is not None) {
+            r["doc"] = docVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -239,6 +257,5 @@ public class InputArraySchema : IInputArraySchema, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "items", "type", "label", "doc", "name" };
 }

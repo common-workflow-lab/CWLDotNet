@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -80,7 +80,7 @@ public class Directory : IDirectory, ISavable {
     /// then follow the rules above.
     /// 
     /// </summary>
-    public Option<string> location { get; set; }
+    public OneOf<None , string> location { get; set; }
 
     /// <summary>
     /// The local path where the Directory is made available prior to executing a
@@ -98,7 +98,7 @@ public class Directory : IDirectory, ISavable {
     /// `permanentFailure`.
     /// 
     /// </summary>
-    public Option<string> path { get; set; }
+    public OneOf<None , string> path { get; set; }
 
     /// <summary>
     /// The base name of the directory, that is, the name of the file without any
@@ -114,7 +114,7 @@ public class Directory : IDirectory, ISavable {
     /// `basename`.
     /// 
     /// </summary>
-    public Option<string> basename { get; set; }
+    public OneOf<None , string> basename { get; set; }
 
     /// <summary>
     /// List of files or subdirectories contained in this directory.  The name
@@ -126,13 +126,13 @@ public class Directory : IDirectory, ISavable {
     /// merged.
     /// 
     /// </summary>
-    public Option<List<object>> listing { get; set; }
+    public OneOf<None , List<OneOf<File , Directory>>> listing { get; set; }
 
 
-    public Directory (Directory_class class_,Option<string> location,Option<string> path,Option<string> basename,Option<List<object>> listing,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public Directory (Directory_class? class_ = null, OneOf<None , string> location = default, OneOf<None , string> path = default, OneOf<None , string> basename = default, OneOf<None , List<OneOf<File , Directory>>> listing = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
-        this.class_ = class_;
+        this.class_ = class_ ?? Directory_class.DIRECTORY;
         this.location = location;
         this.path = path;
         this.basename = basename;
@@ -153,10 +153,10 @@ public class Directory : IDirectory, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        Directory_class class_ = default!;
+        dynamic class_ = default!;
         try
         {
-            class_ = (Directory_class)LoaderInstances.uriDirectory_classLoaderFalseTrueNone
+            class_ = LoaderInstances.uriDirectory_classLoaderFalseTrueNone
                .LoadField(doc_.GetValueOrDefault("class", null!), baseUri,
                    loadingOptions);
         }
@@ -167,12 +167,12 @@ public class Directory : IDirectory, ISavable {
             );
         }
 
-        Option<string> location = default!;
+        dynamic location = default!;
         if (doc_.ContainsKey("location"))
         {
             try
             {
-                location = (Option<string>)LoaderInstances.urioptional_StringInstanceFalseFalseNone
+                location = LoaderInstances.uriunion_of_NullInstance_or_StringInstanceFalseFalseNone
                    .LoadField(doc_.GetValueOrDefault("location", null!), baseUri,
                        loadingOptions);
             }
@@ -184,12 +184,12 @@ public class Directory : IDirectory, ISavable {
             }
         }
 
-        Option<string> path = default!;
+        dynamic path = default!;
         if (doc_.ContainsKey("path"))
         {
             try
             {
-                path = (Option<string>)LoaderInstances.urioptional_StringInstanceFalseFalseNone
+                path = LoaderInstances.uriunion_of_NullInstance_or_StringInstanceFalseFalseNone
                    .LoadField(doc_.GetValueOrDefault("path", null!), baseUri,
                        loadingOptions);
             }
@@ -201,12 +201,12 @@ public class Directory : IDirectory, ISavable {
             }
         }
 
-        Option<string> basename = default!;
+        dynamic basename = default!;
         if (doc_.ContainsKey("basename"))
         {
             try
             {
-                basename = (Option<string>)LoaderInstances.optional_StringInstance
+                basename = LoaderInstances.union_of_NullInstance_or_StringInstance
                    .LoadField(doc_.GetValueOrDefault("basename", null!), baseUri,
                        loadingOptions);
             }
@@ -218,12 +218,12 @@ public class Directory : IDirectory, ISavable {
             }
         }
 
-        Option<List<object>> listing = default!;
+        dynamic listing = default!;
         if (doc_.ContainsKey("listing"))
         {
             try
             {
-                listing = (Option<List<object>>)LoaderInstances.optional_array_of_union_of_FileLoader_or_DirectoryLoader
+                listing = LoaderInstances.union_of_NullInstance_or_array_of_union_of_FileLoader_or_DirectoryLoader
                    .LoadField(doc_.GetValueOrDefault("listing", null!), baseUri,
                        loadingOptions);
             }
@@ -261,14 +261,32 @@ public class Directory : IDirectory, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new Directory(
-          class_: class_,
-          location: location,
-          path: path,
-          basename: basename,
-          listing: listing,
-          loadingOptions: loadingOptions
+        var res__ = new Directory(
+          loadingOptions: loadingOptions,
+          class_: class_
         );
+
+        if(location != null) 
+        {
+            res__.location = location;
+        }                      
+        
+        if(path != null) 
+        {
+            res__.path = path;
+        }                      
+        
+        if(basename != null) 
+        {
+            res__.basename = basename;
+        }                      
+        
+        if(listing != null) 
+        {
+            res__.listing = listing;
+        }                      
+        
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -280,32 +298,34 @@ public class Directory : IDirectory, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(class_, false,
-                                  relativeUris, null, (string)baseUrl!);
-        location.IfSome(location =>
-        {
-            r["location"] = ISavable.SaveRelativeUri(location, false,
-                                      relativeUris, null, (string)baseUrl!);
-        });
-                    
-        path.IfSome(path =>
-        {
-            r["path"] = ISavable.SaveRelativeUri(path, false,
-                                      relativeUris, null, (string)baseUrl!);
-        });
-                    
-        basename.IfSome(basename =>
-        {
-            r["basename"] =
-               ISavable.Save(basename, false, (string)baseUrl!, relativeUris);
-        });
-                    
-        listing.IfSome(listing =>
-        {
-            r["listing"] =
-               ISavable.Save(listing, false, (string)baseUrl!, relativeUris);
-        });
-                    
+        var class_Val = ISavable.SaveRelativeUri(class_, false,
+            relativeUris, null, (string)baseUrl!);
+        if(class_Val is not None) {
+            r["class"] = class_Val;
+        }
+
+        var locationVal = ISavable.SaveRelativeUri(location, false,
+            relativeUris, null, (string)baseUrl!);
+        if(locationVal is not None) {
+            r["location"] = locationVal;
+        }
+
+        var pathVal = ISavable.SaveRelativeUri(path, false,
+            relativeUris, null, (string)baseUrl!);
+        if(pathVal is not None) {
+            r["path"] = pathVal;
+        }
+
+        var basenameVal = ISavable.Save(basename, false, (string)baseUrl!, relativeUris);
+        if(basenameVal is not None) {
+            r["basename"] = basenameVal;
+        }
+
+        var listingVal = ISavable.Save(listing, false, (string)baseUrl!, relativeUris);
+        if(listingVal is not None) {
+            r["listing"] = listingVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -322,6 +342,5 @@ public class Directory : IDirectory, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "location", "path", "basename", "listing" };
 }

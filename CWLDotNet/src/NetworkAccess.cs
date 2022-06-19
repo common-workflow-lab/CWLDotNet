@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -32,13 +32,13 @@ public class NetworkAccess : INetworkAccess, ISavable {
     /// Always 'NetworkAccess'
     /// </summary>
     public NetworkAccess_class class_ { get; set; }
-    public object networkAccess { get; set; }
+    public OneOf<bool , string> networkAccess { get; set; }
 
 
-    public NetworkAccess (NetworkAccess_class class_,object networkAccess,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public NetworkAccess (OneOf<bool , string> networkAccess, NetworkAccess_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
-        this.class_ = class_;
+        this.class_ = class_ ?? NetworkAccess_class.NETWORKACCESS;
         this.networkAccess = networkAccess;
     }
 
@@ -56,10 +56,10 @@ public class NetworkAccess : INetworkAccess, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        NetworkAccess_class class_ = default!;
+        dynamic class_ = default!;
         try
         {
-            class_ = (NetworkAccess_class)LoaderInstances.uriNetworkAccess_classLoaderFalseTrueNone
+            class_ = LoaderInstances.uriNetworkAccess_classLoaderFalseTrueNone
                .LoadField(doc_.GetValueOrDefault("class", null!), baseUri,
                    loadingOptions);
         }
@@ -70,10 +70,10 @@ public class NetworkAccess : INetworkAccess, ISavable {
             );
         }
 
-        object networkAccess = default!;
+        dynamic networkAccess = default!;
         try
         {
-            networkAccess = (object)LoaderInstances.union_of_BooleanInstance_or_ExpressionLoader
+            networkAccess = LoaderInstances.union_of_BooleanInstance_or_ExpressionLoader
                .LoadField(doc_.GetValueOrDefault("networkAccess", null!), baseUri,
                    loadingOptions);
         }
@@ -110,11 +110,13 @@ public class NetworkAccess : INetworkAccess, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new NetworkAccess(
+        var res__ = new NetworkAccess(
+          loadingOptions: loadingOptions,
           class_: class_,
-          networkAccess: networkAccess,
-          loadingOptions: loadingOptions
+          networkAccess: networkAccess
         );
+
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -126,10 +128,17 @@ public class NetworkAccess : INetworkAccess, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(class_, false,
-                                  relativeUris, null, (string)baseUrl!);
-        r["networkAccess"] =
-           ISavable.Save(networkAccess, false, (string)baseUrl!, relativeUris);
+        var class_Val = ISavable.SaveRelativeUri(class_, false,
+            relativeUris, null, (string)baseUrl!);
+        if(class_Val is not None) {
+            r["class"] = class_Val;
+        }
+
+        var networkAccessVal = ISavable.Save(networkAccess, false, (string)baseUrl!, relativeUris);
+        if(networkAccessVal is not None) {
+            r["networkAccess"] = networkAccessVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -146,6 +155,5 @@ public class NetworkAccess : INetworkAccess, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "networkAccess" };
 }

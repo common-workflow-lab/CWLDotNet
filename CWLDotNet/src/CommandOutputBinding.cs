@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -34,7 +34,7 @@ public class CommandOutputBinding : ICommandOutputBinding, ISavable {
     /// the implementation must raise a fatal error.
     /// 
     /// </summary>
-    public Option<bool> loadContents { get; set; }
+    public OneOf<None , bool> loadContents { get; set; }
 
     /// <summary>
     /// Only valid when `type: Directory` or is an array of `items: Directory`.
@@ -49,7 +49,7 @@ public class CommandOutputBinding : ICommandOutputBinding, ISavable {
     ///   3. By default: `no_listing`
     /// 
     /// </summary>
-    public Option<LoadListingEnum> loadListing { get; set; }
+    public OneOf<None , LoadListingEnum> loadListing { get; set; }
 
     /// <summary>
     /// Find files or directories relative to the output directory, using POSIX
@@ -89,7 +89,7 @@ public class CommandOutputBinding : ICommandOutputBinding, ISavable {
     /// container filesystem except for declared input and output.
     /// 
     /// </summary>
-    public object glob { get; set; }
+    public OneOf<None , string , List<string>> glob { get; set; }
 
     /// <summary>
     /// Evaluate an expression to generate the output value.  If
@@ -113,10 +113,10 @@ public class CommandOutputBinding : ICommandOutputBinding, ISavable {
     /// `loadContents` limit.
     /// 
     /// </summary>
-    public Option<string> outputEval { get; set; }
+    public OneOf<None , string> outputEval { get; set; }
 
 
-    public CommandOutputBinding (Option<bool> loadContents,Option<LoadListingEnum> loadListing,object glob,Option<string> outputEval,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public CommandOutputBinding (OneOf<None , bool> loadContents = default, OneOf<None , LoadListingEnum> loadListing = default, OneOf<None , string , List<string>> glob = default, OneOf<None , string> outputEval = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.loadContents = loadContents;
@@ -139,12 +139,12 @@ public class CommandOutputBinding : ICommandOutputBinding, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        Option<bool> loadContents = default!;
+        dynamic loadContents = default!;
         if (doc_.ContainsKey("loadContents"))
         {
             try
             {
-                loadContents = (Option<bool>)LoaderInstances.optional_BooleanInstance
+                loadContents = LoaderInstances.union_of_NullInstance_or_BooleanInstance
                    .LoadField(doc_.GetValueOrDefault("loadContents", null!), baseUri,
                        loadingOptions);
             }
@@ -156,12 +156,12 @@ public class CommandOutputBinding : ICommandOutputBinding, ISavable {
             }
         }
 
-        Option<LoadListingEnum> loadListing = default!;
+        dynamic loadListing = default!;
         if (doc_.ContainsKey("loadListing"))
         {
             try
             {
-                loadListing = (Option<LoadListingEnum>)LoaderInstances.optional_LoadListingEnumLoader
+                loadListing = LoaderInstances.union_of_NullInstance_or_LoadListingEnumLoader
                    .LoadField(doc_.GetValueOrDefault("loadListing", null!), baseUri,
                        loadingOptions);
             }
@@ -173,12 +173,12 @@ public class CommandOutputBinding : ICommandOutputBinding, ISavable {
             }
         }
 
-        object glob = default!;
+        dynamic glob = default!;
         if (doc_.ContainsKey("glob"))
         {
             try
             {
-                glob = (object)LoaderInstances.union_of_NullInstance_or_StringInstance_or_ExpressionLoader_or_array_of_StringInstance
+                glob = LoaderInstances.union_of_NullInstance_or_StringInstance_or_ExpressionLoader_or_array_of_StringInstance
                    .LoadField(doc_.GetValueOrDefault("glob", null!), baseUri,
                        loadingOptions);
             }
@@ -190,12 +190,12 @@ public class CommandOutputBinding : ICommandOutputBinding, ISavable {
             }
         }
 
-        Option<string> outputEval = default!;
+        dynamic outputEval = default!;
         if (doc_.ContainsKey("outputEval"))
         {
             try
             {
-                outputEval = (Option<string>)LoaderInstances.optional_ExpressionLoader
+                outputEval = LoaderInstances.union_of_NullInstance_or_ExpressionLoader
                    .LoadField(doc_.GetValueOrDefault("outputEval", null!), baseUri,
                        loadingOptions);
             }
@@ -233,13 +233,31 @@ public class CommandOutputBinding : ICommandOutputBinding, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new CommandOutputBinding(
-          loadContents: loadContents,
-          loadListing: loadListing,
-          glob: glob,
-          outputEval: outputEval,
+        var res__ = new CommandOutputBinding(
           loadingOptions: loadingOptions
         );
+
+        if(loadContents != null) 
+        {
+            res__.loadContents = loadContents;
+        }                      
+        
+        if(loadListing != null) 
+        {
+            res__.loadListing = loadListing;
+        }                      
+        
+        if(glob != null) 
+        {
+            res__.glob = glob;
+        }                      
+        
+        if(outputEval != null) 
+        {
+            res__.outputEval = outputEval;
+        }                      
+        
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -251,30 +269,26 @@ public class CommandOutputBinding : ICommandOutputBinding, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        loadContents.IfSome(loadContents =>
-        {
-            r["loadContents"] =
-               ISavable.Save(loadContents, false, (string)baseUrl!, relativeUris);
-        });
-                    
-        loadListing.IfSome(loadListing =>
-        {
-            r["loadListing"] =
-               ISavable.Save(loadListing, false, (string)baseUrl!, relativeUris);
-        });
-                    
-        if(glob != null)
-        {
-            r["glob"] =
-               ISavable.Save(glob, false, (string)baseUrl!, relativeUris);
+        var loadContentsVal = ISavable.Save(loadContents, false, (string)baseUrl!, relativeUris);
+        if(loadContentsVal is not None) {
+            r["loadContents"] = loadContentsVal;
         }
-                    
-        outputEval.IfSome(outputEval =>
-        {
-            r["outputEval"] =
-               ISavable.Save(outputEval, false, (string)baseUrl!, relativeUris);
-        });
-                    
+
+        var loadListingVal = ISavable.Save(loadListing, false, (string)baseUrl!, relativeUris);
+        if(loadListingVal is not None) {
+            r["loadListing"] = loadListingVal;
+        }
+
+        var globVal = ISavable.Save(glob, false, (string)baseUrl!, relativeUris);
+        if(globVal is not None) {
+            r["glob"] = globVal;
+        }
+
+        var outputEvalVal = ISavable.Save(outputEval, false, (string)baseUrl!, relativeUris);
+        if(outputEvalVal is not None) {
+            r["outputEval"] = outputEvalVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -291,6 +305,5 @@ public class CommandOutputBinding : ICommandOutputBinding, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "loadContents", "loadListing", "glob", "outputEval" };
 }

@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -14,7 +14,7 @@ public class InputEnumSchema : IInputEnumSchema, ISavable {
     /// <summary>
     /// The identifier for this type
     /// </summary>
-    public Option<string> name { get; set; }
+    public OneOf<None , string> name { get; set; }
 
     /// <summary>
     /// Defines the set of valid symbols.
@@ -29,15 +29,15 @@ public class InputEnumSchema : IInputEnumSchema, ISavable {
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public Option<string> label { get; set; }
+    public OneOf<None , string> label { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
     /// </summary>
-    public object doc { get; set; }
+    public OneOf<None , string , List<string>> doc { get; set; }
 
 
-    public InputEnumSchema (Option<string> name,List<string> symbols,enum_d961d79c225752b9fadb617367615ab176b47d77 type,Option<string> label,object doc,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public InputEnumSchema (List<string> symbols, enum_d961d79c225752b9fadb617367615ab176b47d77 type, OneOf<None , string> name = default, OneOf<None , string> label = default, OneOf<None , string , List<string>> doc = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.name = name;
@@ -61,12 +61,12 @@ public class InputEnumSchema : IInputEnumSchema, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        Option<string> name = default!;
+        dynamic name = default!;
         if (doc_.ContainsKey("name"))
         {
             try
             {
-                name = (Option<string>)LoaderInstances.urioptional_StringInstanceTrueFalseNone
+                name = LoaderInstances.uriunion_of_NullInstance_or_StringInstanceTrueFalseNone
                    .LoadField(doc_.GetValueOrDefault("name", null!), baseUri,
                        loadingOptions);
             }
@@ -94,10 +94,10 @@ public class InputEnumSchema : IInputEnumSchema, ISavable {
             baseUri = (string)name;
         }
             
-        List<string> symbols = default!;
+        dynamic symbols = default!;
         try
         {
-            symbols = (List<string>)LoaderInstances.uriarray_of_StringInstanceTrueFalseNone
+            symbols = LoaderInstances.uriarray_of_StringInstanceTrueFalseNone
                .LoadField(doc_.GetValueOrDefault("symbols", null!), baseUri,
                    loadingOptions);
         }
@@ -108,10 +108,10 @@ public class InputEnumSchema : IInputEnumSchema, ISavable {
             );
         }
 
-        enum_d961d79c225752b9fadb617367615ab176b47d77 type = default!;
+        dynamic type = default!;
         try
         {
-            type = (enum_d961d79c225752b9fadb617367615ab176b47d77)LoaderInstances.typedslenum_d961d79c225752b9fadb617367615ab176b47d77Loader2
+            type = LoaderInstances.typedslenum_d961d79c225752b9fadb617367615ab176b47d77Loader2
                .LoadField(doc_.GetValueOrDefault("type", null!), baseUri,
                    loadingOptions);
         }
@@ -122,12 +122,12 @@ public class InputEnumSchema : IInputEnumSchema, ISavable {
             );
         }
 
-        Option<string> label = default!;
+        dynamic label = default!;
         if (doc_.ContainsKey("label"))
         {
             try
             {
-                label = (Option<string>)LoaderInstances.optional_StringInstance
+                label = LoaderInstances.union_of_NullInstance_or_StringInstance
                    .LoadField(doc_.GetValueOrDefault("label", null!), baseUri,
                        loadingOptions);
             }
@@ -139,12 +139,12 @@ public class InputEnumSchema : IInputEnumSchema, ISavable {
             }
         }
 
-        object doc = default!;
+        dynamic doc = default!;
         if (doc_.ContainsKey("doc"))
         {
             try
             {
-                doc = (object)LoaderInstances.union_of_NullInstance_or_StringInstance_or_array_of_StringInstance
+                doc = LoaderInstances.union_of_NullInstance_or_StringInstance_or_array_of_StringInstance
                    .LoadField(doc_.GetValueOrDefault("doc", null!), baseUri,
                        loadingOptions);
             }
@@ -182,14 +182,28 @@ public class InputEnumSchema : IInputEnumSchema, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new InputEnumSchema(
+        var res__ = new InputEnumSchema(
+          loadingOptions: loadingOptions,
           symbols: symbols,
-          type: type,
-          label: label,
-          doc: doc,
-          name: name,
-          loadingOptions: loadingOptions
+          type: type
         );
+
+        if(name != null) 
+        {
+            res__.name = name;
+        }                      
+        
+        if(label != null) 
+        {
+            res__.label = label;
+        }                      
+        
+        if(doc != null) 
+        {
+            res__.doc = doc;
+        }                      
+        
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -201,28 +215,33 @@ public class InputEnumSchema : IInputEnumSchema, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        name.IfSome(name =>
-        {
-            r["name"] = ISavable.SaveRelativeUri(name, true,
-                                      relativeUris, null, (string)baseUrl!);
-        });
-                    
-        r["symbols"] = ISavable.SaveRelativeUri(symbols, true,
-                                  relativeUris, null, (string)this.name!);
-        r["type"] =
-           ISavable.Save(type, false, (string)this.name!, relativeUris);
-        label.IfSome(label =>
-        {
-            r["label"] =
-               ISavable.Save(label, false, (string)this.name!, relativeUris);
-        });
-                    
-        if(doc != null)
-        {
-            r["doc"] =
-               ISavable.Save(doc, false, (string)this.name!, relativeUris);
+        var nameVal = ISavable.SaveRelativeUri(name, true,
+            relativeUris, null, (string)baseUrl!);
+        if(nameVal is not None) {
+            r["name"] = nameVal;
         }
-                    
+
+        var symbolsVal = ISavable.SaveRelativeUri(symbols, true,
+            relativeUris, null, (string)this.name.AsT1!);
+        if(symbolsVal is not None) {
+            r["symbols"] = symbolsVal;
+        }
+
+        var typeVal = ISavable.Save(type, false, (string)this.name.AsT1!, relativeUris);
+        if(typeVal is not None) {
+            r["type"] = typeVal;
+        }
+
+        var labelVal = ISavable.Save(label, false, (string)this.name.AsT1!, relativeUris);
+        if(labelVal is not None) {
+            r["label"] = labelVal;
+        }
+
+        var docVal = ISavable.Save(doc, false, (string)this.name.AsT1!, relativeUris);
+        if(docVal is not None) {
+            r["doc"] = docVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -239,6 +258,5 @@ public class InputEnumSchema : IInputEnumSchema, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "symbols", "type", "label", "doc", "name" };
 }

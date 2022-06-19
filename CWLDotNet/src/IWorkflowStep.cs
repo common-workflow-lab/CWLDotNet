@@ -1,5 +1,4 @@
-using LanguageExt;
-
+#pragma warning disable CS0108
 namespace CWLDotNet;
 
 /// <summary>
@@ -87,78 +86,4 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface IWorkflowStep : IIdentified,ILabeled,IDocumented {
-
-    /// <summary>
-    /// The unique identifier for this object.
-    /// </summary>
-    public Option<string> id { get; set; }
-
-    /// <summary>
-    /// A short, human-readable label of this object.
-    /// </summary>
-    public Option<string> label { get; set; }
-
-    /// <summary>
-    /// A documentation string for this object, or an array of strings which should be concatenated.
-    /// </summary>
-    public object doc { get; set; }
-
-    /// <summary>
-    /// Defines the input parameters of the workflow step.  The process is ready to
-    /// run when all required input parameters are associated with concrete
-    /// values.  Input parameters include a schema for each parameter which is
-    /// used to validate the input object.  It may also be used build a user
-    /// interface for constructing the input object.
-    /// 
-    /// </summary>
-    public List<object> in_ { get; set; }
-
-    /// <summary>
-    /// Defines the parameters representing the output of the process.  May be
-    /// used to generate and/or validate the output object.
-    /// 
-    /// </summary>
-    public List<object> out_ { get; set; }
-
-    /// <summary>
-    /// Declares requirements that apply to either the runtime environment or the
-    /// workflow engine that must be met in order to execute this workflow step.  If
-    /// an implementation cannot satisfy all requirements, or a requirement is
-    /// listed which is not recognized by the implementation, it is a fatal
-    /// error and the implementation must not attempt to run the process,
-    /// unless overridden at user option.
-    /// 
-    /// </summary>
-    public Option<List<object>> requirements { get; set; }
-
-    /// <summary>
-    /// Declares hints applying to either the runtime environment or the
-    /// workflow engine that may be helpful in executing this workflow step.  It is
-    /// not an error if an implementation cannot satisfy all hints, however
-    /// the implementation may report a warning.
-    /// 
-    /// </summary>
-    public Option<List<object>> hints { get; set; }
-
-    /// <summary>
-    /// Specifies the process to run.  If `run` is a string, it must be an absolute IRI
-    /// or a relative path from the primary document.
-    /// 
-    /// </summary>
-    public object run { get; set; }
-
-    /// <summary>
-    /// If defined, only run the step when the expression evaluates to
-    /// `true`.  If `false` the step is skipped.  A skipped step
-    /// produces a `null` on each output.
-    /// 
-    /// </summary>
-    public Option<string> when { get; set; }
-    public object scatter { get; set; }
-
-    /// <summary>
-    /// Required if `scatter` is an array of more than one element.
-    /// 
-    /// </summary>
-    public Option<ScatterMethod> scatterMethod { get; set; }
 }

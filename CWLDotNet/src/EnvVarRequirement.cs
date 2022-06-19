@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -23,13 +23,13 @@ public class EnvVarRequirement : IEnvVarRequirement, ISavable {
     /// <summary>
     /// The list of environment variables.
     /// </summary>
-    public List<object> envDef { get; set; }
+    public List<EnvironmentDef> envDef { get; set; }
 
 
-    public EnvVarRequirement (EnvVarRequirement_class class_,List<object> envDef,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public EnvVarRequirement (List<EnvironmentDef> envDef, EnvVarRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
-        this.class_ = class_;
+        this.class_ = class_ ?? EnvVarRequirement_class.ENVVARREQUIREMENT;
         this.envDef = envDef;
     }
 
@@ -47,10 +47,10 @@ public class EnvVarRequirement : IEnvVarRequirement, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        EnvVarRequirement_class class_ = default!;
+        dynamic class_ = default!;
         try
         {
-            class_ = (EnvVarRequirement_class)LoaderInstances.uriEnvVarRequirement_classLoaderFalseTrueNone
+            class_ = LoaderInstances.uriEnvVarRequirement_classLoaderFalseTrueNone
                .LoadField(doc_.GetValueOrDefault("class", null!), baseUri,
                    loadingOptions);
         }
@@ -61,10 +61,10 @@ public class EnvVarRequirement : IEnvVarRequirement, ISavable {
             );
         }
 
-        List<object> envDef = default!;
+        dynamic envDef = default!;
         try
         {
-            envDef = (List<object>)LoaderInstances.idmapenvDefarray_of_EnvironmentDefLoader
+            envDef = LoaderInstances.idmapenvDefarray_of_EnvironmentDefLoader
                .LoadField(doc_.GetValueOrDefault("envDef", null!), baseUri,
                    loadingOptions);
         }
@@ -101,11 +101,13 @@ public class EnvVarRequirement : IEnvVarRequirement, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new EnvVarRequirement(
+        var res__ = new EnvVarRequirement(
+          loadingOptions: loadingOptions,
           class_: class_,
-          envDef: envDef,
-          loadingOptions: loadingOptions
+          envDef: envDef
         );
+
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -117,10 +119,17 @@ public class EnvVarRequirement : IEnvVarRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(class_, false,
-                                  relativeUris, null, (string)baseUrl!);
-        r["envDef"] =
-           ISavable.Save(envDef, false, (string)baseUrl!, relativeUris);
+        var class_Val = ISavable.SaveRelativeUri(class_, false,
+            relativeUris, null, (string)baseUrl!);
+        if(class_Val is not None) {
+            r["class"] = class_Val;
+        }
+
+        var envDefVal = ISavable.Save(envDef, false, (string)baseUrl!, relativeUris);
+        if(envDefVal is not None) {
+            r["envDef"] = envDefVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -137,6 +146,5 @@ public class EnvVarRequirement : IEnvVarRequirement, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "envDef" };
 }

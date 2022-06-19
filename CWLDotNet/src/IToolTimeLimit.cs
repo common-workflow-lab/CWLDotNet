@@ -1,5 +1,4 @@
-using LanguageExt;
-
+#pragma warning disable CS0108
 namespace CWLDotNet;
 
 /// <summary>
@@ -15,16 +14,4 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface IToolTimeLimit : IProcessRequirement {
-
-    /// <summary>
-    /// Always 'ToolTimeLimit'
-    /// </summary>
-    public new ToolTimeLimit_class class_ { get; set; }
-
-    /// <summary>
-    /// The time limit, in seconds.  A time limit of zero means no
-    /// time limit.  Negative time limits are an error.
-    /// 
-    /// </summary>
-    public object timelimit { get; set; }
 }

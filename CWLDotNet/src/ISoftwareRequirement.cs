@@ -1,5 +1,4 @@
-using LanguageExt;
-
+#pragma warning disable CS0108
 namespace CWLDotNet;
 
 /// <summary>
@@ -10,14 +9,4 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface ISoftwareRequirement : IProcessRequirement {
-
-    /// <summary>
-    /// Always 'SoftwareRequirement'
-    /// </summary>
-    public new SoftwareRequirement_class class_ { get; set; }
-
-    /// <summary>
-    /// The list of software to be configured.
-    /// </summary>
-    public List<object> packages { get; set; }
 }

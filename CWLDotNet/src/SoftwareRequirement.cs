@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -23,13 +23,13 @@ public class SoftwareRequirement : ISoftwareRequirement, ISavable {
     /// <summary>
     /// The list of software to be configured.
     /// </summary>
-    public List<object> packages { get; set; }
+    public List<SoftwarePackage> packages { get; set; }
 
 
-    public SoftwareRequirement (SoftwareRequirement_class class_,List<object> packages,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public SoftwareRequirement (List<SoftwarePackage> packages, SoftwareRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
-        this.class_ = class_;
+        this.class_ = class_ ?? SoftwareRequirement_class.SOFTWAREREQUIREMENT;
         this.packages = packages;
     }
 
@@ -47,10 +47,10 @@ public class SoftwareRequirement : ISoftwareRequirement, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        SoftwareRequirement_class class_ = default!;
+        dynamic class_ = default!;
         try
         {
-            class_ = (SoftwareRequirement_class)LoaderInstances.uriSoftwareRequirement_classLoaderFalseTrueNone
+            class_ = LoaderInstances.uriSoftwareRequirement_classLoaderFalseTrueNone
                .LoadField(doc_.GetValueOrDefault("class", null!), baseUri,
                    loadingOptions);
         }
@@ -61,10 +61,10 @@ public class SoftwareRequirement : ISoftwareRequirement, ISavable {
             );
         }
 
-        List<object> packages = default!;
+        dynamic packages = default!;
         try
         {
-            packages = (List<object>)LoaderInstances.idmappackagesarray_of_SoftwarePackageLoader
+            packages = LoaderInstances.idmappackagesarray_of_SoftwarePackageLoader
                .LoadField(doc_.GetValueOrDefault("packages", null!), baseUri,
                    loadingOptions);
         }
@@ -101,11 +101,13 @@ public class SoftwareRequirement : ISoftwareRequirement, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new SoftwareRequirement(
+        var res__ = new SoftwareRequirement(
+          loadingOptions: loadingOptions,
           class_: class_,
-          packages: packages,
-          loadingOptions: loadingOptions
+          packages: packages
         );
+
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -117,10 +119,17 @@ public class SoftwareRequirement : ISoftwareRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(class_, false,
-                                  relativeUris, null, (string)baseUrl!);
-        r["packages"] =
-           ISavable.Save(packages, false, (string)baseUrl!, relativeUris);
+        var class_Val = ISavable.SaveRelativeUri(class_, false,
+            relativeUris, null, (string)baseUrl!);
+        if(class_Val is not None) {
+            r["class"] = class_Val;
+        }
+
+        var packagesVal = ISavable.Save(packages, false, (string)baseUrl!, relativeUris);
+        if(packagesVal is not None) {
+            r["packages"] = packagesVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -137,6 +146,5 @@ public class SoftwareRequirement : ISoftwareRequirement, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "packages" };
 }

@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -75,22 +75,22 @@ public class DockerRequirement : IDockerRequirement, ISavable {
     /// `dockerPull: ubuntu@sha256:45b23dee08af5e43a7fea6c4cf9c25ccf269ee113168c19722f87876677c5cb2`
     /// 
     /// </summary>
-    public Option<string> dockerPull { get; set; }
+    public OneOf<None , string> dockerPull { get; set; }
 
     /// <summary>
     /// Specify a HTTP URL from which to download a Docker image using `docker load`.
     /// </summary>
-    public Option<string> dockerLoad { get; set; }
+    public OneOf<None , string> dockerLoad { get; set; }
 
     /// <summary>
     /// Supply the contents of a Dockerfile which will be built using `docker build`.
     /// </summary>
-    public Option<string> dockerFile { get; set; }
+    public OneOf<None , string> dockerFile { get; set; }
 
     /// <summary>
     /// Provide HTTP URL to download and gunzip a Docker images using `docker import.
     /// </summary>
-    public Option<string> dockerImport { get; set; }
+    public OneOf<None , string> dockerImport { get; set; }
 
     /// <summary>
     /// The image id that will be used for `docker run`.  May be a
@@ -99,20 +99,20 @@ public class DockerRequirement : IDockerRequirement, ISavable {
     /// must be used.
     /// 
     /// </summary>
-    public Option<string> dockerImageId { get; set; }
+    public OneOf<None , string> dockerImageId { get; set; }
 
     /// <summary>
     /// Set the designated output directory to a specific location inside the
     /// Docker container.
     /// 
     /// </summary>
-    public Option<string> dockerOutputDirectory { get; set; }
+    public OneOf<None , string> dockerOutputDirectory { get; set; }
 
 
-    public DockerRequirement (DockerRequirement_class class_,Option<string> dockerPull,Option<string> dockerLoad,Option<string> dockerFile,Option<string> dockerImport,Option<string> dockerImageId,Option<string> dockerOutputDirectory,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public DockerRequirement (DockerRequirement_class? class_ = null, OneOf<None , string> dockerPull = default, OneOf<None , string> dockerLoad = default, OneOf<None , string> dockerFile = default, OneOf<None , string> dockerImport = default, OneOf<None , string> dockerImageId = default, OneOf<None , string> dockerOutputDirectory = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
-        this.class_ = class_;
+        this.class_ = class_ ?? DockerRequirement_class.DOCKERREQUIREMENT;
         this.dockerPull = dockerPull;
         this.dockerLoad = dockerLoad;
         this.dockerFile = dockerFile;
@@ -135,10 +135,10 @@ public class DockerRequirement : IDockerRequirement, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        DockerRequirement_class class_ = default!;
+        dynamic class_ = default!;
         try
         {
-            class_ = (DockerRequirement_class)LoaderInstances.uriDockerRequirement_classLoaderFalseTrueNone
+            class_ = LoaderInstances.uriDockerRequirement_classLoaderFalseTrueNone
                .LoadField(doc_.GetValueOrDefault("class", null!), baseUri,
                    loadingOptions);
         }
@@ -149,12 +149,12 @@ public class DockerRequirement : IDockerRequirement, ISavable {
             );
         }
 
-        Option<string> dockerPull = default!;
+        dynamic dockerPull = default!;
         if (doc_.ContainsKey("dockerPull"))
         {
             try
             {
-                dockerPull = (Option<string>)LoaderInstances.optional_StringInstance
+                dockerPull = LoaderInstances.union_of_NullInstance_or_StringInstance
                    .LoadField(doc_.GetValueOrDefault("dockerPull", null!), baseUri,
                        loadingOptions);
             }
@@ -166,12 +166,12 @@ public class DockerRequirement : IDockerRequirement, ISavable {
             }
         }
 
-        Option<string> dockerLoad = default!;
+        dynamic dockerLoad = default!;
         if (doc_.ContainsKey("dockerLoad"))
         {
             try
             {
-                dockerLoad = (Option<string>)LoaderInstances.optional_StringInstance
+                dockerLoad = LoaderInstances.union_of_NullInstance_or_StringInstance
                    .LoadField(doc_.GetValueOrDefault("dockerLoad", null!), baseUri,
                        loadingOptions);
             }
@@ -183,12 +183,12 @@ public class DockerRequirement : IDockerRequirement, ISavable {
             }
         }
 
-        Option<string> dockerFile = default!;
+        dynamic dockerFile = default!;
         if (doc_.ContainsKey("dockerFile"))
         {
             try
             {
-                dockerFile = (Option<string>)LoaderInstances.optional_StringInstance
+                dockerFile = LoaderInstances.union_of_NullInstance_or_StringInstance
                    .LoadField(doc_.GetValueOrDefault("dockerFile", null!), baseUri,
                        loadingOptions);
             }
@@ -200,12 +200,12 @@ public class DockerRequirement : IDockerRequirement, ISavable {
             }
         }
 
-        Option<string> dockerImport = default!;
+        dynamic dockerImport = default!;
         if (doc_.ContainsKey("dockerImport"))
         {
             try
             {
-                dockerImport = (Option<string>)LoaderInstances.optional_StringInstance
+                dockerImport = LoaderInstances.union_of_NullInstance_or_StringInstance
                    .LoadField(doc_.GetValueOrDefault("dockerImport", null!), baseUri,
                        loadingOptions);
             }
@@ -217,12 +217,12 @@ public class DockerRequirement : IDockerRequirement, ISavable {
             }
         }
 
-        Option<string> dockerImageId = default!;
+        dynamic dockerImageId = default!;
         if (doc_.ContainsKey("dockerImageId"))
         {
             try
             {
-                dockerImageId = (Option<string>)LoaderInstances.optional_StringInstance
+                dockerImageId = LoaderInstances.union_of_NullInstance_or_StringInstance
                    .LoadField(doc_.GetValueOrDefault("dockerImageId", null!), baseUri,
                        loadingOptions);
             }
@@ -234,12 +234,12 @@ public class DockerRequirement : IDockerRequirement, ISavable {
             }
         }
 
-        Option<string> dockerOutputDirectory = default!;
+        dynamic dockerOutputDirectory = default!;
         if (doc_.ContainsKey("dockerOutputDirectory"))
         {
             try
             {
-                dockerOutputDirectory = (Option<string>)LoaderInstances.optional_StringInstance
+                dockerOutputDirectory = LoaderInstances.union_of_NullInstance_or_StringInstance
                    .LoadField(doc_.GetValueOrDefault("dockerOutputDirectory", null!), baseUri,
                        loadingOptions);
             }
@@ -277,16 +277,42 @@ public class DockerRequirement : IDockerRequirement, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new DockerRequirement(
-          class_: class_,
-          dockerPull: dockerPull,
-          dockerLoad: dockerLoad,
-          dockerFile: dockerFile,
-          dockerImport: dockerImport,
-          dockerImageId: dockerImageId,
-          dockerOutputDirectory: dockerOutputDirectory,
-          loadingOptions: loadingOptions
+        var res__ = new DockerRequirement(
+          loadingOptions: loadingOptions,
+          class_: class_
         );
+
+        if(dockerPull != null) 
+        {
+            res__.dockerPull = dockerPull;
+        }                      
+        
+        if(dockerLoad != null) 
+        {
+            res__.dockerLoad = dockerLoad;
+        }                      
+        
+        if(dockerFile != null) 
+        {
+            res__.dockerFile = dockerFile;
+        }                      
+        
+        if(dockerImport != null) 
+        {
+            res__.dockerImport = dockerImport;
+        }                      
+        
+        if(dockerImageId != null) 
+        {
+            res__.dockerImageId = dockerImageId;
+        }                      
+        
+        if(dockerOutputDirectory != null) 
+        {
+            res__.dockerOutputDirectory = dockerOutputDirectory;
+        }                      
+        
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -298,44 +324,42 @@ public class DockerRequirement : IDockerRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(class_, false,
-                                  relativeUris, null, (string)baseUrl!);
-        dockerPull.IfSome(dockerPull =>
-        {
-            r["dockerPull"] =
-               ISavable.Save(dockerPull, false, (string)baseUrl!, relativeUris);
-        });
-                    
-        dockerLoad.IfSome(dockerLoad =>
-        {
-            r["dockerLoad"] =
-               ISavable.Save(dockerLoad, false, (string)baseUrl!, relativeUris);
-        });
-                    
-        dockerFile.IfSome(dockerFile =>
-        {
-            r["dockerFile"] =
-               ISavable.Save(dockerFile, false, (string)baseUrl!, relativeUris);
-        });
-                    
-        dockerImport.IfSome(dockerImport =>
-        {
-            r["dockerImport"] =
-               ISavable.Save(dockerImport, false, (string)baseUrl!, relativeUris);
-        });
-                    
-        dockerImageId.IfSome(dockerImageId =>
-        {
-            r["dockerImageId"] =
-               ISavable.Save(dockerImageId, false, (string)baseUrl!, relativeUris);
-        });
-                    
-        dockerOutputDirectory.IfSome(dockerOutputDirectory =>
-        {
-            r["dockerOutputDirectory"] =
-               ISavable.Save(dockerOutputDirectory, false, (string)baseUrl!, relativeUris);
-        });
-                    
+        var class_Val = ISavable.SaveRelativeUri(class_, false,
+            relativeUris, null, (string)baseUrl!);
+        if(class_Val is not None) {
+            r["class"] = class_Val;
+        }
+
+        var dockerPullVal = ISavable.Save(dockerPull, false, (string)baseUrl!, relativeUris);
+        if(dockerPullVal is not None) {
+            r["dockerPull"] = dockerPullVal;
+        }
+
+        var dockerLoadVal = ISavable.Save(dockerLoad, false, (string)baseUrl!, relativeUris);
+        if(dockerLoadVal is not None) {
+            r["dockerLoad"] = dockerLoadVal;
+        }
+
+        var dockerFileVal = ISavable.Save(dockerFile, false, (string)baseUrl!, relativeUris);
+        if(dockerFileVal is not None) {
+            r["dockerFile"] = dockerFileVal;
+        }
+
+        var dockerImportVal = ISavable.Save(dockerImport, false, (string)baseUrl!, relativeUris);
+        if(dockerImportVal is not None) {
+            r["dockerImport"] = dockerImportVal;
+        }
+
+        var dockerImageIdVal = ISavable.Save(dockerImageId, false, (string)baseUrl!, relativeUris);
+        if(dockerImageIdVal is not None) {
+            r["dockerImageId"] = dockerImageIdVal;
+        }
+
+        var dockerOutputDirectoryVal = ISavable.Save(dockerOutputDirectory, false, (string)baseUrl!, relativeUris);
+        if(dockerOutputDirectoryVal is not None) {
+            r["dockerOutputDirectory"] = dockerOutputDirectoryVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -352,6 +376,5 @@ public class DockerRequirement : IDockerRequirement, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "dockerPull", "dockerLoad", "dockerFile", "dockerImport", "dockerImageId", "dockerOutputDirectory" };
 }

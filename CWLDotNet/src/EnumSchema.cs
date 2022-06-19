@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -25,7 +25,7 @@ public class EnumSchema : IEnumSchema, ISavable {
     public enum_d961d79c225752b9fadb617367615ab176b47d77 type { get; set; }
 
 
-    public EnumSchema (List<string> symbols,enum_d961d79c225752b9fadb617367615ab176b47d77 type,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public EnumSchema (List<string> symbols, enum_d961d79c225752b9fadb617367615ab176b47d77 type, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.symbols = symbols;
@@ -46,10 +46,10 @@ public class EnumSchema : IEnumSchema, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        List<string> symbols = default!;
+        dynamic symbols = default!;
         try
         {
-            symbols = (List<string>)LoaderInstances.uriarray_of_StringInstanceTrueFalseNone
+            symbols = LoaderInstances.uriarray_of_StringInstanceTrueFalseNone
                .LoadField(doc_.GetValueOrDefault("symbols", null!), baseUri,
                    loadingOptions);
         }
@@ -60,10 +60,10 @@ public class EnumSchema : IEnumSchema, ISavable {
             );
         }
 
-        enum_d961d79c225752b9fadb617367615ab176b47d77 type = default!;
+        dynamic type = default!;
         try
         {
-            type = (enum_d961d79c225752b9fadb617367615ab176b47d77)LoaderInstances.typedslenum_d961d79c225752b9fadb617367615ab176b47d77Loader2
+            type = LoaderInstances.typedslenum_d961d79c225752b9fadb617367615ab176b47d77Loader2
                .LoadField(doc_.GetValueOrDefault("type", null!), baseUri,
                    loadingOptions);
         }
@@ -100,11 +100,13 @@ public class EnumSchema : IEnumSchema, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new EnumSchema(
+        var res__ = new EnumSchema(
+          loadingOptions: loadingOptions,
           symbols: symbols,
-          type: type,
-          loadingOptions: loadingOptions
+          type: type
         );
+
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -116,10 +118,17 @@ public class EnumSchema : IEnumSchema, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["symbols"] = ISavable.SaveRelativeUri(symbols, true,
-                                  relativeUris, null, (string)baseUrl!);
-        r["type"] =
-           ISavable.Save(type, false, (string)baseUrl!, relativeUris);
+        var symbolsVal = ISavable.SaveRelativeUri(symbols, true,
+            relativeUris, null, (string)baseUrl!);
+        if(symbolsVal is not None) {
+            r["symbols"] = symbolsVal;
+        }
+
+        var typeVal = ISavable.Save(type, false, (string)baseUrl!, relativeUris);
+        if(typeVal is not None) {
+            r["type"] = typeVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -136,6 +145,5 @@ public class EnumSchema : IEnumSchema, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "symbols", "type" };
 }

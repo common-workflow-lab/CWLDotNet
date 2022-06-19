@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -71,7 +71,7 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
     /// next whole number.
     /// 
     /// </summary>
-    public object coresMin { get; set; }
+    public OneOf<None , int , long , double , string> coresMin { get; set; }
 
     /// <summary>
     /// Maximum reserved number of CPU cores.
@@ -79,7 +79,7 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
     /// See `coresMin` for discussion about fractional CPU requests.
     /// 
     /// </summary>
-    public object coresMax { get; set; }
+    public OneOf<None , int , long , double , string> coresMax { get; set; }
 
     /// <summary>
     /// Minimum reserved RAM in mebibytes (2**20) (default is 256)
@@ -91,7 +91,7 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
     /// non-zero integer.
     /// 
     /// </summary>
-    public object ramMin { get; set; }
+    public OneOf<None , int , long , double , string> ramMin { get; set; }
 
     /// <summary>
     /// Maximum reserved RAM in mebibytes (2**20)
@@ -99,7 +99,7 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
     /// See `ramMin` for discussion about fractional RAM requests.
     /// 
     /// </summary>
-    public object ramMax { get; set; }
+    public OneOf<None , int , long , double , string> ramMax { get; set; }
 
     /// <summary>
     /// Minimum reserved filesystem based storage for the designated temporary directory, in mebibytes (2**20) (default is 1024)
@@ -111,7 +111,7 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
     /// must be a non-zero integer.
     /// 
     /// </summary>
-    public object tmpdirMin { get; set; }
+    public OneOf<None , int , long , double , string> tmpdirMin { get; set; }
 
     /// <summary>
     /// Maximum reserved filesystem based storage for the designated temporary directory, in mebibytes (2**20)
@@ -119,7 +119,7 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
     /// See `tmpdirMin` for discussion about fractional storage requests.
     /// 
     /// </summary>
-    public object tmpdirMax { get; set; }
+    public OneOf<None , int , long , double , string> tmpdirMax { get; set; }
 
     /// <summary>
     /// Minimum reserved filesystem based storage for the designated output directory, in mebibytes (2**20) (default is 1024)
@@ -131,7 +131,7 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
     /// must be a non-zero integer.
     /// 
     /// </summary>
-    public object outdirMin { get; set; }
+    public OneOf<None , int , long , double , string> outdirMin { get; set; }
 
     /// <summary>
     /// Maximum reserved filesystem based storage for the designated output directory, in mebibytes (2**20)
@@ -139,13 +139,13 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
     /// See `outdirMin` for discussion about fractional storage requests.
     /// 
     /// </summary>
-    public object outdirMax { get; set; }
+    public OneOf<None , int , long , double , string> outdirMax { get; set; }
 
 
-    public ResourceRequirement (ResourceRequirement_class class_,object coresMin,object coresMax,object ramMin,object ramMax,object tmpdirMin,object tmpdirMax,object outdirMin,object outdirMax,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public ResourceRequirement (ResourceRequirement_class? class_ = null, OneOf<None , int , long , double , string> coresMin = default, OneOf<None , int , long , double , string> coresMax = default, OneOf<None , int , long , double , string> ramMin = default, OneOf<None , int , long , double , string> ramMax = default, OneOf<None , int , long , double , string> tmpdirMin = default, OneOf<None , int , long , double , string> tmpdirMax = default, OneOf<None , int , long , double , string> outdirMin = default, OneOf<None , int , long , double , string> outdirMax = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
-        this.class_ = class_;
+        this.class_ = class_ ?? ResourceRequirement_class.RESOURCEREQUIREMENT;
         this.coresMin = coresMin;
         this.coresMax = coresMax;
         this.ramMin = ramMin;
@@ -170,10 +170,10 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        ResourceRequirement_class class_ = default!;
+        dynamic class_ = default!;
         try
         {
-            class_ = (ResourceRequirement_class)LoaderInstances.uriResourceRequirement_classLoaderFalseTrueNone
+            class_ = LoaderInstances.uriResourceRequirement_classLoaderFalseTrueNone
                .LoadField(doc_.GetValueOrDefault("class", null!), baseUri,
                    loadingOptions);
         }
@@ -184,12 +184,12 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
             );
         }
 
-        object coresMin = default!;
+        dynamic coresMin = default!;
         if (doc_.ContainsKey("coresMin"))
         {
             try
             {
-                coresMin = (object)LoaderInstances.union_of_NullInstance_or_IntegerInstance_or_LongInstance_or_DoubleInstance_or_ExpressionLoader
+                coresMin = LoaderInstances.union_of_NullInstance_or_IntegerInstance_or_LongInstance_or_DoubleInstance_or_ExpressionLoader
                    .LoadField(doc_.GetValueOrDefault("coresMin", null!), baseUri,
                        loadingOptions);
             }
@@ -201,12 +201,12 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
             }
         }
 
-        object coresMax = default!;
+        dynamic coresMax = default!;
         if (doc_.ContainsKey("coresMax"))
         {
             try
             {
-                coresMax = (object)LoaderInstances.union_of_NullInstance_or_IntegerInstance_or_LongInstance_or_DoubleInstance_or_ExpressionLoader
+                coresMax = LoaderInstances.union_of_NullInstance_or_IntegerInstance_or_LongInstance_or_DoubleInstance_or_ExpressionLoader
                    .LoadField(doc_.GetValueOrDefault("coresMax", null!), baseUri,
                        loadingOptions);
             }
@@ -218,12 +218,12 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
             }
         }
 
-        object ramMin = default!;
+        dynamic ramMin = default!;
         if (doc_.ContainsKey("ramMin"))
         {
             try
             {
-                ramMin = (object)LoaderInstances.union_of_NullInstance_or_IntegerInstance_or_LongInstance_or_DoubleInstance_or_ExpressionLoader
+                ramMin = LoaderInstances.union_of_NullInstance_or_IntegerInstance_or_LongInstance_or_DoubleInstance_or_ExpressionLoader
                    .LoadField(doc_.GetValueOrDefault("ramMin", null!), baseUri,
                        loadingOptions);
             }
@@ -235,12 +235,12 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
             }
         }
 
-        object ramMax = default!;
+        dynamic ramMax = default!;
         if (doc_.ContainsKey("ramMax"))
         {
             try
             {
-                ramMax = (object)LoaderInstances.union_of_NullInstance_or_IntegerInstance_or_LongInstance_or_DoubleInstance_or_ExpressionLoader
+                ramMax = LoaderInstances.union_of_NullInstance_or_IntegerInstance_or_LongInstance_or_DoubleInstance_or_ExpressionLoader
                    .LoadField(doc_.GetValueOrDefault("ramMax", null!), baseUri,
                        loadingOptions);
             }
@@ -252,12 +252,12 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
             }
         }
 
-        object tmpdirMin = default!;
+        dynamic tmpdirMin = default!;
         if (doc_.ContainsKey("tmpdirMin"))
         {
             try
             {
-                tmpdirMin = (object)LoaderInstances.union_of_NullInstance_or_IntegerInstance_or_LongInstance_or_DoubleInstance_or_ExpressionLoader
+                tmpdirMin = LoaderInstances.union_of_NullInstance_or_IntegerInstance_or_LongInstance_or_DoubleInstance_or_ExpressionLoader
                    .LoadField(doc_.GetValueOrDefault("tmpdirMin", null!), baseUri,
                        loadingOptions);
             }
@@ -269,12 +269,12 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
             }
         }
 
-        object tmpdirMax = default!;
+        dynamic tmpdirMax = default!;
         if (doc_.ContainsKey("tmpdirMax"))
         {
             try
             {
-                tmpdirMax = (object)LoaderInstances.union_of_NullInstance_or_IntegerInstance_or_LongInstance_or_DoubleInstance_or_ExpressionLoader
+                tmpdirMax = LoaderInstances.union_of_NullInstance_or_IntegerInstance_or_LongInstance_or_DoubleInstance_or_ExpressionLoader
                    .LoadField(doc_.GetValueOrDefault("tmpdirMax", null!), baseUri,
                        loadingOptions);
             }
@@ -286,12 +286,12 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
             }
         }
 
-        object outdirMin = default!;
+        dynamic outdirMin = default!;
         if (doc_.ContainsKey("outdirMin"))
         {
             try
             {
-                outdirMin = (object)LoaderInstances.union_of_NullInstance_or_IntegerInstance_or_LongInstance_or_DoubleInstance_or_ExpressionLoader
+                outdirMin = LoaderInstances.union_of_NullInstance_or_IntegerInstance_or_LongInstance_or_DoubleInstance_or_ExpressionLoader
                    .LoadField(doc_.GetValueOrDefault("outdirMin", null!), baseUri,
                        loadingOptions);
             }
@@ -303,12 +303,12 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
             }
         }
 
-        object outdirMax = default!;
+        dynamic outdirMax = default!;
         if (doc_.ContainsKey("outdirMax"))
         {
             try
             {
-                outdirMax = (object)LoaderInstances.union_of_NullInstance_or_IntegerInstance_or_LongInstance_or_DoubleInstance_or_ExpressionLoader
+                outdirMax = LoaderInstances.union_of_NullInstance_or_IntegerInstance_or_LongInstance_or_DoubleInstance_or_ExpressionLoader
                    .LoadField(doc_.GetValueOrDefault("outdirMax", null!), baseUri,
                        loadingOptions);
             }
@@ -346,18 +346,52 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new ResourceRequirement(
-          class_: class_,
-          coresMin: coresMin,
-          coresMax: coresMax,
-          ramMin: ramMin,
-          ramMax: ramMax,
-          tmpdirMin: tmpdirMin,
-          tmpdirMax: tmpdirMax,
-          outdirMin: outdirMin,
-          outdirMax: outdirMax,
-          loadingOptions: loadingOptions
+        var res__ = new ResourceRequirement(
+          loadingOptions: loadingOptions,
+          class_: class_
         );
+
+        if(coresMin != null) 
+        {
+            res__.coresMin = coresMin;
+        }                      
+        
+        if(coresMax != null) 
+        {
+            res__.coresMax = coresMax;
+        }                      
+        
+        if(ramMin != null) 
+        {
+            res__.ramMin = ramMin;
+        }                      
+        
+        if(ramMax != null) 
+        {
+            res__.ramMax = ramMax;
+        }                      
+        
+        if(tmpdirMin != null) 
+        {
+            res__.tmpdirMin = tmpdirMin;
+        }                      
+        
+        if(tmpdirMax != null) 
+        {
+            res__.tmpdirMax = tmpdirMax;
+        }                      
+        
+        if(outdirMin != null) 
+        {
+            res__.outdirMin = outdirMin;
+        }                      
+        
+        if(outdirMax != null) 
+        {
+            res__.outdirMax = outdirMax;
+        }                      
+        
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -369,56 +403,52 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["class"] = ISavable.SaveRelativeUri(class_, false,
-                                  relativeUris, null, (string)baseUrl!);
-        if(coresMin != null)
-        {
-            r["coresMin"] =
-               ISavable.Save(coresMin, false, (string)baseUrl!, relativeUris);
+        var class_Val = ISavable.SaveRelativeUri(class_, false,
+            relativeUris, null, (string)baseUrl!);
+        if(class_Val is not None) {
+            r["class"] = class_Val;
         }
-                    
-        if(coresMax != null)
-        {
-            r["coresMax"] =
-               ISavable.Save(coresMax, false, (string)baseUrl!, relativeUris);
+
+        var coresMinVal = ISavable.Save(coresMin, false, (string)baseUrl!, relativeUris);
+        if(coresMinVal is not None) {
+            r["coresMin"] = coresMinVal;
         }
-                    
-        if(ramMin != null)
-        {
-            r["ramMin"] =
-               ISavable.Save(ramMin, false, (string)baseUrl!, relativeUris);
+
+        var coresMaxVal = ISavable.Save(coresMax, false, (string)baseUrl!, relativeUris);
+        if(coresMaxVal is not None) {
+            r["coresMax"] = coresMaxVal;
         }
-                    
-        if(ramMax != null)
-        {
-            r["ramMax"] =
-               ISavable.Save(ramMax, false, (string)baseUrl!, relativeUris);
+
+        var ramMinVal = ISavable.Save(ramMin, false, (string)baseUrl!, relativeUris);
+        if(ramMinVal is not None) {
+            r["ramMin"] = ramMinVal;
         }
-                    
-        if(tmpdirMin != null)
-        {
-            r["tmpdirMin"] =
-               ISavable.Save(tmpdirMin, false, (string)baseUrl!, relativeUris);
+
+        var ramMaxVal = ISavable.Save(ramMax, false, (string)baseUrl!, relativeUris);
+        if(ramMaxVal is not None) {
+            r["ramMax"] = ramMaxVal;
         }
-                    
-        if(tmpdirMax != null)
-        {
-            r["tmpdirMax"] =
-               ISavable.Save(tmpdirMax, false, (string)baseUrl!, relativeUris);
+
+        var tmpdirMinVal = ISavable.Save(tmpdirMin, false, (string)baseUrl!, relativeUris);
+        if(tmpdirMinVal is not None) {
+            r["tmpdirMin"] = tmpdirMinVal;
         }
-                    
-        if(outdirMin != null)
-        {
-            r["outdirMin"] =
-               ISavable.Save(outdirMin, false, (string)baseUrl!, relativeUris);
+
+        var tmpdirMaxVal = ISavable.Save(tmpdirMax, false, (string)baseUrl!, relativeUris);
+        if(tmpdirMaxVal is not None) {
+            r["tmpdirMax"] = tmpdirMaxVal;
         }
-                    
-        if(outdirMax != null)
-        {
-            r["outdirMax"] =
-               ISavable.Save(outdirMax, false, (string)baseUrl!, relativeUris);
+
+        var outdirMinVal = ISavable.Save(outdirMin, false, (string)baseUrl!, relativeUris);
+        if(outdirMinVal is not None) {
+            r["outdirMin"] = outdirMinVal;
         }
-                    
+
+        var outdirMaxVal = ISavable.Save(outdirMax, false, (string)baseUrl!, relativeUris);
+        if(outdirMaxVal is not None) {
+            r["outdirMax"] = outdirMaxVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -435,6 +465,5 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "coresMin", "coresMax", "ramMin", "ramMax", "tmpdirMin", "tmpdirMax", "outdirMin", "outdirMax" };
 }

@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -14,7 +14,7 @@ public class ArraySchema : IArraySchema, ISavable {
     /// <summary>
     /// Defines the type of the array elements.
     /// </summary>
-    public object items { get; set; }
+    public OneOf<PrimitiveType , RecordSchema , EnumSchema , ArraySchema , string , List<OneOf<PrimitiveType , RecordSchema , EnumSchema , ArraySchema , string>>> items { get; set; }
 
     /// <summary>
     /// Must be `array`
@@ -22,7 +22,7 @@ public class ArraySchema : IArraySchema, ISavable {
     public enum_d062602be0b4b8fd33e69e29a841317b6ab665bc type { get; set; }
 
 
-    public ArraySchema (object items,enum_d062602be0b4b8fd33e69e29a841317b6ab665bc type,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public ArraySchema (OneOf<PrimitiveType , RecordSchema , EnumSchema , ArraySchema , string , List<OneOf<PrimitiveType , RecordSchema , EnumSchema , ArraySchema , string>>> items, enum_d062602be0b4b8fd33e69e29a841317b6ab665bc type, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.items = items;
@@ -43,10 +43,10 @@ public class ArraySchema : IArraySchema, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        object items = default!;
+        dynamic items = default!;
         try
         {
-            items = (object)LoaderInstances.typedslunion_of_PrimitiveTypeLoader_or_RecordSchemaLoader_or_EnumSchemaLoader_or_ArraySchemaLoader_or_StringInstance_or_array_of_union_of_PrimitiveTypeLoader_or_RecordSchemaLoader_or_EnumSchemaLoader_or_ArraySchemaLoader_or_StringInstance2
+            items = LoaderInstances.typedslunion_of_PrimitiveTypeLoader_or_RecordSchemaLoader_or_EnumSchemaLoader_or_ArraySchemaLoader_or_StringInstance_or_array_of_union_of_PrimitiveTypeLoader_or_RecordSchemaLoader_or_EnumSchemaLoader_or_ArraySchemaLoader_or_StringInstance2
                .LoadField(doc_.GetValueOrDefault("items", null!), baseUri,
                    loadingOptions);
         }
@@ -57,10 +57,10 @@ public class ArraySchema : IArraySchema, ISavable {
             );
         }
 
-        enum_d062602be0b4b8fd33e69e29a841317b6ab665bc type = default!;
+        dynamic type = default!;
         try
         {
-            type = (enum_d062602be0b4b8fd33e69e29a841317b6ab665bc)LoaderInstances.typedslenum_d062602be0b4b8fd33e69e29a841317b6ab665bcLoader2
+            type = LoaderInstances.typedslenum_d062602be0b4b8fd33e69e29a841317b6ab665bcLoader2
                .LoadField(doc_.GetValueOrDefault("type", null!), baseUri,
                    loadingOptions);
         }
@@ -97,11 +97,13 @@ public class ArraySchema : IArraySchema, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new ArraySchema(
+        var res__ = new ArraySchema(
+          loadingOptions: loadingOptions,
           items: items,
-          type: type,
-          loadingOptions: loadingOptions
+          type: type
         );
+
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -113,10 +115,16 @@ public class ArraySchema : IArraySchema, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["items"] =
-           ISavable.Save(items, false, (string)baseUrl!, relativeUris);
-        r["type"] =
-           ISavable.Save(type, false, (string)baseUrl!, relativeUris);
+        var itemsVal = ISavable.Save(items, false, (string)baseUrl!, relativeUris);
+        if(itemsVal is not None) {
+            r["items"] = itemsVal;
+        }
+
+        var typeVal = ISavable.Save(type, false, (string)baseUrl!, relativeUris);
+        if(typeVal is not None) {
+            r["type"] = typeVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -133,6 +141,5 @@ public class ArraySchema : IArraySchema, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "items", "type" };
 }

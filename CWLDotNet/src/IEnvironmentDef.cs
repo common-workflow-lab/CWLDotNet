@@ -1,5 +1,4 @@
-using LanguageExt;
-
+#pragma warning disable CS0108
 namespace CWLDotNet;
 
 /// <summary>
@@ -11,14 +10,4 @@ namespace CWLDotNet;
 /// 
 /// </summary>
 public interface IEnvironmentDef  {
-
-    /// <summary>
-    /// The environment variable name
-    /// </summary>
-    public string envName { get; set; }
-
-    /// <summary>
-    /// The environment variable value
-    /// </summary>
-    public object envValue { get; set; }
 }

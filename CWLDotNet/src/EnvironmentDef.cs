@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -24,10 +24,10 @@ public class EnvironmentDef : IEnvironmentDef, ISavable {
     /// <summary>
     /// The environment variable value
     /// </summary>
-    public object envValue { get; set; }
+    public OneOf<string> envValue { get; set; }
 
 
-    public EnvironmentDef (string envName,object envValue,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public EnvironmentDef (string envName, OneOf<string> envValue, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.envName = envName;
@@ -48,10 +48,10 @@ public class EnvironmentDef : IEnvironmentDef, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        string envName = default!;
+        dynamic envName = default!;
         try
         {
-            envName = (string)LoaderInstances.StringInstance
+            envName = LoaderInstances.StringInstance
                .LoadField(doc_.GetValueOrDefault("envName", null!), baseUri,
                    loadingOptions);
         }
@@ -62,10 +62,10 @@ public class EnvironmentDef : IEnvironmentDef, ISavable {
             );
         }
 
-        object envValue = default!;
+        dynamic envValue = default!;
         try
         {
-            envValue = (object)LoaderInstances.union_of_StringInstance_or_ExpressionLoader
+            envValue = LoaderInstances.union_of_StringInstance_or_ExpressionLoader
                .LoadField(doc_.GetValueOrDefault("envValue", null!), baseUri,
                    loadingOptions);
         }
@@ -102,11 +102,13 @@ public class EnvironmentDef : IEnvironmentDef, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new EnvironmentDef(
+        var res__ = new EnvironmentDef(
+          loadingOptions: loadingOptions,
           envName: envName,
-          envValue: envValue,
-          loadingOptions: loadingOptions
+          envValue: envValue
         );
+
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -118,10 +120,16 @@ public class EnvironmentDef : IEnvironmentDef, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        r["envName"] =
-           ISavable.Save(envName, false, (string)baseUrl!, relativeUris);
-        r["envValue"] =
-           ISavable.Save(envValue, false, (string)baseUrl!, relativeUris);
+        var envNameVal = ISavable.Save(envName, false, (string)baseUrl!, relativeUris);
+        if(envNameVal is not None) {
+            r["envName"] = envNameVal;
+        }
+
+        var envValueVal = ISavable.Save(envValue, false, (string)baseUrl!, relativeUris);
+        if(envValueVal is not None) {
+            r["envValue"] = envValueVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -138,6 +146,5 @@ public class EnvironmentDef : IEnvironmentDef, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "envName", "envValue" };
 }

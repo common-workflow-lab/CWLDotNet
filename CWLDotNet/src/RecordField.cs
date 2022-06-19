@@ -1,6 +1,6 @@
 using System.Collections;
-using LanguageExt;
-
+using OneOf;
+using OneOf.Types;
 namespace CWLDotNet;
 
 /// <summary>
@@ -17,21 +17,21 @@ public class RecordField : IRecordField, ISavable {
     /// The name of the field
     /// 
     /// </summary>
-    public string name { get; set; }
+    public string? name { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
     /// </summary>
-    public object doc { get; set; }
+    public OneOf<None , string , List<string>> doc { get; set; }
 
     /// <summary>
     /// The field type
     /// 
     /// </summary>
-    public object type { get; set; }
+    public OneOf<PrimitiveType , RecordSchema , EnumSchema , ArraySchema , string , List<OneOf<PrimitiveType , RecordSchema , EnumSchema , ArraySchema , string>>> type { get; set; }
 
 
-    public RecordField (string name,object doc,object type,LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public RecordField (OneOf<PrimitiveType , RecordSchema , EnumSchema , ArraySchema , string , List<OneOf<PrimitiveType , RecordSchema , EnumSchema , ArraySchema , string>>> type, string? name = null, OneOf<None , string , List<string>> doc = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.name = name;
@@ -53,12 +53,12 @@ public class RecordField : IRecordField, ISavable {
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
             
-        string name = default!;
+        dynamic name = default!;
         if (doc_.ContainsKey("name"))
         {
             try
             {
-                name = (string)LoaderInstances.uriStringInstanceTrueFalseNone
+                name = LoaderInstances.uriStringInstanceTrueFalseNone
                    .LoadField(doc_.GetValueOrDefault("name", null!), baseUri,
                        loadingOptions);
             }
@@ -86,12 +86,12 @@ public class RecordField : IRecordField, ISavable {
             baseUri = (string)name;
         }
             
-        object doc = default!;
+        dynamic doc = default!;
         if (doc_.ContainsKey("doc"))
         {
             try
             {
-                doc = (object)LoaderInstances.union_of_NullInstance_or_StringInstance_or_array_of_StringInstance
+                doc = LoaderInstances.union_of_NullInstance_or_StringInstance_or_array_of_StringInstance
                    .LoadField(doc_.GetValueOrDefault("doc", null!), baseUri,
                        loadingOptions);
             }
@@ -103,10 +103,10 @@ public class RecordField : IRecordField, ISavable {
             }
         }
 
-        object type = default!;
+        dynamic type = default!;
         try
         {
-            type = (object)LoaderInstances.typedslunion_of_PrimitiveTypeLoader_or_RecordSchemaLoader_or_EnumSchemaLoader_or_ArraySchemaLoader_or_StringInstance_or_array_of_union_of_PrimitiveTypeLoader_or_RecordSchemaLoader_or_EnumSchemaLoader_or_ArraySchemaLoader_or_StringInstance2
+            type = LoaderInstances.typedslunion_of_PrimitiveTypeLoader_or_RecordSchemaLoader_or_EnumSchemaLoader_or_ArraySchemaLoader_or_StringInstance_or_array_of_union_of_PrimitiveTypeLoader_or_RecordSchemaLoader_or_EnumSchemaLoader_or_ArraySchemaLoader_or_StringInstance2
                .LoadField(doc_.GetValueOrDefault("type", null!), baseUri,
                    loadingOptions);
         }
@@ -143,12 +143,22 @@ public class RecordField : IRecordField, ISavable {
             throw new ValidationException("", errors);
         }
 
-        return new RecordField(
-          doc: doc,
-          name: name,
-          type: type,
-          loadingOptions: loadingOptions
+        var res__ = new RecordField(
+          loadingOptions: loadingOptions,
+          type: type
         );
+
+        if(name != null) 
+        {
+            res__.name = name;
+        }                      
+        
+        if(doc != null) 
+        {
+            res__.doc = doc;
+        }                      
+        
+        return res__;
     }
 
     public Dictionary<object, object> Save(bool top = false, string baseUrl = "",
@@ -160,20 +170,22 @@ public class RecordField : IRecordField, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        if(name != null)
-        {
-            r["name"] = ISavable.SaveRelativeUri(name, true,
-                                      relativeUris, null, (string)baseUrl!);
+        var nameVal = ISavable.SaveRelativeUri(name, true,
+            relativeUris, null, (string)baseUrl!);
+        if(nameVal is not None) {
+            r["name"] = nameVal;
         }
-                    
-        if(doc != null)
-        {
-            r["doc"] =
-               ISavable.Save(doc, false, (string)this.name!, relativeUris);
+
+        var docVal = ISavable.Save(doc, false, (string)this.name!, relativeUris);
+        if(docVal is not None) {
+            r["doc"] = docVal;
         }
-                    
-        r["type"] =
-           ISavable.Save(type, false, (string)this.name!, relativeUris);
+
+        var typeVal = ISavable.Save(type, false, (string)this.name!, relativeUris);
+        if(typeVal is not None) {
+            r["type"] = typeVal;
+        }
+
         if (top)
         {
             if (loadingOptions.namespaces != null)
@@ -190,6 +202,5 @@ public class RecordField : IRecordField, ISavable {
         return r;
     }
 
-            
     static readonly System.Collections.Generic.HashSet<string>attr = new() { "doc", "name", "type" };
 }
