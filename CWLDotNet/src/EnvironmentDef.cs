@@ -121,12 +121,12 @@ public class EnvironmentDef : IEnvironmentDef, ISavable {
         }
 
         var envNameVal = ISavable.Save(envName, false, (string)baseUrl!, relativeUris);
-        if(envNameVal is not None) {
+        if(envNameVal is not null) {
             r["envName"] = envNameVal;
         }
 
         var envValueVal = ISavable.Save(envValue, false, (string)baseUrl!, relativeUris);
-        if(envValueVal is not None) {
+        if(envValueVal is not null) {
             r["envValue"] = envValueVal;
         }
 

@@ -172,17 +172,17 @@ public class RecordField : IRecordField, ISavable {
 
         var nameVal = ISavable.SaveRelativeUri(name, true,
             relativeUris, null, (string)baseUrl!);
-        if(nameVal is not None) {
+        if(nameVal is not null) {
             r["name"] = nameVal;
         }
 
         var docVal = ISavable.Save(doc, false, (string)this.name!, relativeUris);
-        if(docVal is not None) {
+        if(docVal is not null) {
             r["doc"] = docVal;
         }
 
         var typeVal = ISavable.Save(type, false, (string)this.name!, relativeUris);
-        if(typeVal is not None) {
+        if(typeVal is not null) {
             r["type"] = typeVal;
         }
 

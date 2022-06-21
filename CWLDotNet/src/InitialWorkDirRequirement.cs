@@ -144,12 +144,12 @@ public class InitialWorkDirRequirement : IInitialWorkDirRequirement, ISavable {
 
         var class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not None) {
+        if(class_Val is not null) {
             r["class"] = class_Val;
         }
 
         var listingVal = ISavable.Save(listing, false, (string)baseUrl!, relativeUris);
-        if(listingVal is not None) {
+        if(listingVal is not null) {
             r["listing"] = listingVal;
         }
 

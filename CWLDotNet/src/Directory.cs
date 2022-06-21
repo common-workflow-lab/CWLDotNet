@@ -300,29 +300,29 @@ public class Directory : IDirectory, ISavable {
 
         var class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not None) {
+        if(class_Val is not null) {
             r["class"] = class_Val;
         }
 
         var locationVal = ISavable.SaveRelativeUri(location, false,
             relativeUris, null, (string)baseUrl!);
-        if(locationVal is not None) {
+        if(locationVal is not null) {
             r["location"] = locationVal;
         }
 
         var pathVal = ISavable.SaveRelativeUri(path, false,
             relativeUris, null, (string)baseUrl!);
-        if(pathVal is not None) {
+        if(pathVal is not null) {
             r["path"] = pathVal;
         }
 
         var basenameVal = ISavable.Save(basename, false, (string)baseUrl!, relativeUris);
-        if(basenameVal is not None) {
+        if(basenameVal is not null) {
             r["basename"] = basenameVal;
         }
 
         var listingVal = ISavable.Save(listing, false, (string)baseUrl!, relativeUris);
-        if(listingVal is not None) {
+        if(listingVal is not null) {
             r["listing"] = listingVal;
         }
 

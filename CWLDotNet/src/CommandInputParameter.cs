@@ -472,58 +472,58 @@ public class CommandInputParameter : ICommandInputParameter, ISavable {
 
         var idVal = ISavable.SaveRelativeUri(id, true,
             relativeUris, null, (string)baseUrl!);
-        if(idVal is not None) {
+        if(idVal is not null) {
             r["id"] = idVal;
         }
 
         var labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
-        if(labelVal is not None) {
+        if(labelVal is not null) {
             r["label"] = labelVal;
         }
 
         var secondaryFilesVal = ISavable.Save(secondaryFiles, false, (string)this.id.AsT1!, relativeUris);
-        if(secondaryFilesVal is not None) {
+        if(secondaryFilesVal is not null) {
             r["secondaryFiles"] = secondaryFilesVal;
         }
 
         var streamableVal = ISavable.Save(streamable, false, (string)this.id.AsT1!, relativeUris);
-        if(streamableVal is not None) {
+        if(streamableVal is not null) {
             r["streamable"] = streamableVal;
         }
 
         var docVal = ISavable.Save(doc, false, (string)this.id.AsT1!, relativeUris);
-        if(docVal is not None) {
+        if(docVal is not null) {
             r["doc"] = docVal;
         }
 
         var formatVal = ISavable.SaveRelativeUri(format, true,
             relativeUris, null, (string)this.id.AsT1!);
-        if(formatVal is not None) {
+        if(formatVal is not null) {
             r["format"] = formatVal;
         }
 
         var loadContentsVal = ISavable.Save(loadContents, false, (string)this.id.AsT1!, relativeUris);
-        if(loadContentsVal is not None) {
+        if(loadContentsVal is not null) {
             r["loadContents"] = loadContentsVal;
         }
 
         var loadListingVal = ISavable.Save(loadListing, false, (string)this.id.AsT1!, relativeUris);
-        if(loadListingVal is not None) {
+        if(loadListingVal is not null) {
             r["loadListing"] = loadListingVal;
         }
 
         var default_Val = ISavable.Save(default_, false, (string)this.id.AsT1!, relativeUris);
-        if(default_Val is not None) {
+        if(default_Val is not null) {
             r["default"] = default_Val;
         }
 
         var typeVal = ISavable.Save(type, false, (string)this.id.AsT1!, relativeUris);
-        if(typeVal is not None) {
+        if(typeVal is not null) {
             r["type"] = typeVal;
         }
 
         var inputBindingVal = ISavable.Save(inputBinding, false, (string)this.id.AsT1!, relativeUris);
-        if(inputBindingVal is not None) {
+        if(inputBindingVal is not null) {
             r["inputBinding"] = inputBindingVal;
         }
 

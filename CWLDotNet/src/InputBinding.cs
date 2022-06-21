@@ -105,7 +105,7 @@ public class InputBinding : IInputBinding, ISavable {
         }
 
         var loadContentsVal = ISavable.Save(loadContents, false, (string)baseUrl!, relativeUris);
-        if(loadContentsVal is not None) {
+        if(loadContentsVal is not null) {
             r["loadContents"] = loadContentsVal;
         }
 

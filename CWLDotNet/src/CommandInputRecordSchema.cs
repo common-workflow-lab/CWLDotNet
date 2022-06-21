@@ -252,32 +252,32 @@ public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
 
         var nameVal = ISavable.SaveRelativeUri(name, true,
             relativeUris, null, (string)baseUrl!);
-        if(nameVal is not None) {
+        if(nameVal is not null) {
             r["name"] = nameVal;
         }
 
         var fieldsVal = ISavable.Save(fields, false, (string)this.name.AsT1!, relativeUris);
-        if(fieldsVal is not None) {
+        if(fieldsVal is not null) {
             r["fields"] = fieldsVal;
         }
 
         var typeVal = ISavable.Save(type, false, (string)this.name.AsT1!, relativeUris);
-        if(typeVal is not None) {
+        if(typeVal is not null) {
             r["type"] = typeVal;
         }
 
         var labelVal = ISavable.Save(label, false, (string)this.name.AsT1!, relativeUris);
-        if(labelVal is not None) {
+        if(labelVal is not null) {
             r["label"] = labelVal;
         }
 
         var docVal = ISavable.Save(doc, false, (string)this.name.AsT1!, relativeUris);
-        if(docVal is not None) {
+        if(docVal is not null) {
             r["doc"] = docVal;
         }
 
         var inputBindingVal = ISavable.Save(inputBinding, false, (string)this.name.AsT1!, relativeUris);
-        if(inputBindingVal is not None) {
+        if(inputBindingVal is not null) {
             r["inputBinding"] = inputBindingVal;
         }
 

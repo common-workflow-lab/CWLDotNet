@@ -16,11 +16,11 @@ public interface ISavable
         }
 
         if(val is None) {
-            return val;
+            return null!;
         }
 
         if(val_ is null) {
-            return new None();
+            return null!;
         }
         
         if(val is IEnumClass) 
@@ -67,11 +67,11 @@ public interface ISavable
         }
 
         if(uri is None) {
-            return uri;
+            return null!;
         }
 
         if(uri is null) {
-            return new None();
+            return null!;
         }
 
         if(uri is IEnumClass) 

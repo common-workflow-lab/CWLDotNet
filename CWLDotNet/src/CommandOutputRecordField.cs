@@ -363,43 +363,43 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable {
 
         var nameVal = ISavable.SaveRelativeUri(name, true,
             relativeUris, null, (string)baseUrl!);
-        if(nameVal is not None) {
+        if(nameVal is not null) {
             r["name"] = nameVal;
         }
 
         var docVal = ISavable.Save(doc, false, (string)this.name!, relativeUris);
-        if(docVal is not None) {
+        if(docVal is not null) {
             r["doc"] = docVal;
         }
 
         var typeVal = ISavable.Save(type, false, (string)this.name!, relativeUris);
-        if(typeVal is not None) {
+        if(typeVal is not null) {
             r["type"] = typeVal;
         }
 
         var labelVal = ISavable.Save(label, false, (string)this.name!, relativeUris);
-        if(labelVal is not None) {
+        if(labelVal is not null) {
             r["label"] = labelVal;
         }
 
         var secondaryFilesVal = ISavable.Save(secondaryFiles, false, (string)this.name!, relativeUris);
-        if(secondaryFilesVal is not None) {
+        if(secondaryFilesVal is not null) {
             r["secondaryFiles"] = secondaryFilesVal;
         }
 
         var streamableVal = ISavable.Save(streamable, false, (string)this.name!, relativeUris);
-        if(streamableVal is not None) {
+        if(streamableVal is not null) {
             r["streamable"] = streamableVal;
         }
 
         var formatVal = ISavable.SaveRelativeUri(format, true,
             relativeUris, null, (string)this.name!);
-        if(formatVal is not None) {
+        if(formatVal is not null) {
             r["format"] = formatVal;
         }
 
         var outputBindingVal = ISavable.Save(outputBinding, false, (string)this.name!, relativeUris);
-        if(outputBindingVal is not None) {
+        if(outputBindingVal is not null) {
             r["outputBinding"] = outputBindingVal;
         }
 

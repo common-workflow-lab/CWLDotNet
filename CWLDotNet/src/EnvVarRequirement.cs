@@ -121,12 +121,12 @@ public class EnvVarRequirement : IEnvVarRequirement, ISavable {
 
         var class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not None) {
+        if(class_Val is not null) {
             r["class"] = class_Val;
         }
 
         var envDefVal = ISavable.Save(envDef, false, (string)baseUrl!, relativeUris);
-        if(envDefVal is not None) {
+        if(envDefVal is not null) {
             r["envDef"] = envDefVal;
         }
 

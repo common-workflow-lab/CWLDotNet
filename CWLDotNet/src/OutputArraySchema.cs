@@ -217,27 +217,27 @@ public class OutputArraySchema : IOutputArraySchema, ISavable {
 
         var nameVal = ISavable.SaveRelativeUri(name, true,
             relativeUris, null, (string)baseUrl!);
-        if(nameVal is not None) {
+        if(nameVal is not null) {
             r["name"] = nameVal;
         }
 
         var itemsVal = ISavable.Save(items, false, (string)this.name.AsT1!, relativeUris);
-        if(itemsVal is not None) {
+        if(itemsVal is not null) {
             r["items"] = itemsVal;
         }
 
         var typeVal = ISavable.Save(type, false, (string)this.name.AsT1!, relativeUris);
-        if(typeVal is not None) {
+        if(typeVal is not null) {
             r["type"] = typeVal;
         }
 
         var labelVal = ISavable.Save(label, false, (string)this.name.AsT1!, relativeUris);
-        if(labelVal is not None) {
+        if(labelVal is not null) {
             r["label"] = labelVal;
         }
 
         var docVal = ISavable.Save(doc, false, (string)this.name.AsT1!, relativeUris);
-        if(docVal is not None) {
+        if(docVal is not null) {
             r["doc"] = docVal;
         }
 

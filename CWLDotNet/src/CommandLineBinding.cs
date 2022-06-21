@@ -344,37 +344,37 @@ public class CommandLineBinding : ICommandLineBinding, ISavable {
         }
 
         var loadContentsVal = ISavable.Save(loadContents, false, (string)baseUrl!, relativeUris);
-        if(loadContentsVal is not None) {
+        if(loadContentsVal is not null) {
             r["loadContents"] = loadContentsVal;
         }
 
         var positionVal = ISavable.Save(position, false, (string)baseUrl!, relativeUris);
-        if(positionVal is not None) {
+        if(positionVal is not null) {
             r["position"] = positionVal;
         }
 
         var prefixVal = ISavable.Save(prefix, false, (string)baseUrl!, relativeUris);
-        if(prefixVal is not None) {
+        if(prefixVal is not null) {
             r["prefix"] = prefixVal;
         }
 
         var separateVal = ISavable.Save(separate, false, (string)baseUrl!, relativeUris);
-        if(separateVal is not None) {
+        if(separateVal is not null) {
             r["separate"] = separateVal;
         }
 
         var itemSeparatorVal = ISavable.Save(itemSeparator, false, (string)baseUrl!, relativeUris);
-        if(itemSeparatorVal is not None) {
+        if(itemSeparatorVal is not null) {
             r["itemSeparator"] = itemSeparatorVal;
         }
 
         var valueFromVal = ISavable.Save(valueFrom, false, (string)baseUrl!, relativeUris);
-        if(valueFromVal is not None) {
+        if(valueFromVal is not null) {
             r["valueFrom"] = valueFromVal;
         }
 
         var shellQuoteVal = ISavable.Save(shellQuote, false, (string)baseUrl!, relativeUris);
-        if(shellQuoteVal is not None) {
+        if(shellQuoteVal is not null) {
             r["shellQuote"] = shellQuoteVal;
         }
 

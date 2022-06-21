@@ -128,12 +128,12 @@ public class ToolTimeLimit : IToolTimeLimit, ISavable {
 
         var class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not None) {
+        if(class_Val is not null) {
             r["class"] = class_Val;
         }
 
         var timelimitVal = ISavable.Save(timelimit, false, (string)baseUrl!, relativeUris);
-        if(timelimitVal is not None) {
+        if(timelimitVal is not null) {
             r["timelimit"] = timelimitVal;
         }
 

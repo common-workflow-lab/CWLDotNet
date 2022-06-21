@@ -132,12 +132,12 @@ public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavabl
 
         var class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not None) {
+        if(class_Val is not null) {
             r["class"] = class_Val;
         }
 
         var expressionLibVal = ISavable.Save(expressionLib, false, (string)baseUrl!, relativeUris);
-        if(expressionLibVal is not None) {
+        if(expressionLibVal is not null) {
             r["expressionLib"] = expressionLibVal;
         }
 

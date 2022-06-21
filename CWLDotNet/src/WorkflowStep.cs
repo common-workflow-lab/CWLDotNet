@@ -478,60 +478,60 @@ public class WorkflowStep : IWorkflowStep, ISavable {
 
         var idVal = ISavable.SaveRelativeUri(id, true,
             relativeUris, null, (string)baseUrl!);
-        if(idVal is not None) {
+        if(idVal is not null) {
             r["id"] = idVal;
         }
 
         var labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
-        if(labelVal is not None) {
+        if(labelVal is not null) {
             r["label"] = labelVal;
         }
 
         var docVal = ISavable.Save(doc, false, (string)this.id.AsT1!, relativeUris);
-        if(docVal is not None) {
+        if(docVal is not null) {
             r["doc"] = docVal;
         }
 
         var in_Val = ISavable.Save(in_, false, (string)this.id.AsT1!, relativeUris);
-        if(in_Val is not None) {
+        if(in_Val is not null) {
             r["in"] = in_Val;
         }
 
         var out_Val = ISavable.SaveRelativeUri(out_, true,
             relativeUris, null, (string)this.id.AsT1!);
-        if(out_Val is not None) {
+        if(out_Val is not null) {
             r["out"] = out_Val;
         }
 
         var requirementsVal = ISavable.Save(requirements, false, (string)this.id.AsT1!, relativeUris);
-        if(requirementsVal is not None) {
+        if(requirementsVal is not null) {
             r["requirements"] = requirementsVal;
         }
 
         var hintsVal = ISavable.Save(hints, false, (string)this.id.AsT1!, relativeUris);
-        if(hintsVal is not None) {
+        if(hintsVal is not null) {
             r["hints"] = hintsVal;
         }
 
         var runVal = ISavable.Save(run, false, (string)this.id.AsT1!, relativeUris);
-        if(runVal is not None) {
+        if(runVal is not null) {
             r["run"] = runVal;
         }
 
         var whenVal = ISavable.Save(when, false, (string)this.id.AsT1!, relativeUris);
-        if(whenVal is not None) {
+        if(whenVal is not null) {
             r["when"] = whenVal;
         }
 
         var scatterVal = ISavable.SaveRelativeUri(scatter, false,
             relativeUris, 0, (string)this.id.AsT1!);
-        if(scatterVal is not None) {
+        if(scatterVal is not null) {
             r["scatter"] = scatterVal;
         }
 
         var scatterMethodVal = ISavable.SaveRelativeUri(scatterMethod, false,
             relativeUris, null, (string)this.id.AsT1!);
-        if(scatterMethodVal is not None) {
+        if(scatterMethodVal is not null) {
             r["scatterMethod"] = scatterMethodVal;
         }
 

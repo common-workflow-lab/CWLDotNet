@@ -130,12 +130,12 @@ public class NetworkAccess : INetworkAccess, ISavable {
 
         var class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not None) {
+        if(class_Val is not null) {
             r["class"] = class_Val;
         }
 
         var networkAccessVal = ISavable.Save(networkAccess, false, (string)baseUrl!, relativeUris);
-        if(networkAccessVal is not None) {
+        if(networkAccessVal is not null) {
             r["networkAccess"] = networkAccessVal;
         }
 

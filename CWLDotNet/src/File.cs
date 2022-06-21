@@ -582,65 +582,65 @@ public class File : IFile, ISavable {
 
         var class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not None) {
+        if(class_Val is not null) {
             r["class"] = class_Val;
         }
 
         var locationVal = ISavable.SaveRelativeUri(location, false,
             relativeUris, null, (string)baseUrl!);
-        if(locationVal is not None) {
+        if(locationVal is not null) {
             r["location"] = locationVal;
         }
 
         var pathVal = ISavable.SaveRelativeUri(path, false,
             relativeUris, null, (string)baseUrl!);
-        if(pathVal is not None) {
+        if(pathVal is not null) {
             r["path"] = pathVal;
         }
 
         var basenameVal = ISavable.Save(basename, false, (string)baseUrl!, relativeUris);
-        if(basenameVal is not None) {
+        if(basenameVal is not null) {
             r["basename"] = basenameVal;
         }
 
         var dirnameVal = ISavable.Save(dirname, false, (string)baseUrl!, relativeUris);
-        if(dirnameVal is not None) {
+        if(dirnameVal is not null) {
             r["dirname"] = dirnameVal;
         }
 
         var namerootVal = ISavable.Save(nameroot, false, (string)baseUrl!, relativeUris);
-        if(namerootVal is not None) {
+        if(namerootVal is not null) {
             r["nameroot"] = namerootVal;
         }
 
         var nameextVal = ISavable.Save(nameext, false, (string)baseUrl!, relativeUris);
-        if(nameextVal is not None) {
+        if(nameextVal is not null) {
             r["nameext"] = nameextVal;
         }
 
         var checksumVal = ISavable.Save(checksum, false, (string)baseUrl!, relativeUris);
-        if(checksumVal is not None) {
+        if(checksumVal is not null) {
             r["checksum"] = checksumVal;
         }
 
         var sizeVal = ISavable.Save(size, false, (string)baseUrl!, relativeUris);
-        if(sizeVal is not None) {
+        if(sizeVal is not null) {
             r["size"] = sizeVal;
         }
 
         var secondaryFilesVal = ISavable.Save(secondaryFiles, false, (string)baseUrl!, relativeUris);
-        if(secondaryFilesVal is not None) {
+        if(secondaryFilesVal is not null) {
             r["secondaryFiles"] = secondaryFilesVal;
         }
 
         var formatVal = ISavable.SaveRelativeUri(format, true,
             relativeUris, null, (string)baseUrl!);
-        if(formatVal is not None) {
+        if(formatVal is not null) {
             r["format"] = formatVal;
         }
 
         var contentsVal = ISavable.Save(contents, false, (string)baseUrl!, relativeUris);
-        if(contentsVal is not None) {
+        if(contentsVal is not null) {
             r["contents"] = contentsVal;
         }
 

@@ -102,7 +102,7 @@ public class CommandLineBindable : ICommandLineBindable, ISavable {
         }
 
         var inputBindingVal = ISavable.Save(inputBinding, false, (string)baseUrl!, relativeUris);
-        if(inputBindingVal is not None) {
+        if(inputBindingVal is not null) {
             r["inputBinding"] = inputBindingVal;
         }
 

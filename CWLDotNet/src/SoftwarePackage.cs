@@ -197,18 +197,18 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
         }
 
         var package_Val = ISavable.Save(package_, false, (string)baseUrl!, relativeUris);
-        if(package_Val is not None) {
+        if(package_Val is not null) {
             r["package"] = package_Val;
         }
 
         var versionVal = ISavable.Save(version, false, (string)baseUrl!, relativeUris);
-        if(versionVal is not None) {
+        if(versionVal is not null) {
             r["version"] = versionVal;
         }
 
         var specsVal = ISavable.SaveRelativeUri(specs, false,
             relativeUris, null, (string)baseUrl!);
-        if(specsVal is not None) {
+        if(specsVal is not null) {
             r["specs"] = specsVal;
         }
 

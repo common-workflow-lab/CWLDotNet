@@ -123,12 +123,12 @@ public class RecordSchema : IRecordSchema, ISavable {
         }
 
         var fieldsVal = ISavable.Save(fields, false, (string)baseUrl!, relativeUris);
-        if(fieldsVal is not None) {
+        if(fieldsVal is not null) {
             r["fields"] = fieldsVal;
         }
 
         var typeVal = ISavable.Save(type, false, (string)baseUrl!, relativeUris);
-        if(typeVal is not None) {
+        if(typeVal is not null) {
             r["type"] = typeVal;
         }
 

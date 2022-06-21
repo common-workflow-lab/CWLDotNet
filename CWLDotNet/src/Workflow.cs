@@ -462,60 +462,60 @@ public class Workflow : IWorkflow, ISavable {
 
         var idVal = ISavable.SaveRelativeUri(id, true,
             relativeUris, null, (string)baseUrl!);
-        if(idVal is not None) {
+        if(idVal is not null) {
             r["id"] = idVal;
         }
 
         var class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)this.id.AsT1!);
-        if(class_Val is not None) {
+        if(class_Val is not null) {
             r["class"] = class_Val;
         }
 
         var labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
-        if(labelVal is not None) {
+        if(labelVal is not null) {
             r["label"] = labelVal;
         }
 
         var docVal = ISavable.Save(doc, false, (string)this.id.AsT1!, relativeUris);
-        if(docVal is not None) {
+        if(docVal is not null) {
             r["doc"] = docVal;
         }
 
         var inputsVal = ISavable.Save(inputs, false, (string)this.id.AsT1!, relativeUris);
-        if(inputsVal is not None) {
+        if(inputsVal is not null) {
             r["inputs"] = inputsVal;
         }
 
         var outputsVal = ISavable.Save(outputs, false, (string)this.id.AsT1!, relativeUris);
-        if(outputsVal is not None) {
+        if(outputsVal is not null) {
             r["outputs"] = outputsVal;
         }
 
         var requirementsVal = ISavable.Save(requirements, false, (string)this.id.AsT1!, relativeUris);
-        if(requirementsVal is not None) {
+        if(requirementsVal is not null) {
             r["requirements"] = requirementsVal;
         }
 
         var hintsVal = ISavable.Save(hints, false, (string)this.id.AsT1!, relativeUris);
-        if(hintsVal is not None) {
+        if(hintsVal is not null) {
             r["hints"] = hintsVal;
         }
 
         var cwlVersionVal = ISavable.SaveRelativeUri(cwlVersion, false,
             relativeUris, null, (string)this.id.AsT1!);
-        if(cwlVersionVal is not None) {
+        if(cwlVersionVal is not null) {
             r["cwlVersion"] = cwlVersionVal;
         }
 
         var intentVal = ISavable.SaveRelativeUri(intent, true,
             relativeUris, null, (string)this.id.AsT1!);
-        if(intentVal is not None) {
+        if(intentVal is not null) {
             r["intent"] = intentVal;
         }
 
         var stepsVal = ISavable.Save(steps, false, (string)this.id.AsT1!, relativeUris);
-        if(stepsVal is not None) {
+        if(stepsVal is not null) {
             r["steps"] = stepsVal;
         }
 

@@ -217,28 +217,28 @@ public class OutputEnumSchema : IOutputEnumSchema, ISavable {
 
         var nameVal = ISavable.SaveRelativeUri(name, true,
             relativeUris, null, (string)baseUrl!);
-        if(nameVal is not None) {
+        if(nameVal is not null) {
             r["name"] = nameVal;
         }
 
         var symbolsVal = ISavable.SaveRelativeUri(symbols, true,
             relativeUris, null, (string)this.name.AsT1!);
-        if(symbolsVal is not None) {
+        if(symbolsVal is not null) {
             r["symbols"] = symbolsVal;
         }
 
         var typeVal = ISavable.Save(type, false, (string)this.name.AsT1!, relativeUris);
-        if(typeVal is not None) {
+        if(typeVal is not null) {
             r["type"] = typeVal;
         }
 
         var labelVal = ISavable.Save(label, false, (string)this.name.AsT1!, relativeUris);
-        if(labelVal is not None) {
+        if(labelVal is not null) {
             r["label"] = labelVal;
         }
 
         var docVal = ISavable.Save(doc, false, (string)this.name.AsT1!, relativeUris);
-        if(docVal is not None) {
+        if(docVal is not null) {
             r["doc"] = docVal;
         }
 

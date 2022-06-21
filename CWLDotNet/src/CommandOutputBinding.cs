@@ -270,22 +270,22 @@ public class CommandOutputBinding : ICommandOutputBinding, ISavable {
         }
 
         var loadContentsVal = ISavable.Save(loadContents, false, (string)baseUrl!, relativeUris);
-        if(loadContentsVal is not None) {
+        if(loadContentsVal is not null) {
             r["loadContents"] = loadContentsVal;
         }
 
         var loadListingVal = ISavable.Save(loadListing, false, (string)baseUrl!, relativeUris);
-        if(loadListingVal is not None) {
+        if(loadListingVal is not null) {
             r["loadListing"] = loadListingVal;
         }
 
         var globVal = ISavable.Save(glob, false, (string)baseUrl!, relativeUris);
-        if(globVal is not None) {
+        if(globVal is not null) {
             r["glob"] = globVal;
         }
 
         var outputEvalVal = ISavable.Save(outputEval, false, (string)baseUrl!, relativeUris);
-        if(outputEvalVal is not None) {
+        if(outputEvalVal is not null) {
             r["outputEval"] = outputEvalVal;
         }
 

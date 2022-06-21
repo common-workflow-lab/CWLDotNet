@@ -326,37 +326,37 @@ public class DockerRequirement : IDockerRequirement, ISavable {
 
         var class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not None) {
+        if(class_Val is not null) {
             r["class"] = class_Val;
         }
 
         var dockerPullVal = ISavable.Save(dockerPull, false, (string)baseUrl!, relativeUris);
-        if(dockerPullVal is not None) {
+        if(dockerPullVal is not null) {
             r["dockerPull"] = dockerPullVal;
         }
 
         var dockerLoadVal = ISavable.Save(dockerLoad, false, (string)baseUrl!, relativeUris);
-        if(dockerLoadVal is not None) {
+        if(dockerLoadVal is not null) {
             r["dockerLoad"] = dockerLoadVal;
         }
 
         var dockerFileVal = ISavable.Save(dockerFile, false, (string)baseUrl!, relativeUris);
-        if(dockerFileVal is not None) {
+        if(dockerFileVal is not null) {
             r["dockerFile"] = dockerFileVal;
         }
 
         var dockerImportVal = ISavable.Save(dockerImport, false, (string)baseUrl!, relativeUris);
-        if(dockerImportVal is not None) {
+        if(dockerImportVal is not null) {
             r["dockerImport"] = dockerImportVal;
         }
 
         var dockerImageIdVal = ISavable.Save(dockerImageId, false, (string)baseUrl!, relativeUris);
-        if(dockerImageIdVal is not None) {
+        if(dockerImageIdVal is not null) {
             r["dockerImageId"] = dockerImageIdVal;
         }
 
         var dockerOutputDirectoryVal = ISavable.Save(dockerOutputDirectory, false, (string)baseUrl!, relativeUris);
-        if(dockerOutputDirectoryVal is not None) {
+        if(dockerOutputDirectoryVal is not null) {
             r["dockerOutputDirectory"] = dockerOutputDirectoryVal;
         }
 

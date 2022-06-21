@@ -226,17 +226,17 @@ public class Dirent : IDirent, ISavable {
         }
 
         var entrynameVal = ISavable.Save(entryname, false, (string)baseUrl!, relativeUris);
-        if(entrynameVal is not None) {
+        if(entrynameVal is not null) {
             r["entryname"] = entrynameVal;
         }
 
         var entryVal = ISavable.Save(entry, false, (string)baseUrl!, relativeUris);
-        if(entryVal is not None) {
+        if(entryVal is not null) {
             r["entry"] = entryVal;
         }
 
         var writableVal = ISavable.Save(writable, false, (string)baseUrl!, relativeUris);
-        if(writableVal is not None) {
+        if(writableVal is not null) {
             r["writable"] = writableVal;
         }
 

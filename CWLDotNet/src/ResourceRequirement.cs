@@ -405,47 +405,47 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
 
         var class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not None) {
+        if(class_Val is not null) {
             r["class"] = class_Val;
         }
 
         var coresMinVal = ISavable.Save(coresMin, false, (string)baseUrl!, relativeUris);
-        if(coresMinVal is not None) {
+        if(coresMinVal is not null) {
             r["coresMin"] = coresMinVal;
         }
 
         var coresMaxVal = ISavable.Save(coresMax, false, (string)baseUrl!, relativeUris);
-        if(coresMaxVal is not None) {
+        if(coresMaxVal is not null) {
             r["coresMax"] = coresMaxVal;
         }
 
         var ramMinVal = ISavable.Save(ramMin, false, (string)baseUrl!, relativeUris);
-        if(ramMinVal is not None) {
+        if(ramMinVal is not null) {
             r["ramMin"] = ramMinVal;
         }
 
         var ramMaxVal = ISavable.Save(ramMax, false, (string)baseUrl!, relativeUris);
-        if(ramMaxVal is not None) {
+        if(ramMaxVal is not null) {
             r["ramMax"] = ramMaxVal;
         }
 
         var tmpdirMinVal = ISavable.Save(tmpdirMin, false, (string)baseUrl!, relativeUris);
-        if(tmpdirMinVal is not None) {
+        if(tmpdirMinVal is not null) {
             r["tmpdirMin"] = tmpdirMinVal;
         }
 
         var tmpdirMaxVal = ISavable.Save(tmpdirMax, false, (string)baseUrl!, relativeUris);
-        if(tmpdirMaxVal is not None) {
+        if(tmpdirMaxVal is not null) {
             r["tmpdirMax"] = tmpdirMaxVal;
         }
 
         var outdirMinVal = ISavable.Save(outdirMin, false, (string)baseUrl!, relativeUris);
-        if(outdirMinVal is not None) {
+        if(outdirMinVal is not null) {
             r["outdirMin"] = outdirMinVal;
         }
 
         var outdirMaxVal = ISavable.Save(outdirMax, false, (string)baseUrl!, relativeUris);
-        if(outdirMaxVal is not None) {
+        if(outdirMaxVal is not null) {
             r["outdirMax"] = outdirMaxVal;
         }
 

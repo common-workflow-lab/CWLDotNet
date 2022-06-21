@@ -120,12 +120,12 @@ public class EnumSchema : IEnumSchema, ISavable {
 
         var symbolsVal = ISavable.SaveRelativeUri(symbols, true,
             relativeUris, null, (string)baseUrl!);
-        if(symbolsVal is not None) {
+        if(symbolsVal is not null) {
             r["symbols"] = symbolsVal;
         }
 
         var typeVal = ISavable.Save(type, false, (string)baseUrl!, relativeUris);
-        if(typeVal is not None) {
+        if(typeVal is not null) {
             r["type"] = typeVal;
         }
 

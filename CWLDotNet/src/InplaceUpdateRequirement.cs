@@ -145,12 +145,12 @@ public class InplaceUpdateRequirement : IInplaceUpdateRequirement, ISavable {
 
         var class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not None) {
+        if(class_Val is not null) {
             r["class"] = class_Val;
         }
 
         var inplaceUpdateVal = ISavable.Save(inplaceUpdate, false, (string)baseUrl!, relativeUris);
-        if(inplaceUpdateVal is not None) {
+        if(inplaceUpdateVal is not null) {
             r["inplaceUpdate"] = inplaceUpdateVal;
         }
 

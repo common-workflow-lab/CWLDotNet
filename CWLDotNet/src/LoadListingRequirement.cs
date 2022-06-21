@@ -124,12 +124,12 @@ public class LoadListingRequirement : ILoadListingRequirement, ISavable {
 
         var class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not None) {
+        if(class_Val is not null) {
             r["class"] = class_Val;
         }
 
         var loadListingVal = ISavable.Save(loadListing, false, (string)baseUrl!, relativeUris);
-        if(loadListingVal is not None) {
+        if(loadListingVal is not null) {
             r["loadListing"] = loadListingVal;
         }
 

@@ -191,12 +191,12 @@ public class SecondaryFileSchema : ISecondaryFileSchema, ISavable {
         }
 
         var patternVal = ISavable.Save(pattern, false, (string)baseUrl!, relativeUris);
-        if(patternVal is not None) {
+        if(patternVal is not null) {
             r["pattern"] = patternVal;
         }
 
         var requiredVal = ISavable.Save(required, false, (string)baseUrl!, relativeUris);
-        if(requiredVal is not None) {
+        if(requiredVal is not null) {
             r["required"] = requiredVal;
         }
 

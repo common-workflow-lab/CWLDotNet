@@ -116,12 +116,12 @@ public class ArraySchema : IArraySchema, ISavable {
         }
 
         var itemsVal = ISavable.Save(items, false, (string)baseUrl!, relativeUris);
-        if(itemsVal is not None) {
+        if(itemsVal is not null) {
             r["items"] = itemsVal;
         }
 
         var typeVal = ISavable.Save(type, false, (string)baseUrl!, relativeUris);
-        if(typeVal is not None) {
+        if(typeVal is not null) {
             r["type"] = typeVal;
         }
 

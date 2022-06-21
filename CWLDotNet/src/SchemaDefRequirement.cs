@@ -131,12 +131,12 @@ public class SchemaDefRequirement : ISchemaDefRequirement, ISavable {
 
         var class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not None) {
+        if(class_Val is not null) {
             r["class"] = class_Val;
         }
 
         var typesVal = ISavable.Save(types, false, (string)baseUrl!, relativeUris);
-        if(typesVal is not None) {
+        if(typesVal is not null) {
             r["types"] = typesVal;
         }
 

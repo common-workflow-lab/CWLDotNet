@@ -501,48 +501,48 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
 
         var idVal = ISavable.SaveRelativeUri(id, true,
             relativeUris, null, (string)baseUrl!);
-        if(idVal is not None) {
+        if(idVal is not null) {
             r["id"] = idVal;
         }
 
         var sourceVal = ISavable.SaveRelativeUri(source, false,
             relativeUris, 2, (string)this.id.AsT1!);
-        if(sourceVal is not None) {
+        if(sourceVal is not null) {
             r["source"] = sourceVal;
         }
 
         var linkMergeVal = ISavable.Save(linkMerge, false, (string)this.id.AsT1!, relativeUris);
-        if(linkMergeVal is not None) {
+        if(linkMergeVal is not null) {
             r["linkMerge"] = linkMergeVal;
         }
 
         var pickValueVal = ISavable.Save(pickValue, false, (string)this.id.AsT1!, relativeUris);
-        if(pickValueVal is not None) {
+        if(pickValueVal is not null) {
             r["pickValue"] = pickValueVal;
         }
 
         var loadContentsVal = ISavable.Save(loadContents, false, (string)this.id.AsT1!, relativeUris);
-        if(loadContentsVal is not None) {
+        if(loadContentsVal is not null) {
             r["loadContents"] = loadContentsVal;
         }
 
         var loadListingVal = ISavable.Save(loadListing, false, (string)this.id.AsT1!, relativeUris);
-        if(loadListingVal is not None) {
+        if(loadListingVal is not null) {
             r["loadListing"] = loadListingVal;
         }
 
         var labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
-        if(labelVal is not None) {
+        if(labelVal is not null) {
             r["label"] = labelVal;
         }
 
         var default_Val = ISavable.Save(default_, false, (string)this.id.AsT1!, relativeUris);
-        if(default_Val is not None) {
+        if(default_Val is not null) {
             r["default"] = default_Val;
         }
 
         var valueFromVal = ISavable.Save(valueFrom, false, (string)this.id.AsT1!, relativeUris);
-        if(valueFromVal is not None) {
+        if(valueFromVal is not null) {
             r["valueFrom"] = valueFromVal;
         }
 

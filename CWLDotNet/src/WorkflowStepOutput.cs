@@ -129,7 +129,7 @@ public class WorkflowStepOutput : IWorkflowStepOutput, ISavable {
 
         var idVal = ISavable.SaveRelativeUri(id, true,
             relativeUris, null, (string)baseUrl!);
-        if(idVal is not None) {
+        if(idVal is not null) {
             r["id"] = idVal;
         }
 

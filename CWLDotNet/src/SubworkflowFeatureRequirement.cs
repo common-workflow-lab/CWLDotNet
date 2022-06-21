@@ -100,7 +100,7 @@ public class SubworkflowFeatureRequirement : ISubworkflowFeatureRequirement, ISa
 
         var class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not None) {
+        if(class_Val is not null) {
             r["class"] = class_Val;
         }
 
