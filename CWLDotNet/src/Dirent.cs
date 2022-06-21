@@ -203,15 +203,15 @@ public class Dirent : IDirent, ISavable {
           entry: entry
         );
 
-        if(entryname != null) 
+        if(entryname != null)
         {
             res__.entryname = entryname;
-        }                      
+        }
         
-        if(writable != null) 
+        if(writable != null)
         {
             res__.writable = writable;
-        }                      
+        }
         
         return res__;
     }

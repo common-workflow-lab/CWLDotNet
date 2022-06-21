@@ -371,50 +371,50 @@ public class WorkflowOutputParameter : IWorkflowOutputParameter, ISavable {
           type: type
         );
 
-        if(id != null) 
+        if(id != null)
         {
             res__.id = id;
-        }                      
+        }
         
-        if(label != null) 
+        if(label != null)
         {
             res__.label = label;
-        }                      
+        }
         
-        if(secondaryFiles != null) 
+        if(secondaryFiles != null)
         {
             res__.secondaryFiles = secondaryFiles;
-        }                      
+        }
         
-        if(streamable != null) 
+        if(streamable != null)
         {
             res__.streamable = streamable;
-        }                      
+        }
         
-        if(doc != null) 
+        if(doc != null)
         {
             res__.doc = doc;
-        }                      
+        }
         
-        if(format != null) 
+        if(format != null)
         {
             res__.format = format;
-        }                      
+        }
         
-        if(outputSource != null) 
+        if(outputSource != null)
         {
             res__.outputSource = outputSource;
-        }                      
+        }
         
-        if(linkMerge != null) 
+        if(linkMerge != null)
         {
             res__.linkMerge = linkMerge;
-        }                      
+        }
         
-        if(pickValue != null) 
+        if(pickValue != null)
         {
             res__.pickValue = pickValue;
-        }                      
+        }
         
         return res__;
     }

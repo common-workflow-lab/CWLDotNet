@@ -173,10 +173,10 @@ public class SecondaryFileSchema : ISecondaryFileSchema, ISavable {
           pattern: pattern
         );
 
-        if(required != null) 
+        if(required != null)
         {
             res__.required = required;
-        }                      
+        }
         
         return res__;
     }

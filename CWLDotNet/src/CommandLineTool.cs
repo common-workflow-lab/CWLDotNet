@@ -570,80 +570,80 @@ public class CommandLineTool : ICommandLineTool, ISavable {
           outputs: outputs
         );
 
-        if(id != null) 
+        if(id != null)
         {
             res__.id = id;
-        }                      
+        }
         
-        if(label != null) 
+        if(label != null)
         {
             res__.label = label;
-        }                      
+        }
         
-        if(doc != null) 
+        if(doc != null)
         {
             res__.doc = doc;
-        }                      
+        }
         
-        if(requirements != null) 
+        if(requirements != null)
         {
             res__.requirements = requirements;
-        }                      
+        }
         
-        if(hints != null) 
+        if(hints != null)
         {
             res__.hints = hints;
-        }                      
+        }
         
-        if(cwlVersion != null) 
+        if(cwlVersion != null)
         {
             res__.cwlVersion = cwlVersion;
-        }                      
+        }
         
-        if(intent != null) 
+        if(intent != null)
         {
             res__.intent = intent;
-        }                      
+        }
         
-        if(baseCommand != null) 
+        if(baseCommand != null)
         {
             res__.baseCommand = baseCommand;
-        }                      
+        }
         
-        if(arguments_ != null) 
+        if(arguments_ != null)
         {
             res__.arguments_ = arguments_;
-        }                      
+        }
         
-        if(stdin != null) 
+        if(stdin != null)
         {
             res__.stdin = stdin;
-        }                      
+        }
         
-        if(stderr != null) 
+        if(stderr != null)
         {
             res__.stderr = stderr;
-        }                      
+        }
         
-        if(stdout != null) 
+        if(stdout != null)
         {
             res__.stdout = stdout;
-        }                      
+        }
         
-        if(successCodes != null) 
+        if(successCodes != null)
         {
             res__.successCodes = successCodes;
-        }                      
+        }
         
-        if(temporaryFailCodes != null) 
+        if(temporaryFailCodes != null)
         {
             res__.temporaryFailCodes = temporaryFailCodes;
-        }                      
+        }
         
-        if(permanentFailCodes != null) 
+        if(permanentFailCodes != null)
         {
             res__.permanentFailCodes = permanentFailCodes;
-        }                      
+        }
         
         return res__;
     }

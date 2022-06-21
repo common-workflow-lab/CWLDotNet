@@ -87,10 +87,10 @@ public class InputBinding : IInputBinding, ISavable {
           loadingOptions: loadingOptions
         );
 
-        if(loadContents != null) 
+        if(loadContents != null)
         {
             res__.loadContents = loadContents;
-        }                      
+        }
         
         return res__;
     }

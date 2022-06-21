@@ -105,10 +105,10 @@ public class RecordSchema : IRecordSchema, ISavable {
           type: type
         );
 
-        if(fields != null) 
+        if(fields != null)
         {
             res__.fields = fields;
-        }                      
+        }
         
         return res__;
     }

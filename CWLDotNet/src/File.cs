@@ -513,60 +513,60 @@ public class File : IFile, ISavable {
           class_: class_
         );
 
-        if(location != null) 
+        if(location != null)
         {
             res__.location = location;
-        }                      
+        }
         
-        if(path != null) 
+        if(path != null)
         {
             res__.path = path;
-        }                      
+        }
         
-        if(basename != null) 
+        if(basename != null)
         {
             res__.basename = basename;
-        }                      
+        }
         
-        if(dirname != null) 
+        if(dirname != null)
         {
             res__.dirname = dirname;
-        }                      
+        }
         
-        if(nameroot != null) 
+        if(nameroot != null)
         {
             res__.nameroot = nameroot;
-        }                      
+        }
         
-        if(nameext != null) 
+        if(nameext != null)
         {
             res__.nameext = nameext;
-        }                      
+        }
         
-        if(checksum != null) 
+        if(checksum != null)
         {
             res__.checksum = checksum;
-        }                      
+        }
         
-        if(size != null) 
+        if(size != null)
         {
             res__.size = size;
-        }                      
+        }
         
-        if(secondaryFiles != null) 
+        if(secondaryFiles != null)
         {
             res__.secondaryFiles = secondaryFiles;
-        }                      
+        }
         
-        if(format != null) 
+        if(format != null)
         {
             res__.format = format;
-        }                      
+        }
         
-        if(contents != null) 
+        if(contents != null)
         {
             res__.contents = contents;
-        }                      
+        }
         
         return res__;
     }

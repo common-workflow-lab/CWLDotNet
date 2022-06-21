@@ -424,45 +424,45 @@ public class WorkflowStep : IWorkflowStep, ISavable {
           run: run
         );
 
-        if(id != null) 
+        if(id != null)
         {
             res__.id = id;
-        }                      
+        }
         
-        if(label != null) 
+        if(label != null)
         {
             res__.label = label;
-        }                      
+        }
         
-        if(doc != null) 
+        if(doc != null)
         {
             res__.doc = doc;
-        }                      
+        }
         
-        if(requirements != null) 
+        if(requirements != null)
         {
             res__.requirements = requirements;
-        }                      
+        }
         
-        if(hints != null) 
+        if(hints != null)
         {
             res__.hints = hints;
-        }                      
+        }
         
-        if(when != null) 
+        if(when != null)
         {
             res__.when = when;
-        }                      
+        }
         
-        if(scatter != null) 
+        if(scatter != null)
         {
             res__.scatter = scatter;
-        }                      
+        }
         
-        if(scatterMethod != null) 
+        if(scatterMethod != null)
         {
             res__.scatterMethod = scatterMethod;
-        }                      
+        }
         
         return res__;
     }

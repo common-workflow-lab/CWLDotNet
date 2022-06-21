@@ -378,50 +378,50 @@ public class CommandInputRecordField : ICommandInputRecordField, ISavable {
           type: type
         );
 
-        if(name != null) 
+        if(name != null)
         {
             res__.name = name;
-        }                      
+        }
         
-        if(doc != null) 
+        if(doc != null)
         {
             res__.doc = doc;
-        }                      
+        }
         
-        if(label != null) 
+        if(label != null)
         {
             res__.label = label;
-        }                      
+        }
         
-        if(secondaryFiles != null) 
+        if(secondaryFiles != null)
         {
             res__.secondaryFiles = secondaryFiles;
-        }                      
+        }
         
-        if(streamable != null) 
+        if(streamable != null)
         {
             res__.streamable = streamable;
-        }                      
+        }
         
-        if(format != null) 
+        if(format != null)
         {
             res__.format = format;
-        }                      
+        }
         
-        if(loadContents != null) 
+        if(loadContents != null)
         {
             res__.loadContents = loadContents;
-        }                      
+        }
         
-        if(loadListing != null) 
+        if(loadListing != null)
         {
             res__.loadListing = loadListing;
-        }                      
+        }
         
-        if(inputBinding != null) 
+        if(inputBinding != null)
         {
             res__.inputBinding = inputBinding;
-        }                      
+        }
         
         return res__;
     }

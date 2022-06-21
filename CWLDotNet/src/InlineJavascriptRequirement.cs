@@ -113,10 +113,10 @@ public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavabl
           class_: class_
         );
 
-        if(expressionLib != null) 
+        if(expressionLib != null)
         {
             res__.expressionLib = expressionLib;
-        }                      
+        }
         
         return res__;
     }

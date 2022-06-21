@@ -211,25 +211,25 @@ public class CommandInputEnumSchema : ICommandInputEnumSchema, ISavable {
           type: type
         );
 
-        if(name != null) 
+        if(name != null)
         {
             res__.name = name;
-        }                      
+        }
         
-        if(label != null) 
+        if(label != null)
         {
             res__.label = label;
-        }                      
+        }
         
-        if(doc != null) 
+        if(doc != null)
         {
             res__.doc = doc;
-        }                      
+        }
         
-        if(inputBinding != null) 
+        if(inputBinding != null)
         {
             res__.inputBinding = inputBinding;
-        }                      
+        }
         
         return res__;
     }

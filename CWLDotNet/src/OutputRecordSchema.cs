@@ -190,25 +190,25 @@ public class OutputRecordSchema : IOutputRecordSchema, ISavable {
           type: type
         );
 
-        if(name != null) 
+        if(name != null)
         {
             res__.name = name;
-        }                      
+        }
         
-        if(fields != null) 
+        if(fields != null)
         {
             res__.fields = fields;
-        }                      
+        }
         
-        if(label != null) 
+        if(label != null)
         {
             res__.label = label;
-        }                      
+        }
         
-        if(doc != null) 
+        if(doc != null)
         {
             res__.doc = doc;
-        }                      
+        }
         
         return res__;
     }

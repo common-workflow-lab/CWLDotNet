@@ -237,25 +237,25 @@ public class CommandOutputBinding : ICommandOutputBinding, ISavable {
           loadingOptions: loadingOptions
         );
 
-        if(loadContents != null) 
+        if(loadContents != null)
         {
             res__.loadContents = loadContents;
-        }                      
+        }
         
-        if(loadListing != null) 
+        if(loadListing != null)
         {
             res__.loadListing = loadListing;
-        }                      
+        }
         
-        if(glob != null) 
+        if(glob != null)
         {
             res__.glob = glob;
-        }                      
+        }
         
-        if(outputEval != null) 
+        if(outputEval != null)
         {
             res__.outputEval = outputEval;
-        }                      
+        }
         
         return res__;
     }

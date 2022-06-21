@@ -344,40 +344,40 @@ public class Operation : IOperation, ISavable {
           outputs: outputs
         );
 
-        if(id != null) 
+        if(id != null)
         {
             res__.id = id;
-        }                      
+        }
         
-        if(label != null) 
+        if(label != null)
         {
             res__.label = label;
-        }                      
+        }
         
-        if(doc != null) 
+        if(doc != null)
         {
             res__.doc = doc;
-        }                      
+        }
         
-        if(requirements != null) 
+        if(requirements != null)
         {
             res__.requirements = requirements;
-        }                      
+        }
         
-        if(hints != null) 
+        if(hints != null)
         {
             res__.hints = hints;
-        }                      
+        }
         
-        if(cwlVersion != null) 
+        if(cwlVersion != null)
         {
             res__.cwlVersion = cwlVersion;
-        }                      
+        }
         
-        if(intent != null) 
+        if(intent != null)
         {
             res__.intent = intent;
-        }                      
+        }
         
         return res__;
     }

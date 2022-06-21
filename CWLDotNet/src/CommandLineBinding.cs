@@ -296,40 +296,40 @@ public class CommandLineBinding : ICommandLineBinding, ISavable {
           loadingOptions: loadingOptions
         );
 
-        if(loadContents != null) 
+        if(loadContents != null)
         {
             res__.loadContents = loadContents;
-        }                      
+        }
         
-        if(position != null) 
+        if(position != null)
         {
             res__.position = position;
-        }                      
+        }
         
-        if(prefix != null) 
+        if(prefix != null)
         {
             res__.prefix = prefix;
-        }                      
+        }
         
-        if(separate != null) 
+        if(separate != null)
         {
             res__.separate = separate;
-        }                      
+        }
         
-        if(itemSeparator != null) 
+        if(itemSeparator != null)
         {
             res__.itemSeparator = itemSeparator;
-        }                      
+        }
         
-        if(valueFrom != null) 
+        if(valueFrom != null)
         {
             res__.valueFrom = valueFrom;
-        }                      
+        }
         
-        if(shellQuote != null) 
+        if(shellQuote != null)
         {
             res__.shellQuote = shellQuote;
-        }                      
+        }
         
         return res__;
     }

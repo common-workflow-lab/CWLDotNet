@@ -313,40 +313,40 @@ public class CommandOutputParameter : ICommandOutputParameter, ISavable {
           type: type
         );
 
-        if(id != null) 
+        if(id != null)
         {
             res__.id = id;
-        }                      
+        }
         
-        if(label != null) 
+        if(label != null)
         {
             res__.label = label;
-        }                      
+        }
         
-        if(secondaryFiles != null) 
+        if(secondaryFiles != null)
         {
             res__.secondaryFiles = secondaryFiles;
-        }                      
+        }
         
-        if(streamable != null) 
+        if(streamable != null)
         {
             res__.streamable = streamable;
-        }                      
+        }
         
-        if(doc != null) 
+        if(doc != null)
         {
             res__.doc = doc;
-        }                      
+        }
         
-        if(format != null) 
+        if(format != null)
         {
             res__.format = format;
-        }                      
+        }
         
-        if(outputBinding != null) 
+        if(outputBinding != null)
         {
             res__.outputBinding = outputBinding;
-        }                      
+        }
         
         return res__;
     }

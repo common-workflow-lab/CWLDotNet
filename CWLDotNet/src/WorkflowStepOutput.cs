@@ -110,10 +110,10 @@ public class WorkflowStepOutput : IWorkflowStepOutput, ISavable {
           loadingOptions: loadingOptions
         );
 
-        if(id != null) 
+        if(id != null)
         {
             res__.id = id;
-        }                      
+        }
         
         return res__;
     }

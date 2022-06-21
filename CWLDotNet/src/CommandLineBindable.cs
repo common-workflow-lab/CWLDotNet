@@ -84,10 +84,10 @@ public class CommandLineBindable : ICommandLineBindable, ISavable {
           loadingOptions: loadingOptions
         );
 
-        if(inputBinding != null) 
+        if(inputBinding != null)
         {
             res__.inputBinding = inputBinding;
-        }                      
+        }
         
         return res__;
     }

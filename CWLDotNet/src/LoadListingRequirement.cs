@@ -105,10 +105,10 @@ public class LoadListingRequirement : ILoadListingRequirement, ISavable {
           class_: class_
         );
 
-        if(loadListing != null) 
+        if(loadListing != null)
         {
             res__.loadListing = loadListing;
-        }                      
+        }
         
         return res__;
     }

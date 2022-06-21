@@ -266,25 +266,25 @@ public class Directory : IDirectory, ISavable {
           class_: class_
         );
 
-        if(location != null) 
+        if(location != null)
         {
             res__.location = location;
-        }                      
+        }
         
-        if(path != null) 
+        if(path != null)
         {
             res__.path = path;
-        }                      
+        }
         
-        if(basename != null) 
+        if(basename != null)
         {
             res__.basename = basename;
-        }                      
+        }
         
-        if(listing != null) 
+        if(listing != null)
         {
             res__.listing = listing;
-        }                      
+        }
         
         return res__;
     }

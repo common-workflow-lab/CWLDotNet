@@ -442,50 +442,50 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
           loadingOptions: loadingOptions
         );
 
-        if(id != null) 
+        if(id != null)
         {
             res__.id = id;
-        }                      
+        }
         
-        if(source != null) 
+        if(source != null)
         {
             res__.source = source;
-        }                      
+        }
         
-        if(linkMerge != null) 
+        if(linkMerge != null)
         {
             res__.linkMerge = linkMerge;
-        }                      
+        }
         
-        if(pickValue != null) 
+        if(pickValue != null)
         {
             res__.pickValue = pickValue;
-        }                      
+        }
         
-        if(loadContents != null) 
+        if(loadContents != null)
         {
             res__.loadContents = loadContents;
-        }                      
+        }
         
-        if(loadListing != null) 
+        if(loadListing != null)
         {
             res__.loadListing = loadListing;
-        }                      
+        }
         
-        if(label != null) 
+        if(label != null)
         {
             res__.label = label;
-        }                      
+        }
         
-        if(default_ != null) 
+        if(default_ != null)
         {
             res__.default_ = default_;
-        }                      
+        }
         
-        if(valueFrom != null) 
+        if(valueFrom != null)
         {
             res__.valueFrom = valueFrom;
-        }                      
+        }
         
         return res__;
     }

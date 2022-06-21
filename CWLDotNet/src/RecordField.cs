@@ -148,15 +148,15 @@ public class RecordField : IRecordField, ISavable {
           type: type
         );
 
-        if(name != null) 
+        if(name != null)
         {
             res__.name = name;
-        }                      
+        }
         
-        if(doc != null) 
+        if(doc != null)
         {
             res__.doc = doc;
-        }                      
+        }
         
         return res__;
     }

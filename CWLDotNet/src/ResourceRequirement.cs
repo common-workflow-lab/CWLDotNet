@@ -351,45 +351,45 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
           class_: class_
         );
 
-        if(coresMin != null) 
+        if(coresMin != null)
         {
             res__.coresMin = coresMin;
-        }                      
+        }
         
-        if(coresMax != null) 
+        if(coresMax != null)
         {
             res__.coresMax = coresMax;
-        }                      
+        }
         
-        if(ramMin != null) 
+        if(ramMin != null)
         {
             res__.ramMin = ramMin;
-        }                      
+        }
         
-        if(ramMax != null) 
+        if(ramMax != null)
         {
             res__.ramMax = ramMax;
-        }                      
+        }
         
-        if(tmpdirMin != null) 
+        if(tmpdirMin != null)
         {
             res__.tmpdirMin = tmpdirMin;
-        }                      
+        }
         
-        if(tmpdirMax != null) 
+        if(tmpdirMax != null)
         {
             res__.tmpdirMax = tmpdirMax;
-        }                      
+        }
         
-        if(outdirMin != null) 
+        if(outdirMin != null)
         {
             res__.outdirMin = outdirMin;
-        }                      
+        }
         
-        if(outdirMax != null) 
+        if(outdirMax != null)
         {
             res__.outdirMax = outdirMax;
-        }                      
+        }
         
         return res__;
     }

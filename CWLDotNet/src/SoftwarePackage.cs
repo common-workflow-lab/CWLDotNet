@@ -174,15 +174,15 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
           package_: package_
         );
 
-        if(version != null) 
+        if(version != null)
         {
             res__.version = version;
-        }                      
+        }
         
-        if(specs != null) 
+        if(specs != null)
         {
             res__.specs = specs;
-        }                      
+        }
         
         return res__;
     }

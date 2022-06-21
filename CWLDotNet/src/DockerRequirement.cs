@@ -282,35 +282,35 @@ public class DockerRequirement : IDockerRequirement, ISavable {
           class_: class_
         );
 
-        if(dockerPull != null) 
+        if(dockerPull != null)
         {
             res__.dockerPull = dockerPull;
-        }                      
+        }
         
-        if(dockerLoad != null) 
+        if(dockerLoad != null)
         {
             res__.dockerLoad = dockerLoad;
-        }                      
+        }
         
-        if(dockerFile != null) 
+        if(dockerFile != null)
         {
             res__.dockerFile = dockerFile;
-        }                      
+        }
         
-        if(dockerImport != null) 
+        if(dockerImport != null)
         {
             res__.dockerImport = dockerImport;
-        }                      
+        }
         
-        if(dockerImageId != null) 
+        if(dockerImageId != null)
         {
             res__.dockerImageId = dockerImageId;
-        }                      
+        }
         
-        if(dockerOutputDirectory != null) 
+        if(dockerOutputDirectory != null)
         {
             res__.dockerOutputDirectory = dockerOutputDirectory;
-        }                      
+        }
         
         return res__;
     }
