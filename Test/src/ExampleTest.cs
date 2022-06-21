@@ -10,7 +10,7 @@ using System.Collections.Generic;
 public class ExampleTest
 {
     [TestMethod]
-    public void few()
+    public void TestLoad()
     {
             var x = @"#!/usr/bin/env cwl-runner
 

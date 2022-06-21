@@ -44,11 +44,10 @@ public interface ISavable
             return r;
         }
 
-        if (val is IDictionary)
+        if (val is IDictionary valDict)
         {
-            Dictionary<object, object> valDict = (Dictionary<object, object>)val;
             Dictionary<object, object> newDict = new();
-            foreach (KeyValuePair<object, object> entry in valDict)
+            foreach (DictionaryEntry entry in valDict)
             {
                 newDict[entry.Key] = Save(entry.Value, false, baseurl, relativeUris);
             }
@@ -85,11 +84,10 @@ public interface ISavable
             return uri;
         }
 
-        if (uri is IList)
+        if (uri is IList uriList)
         {
-            List<object> uriList = (List<object>)uri;
             List<object> r = new();
-            foreach (object v in uriList)
+            foreach (var v in uriList)
             {
                 r.Add(SaveRelativeUri(v, scopedId, relativeUris, refScope, baseUrl));
             }
@@ -99,9 +97,9 @@ public interface ISavable
         else if (uri is string uriString)
         {
             Uri uriSplit = new(uriString, UriKind.RelativeOrAbsolute);
-            Uri baseSplit = new(baseUrl, UriKind.RelativeOrAbsolute);
-            if ((!uriSplit.IsAbsoluteUri && !baseSplit.IsAbsoluteUri) || (uriSplit.IsAbsoluteUri && uriSplit.AbsolutePath.Length < 1)
-                || (baseSplit.IsAbsoluteUri && baseSplit.AbsolutePath.Length < 1))
+            Uri baseSplit = new(baseUrl,  UriKind.RelativeOrAbsolute);
+            if (((uriSplit.IsAbsoluteUri && uriSplit.AbsolutePath.Length < 1)
+                && (baseSplit.IsAbsoluteUri && baseSplit.AbsolutePath.Length < 1)))
             {
                 throw new ValidationException("Uri or baseurl need to contain a path");
             }

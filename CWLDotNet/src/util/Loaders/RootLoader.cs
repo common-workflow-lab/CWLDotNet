@@ -4,7 +4,7 @@ using OneOf;
 
 public class RootLoader
 {
-    public static OneOf<CommandLineTool , ExpressionTool , Workflow , Operation , List<OneOf<CommandLineTool , ExpressionTool , Workflow , Operation>>> LoadDocument(in object doc, in string baseUri_, in LoadingOptions loadingOptions_)
+    public static OneOf<CommandLineTool , ExpressionTool , Workflow , Operation , List<OneOf<CommandLineTool , ExpressionTool , Workflow , Operation>>> LoadDocument(in Dictionary<object,object> doc, in string baseUri_, in LoadingOptions loadingOptions_)
     {
         string baseUri = EnsureBaseUri(baseUri_);
         LoadingOptions loadingOptions = loadingOptions_;
@@ -13,7 +13,7 @@ public class RootLoader
         {
             loadingOptions = new LoadingOptions(fileUri: baseUri);
         }
-        dynamic outDoc = LoaderInstances.union_of_CommandLineToolLoader_or_ExpressionToolLoader_or_WorkflowLoader_or_OperationLoader_or_array_of_union_of_CommandLineToolLoader_or_ExpressionToolLoader_or_WorkflowLoader_or_OperationLoader.Load(doc, baseUri, loadingOptions, baseUri);
+        dynamic outDoc = LoaderInstances.union_of_CommandLineToolLoader_or_ExpressionToolLoader_or_WorkflowLoader_or_OperationLoader_or_array_of_union_of_CommandLineToolLoader_or_ExpressionToolLoader_or_WorkflowLoader_or_OperationLoader.DocumentLoad(doc, baseUri, loadingOptions);
         return outDoc;
     }
 
@@ -29,7 +29,7 @@ public class RootLoader
         IDeserializer deserializer = new DeserializerBuilder().WithNodeTypeResolver(new ScalarNodeTypeResolver()).Build();
         object? yamlObject = deserializer.Deserialize(new StringReader(doc));
         loadingOptions.idx.Add(uri, yamlObject!);
-        return LoadDocument(yamlObject!, uri, loadingOptions);
+        return LoadDocument((Dictionary<object,object>) yamlObject!, uri, loadingOptions);
     }
 
     static string EnsureBaseUri(in string baseUri_)

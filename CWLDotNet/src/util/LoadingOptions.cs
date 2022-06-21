@@ -4,7 +4,7 @@ public class LoadingOptions
 {
     public IFetcher fetcher;
     public string? fileUri;
-    public Dictionary<string, string> namespaces;
+    public Dictionary<string, string>? namespaces;
     public List<string>? schemas;
     public Dictionary<string, object> idx;
     public Dictionary<string, string> vocab;
@@ -20,7 +20,7 @@ public class LoadingOptions
         LoadingOptions? copyFrom = null)
     {
         this.fileUri = fileUri;
-        this.namespaces = namespaces ?? new Dictionary<string, string>();
+        this.namespaces = namespaces;
         this.schemas = schemas;
         this.idx = idx ?? new Dictionary<string, object>();
 
@@ -60,11 +60,11 @@ public class LoadingOptions
         this.vocab = Vocabs.Vocab;
         this.rvocab = Vocabs.Rvocab;
 
-        if (namespaces != null)
+        if (this.namespaces != null)
         {
             this.vocab = new Dictionary<string, string>(Vocabs.Vocab);
             this.rvocab = new Dictionary<string, string>(Vocabs.Rvocab);
-            foreach (KeyValuePair<string, string> namespaceEntry in namespaces)
+            foreach (KeyValuePair<string, string> namespaceEntry in this.namespaces)
             {
                 this.vocab.Add(namespaceEntry.Key, namespaceEntry.Value);
                 this.rvocab.Add(namespaceEntry.Value, namespaceEntry.Key);
@@ -87,7 +87,7 @@ public class LoadingOptions
 
         if (vocab.Count > 0 && url.Contains(':'))
         {
-            string prefix = url.Split(":", 1)[0];
+            string prefix = url.Split(":")[0];
             if (vocab.ContainsKey(prefix))
             {
                 url = string.Concat(vocab[prefix], url.AsSpan(prefix.Length + 1));
@@ -108,7 +108,7 @@ public class LoadingOptions
             string frg;
             if (splitbase.Fragment.Length > 0)
             {
-                frg = splitbase.FragmentWithoutFragmentation() + "/" + split.AbsolutePath;
+                frg = splitbase.FragmentWithoutFragmentation() + "/" + (split.IsAbsoluteUri ? split.AbsolutePath : url);
             }
             else
             {
@@ -174,10 +174,11 @@ public class LoadingOptions
                 {
                     return rvocab[url];
                 }
-                else
-                {
-                    throw new ValidationException($"Term '{url}' not in vocabulary");
-                }
+
+            }
+            else
+            {
+                throw new ValidationException($"Term '{url}' not in vocabulary");
             }
         }
 
