@@ -8,5 +8,6 @@ namespace CWLDotNet;
 /// execution environment of the tool.  See `EnvironmentDef` for details.
 /// 
 /// </summary>
-public interface IEnvVarRequirement : IProcessRequirement {
+public interface IEnvVarRequirement : IProcessRequirement
+{
 }

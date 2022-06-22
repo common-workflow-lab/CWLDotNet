@@ -4,6 +4,7 @@ public class Directory_class : IEnumClass<Directory_class>
 {
     private string _Name;
     private static readonly List<Directory_class> members = new();
+
     public static readonly Directory_class DIRECTORY =
                             new("Directory");
 

@@ -12,5 +12,6 @@ namespace CWLDotNet;
 /// the CWL core specification.
 /// 
 /// </summary>
-public interface IProcessRequirement  {
+public interface IProcessRequirement
+{
 }

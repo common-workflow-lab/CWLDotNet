@@ -4,6 +4,7 @@ public class stderr : IEnumClass<stderr>
 {
     private string _Name;
     private static readonly List<stderr> members = new();
+
     public static readonly stderr STDERR =
                             new("stderr");
 

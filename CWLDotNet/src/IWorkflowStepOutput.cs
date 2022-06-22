@@ -14,5 +14,6 @@ namespace CWLDotNet;
 /// to connect the output value to downstream parameters.
 /// 
 /// </summary>
-public interface IWorkflowStepOutput : IIdentified {
+public interface IWorkflowStepOutput : IIdentified
+{
 }

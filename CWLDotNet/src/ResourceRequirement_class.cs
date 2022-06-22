@@ -4,6 +4,7 @@ public class ResourceRequirement_class : IEnumClass<ResourceRequirement_class>
 {
     private string _Name;
     private static readonly List<ResourceRequirement_class> members = new();
+
     public static readonly ResourceRequirement_class RESOURCEREQUIREMENT =
                             new("ResourceRequirement");
 

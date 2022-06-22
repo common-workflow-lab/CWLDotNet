@@ -13,5 +13,6 @@ namespace CWLDotNet;
 /// the use of shell metacharacters such as `|` for pipes.
 /// 
 /// </summary>
-public interface IShellCommandRequirement : IProcessRequirement {
+public interface IShellCommandRequirement : IProcessRequirement
+{
 }

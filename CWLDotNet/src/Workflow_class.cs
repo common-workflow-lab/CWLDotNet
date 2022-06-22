@@ -4,6 +4,7 @@ public class Workflow_class : IEnumClass<Workflow_class>
 {
     private string _Name;
     private static readonly List<Workflow_class> members = new();
+
     public static readonly Workflow_class WORKFLOW =
                             new("Workflow");
 

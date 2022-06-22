@@ -36,5 +36,6 @@ namespace CWLDotNet;
 /// not be enabled.
 /// 
 /// </summary>
-public interface IInplaceUpdateRequirement : IProcessRequirement {
+public interface IInplaceUpdateRequirement : IProcessRequirement
+{
 }

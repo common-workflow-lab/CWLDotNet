@@ -4,6 +4,7 @@ public class InlineJavascriptRequirement_class : IEnumClass<InlineJavascriptRequ
 {
     private string _Name;
     private static readonly List<InlineJavascriptRequirement_class> members = new();
+
     public static readonly InlineJavascriptRequirement_class INLINEJAVASCRIPTREQUIREMENT =
                             new("InlineJavascriptRequirement");
 

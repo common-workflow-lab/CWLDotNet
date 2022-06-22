@@ -72,5 +72,6 @@ namespace CWLDotNet;
 /// the same value for `location`.
 /// 
 /// </summary>
-public interface IFile  {
+public interface IFile
+{
 }

@@ -49,5 +49,6 @@ namespace CWLDotNet;
 /// or in any entry in `secondaryFiles` in the listing) is a fatal error.
 /// 
 /// </summary>
-public interface IDirectory  {
+public interface IDirectory
+{
 }

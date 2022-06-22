@@ -16,5 +16,6 @@ namespace CWLDotNet;
 ///   - secondaryFiles
 /// 
 /// </summary>
-public interface ICommandOutputBinding : ILoadContents {
+public interface ICommandOutputBinding : ILoadContents
+{
 }

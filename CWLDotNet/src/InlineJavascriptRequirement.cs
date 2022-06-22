@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -11,7 +12,8 @@ namespace CWLDotNet;
 /// interpolatation.
 /// 
 /// </summary>
-public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavable {
+public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -27,10 +29,11 @@ public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavabl
     /// be called from CWL expressions.
     /// 
     /// </summary>
-    public OneOf<None , List<string>> expressionLib { get; set; }
+    public OneOf<None, List<string>> expressionLib { get; set; }
 
 
-    public InlineJavascriptRequirement (InlineJavascriptRequirement_class? class_ = null, OneOf<None , List<string>> expressionLib = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public InlineJavascriptRequirement(InlineJavascriptRequirement_class? class_ = null, OneOf<None, List<string>> expressionLib = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.class_ = class_ ?? InlineJavascriptRequirement_class.INLINEJAVASCRIPTREQUIREMENT;
@@ -50,7 +53,7 @@ public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavabl
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic class_ = default!;
         try
         {
@@ -108,16 +111,16 @@ public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavabl
             throw new ValidationException("", errors);
         }
 
-        var res__ = new InlineJavascriptRequirement(
+        InlineJavascriptRequirement res__ = new(
           loadingOptions: loadingOptions,
           class_: class_
         );
 
-        if(expressionLib != null)
+        if (expressionLib != null)
         {
             res__.expressionLib = expressionLib;
         }
-        
+
         return res__;
     }
 
@@ -130,14 +133,16 @@ public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavabl
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var class_Val = ISavable.SaveRelativeUri(class_, false,
+        object? class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not null) {
+        if (class_Val is not null)
+        {
             r["class"] = class_Val;
         }
 
-        var expressionLibVal = ISavable.Save(expressionLib, false, (string)baseUrl!, relativeUris);
-        if(expressionLibVal is not null) {
+        object? expressionLibVal = ISavable.Save(expressionLib, false, (string)baseUrl!, relativeUris);
+        if (expressionLibVal is not null)
+        {
             r["expressionLib"] = expressionLibVal;
         }
 
@@ -157,5 +162,5 @@ public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavabl
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "expressionLib" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "class", "expressionLib" };
 }

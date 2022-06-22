@@ -4,6 +4,7 @@ public class InitialWorkDirRequirement_class : IEnumClass<InitialWorkDirRequirem
 {
     private string _Name;
     private static readonly List<InitialWorkDirRequirement_class> members = new();
+
     public static readonly InitialWorkDirRequirement_class INITIALWORKDIRREQUIREMENT =
                             new("InitialWorkDirRequirement");
 

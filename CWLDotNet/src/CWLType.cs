@@ -4,6 +4,7 @@ public class CWLType : IEnumClass<CWLType>
 {
     private string _Name;
     private static readonly List<CWLType> members = new();
+
     public static readonly CWLType FILE =
                             new("File");
     public static readonly CWLType DIRECTORY =

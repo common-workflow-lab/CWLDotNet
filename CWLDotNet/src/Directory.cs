@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -51,7 +52,8 @@ namespace CWLDotNet;
 /// or in any entry in `secondaryFiles` in the listing) is a fatal error.
 /// 
 /// </summary>
-public class Directory : IDirectory, ISavable {
+public class Directory : IDirectory, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -80,7 +82,7 @@ public class Directory : IDirectory, ISavable {
     /// then follow the rules above.
     /// 
     /// </summary>
-    public OneOf<None , string> location { get; set; }
+    public OneOf<None, string> location { get; set; }
 
     /// <summary>
     /// The local path where the Directory is made available prior to executing a
@@ -98,7 +100,7 @@ public class Directory : IDirectory, ISavable {
     /// `permanentFailure`.
     /// 
     /// </summary>
-    public OneOf<None , string> path { get; set; }
+    public OneOf<None, string> path { get; set; }
 
     /// <summary>
     /// The base name of the directory, that is, the name of the file without any
@@ -114,7 +116,7 @@ public class Directory : IDirectory, ISavable {
     /// `basename`.
     /// 
     /// </summary>
-    public OneOf<None , string> basename { get; set; }
+    public OneOf<None, string> basename { get; set; }
 
     /// <summary>
     /// List of files or subdirectories contained in this directory.  The name
@@ -126,10 +128,11 @@ public class Directory : IDirectory, ISavable {
     /// merged.
     /// 
     /// </summary>
-    public OneOf<None , List<OneOf<File , Directory>>> listing { get; set; }
+    public OneOf<None, List<OneOf<File, Directory>>> listing { get; set; }
 
 
-    public Directory (Directory_class? class_ = null, OneOf<None , string> location = default, OneOf<None , string> path = default, OneOf<None , string> basename = default, OneOf<None , List<OneOf<File , Directory>>> listing = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public Directory(Directory_class? class_ = null, OneOf<None, string> location = default, OneOf<None, string> path = default, OneOf<None, string> basename = default, OneOf<None, List<OneOf<File, Directory>>> listing = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.class_ = class_ ?? Directory_class.DIRECTORY;
@@ -152,7 +155,7 @@ public class Directory : IDirectory, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic class_ = default!;
         try
         {
@@ -261,31 +264,31 @@ public class Directory : IDirectory, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new Directory(
+        Directory res__ = new(
           loadingOptions: loadingOptions,
           class_: class_
         );
 
-        if(location != null)
+        if (location != null)
         {
             res__.location = location;
         }
-        
-        if(path != null)
+
+        if (path != null)
         {
             res__.path = path;
         }
-        
-        if(basename != null)
+
+        if (basename != null)
         {
             res__.basename = basename;
         }
-        
-        if(listing != null)
+
+        if (listing != null)
         {
             res__.listing = listing;
         }
-        
+
         return res__;
     }
 
@@ -298,31 +301,36 @@ public class Directory : IDirectory, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var class_Val = ISavable.SaveRelativeUri(class_, false,
+        object? class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not null) {
+        if (class_Val is not null)
+        {
             r["class"] = class_Val;
         }
 
-        var locationVal = ISavable.SaveRelativeUri(location, false,
+        object? locationVal = ISavable.SaveRelativeUri(location, false,
             relativeUris, null, (string)baseUrl!);
-        if(locationVal is not null) {
+        if (locationVal is not null)
+        {
             r["location"] = locationVal;
         }
 
-        var pathVal = ISavable.SaveRelativeUri(path, false,
+        object? pathVal = ISavable.SaveRelativeUri(path, false,
             relativeUris, null, (string)baseUrl!);
-        if(pathVal is not null) {
+        if (pathVal is not null)
+        {
             r["path"] = pathVal;
         }
 
-        var basenameVal = ISavable.Save(basename, false, (string)baseUrl!, relativeUris);
-        if(basenameVal is not null) {
+        object? basenameVal = ISavable.Save(basename, false, (string)baseUrl!, relativeUris);
+        if (basenameVal is not null)
+        {
             r["basename"] = basenameVal;
         }
 
-        var listingVal = ISavable.Save(listing, false, (string)baseUrl!, relativeUris);
-        if(listingVal is not null) {
+        object? listingVal = ISavable.Save(listing, false, (string)baseUrl!, relativeUris);
+        if (listingVal is not null)
+        {
             r["listing"] = listingVal;
         }
 
@@ -342,5 +350,5 @@ public class Directory : IDirectory, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "location", "path", "basename", "listing" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "class", "location", "path", "basename", "listing" };
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -15,7 +16,8 @@ namespace CWLDotNet;
 /// wall-time for the execution of the command line itself.
 /// 
 /// </summary>
-public class ToolTimeLimit : IToolTimeLimit, ISavable {
+public class ToolTimeLimit : IToolTimeLimit, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -30,10 +32,11 @@ public class ToolTimeLimit : IToolTimeLimit, ISavable {
     /// time limit.  Negative time limits are an error.
     /// 
     /// </summary>
-    public OneOf<int , long , string> timelimit { get; set; }
+    public OneOf<int, long, string> timelimit { get; set; }
 
 
-    public ToolTimeLimit (OneOf<int , long , string> timelimit, ToolTimeLimit_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public ToolTimeLimit(OneOf<int, long, string> timelimit, ToolTimeLimit_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.class_ = class_ ?? ToolTimeLimit_class.TOOLTIMELIMIT;
@@ -53,7 +56,7 @@ public class ToolTimeLimit : IToolTimeLimit, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic class_ = default!;
         try
         {
@@ -108,7 +111,7 @@ public class ToolTimeLimit : IToolTimeLimit, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new ToolTimeLimit(
+        ToolTimeLimit res__ = new(
           loadingOptions: loadingOptions,
           class_: class_,
           timelimit: timelimit
@@ -126,14 +129,16 @@ public class ToolTimeLimit : IToolTimeLimit, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var class_Val = ISavable.SaveRelativeUri(class_, false,
+        object? class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not null) {
+        if (class_Val is not null)
+        {
             r["class"] = class_Val;
         }
 
-        var timelimitVal = ISavable.Save(timelimit, false, (string)baseUrl!, relativeUris);
-        if(timelimitVal is not null) {
+        object? timelimitVal = ISavable.Save(timelimit, false, (string)baseUrl!, relativeUris);
+        if (timelimitVal is not null)
+        {
             r["timelimit"] = timelimitVal;
         }
 
@@ -153,5 +158,5 @@ public class ToolTimeLimit : IToolTimeLimit, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "timelimit" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "class", "timelimit" };
 }

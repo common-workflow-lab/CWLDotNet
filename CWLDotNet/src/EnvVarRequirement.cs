@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -10,7 +11,8 @@ namespace CWLDotNet;
 /// execution environment of the tool.  See `EnvironmentDef` for details.
 /// 
 /// </summary>
-public class EnvVarRequirement : IEnvVarRequirement, ISavable {
+public class EnvVarRequirement : IEnvVarRequirement, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -26,7 +28,8 @@ public class EnvVarRequirement : IEnvVarRequirement, ISavable {
     public List<EnvironmentDef> envDef { get; set; }
 
 
-    public EnvVarRequirement (List<EnvironmentDef> envDef, EnvVarRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public EnvVarRequirement(List<EnvironmentDef> envDef, EnvVarRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.class_ = class_ ?? EnvVarRequirement_class.ENVVARREQUIREMENT;
@@ -46,7 +49,7 @@ public class EnvVarRequirement : IEnvVarRequirement, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic class_ = default!;
         try
         {
@@ -101,7 +104,7 @@ public class EnvVarRequirement : IEnvVarRequirement, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new EnvVarRequirement(
+        EnvVarRequirement res__ = new(
           loadingOptions: loadingOptions,
           class_: class_,
           envDef: envDef
@@ -119,14 +122,16 @@ public class EnvVarRequirement : IEnvVarRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var class_Val = ISavable.SaveRelativeUri(class_, false,
+        object? class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not null) {
+        if (class_Val is not null)
+        {
             r["class"] = class_Val;
         }
 
-        var envDefVal = ISavable.Save(envDef, false, (string)baseUrl!, relativeUris);
-        if(envDefVal is not null) {
+        object? envDefVal = ISavable.Save(envDef, false, (string)baseUrl!, relativeUris);
+        if (envDefVal is not null)
+        {
             r["envDef"] = envDefVal;
         }
 
@@ -146,5 +151,5 @@ public class EnvVarRequirement : IEnvVarRequirement, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "envDef" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "class", "envDef" };
 }

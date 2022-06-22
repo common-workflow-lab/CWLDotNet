@@ -4,6 +4,7 @@ public class PrimitiveType : IEnumClass<PrimitiveType>
 {
     private string _Name;
     private static readonly List<PrimitiveType> members = new();
+
     public static readonly PrimitiveType NULL =
                             new("null");
     public static readonly PrimitiveType BOOLEAN =

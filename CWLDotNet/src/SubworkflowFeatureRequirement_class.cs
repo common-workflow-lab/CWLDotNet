@@ -4,6 +4,7 @@ public class SubworkflowFeatureRequirement_class : IEnumClass<SubworkflowFeature
 {
     private string _Name;
     private static readonly List<SubworkflowFeatureRequirement_class> members = new();
+
     public static readonly SubworkflowFeatureRequirement_class SUBWORKFLOWFEATUREREQUIREMENT =
                             new("SubworkflowFeatureRequirement");
 

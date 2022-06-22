@@ -4,6 +4,7 @@ public class SchemaDefRequirement_class : IEnumClass<SchemaDefRequirement_class>
 {
     private string _Name;
     private static readonly List<SchemaDefRequirement_class> members = new();
+
     public static readonly SchemaDefRequirement_class SCHEMADEFREQUIREMENT =
                             new("SchemaDefRequirement");
 

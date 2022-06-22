@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -10,7 +11,8 @@ namespace CWLDotNet;
 /// of [WorkflowStepInput](#WorkflowStepInput).
 /// 
 /// </summary>
-public class StepInputExpressionRequirement : IStepInputExpressionRequirement, ISavable {
+public class StepInputExpressionRequirement : IStepInputExpressionRequirement, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -21,7 +23,8 @@ public class StepInputExpressionRequirement : IStepInputExpressionRequirement, I
     public StepInputExpressionRequirement_class class_ { get; set; }
 
 
-    public StepInputExpressionRequirement (StepInputExpressionRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public StepInputExpressionRequirement(StepInputExpressionRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.class_ = class_ ?? StepInputExpressionRequirement_class.STEPINPUTEXPRESSIONREQUIREMENT;
@@ -40,7 +43,7 @@ public class StepInputExpressionRequirement : IStepInputExpressionRequirement, I
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic class_ = default!;
         try
         {
@@ -81,7 +84,7 @@ public class StepInputExpressionRequirement : IStepInputExpressionRequirement, I
             throw new ValidationException("", errors);
         }
 
-        var res__ = new StepInputExpressionRequirement(
+        StepInputExpressionRequirement res__ = new(
           loadingOptions: loadingOptions,
           class_: class_
         );
@@ -98,9 +101,10 @@ public class StepInputExpressionRequirement : IStepInputExpressionRequirement, I
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var class_Val = ISavable.SaveRelativeUri(class_, false,
+        object? class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not null) {
+        if (class_Val is not null)
+        {
             r["class"] = class_Val;
         }
 
@@ -120,5 +124,5 @@ public class StepInputExpressionRequirement : IStepInputExpressionRequirement, I
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "class" };
 }

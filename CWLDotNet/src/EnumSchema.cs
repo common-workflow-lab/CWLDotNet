@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -9,7 +10,8 @@ namespace CWLDotNet;
 /// Define an enumerated type.
 /// 
 /// </summary>
-public class EnumSchema : IEnumSchema, ISavable {
+public class EnumSchema : IEnumSchema, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -25,7 +27,8 @@ public class EnumSchema : IEnumSchema, ISavable {
     public enum_d961d79c225752b9fadb617367615ab176b47d77 type { get; set; }
 
 
-    public EnumSchema (List<string> symbols, enum_d961d79c225752b9fadb617367615ab176b47d77 type, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public EnumSchema(List<string> symbols, enum_d961d79c225752b9fadb617367615ab176b47d77 type, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.symbols = symbols;
@@ -45,7 +48,7 @@ public class EnumSchema : IEnumSchema, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic symbols = default!;
         try
         {
@@ -100,7 +103,7 @@ public class EnumSchema : IEnumSchema, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new EnumSchema(
+        EnumSchema res__ = new(
           loadingOptions: loadingOptions,
           symbols: symbols,
           type: type
@@ -118,14 +121,16 @@ public class EnumSchema : IEnumSchema, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var symbolsVal = ISavable.SaveRelativeUri(symbols, true,
+        object? symbolsVal = ISavable.SaveRelativeUri(symbols, true,
             relativeUris, null, (string)baseUrl!);
-        if(symbolsVal is not null) {
+        if (symbolsVal is not null)
+        {
             r["symbols"] = symbolsVal;
         }
 
-        var typeVal = ISavable.Save(type, false, (string)baseUrl!, relativeUris);
-        if(typeVal is not null) {
+        object? typeVal = ISavable.Save(type, false, (string)baseUrl!, relativeUris);
+        if (typeVal is not null)
+        {
             r["type"] = typeVal;
         }
 
@@ -145,5 +150,5 @@ public class EnumSchema : IEnumSchema, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "symbols", "type" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "symbols", "type" };
 }

@@ -21,5 +21,6 @@ namespace CWLDotNet;
 /// address or the ability to accept inbound connections.
 /// 
 /// </summary>
-public interface INetworkAccess : IProcessRequirement {
+public interface INetworkAccess : IProcessRequirement
+{
 }

@@ -4,6 +4,7 @@ public class EnvVarRequirement_class : IEnumClass<EnvVarRequirement_class>
 {
     private string _Name;
     private static readonly List<EnvVarRequirement_class> members = new();
+
     public static readonly EnvVarRequirement_class ENVVARREQUIREMENT =
                             new("EnvVarRequirement");
 

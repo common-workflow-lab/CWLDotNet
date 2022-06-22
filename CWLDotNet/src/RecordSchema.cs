@@ -1,12 +1,14 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
 /// Auto-generated class implementation for https://w3id.org/cwl/salad#RecordSchema
 /// </summary>
-public class RecordSchema : IRecordSchema, ISavable {
+public class RecordSchema : IRecordSchema, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -14,7 +16,7 @@ public class RecordSchema : IRecordSchema, ISavable {
     /// <summary>
     /// Defines the fields of the record.
     /// </summary>
-    public OneOf<None , List<RecordField>> fields { get; set; }
+    public OneOf<None, List<RecordField>> fields { get; set; }
 
     /// <summary>
     /// Must be `record`
@@ -22,7 +24,8 @@ public class RecordSchema : IRecordSchema, ISavable {
     public enum_d9cba076fca539106791a4f46d198c7fcfbdb779 type { get; set; }
 
 
-    public RecordSchema (enum_d9cba076fca539106791a4f46d198c7fcfbdb779 type, OneOf<None , List<RecordField>> fields = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public RecordSchema(enum_d9cba076fca539106791a4f46d198c7fcfbdb779 type, OneOf<None, List<RecordField>> fields = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.fields = fields;
@@ -42,7 +45,7 @@ public class RecordSchema : IRecordSchema, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic fields = default!;
         if (doc_.ContainsKey("fields"))
         {
@@ -100,16 +103,16 @@ public class RecordSchema : IRecordSchema, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new RecordSchema(
+        RecordSchema res__ = new(
           loadingOptions: loadingOptions,
           type: type
         );
 
-        if(fields != null)
+        if (fields != null)
         {
             res__.fields = fields;
         }
-        
+
         return res__;
     }
 
@@ -122,13 +125,15 @@ public class RecordSchema : IRecordSchema, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var fieldsVal = ISavable.Save(fields, false, (string)baseUrl!, relativeUris);
-        if(fieldsVal is not null) {
+        object? fieldsVal = ISavable.Save(fields, false, (string)baseUrl!, relativeUris);
+        if (fieldsVal is not null)
+        {
             r["fields"] = fieldsVal;
         }
 
-        var typeVal = ISavable.Save(type, false, (string)baseUrl!, relativeUris);
-        if(typeVal is not null) {
+        object? typeVal = ISavable.Save(type, false, (string)baseUrl!, relativeUris);
+        if (typeVal is not null)
+        {
             r["type"] = typeVal;
         }
 
@@ -148,5 +153,5 @@ public class RecordSchema : IRecordSchema, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "fields", "type" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "fields", "type" };
 }

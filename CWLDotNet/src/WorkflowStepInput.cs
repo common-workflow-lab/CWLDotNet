@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -116,7 +117,8 @@ namespace CWLDotNet;
 ///    should be filtered out.
 /// 
 /// </summary>
-public class WorkflowStepInput : IWorkflowStepInput, ISavable {
+public class WorkflowStepInput : IWorkflowStepInput, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -124,27 +126,27 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
     /// <summary>
     /// The unique identifier for this object.
     /// </summary>
-    public OneOf<None , string> id { get; set; }
+    public OneOf<None, string> id { get; set; }
 
     /// <summary>
     /// Specifies one or more workflow parameters that will provide input to
     /// the underlying step parameter.
     /// 
     /// </summary>
-    public OneOf<None , string , List<string>> source { get; set; }
+    public OneOf<None, string, List<string>> source { get; set; }
 
     /// <summary>
     /// The method to use to merge multiple inbound links into a single array.
     /// If not specified, the default method is "merge_nested".
     /// 
     /// </summary>
-    public OneOf<None , LinkMergeMethod> linkMerge { get; set; }
+    public OneOf<None, LinkMergeMethod> linkMerge { get; set; }
 
     /// <summary>
     /// The method to use to choose non-null elements among multiple sources.
     /// 
     /// </summary>
-    public OneOf<None , PickValueMethod> pickValue { get; set; }
+    public OneOf<None, PickValueMethod> pickValue { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -157,7 +159,7 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
     /// the implementation must raise a fatal error.
     /// 
     /// </summary>
-    public OneOf<None , bool> loadContents { get; set; }
+    public OneOf<None, bool> loadContents { get; set; }
 
     /// <summary>
     /// Only valid when `type: Directory` or is an array of `items: Directory`.
@@ -172,12 +174,12 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
     ///   3. By default: `no_listing`
     /// 
     /// </summary>
-    public OneOf<None , LoadListingEnum> loadListing { get; set; }
+    public OneOf<None, LoadListingEnum> loadListing { get; set; }
 
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public OneOf<None , string> label { get; set; }
+    public OneOf<None, string> label { get; set; }
 
     /// <summary>
     /// The default value for this parameter to use if either there is no
@@ -185,7 +187,7 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
     /// default must be applied prior to scattering or evaluating `valueFrom`.
     /// 
     /// </summary>
-    public OneOf<None , object> default_ { get; set; }
+    public OneOf<None, object> default_ { get; set; }
 
     /// <summary>
     /// To use valueFrom, [StepInputExpressionRequirement](#StepInputExpressionRequirement) must
@@ -212,10 +214,11 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
     /// evaluation of `valueFrom` on other parameters.
     /// 
     /// </summary>
-    public OneOf<None , string> valueFrom { get; set; }
+    public OneOf<None, string> valueFrom { get; set; }
 
 
-    public WorkflowStepInput (OneOf<None , string> id = default, OneOf<None , string , List<string>> source = default, OneOf<None , LinkMergeMethod> linkMerge = default, OneOf<None , PickValueMethod> pickValue = default, OneOf<None , bool> loadContents = default, OneOf<None , LoadListingEnum> loadListing = default, OneOf<None , string> label = default, OneOf<None , object> default_ = default, OneOf<None , string> valueFrom = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public WorkflowStepInput(OneOf<None, string> id = default, OneOf<None, string, List<string>> source = default, OneOf<None, LinkMergeMethod> linkMerge = default, OneOf<None, PickValueMethod> pickValue = default, OneOf<None, bool> loadContents = default, OneOf<None, LoadListingEnum> loadListing = default, OneOf<None, string> label = default, OneOf<None, object> default_ = default, OneOf<None, string> valueFrom = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.id = id;
@@ -242,7 +245,7 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic id = default!;
         if (doc_.ContainsKey("id"))
         {
@@ -275,7 +278,7 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
         {
             baseUri = (string)id;
         }
-            
+
         dynamic source = default!;
         if (doc_.ContainsKey("source"))
         {
@@ -438,55 +441,55 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new WorkflowStepInput(
+        WorkflowStepInput res__ = new(
           loadingOptions: loadingOptions
         );
 
-        if(id != null)
+        if (id != null)
         {
             res__.id = id;
         }
-        
-        if(source != null)
+
+        if (source != null)
         {
             res__.source = source;
         }
-        
-        if(linkMerge != null)
+
+        if (linkMerge != null)
         {
             res__.linkMerge = linkMerge;
         }
-        
-        if(pickValue != null)
+
+        if (pickValue != null)
         {
             res__.pickValue = pickValue;
         }
-        
-        if(loadContents != null)
+
+        if (loadContents != null)
         {
             res__.loadContents = loadContents;
         }
-        
-        if(loadListing != null)
+
+        if (loadListing != null)
         {
             res__.loadListing = loadListing;
         }
-        
-        if(label != null)
+
+        if (label != null)
         {
             res__.label = label;
         }
-        
-        if(default_ != null)
+
+        if (default_ != null)
         {
             res__.default_ = default_;
         }
-        
-        if(valueFrom != null)
+
+        if (valueFrom != null)
         {
             res__.valueFrom = valueFrom;
         }
-        
+
         return res__;
     }
 
@@ -499,50 +502,59 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var idVal = ISavable.SaveRelativeUri(id, true,
+        object? idVal = ISavable.SaveRelativeUri(id, true,
             relativeUris, null, (string)baseUrl!);
-        if(idVal is not null) {
+        if (idVal is not null)
+        {
             r["id"] = idVal;
         }
 
-        var sourceVal = ISavable.SaveRelativeUri(source, false,
+        object? sourceVal = ISavable.SaveRelativeUri(source, false,
             relativeUris, 2, (string)this.id.AsT1!);
-        if(sourceVal is not null) {
+        if (sourceVal is not null)
+        {
             r["source"] = sourceVal;
         }
 
-        var linkMergeVal = ISavable.Save(linkMerge, false, (string)this.id.AsT1!, relativeUris);
-        if(linkMergeVal is not null) {
+        object? linkMergeVal = ISavable.Save(linkMerge, false, (string)this.id.AsT1!, relativeUris);
+        if (linkMergeVal is not null)
+        {
             r["linkMerge"] = linkMergeVal;
         }
 
-        var pickValueVal = ISavable.Save(pickValue, false, (string)this.id.AsT1!, relativeUris);
-        if(pickValueVal is not null) {
+        object? pickValueVal = ISavable.Save(pickValue, false, (string)this.id.AsT1!, relativeUris);
+        if (pickValueVal is not null)
+        {
             r["pickValue"] = pickValueVal;
         }
 
-        var loadContentsVal = ISavable.Save(loadContents, false, (string)this.id.AsT1!, relativeUris);
-        if(loadContentsVal is not null) {
+        object? loadContentsVal = ISavable.Save(loadContents, false, (string)this.id.AsT1!, relativeUris);
+        if (loadContentsVal is not null)
+        {
             r["loadContents"] = loadContentsVal;
         }
 
-        var loadListingVal = ISavable.Save(loadListing, false, (string)this.id.AsT1!, relativeUris);
-        if(loadListingVal is not null) {
+        object? loadListingVal = ISavable.Save(loadListing, false, (string)this.id.AsT1!, relativeUris);
+        if (loadListingVal is not null)
+        {
             r["loadListing"] = loadListingVal;
         }
 
-        var labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
-        if(labelVal is not null) {
+        object? labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
+        if (labelVal is not null)
+        {
             r["label"] = labelVal;
         }
 
-        var default_Val = ISavable.Save(default_, false, (string)this.id.AsT1!, relativeUris);
-        if(default_Val is not null) {
+        object? default_Val = ISavable.Save(default_, false, (string)this.id.AsT1!, relativeUris);
+        if (default_Val is not null)
+        {
             r["default"] = default_Val;
         }
 
-        var valueFromVal = ISavable.Save(valueFrom, false, (string)this.id.AsT1!, relativeUris);
-        if(valueFromVal is not null) {
+        object? valueFromVal = ISavable.Save(valueFrom, false, (string)this.id.AsT1!, relativeUris);
+        if (valueFromVal is not null)
+        {
             r["valueFrom"] = valueFromVal;
         }
 
@@ -562,5 +574,5 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "id", "source", "linkMerge", "pickValue", "loadContents", "loadListing", "label", "default", "valueFrom" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "id", "source", "linkMerge", "pickValue", "loadContents", "loadListing", "label", "default", "valueFrom" };
 }

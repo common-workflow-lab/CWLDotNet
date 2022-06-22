@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -59,7 +60,8 @@ namespace CWLDotNet;
 /// environment as defined by Docker.
 /// 
 /// </summary>
-public class DockerRequirement : IDockerRequirement, ISavable {
+public class DockerRequirement : IDockerRequirement, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -75,22 +77,22 @@ public class DockerRequirement : IDockerRequirement, ISavable {
     /// `dockerPull: ubuntu@sha256:45b23dee08af5e43a7fea6c4cf9c25ccf269ee113168c19722f87876677c5cb2`
     /// 
     /// </summary>
-    public OneOf<None , string> dockerPull { get; set; }
+    public OneOf<None, string> dockerPull { get; set; }
 
     /// <summary>
     /// Specify a HTTP URL from which to download a Docker image using `docker load`.
     /// </summary>
-    public OneOf<None , string> dockerLoad { get; set; }
+    public OneOf<None, string> dockerLoad { get; set; }
 
     /// <summary>
     /// Supply the contents of a Dockerfile which will be built using `docker build`.
     /// </summary>
-    public OneOf<None , string> dockerFile { get; set; }
+    public OneOf<None, string> dockerFile { get; set; }
 
     /// <summary>
     /// Provide HTTP URL to download and gunzip a Docker images using `docker import.
     /// </summary>
-    public OneOf<None , string> dockerImport { get; set; }
+    public OneOf<None, string> dockerImport { get; set; }
 
     /// <summary>
     /// The image id that will be used for `docker run`.  May be a
@@ -99,17 +101,18 @@ public class DockerRequirement : IDockerRequirement, ISavable {
     /// must be used.
     /// 
     /// </summary>
-    public OneOf<None , string> dockerImageId { get; set; }
+    public OneOf<None, string> dockerImageId { get; set; }
 
     /// <summary>
     /// Set the designated output directory to a specific location inside the
     /// Docker container.
     /// 
     /// </summary>
-    public OneOf<None , string> dockerOutputDirectory { get; set; }
+    public OneOf<None, string> dockerOutputDirectory { get; set; }
 
 
-    public DockerRequirement (DockerRequirement_class? class_ = null, OneOf<None , string> dockerPull = default, OneOf<None , string> dockerLoad = default, OneOf<None , string> dockerFile = default, OneOf<None , string> dockerImport = default, OneOf<None , string> dockerImageId = default, OneOf<None , string> dockerOutputDirectory = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public DockerRequirement(DockerRequirement_class? class_ = null, OneOf<None, string> dockerPull = default, OneOf<None, string> dockerLoad = default, OneOf<None, string> dockerFile = default, OneOf<None, string> dockerImport = default, OneOf<None, string> dockerImageId = default, OneOf<None, string> dockerOutputDirectory = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.class_ = class_ ?? DockerRequirement_class.DOCKERREQUIREMENT;
@@ -134,7 +137,7 @@ public class DockerRequirement : IDockerRequirement, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic class_ = default!;
         try
         {
@@ -277,41 +280,41 @@ public class DockerRequirement : IDockerRequirement, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new DockerRequirement(
+        DockerRequirement res__ = new(
           loadingOptions: loadingOptions,
           class_: class_
         );
 
-        if(dockerPull != null)
+        if (dockerPull != null)
         {
             res__.dockerPull = dockerPull;
         }
-        
-        if(dockerLoad != null)
+
+        if (dockerLoad != null)
         {
             res__.dockerLoad = dockerLoad;
         }
-        
-        if(dockerFile != null)
+
+        if (dockerFile != null)
         {
             res__.dockerFile = dockerFile;
         }
-        
-        if(dockerImport != null)
+
+        if (dockerImport != null)
         {
             res__.dockerImport = dockerImport;
         }
-        
-        if(dockerImageId != null)
+
+        if (dockerImageId != null)
         {
             res__.dockerImageId = dockerImageId;
         }
-        
-        if(dockerOutputDirectory != null)
+
+        if (dockerOutputDirectory != null)
         {
             res__.dockerOutputDirectory = dockerOutputDirectory;
         }
-        
+
         return res__;
     }
 
@@ -324,39 +327,46 @@ public class DockerRequirement : IDockerRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var class_Val = ISavable.SaveRelativeUri(class_, false,
+        object? class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not null) {
+        if (class_Val is not null)
+        {
             r["class"] = class_Val;
         }
 
-        var dockerPullVal = ISavable.Save(dockerPull, false, (string)baseUrl!, relativeUris);
-        if(dockerPullVal is not null) {
+        object? dockerPullVal = ISavable.Save(dockerPull, false, (string)baseUrl!, relativeUris);
+        if (dockerPullVal is not null)
+        {
             r["dockerPull"] = dockerPullVal;
         }
 
-        var dockerLoadVal = ISavable.Save(dockerLoad, false, (string)baseUrl!, relativeUris);
-        if(dockerLoadVal is not null) {
+        object? dockerLoadVal = ISavable.Save(dockerLoad, false, (string)baseUrl!, relativeUris);
+        if (dockerLoadVal is not null)
+        {
             r["dockerLoad"] = dockerLoadVal;
         }
 
-        var dockerFileVal = ISavable.Save(dockerFile, false, (string)baseUrl!, relativeUris);
-        if(dockerFileVal is not null) {
+        object? dockerFileVal = ISavable.Save(dockerFile, false, (string)baseUrl!, relativeUris);
+        if (dockerFileVal is not null)
+        {
             r["dockerFile"] = dockerFileVal;
         }
 
-        var dockerImportVal = ISavable.Save(dockerImport, false, (string)baseUrl!, relativeUris);
-        if(dockerImportVal is not null) {
+        object? dockerImportVal = ISavable.Save(dockerImport, false, (string)baseUrl!, relativeUris);
+        if (dockerImportVal is not null)
+        {
             r["dockerImport"] = dockerImportVal;
         }
 
-        var dockerImageIdVal = ISavable.Save(dockerImageId, false, (string)baseUrl!, relativeUris);
-        if(dockerImageIdVal is not null) {
+        object? dockerImageIdVal = ISavable.Save(dockerImageId, false, (string)baseUrl!, relativeUris);
+        if (dockerImageIdVal is not null)
+        {
             r["dockerImageId"] = dockerImageIdVal;
         }
 
-        var dockerOutputDirectoryVal = ISavable.Save(dockerOutputDirectory, false, (string)baseUrl!, relativeUris);
-        if(dockerOutputDirectoryVal is not null) {
+        object? dockerOutputDirectoryVal = ISavable.Save(dockerOutputDirectory, false, (string)baseUrl!, relativeUris);
+        if (dockerOutputDirectoryVal is not null)
+        {
             r["dockerOutputDirectory"] = dockerOutputDirectoryVal;
         }
 
@@ -376,5 +386,5 @@ public class DockerRequirement : IDockerRequirement, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "dockerPull", "dockerLoad", "dockerFile", "dockerImport", "dockerImageId", "dockerOutputDirectory" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "class", "dockerPull", "dockerLoad", "dockerFile", "dockerImport", "dockerImageId", "dockerOutputDirectory" };
 }

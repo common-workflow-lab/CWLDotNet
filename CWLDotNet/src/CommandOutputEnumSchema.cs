@@ -1,12 +1,14 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
 /// Auto-generated class implementation for https://w3id.org/cwl/cwl#CommandOutputEnumSchema
 /// </summary>
-public class CommandOutputEnumSchema : ICommandOutputEnumSchema, ISavable {
+public class CommandOutputEnumSchema : ICommandOutputEnumSchema, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -14,7 +16,7 @@ public class CommandOutputEnumSchema : ICommandOutputEnumSchema, ISavable {
     /// <summary>
     /// The identifier for this type
     /// </summary>
-    public OneOf<None , string> name { get; set; }
+    public OneOf<None, string> name { get; set; }
 
     /// <summary>
     /// Defines the set of valid symbols.
@@ -29,15 +31,16 @@ public class CommandOutputEnumSchema : ICommandOutputEnumSchema, ISavable {
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public OneOf<None , string> label { get; set; }
+    public OneOf<None, string> label { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
     /// </summary>
-    public OneOf<None , string , List<string>> doc { get; set; }
+    public OneOf<None, string, List<string>> doc { get; set; }
 
 
-    public CommandOutputEnumSchema (List<string> symbols, enum_d961d79c225752b9fadb617367615ab176b47d77 type, OneOf<None , string> name = default, OneOf<None , string> label = default, OneOf<None , string , List<string>> doc = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public CommandOutputEnumSchema(List<string> symbols, enum_d961d79c225752b9fadb617367615ab176b47d77 type, OneOf<None, string> name = default, OneOf<None, string> label = default, OneOf<None, string, List<string>> doc = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.name = name;
@@ -60,7 +63,7 @@ public class CommandOutputEnumSchema : ICommandOutputEnumSchema, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic name = default!;
         if (doc_.ContainsKey("name"))
         {
@@ -93,7 +96,7 @@ public class CommandOutputEnumSchema : ICommandOutputEnumSchema, ISavable {
         {
             baseUri = (string)name;
         }
-            
+
         dynamic symbols = default!;
         try
         {
@@ -182,27 +185,27 @@ public class CommandOutputEnumSchema : ICommandOutputEnumSchema, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new CommandOutputEnumSchema(
+        CommandOutputEnumSchema res__ = new(
           loadingOptions: loadingOptions,
           symbols: symbols,
           type: type
         );
 
-        if(name != null)
+        if (name != null)
         {
             res__.name = name;
         }
-        
-        if(label != null)
+
+        if (label != null)
         {
             res__.label = label;
         }
-        
-        if(doc != null)
+
+        if (doc != null)
         {
             res__.doc = doc;
         }
-        
+
         return res__;
     }
 
@@ -215,30 +218,35 @@ public class CommandOutputEnumSchema : ICommandOutputEnumSchema, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var nameVal = ISavable.SaveRelativeUri(name, true,
+        object? nameVal = ISavable.SaveRelativeUri(name, true,
             relativeUris, null, (string)baseUrl!);
-        if(nameVal is not null) {
+        if (nameVal is not null)
+        {
             r["name"] = nameVal;
         }
 
-        var symbolsVal = ISavable.SaveRelativeUri(symbols, true,
+        object? symbolsVal = ISavable.SaveRelativeUri(symbols, true,
             relativeUris, null, (string)this.name.AsT1!);
-        if(symbolsVal is not null) {
+        if (symbolsVal is not null)
+        {
             r["symbols"] = symbolsVal;
         }
 
-        var typeVal = ISavable.Save(type, false, (string)this.name.AsT1!, relativeUris);
-        if(typeVal is not null) {
+        object? typeVal = ISavable.Save(type, false, (string)this.name.AsT1!, relativeUris);
+        if (typeVal is not null)
+        {
             r["type"] = typeVal;
         }
 
-        var labelVal = ISavable.Save(label, false, (string)this.name.AsT1!, relativeUris);
-        if(labelVal is not null) {
+        object? labelVal = ISavable.Save(label, false, (string)this.name.AsT1!, relativeUris);
+        if (labelVal is not null)
+        {
             r["label"] = labelVal;
         }
 
-        var docVal = ISavable.Save(doc, false, (string)this.name.AsT1!, relativeUris);
-        if(docVal is not null) {
+        object? docVal = ISavable.Save(doc, false, (string)this.name.AsT1!, relativeUris);
+        if (docVal is not null)
+        {
             r["doc"] = docVal;
         }
 
@@ -258,5 +266,5 @@ public class CommandOutputEnumSchema : ICommandOutputEnumSchema, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "symbols", "type", "label", "doc", "name" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "symbols", "type", "label", "doc", "name" };
 }

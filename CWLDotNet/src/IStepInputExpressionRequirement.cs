@@ -8,5 +8,6 @@ namespace CWLDotNet;
 /// of [WorkflowStepInput](#WorkflowStepInput).
 /// 
 /// </summary>
-public interface IStepInputExpressionRequirement : IProcessRequirement {
+public interface IStepInputExpressionRequirement : IProcessRequirement
+{
 }

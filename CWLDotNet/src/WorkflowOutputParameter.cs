@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -15,7 +16,8 @@ namespace CWLDotNet;
 /// `linkMerge` and `pickValue`.
 /// 
 /// </summary>
-public class WorkflowOutputParameter : IWorkflowOutputParameter, ISavable {
+public class WorkflowOutputParameter : IWorkflowOutputParameter, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -23,12 +25,12 @@ public class WorkflowOutputParameter : IWorkflowOutputParameter, ISavable {
     /// <summary>
     /// The unique identifier for this object.
     /// </summary>
-    public OneOf<None , string> id { get; set; }
+    public OneOf<None, string> id { get; set; }
 
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public OneOf<None , string> label { get; set; }
+    public OneOf<None, string> label { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -74,7 +76,7 @@ public class WorkflowOutputParameter : IWorkflowOutputParameter, ISavable {
     ///   3. Append the remainder of the string to the end of the file path.
     /// 
     /// </summary>
-    public OneOf<None , SecondaryFileSchema , List<SecondaryFileSchema>> secondaryFiles { get; set; }
+    public OneOf<None, SecondaryFileSchema, List<SecondaryFileSchema>> secondaryFiles { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -85,12 +87,12 @@ public class WorkflowOutputParameter : IWorkflowOutputParameter, ISavable {
     /// pipe.  Default: `false`.
     /// 
     /// </summary>
-    public OneOf<None , bool> streamable { get; set; }
+    public OneOf<None, bool> streamable { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
     /// </summary>
-    public OneOf<None , string , List<string>> doc { get; set; }
+    public OneOf<None, string, List<string>> doc { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -99,36 +101,37 @@ public class WorkflowOutputParameter : IWorkflowOutputParameter, ISavable {
     /// File object.
     /// 
     /// </summary>
-    public OneOf<None , string> format { get; set; }
+    public OneOf<None, string> format { get; set; }
 
     /// <summary>
     /// Specifies one or more workflow parameters that supply the value of to
     /// the output parameter.
     /// 
     /// </summary>
-    public OneOf<None , string , List<string>> outputSource { get; set; }
+    public OneOf<None, string, List<string>> outputSource { get; set; }
 
     /// <summary>
     /// The method to use to merge multiple sources into a single array.
     /// If not specified, the default method is "merge_nested".
     /// 
     /// </summary>
-    public OneOf<None , LinkMergeMethod> linkMerge { get; set; }
+    public OneOf<None, LinkMergeMethod> linkMerge { get; set; }
 
     /// <summary>
     /// The method to use to choose non-null elements among multiple sources.
     /// 
     /// </summary>
-    public OneOf<None , PickValueMethod> pickValue { get; set; }
+    public OneOf<None, PickValueMethod> pickValue { get; set; }
 
     /// <summary>
     /// Specify valid types of data that may be assigned to this parameter.
     /// 
     /// </summary>
-    public OneOf<CWLType , OutputRecordSchema , OutputEnumSchema , OutputArraySchema , string , List<OneOf<CWLType , OutputRecordSchema , OutputEnumSchema , OutputArraySchema , string>>> type { get; set; }
+    public OneOf<CWLType, OutputRecordSchema, OutputEnumSchema, OutputArraySchema, string, List<OneOf<CWLType, OutputRecordSchema, OutputEnumSchema, OutputArraySchema, string>>> type { get; set; }
 
 
-    public WorkflowOutputParameter (OneOf<CWLType , OutputRecordSchema , OutputEnumSchema , OutputArraySchema , string , List<OneOf<CWLType , OutputRecordSchema , OutputEnumSchema , OutputArraySchema , string>>> type, OneOf<None , string> id = default, OneOf<None , string> label = default, OneOf<None , SecondaryFileSchema , List<SecondaryFileSchema>> secondaryFiles = default, OneOf<None , bool> streamable = default, OneOf<None , string , List<string>> doc = default, OneOf<None , string> format = default, OneOf<None , string , List<string>> outputSource = default, OneOf<None , LinkMergeMethod> linkMerge = default, OneOf<None , PickValueMethod> pickValue = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public WorkflowOutputParameter(OneOf<CWLType, OutputRecordSchema, OutputEnumSchema, OutputArraySchema, string, List<OneOf<CWLType, OutputRecordSchema, OutputEnumSchema, OutputArraySchema, string>>> type, OneOf<None, string> id = default, OneOf<None, string> label = default, OneOf<None, SecondaryFileSchema, List<SecondaryFileSchema>> secondaryFiles = default, OneOf<None, bool> streamable = default, OneOf<None, string, List<string>> doc = default, OneOf<None, string> format = default, OneOf<None, string, List<string>> outputSource = default, OneOf<None, LinkMergeMethod> linkMerge = default, OneOf<None, PickValueMethod> pickValue = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.id = id;
@@ -156,7 +159,7 @@ public class WorkflowOutputParameter : IWorkflowOutputParameter, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic id = default!;
         if (doc_.ContainsKey("id"))
         {
@@ -189,7 +192,7 @@ public class WorkflowOutputParameter : IWorkflowOutputParameter, ISavable {
         {
             baseUri = (string)id;
         }
-            
+
         dynamic label = default!;
         if (doc_.ContainsKey("label"))
         {
@@ -366,56 +369,56 @@ public class WorkflowOutputParameter : IWorkflowOutputParameter, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new WorkflowOutputParameter(
+        WorkflowOutputParameter res__ = new(
           loadingOptions: loadingOptions,
           type: type
         );
 
-        if(id != null)
+        if (id != null)
         {
             res__.id = id;
         }
-        
-        if(label != null)
+
+        if (label != null)
         {
             res__.label = label;
         }
-        
-        if(secondaryFiles != null)
+
+        if (secondaryFiles != null)
         {
             res__.secondaryFiles = secondaryFiles;
         }
-        
-        if(streamable != null)
+
+        if (streamable != null)
         {
             res__.streamable = streamable;
         }
-        
-        if(doc != null)
+
+        if (doc != null)
         {
             res__.doc = doc;
         }
-        
-        if(format != null)
+
+        if (format != null)
         {
             res__.format = format;
         }
-        
-        if(outputSource != null)
+
+        if (outputSource != null)
         {
             res__.outputSource = outputSource;
         }
-        
-        if(linkMerge != null)
+
+        if (linkMerge != null)
         {
             res__.linkMerge = linkMerge;
         }
-        
-        if(pickValue != null)
+
+        if (pickValue != null)
         {
             res__.pickValue = pickValue;
         }
-        
+
         return res__;
     }
 
@@ -428,56 +431,66 @@ public class WorkflowOutputParameter : IWorkflowOutputParameter, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var idVal = ISavable.SaveRelativeUri(id, true,
+        object? idVal = ISavable.SaveRelativeUri(id, true,
             relativeUris, null, (string)baseUrl!);
-        if(idVal is not null) {
+        if (idVal is not null)
+        {
             r["id"] = idVal;
         }
 
-        var labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
-        if(labelVal is not null) {
+        object? labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
+        if (labelVal is not null)
+        {
             r["label"] = labelVal;
         }
 
-        var secondaryFilesVal = ISavable.Save(secondaryFiles, false, (string)this.id.AsT1!, relativeUris);
-        if(secondaryFilesVal is not null) {
+        object? secondaryFilesVal = ISavable.Save(secondaryFiles, false, (string)this.id.AsT1!, relativeUris);
+        if (secondaryFilesVal is not null)
+        {
             r["secondaryFiles"] = secondaryFilesVal;
         }
 
-        var streamableVal = ISavable.Save(streamable, false, (string)this.id.AsT1!, relativeUris);
-        if(streamableVal is not null) {
+        object? streamableVal = ISavable.Save(streamable, false, (string)this.id.AsT1!, relativeUris);
+        if (streamableVal is not null)
+        {
             r["streamable"] = streamableVal;
         }
 
-        var docVal = ISavable.Save(doc, false, (string)this.id.AsT1!, relativeUris);
-        if(docVal is not null) {
+        object? docVal = ISavable.Save(doc, false, (string)this.id.AsT1!, relativeUris);
+        if (docVal is not null)
+        {
             r["doc"] = docVal;
         }
 
-        var formatVal = ISavable.SaveRelativeUri(format, true,
+        object? formatVal = ISavable.SaveRelativeUri(format, true,
             relativeUris, null, (string)this.id.AsT1!);
-        if(formatVal is not null) {
+        if (formatVal is not null)
+        {
             r["format"] = formatVal;
         }
 
-        var outputSourceVal = ISavable.SaveRelativeUri(outputSource, false,
+        object? outputSourceVal = ISavable.SaveRelativeUri(outputSource, false,
             relativeUris, 0, (string)this.id.AsT1!);
-        if(outputSourceVal is not null) {
+        if (outputSourceVal is not null)
+        {
             r["outputSource"] = outputSourceVal;
         }
 
-        var linkMergeVal = ISavable.Save(linkMerge, false, (string)this.id.AsT1!, relativeUris);
-        if(linkMergeVal is not null) {
+        object? linkMergeVal = ISavable.Save(linkMerge, false, (string)this.id.AsT1!, relativeUris);
+        if (linkMergeVal is not null)
+        {
             r["linkMerge"] = linkMergeVal;
         }
 
-        var pickValueVal = ISavable.Save(pickValue, false, (string)this.id.AsT1!, relativeUris);
-        if(pickValueVal is not null) {
+        object? pickValueVal = ISavable.Save(pickValue, false, (string)this.id.AsT1!, relativeUris);
+        if (pickValueVal is not null)
+        {
             r["pickValue"] = pickValueVal;
         }
 
-        var typeVal = ISavable.Save(type, false, (string)this.id.AsT1!, relativeUris);
-        if(typeVal is not null) {
+        object? typeVal = ISavable.Save(type, false, (string)this.id.AsT1!, relativeUris);
+        if (typeVal is not null)
+        {
             r["type"] = typeVal;
         }
 
@@ -497,5 +510,5 @@ public class WorkflowOutputParameter : IWorkflowOutputParameter, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "label", "secondaryFiles", "streamable", "doc", "id", "format", "outputSource", "linkMerge", "pickValue", "type" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "label", "secondaryFiles", "streamable", "doc", "id", "format", "outputSource", "linkMerge", "pickValue", "type" };
 }

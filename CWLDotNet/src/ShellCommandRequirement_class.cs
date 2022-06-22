@@ -4,6 +4,7 @@ public class ShellCommandRequirement_class : IEnumClass<ShellCommandRequirement_
 {
     private string _Name;
     private static readonly List<ShellCommandRequirement_class> members = new();
+
     public static readonly ShellCommandRequirement_class SHELLCOMMANDREQUIREMENT =
                             new("ShellCommandRequirement");
 

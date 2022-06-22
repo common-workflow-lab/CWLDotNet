@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -23,7 +24,8 @@ namespace CWLDotNet;
 /// address or the ability to accept inbound connections.
 /// 
 /// </summary>
-public class NetworkAccess : INetworkAccess, ISavable {
+public class NetworkAccess : INetworkAccess, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -32,10 +34,11 @@ public class NetworkAccess : INetworkAccess, ISavable {
     /// Always 'NetworkAccess'
     /// </summary>
     public NetworkAccess_class class_ { get; set; }
-    public OneOf<bool , string> networkAccess { get; set; }
+    public OneOf<bool, string> networkAccess { get; set; }
 
 
-    public NetworkAccess (OneOf<bool , string> networkAccess, NetworkAccess_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public NetworkAccess(OneOf<bool, string> networkAccess, NetworkAccess_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.class_ = class_ ?? NetworkAccess_class.NETWORKACCESS;
@@ -55,7 +58,7 @@ public class NetworkAccess : INetworkAccess, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic class_ = default!;
         try
         {
@@ -110,7 +113,7 @@ public class NetworkAccess : INetworkAccess, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new NetworkAccess(
+        NetworkAccess res__ = new(
           loadingOptions: loadingOptions,
           class_: class_,
           networkAccess: networkAccess
@@ -128,14 +131,16 @@ public class NetworkAccess : INetworkAccess, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var class_Val = ISavable.SaveRelativeUri(class_, false,
+        object? class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not null) {
+        if (class_Val is not null)
+        {
             r["class"] = class_Val;
         }
 
-        var networkAccessVal = ISavable.Save(networkAccess, false, (string)baseUrl!, relativeUris);
-        if(networkAccessVal is not null) {
+        object? networkAccessVal = ISavable.Save(networkAccess, false, (string)baseUrl!, relativeUris);
+        if (networkAccessVal is not null)
+        {
             r["networkAccess"] = networkAccessVal;
         }
 
@@ -155,5 +160,5 @@ public class NetworkAccess : INetworkAccess, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "networkAccess" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "class", "networkAccess" };
 }

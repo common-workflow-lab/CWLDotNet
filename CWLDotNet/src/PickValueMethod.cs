@@ -4,6 +4,7 @@ public class PickValueMethod : IEnumClass<PickValueMethod>
 {
     private string _Name;
     private static readonly List<PickValueMethod> members = new();
+
     public static readonly PickValueMethod FIRST_NON_NULL =
                             new("first_non_null");
     public static readonly PickValueMethod THE_ONLY_NON_NULL =

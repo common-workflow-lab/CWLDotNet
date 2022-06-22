@@ -4,6 +4,7 @@ public class StepInputExpressionRequirement_class : IEnumClass<StepInputExpressi
 {
     private string _Name;
     private static readonly List<StepInputExpressionRequirement_class> members = new();
+
     public static readonly StepInputExpressionRequirement_class STEPINPUTEXPRESSIONREQUIREMENT =
                             new("StepInputExpressionRequirement");
 

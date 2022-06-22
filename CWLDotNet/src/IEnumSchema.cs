@@ -7,5 +7,6 @@ namespace CWLDotNet;
 /// Define an enumerated type.
 /// 
 /// </summary>
-public interface IEnumSchema  {
+public interface IEnumSchema
+{
 }

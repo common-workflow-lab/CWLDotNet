@@ -7,5 +7,6 @@ namespace CWLDotNet;
 /// Describe an output parameter of an operation.
 /// 
 /// </summary>
-public interface IOperationOutputParameter : IOutputParameter {
+public interface IOperationOutputParameter : IOutputParameter
+{
 }

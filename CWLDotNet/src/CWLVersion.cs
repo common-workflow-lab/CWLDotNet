@@ -4,6 +4,7 @@ public class CWLVersion : IEnumClass<CWLVersion>
 {
     private string _Name;
     private static readonly List<CWLVersion> members = new();
+
     public static readonly CWLVersion DRAFT_2 =
                             new("draft-2");
     public static readonly CWLVersion DRAFT_3_DEV1 =

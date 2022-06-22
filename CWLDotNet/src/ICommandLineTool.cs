@@ -7,5 +7,6 @@ namespace CWLDotNet;
 /// This defines the schema of the CWL Command Line Tool Description document.
 /// 
 /// </summary>
-public interface ICommandLineTool : IProcess {
+public interface ICommandLineTool : IProcess
+{
 }

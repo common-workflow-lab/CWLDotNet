@@ -4,6 +4,7 @@ public class LoadListingRequirement_class : IEnumClass<LoadListingRequirement_cl
 {
     private string _Name;
     private static readonly List<LoadListingRequirement_class> members = new();
+
     public static readonly LoadListingRequirement_class LOADLISTINGREQUIREMENT =
                             new("LoadListingRequirement");
 

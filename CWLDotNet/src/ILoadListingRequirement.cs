@@ -8,5 +8,6 @@ namespace CWLDotNet;
 /// a Directory object for use by expressions.
 /// 
 /// </summary>
-public interface ILoadListingRequirement : IProcessRequirement {
+public interface ILoadListingRequirement : IProcessRequirement
+{
 }

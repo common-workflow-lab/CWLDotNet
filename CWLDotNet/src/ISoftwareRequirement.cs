@@ -8,5 +8,6 @@ namespace CWLDotNet;
 /// the defined process.
 /// 
 /// </summary>
-public interface ISoftwareRequirement : IProcessRequirement {
+public interface ISoftwareRequirement : IProcessRequirement
+{
 }

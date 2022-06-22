@@ -10,5 +10,6 @@ namespace CWLDotNet;
 /// directly executed.
 /// 
 /// </summary>
-public interface IProcess : IIdentified,ILabeled,IDocumented {
+public interface IProcess : IIdentified, ILabeled, IDocumented
+{
 }

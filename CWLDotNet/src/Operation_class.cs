@@ -4,6 +4,7 @@ public class Operation_class : IEnumClass<Operation_class>
 {
     private string _Name;
     private static readonly List<Operation_class> members = new();
+
     public static readonly Operation_class OPERATION =
                             new("Operation");
 

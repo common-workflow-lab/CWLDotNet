@@ -15,5 +15,6 @@ namespace CWLDotNet;
 /// is enabled by default.
 /// 
 /// </summary>
-public interface IWorkReuse : IProcessRequirement {
+public interface IWorkReuse : IProcessRequirement
+{
 }

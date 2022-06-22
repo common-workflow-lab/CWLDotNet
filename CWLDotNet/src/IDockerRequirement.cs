@@ -57,5 +57,6 @@ namespace CWLDotNet;
 /// environment as defined by Docker.
 /// 
 /// </summary>
-public interface IDockerRequirement : IProcessRequirement {
+public interface IDockerRequirement : IProcessRequirement
+{
 }

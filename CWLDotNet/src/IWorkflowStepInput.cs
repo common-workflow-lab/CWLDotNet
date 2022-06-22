@@ -114,5 +114,6 @@ namespace CWLDotNet;
 ///    should be filtered out.
 /// 
 /// </summary>
-public interface IWorkflowStepInput : IIdentified,ISink,ILoadContents,ILabeled {
+public interface IWorkflowStepInput : IIdentified, ISink, ILoadContents, ILabeled
+{
 }

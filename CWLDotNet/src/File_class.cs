@@ -4,6 +4,7 @@ public class File_class : IEnumClass<File_class>
 {
     private string _Name;
     private static readonly List<File_class> members = new();
+
     public static readonly File_class FILE =
                             new("File");
 

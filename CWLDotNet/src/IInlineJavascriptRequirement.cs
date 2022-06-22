@@ -9,5 +9,6 @@ namespace CWLDotNet;
 /// interpolatation.
 /// 
 /// </summary>
-public interface IInlineJavascriptRequirement : IProcessRequirement {
+public interface IInlineJavascriptRequirement : IProcessRequirement
+{
 }

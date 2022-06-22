@@ -85,5 +85,6 @@ namespace CWLDotNet;
 /// a subworkflow (recursive workflows are not allowed).
 /// 
 /// </summary>
-public interface IWorkflowStep : IIdentified,ILabeled,IDocumented {
+public interface IWorkflowStep : IIdentified, ILabeled, IDocumented
+{
 }

@@ -4,6 +4,7 @@ public class NetworkAccess_class : IEnumClass<NetworkAccess_class>
 {
     private string _Name;
     private static readonly List<NetworkAccess_class> members = new();
+
     public static readonly NetworkAccess_class NETWORKACCESS =
                             new("NetworkAccess");
 

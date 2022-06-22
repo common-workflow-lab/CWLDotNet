@@ -4,6 +4,7 @@ public class enum_d9cba076fca539106791a4f46d198c7fcfbdb779 : IEnumClass<enum_d9c
 {
     private string _Name;
     private static readonly List<enum_d9cba076fca539106791a4f46d198c7fcfbdb779> members = new();
+
     public static readonly enum_d9cba076fca539106791a4f46d198c7fcfbdb779 RECORD =
                             new("record");
 

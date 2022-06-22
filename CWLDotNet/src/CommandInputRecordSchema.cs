@@ -1,12 +1,14 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
 /// Auto-generated class implementation for https://w3id.org/cwl/cwl#CommandInputRecordSchema
 /// </summary>
-public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
+public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -14,12 +16,12 @@ public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
     /// <summary>
     /// The identifier for this type
     /// </summary>
-    public OneOf<None , string> name { get; set; }
+    public OneOf<None, string> name { get; set; }
 
     /// <summary>
     /// Defines the fields of the record.
     /// </summary>
-    public OneOf<None , List<CommandInputRecordField>> fields { get; set; }
+    public OneOf<None, List<CommandInputRecordField>> fields { get; set; }
 
     /// <summary>
     /// Must be `record`
@@ -29,20 +31,21 @@ public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public OneOf<None , string> label { get; set; }
+    public OneOf<None, string> label { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
     /// </summary>
-    public OneOf<None , string , List<string>> doc { get; set; }
+    public OneOf<None, string, List<string>> doc { get; set; }
 
     /// <summary>
     /// Describes how to turn this object into command line arguments.
     /// </summary>
-    public OneOf<None , CommandLineBinding> inputBinding { get; set; }
+    public OneOf<None, CommandLineBinding> inputBinding { get; set; }
 
 
-    public CommandInputRecordSchema (enum_d9cba076fca539106791a4f46d198c7fcfbdb779 type, OneOf<None , string> name = default, OneOf<None , List<CommandInputRecordField>> fields = default, OneOf<None , string> label = default, OneOf<None , string , List<string>> doc = default, OneOf<None , CommandLineBinding> inputBinding = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public CommandInputRecordSchema(enum_d9cba076fca539106791a4f46d198c7fcfbdb779 type, OneOf<None, string> name = default, OneOf<None, List<CommandInputRecordField>> fields = default, OneOf<None, string> label = default, OneOf<None, string, List<string>> doc = default, OneOf<None, CommandLineBinding> inputBinding = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.name = name;
@@ -66,7 +69,7 @@ public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic name = default!;
         if (doc_.ContainsKey("name"))
         {
@@ -99,7 +102,7 @@ public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
         {
             baseUri = (string)name;
         }
-            
+
         dynamic fields = default!;
         if (doc_.ContainsKey("fields"))
         {
@@ -208,36 +211,36 @@ public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new CommandInputRecordSchema(
+        CommandInputRecordSchema res__ = new(
           loadingOptions: loadingOptions,
           type: type
         );
 
-        if(name != null)
+        if (name != null)
         {
             res__.name = name;
         }
-        
-        if(fields != null)
+
+        if (fields != null)
         {
             res__.fields = fields;
         }
-        
-        if(label != null)
+
+        if (label != null)
         {
             res__.label = label;
         }
-        
-        if(doc != null)
+
+        if (doc != null)
         {
             res__.doc = doc;
         }
-        
-        if(inputBinding != null)
+
+        if (inputBinding != null)
         {
             res__.inputBinding = inputBinding;
         }
-        
+
         return res__;
     }
 
@@ -250,34 +253,40 @@ public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var nameVal = ISavable.SaveRelativeUri(name, true,
+        object? nameVal = ISavable.SaveRelativeUri(name, true,
             relativeUris, null, (string)baseUrl!);
-        if(nameVal is not null) {
+        if (nameVal is not null)
+        {
             r["name"] = nameVal;
         }
 
-        var fieldsVal = ISavable.Save(fields, false, (string)this.name.AsT1!, relativeUris);
-        if(fieldsVal is not null) {
+        object? fieldsVal = ISavable.Save(fields, false, (string)this.name.AsT1!, relativeUris);
+        if (fieldsVal is not null)
+        {
             r["fields"] = fieldsVal;
         }
 
-        var typeVal = ISavable.Save(type, false, (string)this.name.AsT1!, relativeUris);
-        if(typeVal is not null) {
+        object? typeVal = ISavable.Save(type, false, (string)this.name.AsT1!, relativeUris);
+        if (typeVal is not null)
+        {
             r["type"] = typeVal;
         }
 
-        var labelVal = ISavable.Save(label, false, (string)this.name.AsT1!, relativeUris);
-        if(labelVal is not null) {
+        object? labelVal = ISavable.Save(label, false, (string)this.name.AsT1!, relativeUris);
+        if (labelVal is not null)
+        {
             r["label"] = labelVal;
         }
 
-        var docVal = ISavable.Save(doc, false, (string)this.name.AsT1!, relativeUris);
-        if(docVal is not null) {
+        object? docVal = ISavable.Save(doc, false, (string)this.name.AsT1!, relativeUris);
+        if (docVal is not null)
+        {
             r["doc"] = docVal;
         }
 
-        var inputBindingVal = ISavable.Save(inputBinding, false, (string)this.name.AsT1!, relativeUris);
-        if(inputBindingVal is not null) {
+        object? inputBindingVal = ISavable.Save(inputBinding, false, (string)this.name.AsT1!, relativeUris);
+        if (inputBindingVal is not null)
+        {
             r["inputBinding"] = inputBindingVal;
         }
 
@@ -297,5 +306,5 @@ public class CommandInputRecordSchema : ICommandInputRecordSchema, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "fields", "type", "label", "doc", "name", "inputBinding" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "fields", "type", "label", "doc", "name", "inputBinding" };
 }

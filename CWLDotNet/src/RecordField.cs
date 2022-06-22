@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -8,7 +9,8 @@ namespace CWLDotNet;
 ///
 /// A field of a record.
 /// </summary>
-public class RecordField : IRecordField, ISavable {
+public class RecordField : IRecordField, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -22,16 +24,17 @@ public class RecordField : IRecordField, ISavable {
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
     /// </summary>
-    public OneOf<None , string , List<string>> doc { get; set; }
+    public OneOf<None, string, List<string>> doc { get; set; }
 
     /// <summary>
     /// The field type
     /// 
     /// </summary>
-    public OneOf<PrimitiveType , RecordSchema , EnumSchema , ArraySchema , string , List<OneOf<PrimitiveType , RecordSchema , EnumSchema , ArraySchema , string>>> type { get; set; }
+    public OneOf<PrimitiveType, RecordSchema, EnumSchema, ArraySchema, string, List<OneOf<PrimitiveType, RecordSchema, EnumSchema, ArraySchema, string>>> type { get; set; }
 
 
-    public RecordField (OneOf<PrimitiveType , RecordSchema , EnumSchema , ArraySchema , string , List<OneOf<PrimitiveType , RecordSchema , EnumSchema , ArraySchema , string>>> type, string? name = null, OneOf<None , string , List<string>> doc = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public RecordField(OneOf<PrimitiveType, RecordSchema, EnumSchema, ArraySchema, string, List<OneOf<PrimitiveType, RecordSchema, EnumSchema, ArraySchema, string>>> type, string? name = null, OneOf<None, string, List<string>> doc = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.name = name;
@@ -52,7 +55,7 @@ public class RecordField : IRecordField, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic name = default!;
         if (doc_.ContainsKey("name"))
         {
@@ -85,7 +88,7 @@ public class RecordField : IRecordField, ISavable {
         {
             baseUri = (string)name;
         }
-            
+
         dynamic doc = default!;
         if (doc_.ContainsKey("doc"))
         {
@@ -143,21 +146,21 @@ public class RecordField : IRecordField, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new RecordField(
+        RecordField res__ = new(
           loadingOptions: loadingOptions,
           type: type
         );
 
-        if(name != null)
+        if (name != null)
         {
             res__.name = name;
         }
-        
-        if(doc != null)
+
+        if (doc != null)
         {
             res__.doc = doc;
         }
-        
+
         return res__;
     }
 
@@ -170,19 +173,22 @@ public class RecordField : IRecordField, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var nameVal = ISavable.SaveRelativeUri(name, true,
+        object? nameVal = ISavable.SaveRelativeUri(name, true,
             relativeUris, null, (string)baseUrl!);
-        if(nameVal is not null) {
+        if (nameVal is not null)
+        {
             r["name"] = nameVal;
         }
 
-        var docVal = ISavable.Save(doc, false, (string)this.name!, relativeUris);
-        if(docVal is not null) {
+        object? docVal = ISavable.Save(doc, false, (string)this.name!, relativeUris);
+        if (docVal is not null)
+        {
             r["doc"] = docVal;
         }
 
-        var typeVal = ISavable.Save(type, false, (string)this.name!, relativeUris);
-        if(typeVal is not null) {
+        object? typeVal = ISavable.Save(type, false, (string)this.name!, relativeUris);
+        if (typeVal is not null)
+        {
             r["type"] = typeVal;
         }
 
@@ -202,5 +208,5 @@ public class RecordField : IRecordField, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "doc", "name", "type" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "doc", "name", "type" };
 }

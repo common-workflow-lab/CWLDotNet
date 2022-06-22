@@ -13,5 +13,6 @@ namespace CWLDotNet;
 /// or allowed.
 /// 
 /// </summary>
-public interface IExpressionTool : IProcess {
+public interface IExpressionTool : IProcess
+{
 }

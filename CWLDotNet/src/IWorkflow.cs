@@ -57,5 +57,6 @@ namespace CWLDotNet;
 /// workflow semantics.
 /// 
 /// </summary>
-public interface IWorkflow : IProcess {
+public interface IWorkflow : IProcess
+{
 }

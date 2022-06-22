@@ -1,12 +1,14 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
 /// Auto-generated class implementation for https://w3id.org/cwl/salad#ArraySchema
 /// </summary>
-public class ArraySchema : IArraySchema, ISavable {
+public class ArraySchema : IArraySchema, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -14,7 +16,7 @@ public class ArraySchema : IArraySchema, ISavable {
     /// <summary>
     /// Defines the type of the array elements.
     /// </summary>
-    public OneOf<PrimitiveType , RecordSchema , EnumSchema , ArraySchema , string , List<OneOf<PrimitiveType , RecordSchema , EnumSchema , ArraySchema , string>>> items { get; set; }
+    public OneOf<PrimitiveType, RecordSchema, EnumSchema, ArraySchema, string, List<OneOf<PrimitiveType, RecordSchema, EnumSchema, ArraySchema, string>>> items { get; set; }
 
     /// <summary>
     /// Must be `array`
@@ -22,7 +24,8 @@ public class ArraySchema : IArraySchema, ISavable {
     public enum_d062602be0b4b8fd33e69e29a841317b6ab665bc type { get; set; }
 
 
-    public ArraySchema (OneOf<PrimitiveType , RecordSchema , EnumSchema , ArraySchema , string , List<OneOf<PrimitiveType , RecordSchema , EnumSchema , ArraySchema , string>>> items, enum_d062602be0b4b8fd33e69e29a841317b6ab665bc type, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public ArraySchema(OneOf<PrimitiveType, RecordSchema, EnumSchema, ArraySchema, string, List<OneOf<PrimitiveType, RecordSchema, EnumSchema, ArraySchema, string>>> items, enum_d062602be0b4b8fd33e69e29a841317b6ab665bc type, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.items = items;
@@ -42,7 +45,7 @@ public class ArraySchema : IArraySchema, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic items = default!;
         try
         {
@@ -97,7 +100,7 @@ public class ArraySchema : IArraySchema, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new ArraySchema(
+        ArraySchema res__ = new(
           loadingOptions: loadingOptions,
           items: items,
           type: type
@@ -115,13 +118,15 @@ public class ArraySchema : IArraySchema, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var itemsVal = ISavable.Save(items, false, (string)baseUrl!, relativeUris);
-        if(itemsVal is not null) {
+        object? itemsVal = ISavable.Save(items, false, (string)baseUrl!, relativeUris);
+        if (itemsVal is not null)
+        {
             r["items"] = itemsVal;
         }
 
-        var typeVal = ISavable.Save(type, false, (string)baseUrl!, relativeUris);
-        if(typeVal is not null) {
+        object? typeVal = ISavable.Save(type, false, (string)baseUrl!, relativeUris);
+        if (typeVal is not null)
+        {
             r["type"] = typeVal;
         }
 
@@ -141,5 +146,5 @@ public class ArraySchema : IArraySchema, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "items", "type" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "items", "type" };
 }

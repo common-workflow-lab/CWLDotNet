@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -17,7 +18,8 @@ namespace CWLDotNet;
 /// is enabled by default.
 /// 
 /// </summary>
-public class WorkReuse : IWorkReuse, ISavable {
+public class WorkReuse : IWorkReuse, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -26,10 +28,11 @@ public class WorkReuse : IWorkReuse, ISavable {
     /// Always 'WorkReuse'
     /// </summary>
     public WorkReuse_class class_ { get; set; }
-    public OneOf<bool , string> enableReuse { get; set; }
+    public OneOf<bool, string> enableReuse { get; set; }
 
 
-    public WorkReuse (OneOf<bool , string> enableReuse, WorkReuse_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public WorkReuse(OneOf<bool, string> enableReuse, WorkReuse_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.class_ = class_ ?? WorkReuse_class.WORKREUSE;
@@ -49,7 +52,7 @@ public class WorkReuse : IWorkReuse, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic class_ = default!;
         try
         {
@@ -104,7 +107,7 @@ public class WorkReuse : IWorkReuse, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new WorkReuse(
+        WorkReuse res__ = new(
           loadingOptions: loadingOptions,
           class_: class_,
           enableReuse: enableReuse
@@ -122,14 +125,16 @@ public class WorkReuse : IWorkReuse, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var class_Val = ISavable.SaveRelativeUri(class_, false,
+        object? class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not null) {
+        if (class_Val is not null)
+        {
             r["class"] = class_Val;
         }
 
-        var enableReuseVal = ISavable.Save(enableReuse, false, (string)baseUrl!, relativeUris);
-        if(enableReuseVal is not null) {
+        object? enableReuseVal = ISavable.Save(enableReuse, false, (string)baseUrl!, relativeUris);
+        if (enableReuseVal is not null)
+        {
             r["enableReuse"] = enableReuseVal;
         }
 
@@ -149,5 +154,5 @@ public class WorkReuse : IWorkReuse, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "enableReuse" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "class", "enableReuse" };
 }

@@ -31,5 +31,6 @@ namespace CWLDotNet;
 /// If neither "min" nor "max" is specified for a resource, use the default values below.
 /// 
 /// </summary>
-public interface IResourceRequirement : IProcessRequirement {
+public interface IResourceRequirement : IProcessRequirement
+{
 }

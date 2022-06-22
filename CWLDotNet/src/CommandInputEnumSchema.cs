@@ -1,12 +1,14 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
 /// Auto-generated class implementation for https://w3id.org/cwl/cwl#CommandInputEnumSchema
 /// </summary>
-public class CommandInputEnumSchema : ICommandInputEnumSchema, ISavable {
+public class CommandInputEnumSchema : ICommandInputEnumSchema, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -14,7 +16,7 @@ public class CommandInputEnumSchema : ICommandInputEnumSchema, ISavable {
     /// <summary>
     /// The identifier for this type
     /// </summary>
-    public OneOf<None , string> name { get; set; }
+    public OneOf<None, string> name { get; set; }
 
     /// <summary>
     /// Defines the set of valid symbols.
@@ -29,20 +31,21 @@ public class CommandInputEnumSchema : ICommandInputEnumSchema, ISavable {
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public OneOf<None , string> label { get; set; }
+    public OneOf<None, string> label { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
     /// </summary>
-    public OneOf<None , string , List<string>> doc { get; set; }
+    public OneOf<None, string, List<string>> doc { get; set; }
 
     /// <summary>
     /// Describes how to turn this object into command line arguments.
     /// </summary>
-    public OneOf<None , CommandLineBinding> inputBinding { get; set; }
+    public OneOf<None, CommandLineBinding> inputBinding { get; set; }
 
 
-    public CommandInputEnumSchema (List<string> symbols, enum_d961d79c225752b9fadb617367615ab176b47d77 type, OneOf<None , string> name = default, OneOf<None , string> label = default, OneOf<None , string , List<string>> doc = default, OneOf<None , CommandLineBinding> inputBinding = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public CommandInputEnumSchema(List<string> symbols, enum_d961d79c225752b9fadb617367615ab176b47d77 type, OneOf<None, string> name = default, OneOf<None, string> label = default, OneOf<None, string, List<string>> doc = default, OneOf<None, CommandLineBinding> inputBinding = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.name = name;
@@ -66,7 +69,7 @@ public class CommandInputEnumSchema : ICommandInputEnumSchema, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic name = default!;
         if (doc_.ContainsKey("name"))
         {
@@ -99,7 +102,7 @@ public class CommandInputEnumSchema : ICommandInputEnumSchema, ISavable {
         {
             baseUri = (string)name;
         }
-            
+
         dynamic symbols = default!;
         try
         {
@@ -205,32 +208,32 @@ public class CommandInputEnumSchema : ICommandInputEnumSchema, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new CommandInputEnumSchema(
+        CommandInputEnumSchema res__ = new(
           loadingOptions: loadingOptions,
           symbols: symbols,
           type: type
         );
 
-        if(name != null)
+        if (name != null)
         {
             res__.name = name;
         }
-        
-        if(label != null)
+
+        if (label != null)
         {
             res__.label = label;
         }
-        
-        if(doc != null)
+
+        if (doc != null)
         {
             res__.doc = doc;
         }
-        
-        if(inputBinding != null)
+
+        if (inputBinding != null)
         {
             res__.inputBinding = inputBinding;
         }
-        
+
         return res__;
     }
 
@@ -243,35 +246,41 @@ public class CommandInputEnumSchema : ICommandInputEnumSchema, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var nameVal = ISavable.SaveRelativeUri(name, true,
+        object? nameVal = ISavable.SaveRelativeUri(name, true,
             relativeUris, null, (string)baseUrl!);
-        if(nameVal is not null) {
+        if (nameVal is not null)
+        {
             r["name"] = nameVal;
         }
 
-        var symbolsVal = ISavable.SaveRelativeUri(symbols, true,
+        object? symbolsVal = ISavable.SaveRelativeUri(symbols, true,
             relativeUris, null, (string)this.name.AsT1!);
-        if(symbolsVal is not null) {
+        if (symbolsVal is not null)
+        {
             r["symbols"] = symbolsVal;
         }
 
-        var typeVal = ISavable.Save(type, false, (string)this.name.AsT1!, relativeUris);
-        if(typeVal is not null) {
+        object? typeVal = ISavable.Save(type, false, (string)this.name.AsT1!, relativeUris);
+        if (typeVal is not null)
+        {
             r["type"] = typeVal;
         }
 
-        var labelVal = ISavable.Save(label, false, (string)this.name.AsT1!, relativeUris);
-        if(labelVal is not null) {
+        object? labelVal = ISavable.Save(label, false, (string)this.name.AsT1!, relativeUris);
+        if (labelVal is not null)
+        {
             r["label"] = labelVal;
         }
 
-        var docVal = ISavable.Save(doc, false, (string)this.name.AsT1!, relativeUris);
-        if(docVal is not null) {
+        object? docVal = ISavable.Save(doc, false, (string)this.name.AsT1!, relativeUris);
+        if (docVal is not null)
+        {
             r["doc"] = docVal;
         }
 
-        var inputBindingVal = ISavable.Save(inputBinding, false, (string)this.name.AsT1!, relativeUris);
-        if(inputBindingVal is not null) {
+        object? inputBindingVal = ISavable.Save(inputBinding, false, (string)this.name.AsT1!, relativeUris);
+        if (inputBindingVal is not null)
+        {
             r["inputBinding"] = inputBindingVal;
         }
 
@@ -291,5 +300,5 @@ public class CommandInputEnumSchema : ICommandInputEnumSchema, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "symbols", "type", "label", "doc", "name", "inputBinding" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "symbols", "type", "label", "doc", "name", "inputBinding" };
 }

@@ -4,6 +4,7 @@ public class InplaceUpdateRequirement_class : IEnumClass<InplaceUpdateRequiremen
 {
     private string _Name;
     private static readonly List<InplaceUpdateRequirement_class> members = new();
+
     public static readonly InplaceUpdateRequirement_class INPLACEUPDATEREQUIREMENT =
                             new("InplaceUpdateRequirement");
 

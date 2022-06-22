@@ -6,5 +6,6 @@ namespace CWLDotNet;
 ///
 /// An input parameter for a CommandLineTool.
 /// </summary>
-public interface ICommandInputParameter : IInputParameter {
+public interface ICommandInputParameter : IInputParameter
+{
 }

@@ -4,6 +4,7 @@ public class enum_d062602be0b4b8fd33e69e29a841317b6ab665bc : IEnumClass<enum_d06
 {
     private string _Name;
     private static readonly List<enum_d062602be0b4b8fd33e69e29a841317b6ab665bc> members = new();
+
     public static readonly enum_d062602be0b4b8fd33e69e29a841317b6ab665bc ARRAY =
                             new("array");
 

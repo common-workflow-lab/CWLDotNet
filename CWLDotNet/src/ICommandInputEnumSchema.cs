@@ -4,5 +4,6 @@ namespace CWLDotNet;
 /// <summary>
 /// Auto-generated interface for https://w3id.org/cwl/cwl#CommandInputEnumSchema
 /// </summary>
-public interface ICommandInputEnumSchema : IInputEnumSchema,ICommandInputSchema,ICommandLineBindable {
+public interface ICommandInputEnumSchema : IInputEnumSchema, ICommandInputSchema, ICommandLineBindable
+{
 }

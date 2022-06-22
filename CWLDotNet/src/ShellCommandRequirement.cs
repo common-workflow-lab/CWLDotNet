@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -15,7 +16,8 @@ namespace CWLDotNet;
 /// the use of shell metacharacters such as `|` for pipes.
 /// 
 /// </summary>
-public class ShellCommandRequirement : IShellCommandRequirement, ISavable {
+public class ShellCommandRequirement : IShellCommandRequirement, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -26,7 +28,8 @@ public class ShellCommandRequirement : IShellCommandRequirement, ISavable {
     public ShellCommandRequirement_class class_ { get; set; }
 
 
-    public ShellCommandRequirement (ShellCommandRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public ShellCommandRequirement(ShellCommandRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.class_ = class_ ?? ShellCommandRequirement_class.SHELLCOMMANDREQUIREMENT;
@@ -45,7 +48,7 @@ public class ShellCommandRequirement : IShellCommandRequirement, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic class_ = default!;
         try
         {
@@ -86,7 +89,7 @@ public class ShellCommandRequirement : IShellCommandRequirement, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new ShellCommandRequirement(
+        ShellCommandRequirement res__ = new(
           loadingOptions: loadingOptions,
           class_: class_
         );
@@ -103,9 +106,10 @@ public class ShellCommandRequirement : IShellCommandRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var class_Val = ISavable.SaveRelativeUri(class_, false,
+        object? class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not null) {
+        if (class_Val is not null)
+        {
             r["class"] = class_Val;
         }
 
@@ -125,5 +129,5 @@ public class ShellCommandRequirement : IShellCommandRequirement, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "class" };
 }

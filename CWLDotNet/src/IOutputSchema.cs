@@ -4,5 +4,6 @@ namespace CWLDotNet;
 /// <summary>
 /// Auto-generated interface for https://w3id.org/cwl/cwl#OutputSchema
 /// </summary>
-public interface IOutputSchema : IIOSchema {
+public interface IOutputSchema : IIOSchema
+{
 }

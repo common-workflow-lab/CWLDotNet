@@ -8,5 +8,6 @@ namespace CWLDotNet;
 /// `scatterMethod` fields of [WorkflowStep](#WorkflowStep).
 /// 
 /// </summary>
-public interface IScatterFeatureRequirement : IProcessRequirement {
+public interface IScatterFeatureRequirement : IProcessRequirement
+{
 }

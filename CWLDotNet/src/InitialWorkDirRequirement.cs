@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -9,7 +10,8 @@ namespace CWLDotNet;
 /// Define a list of files and subdirectories that must be staged by the workflow platform prior to executing the command line tool.
 /// Normally files are staged within the designated output directory. However, when running inside containers, files may be staged at arbitrary locations, see discussion for [`Dirent.entryname`](#Dirent). Together with `DockerRequirement.dockerOutputDirectory` it is possible to control the locations of both input and output files when running in containers.
 /// </summary>
-public class InitialWorkDirRequirement : IInitialWorkDirRequirement, ISavable {
+public class InitialWorkDirRequirement : IInitialWorkDirRequirement, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -46,10 +48,11 @@ public class InitialWorkDirRequirement : IInitialWorkDirRequirement, ISavable {
     /// is undefined.
     /// 
     /// </summary>
-    public OneOf<string , List<OneOf<None , Dirent , string , File , Directory , List<OneOf<File , Directory>>>>> listing { get; set; }
+    public OneOf<string, List<OneOf<None, Dirent, string, File, Directory, List<OneOf<File, Directory>>>>> listing { get; set; }
 
 
-    public InitialWorkDirRequirement (OneOf<string , List<OneOf<None , Dirent , string , File , Directory , List<OneOf<File , Directory>>>>> listing, InitialWorkDirRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public InitialWorkDirRequirement(OneOf<string, List<OneOf<None, Dirent, string, File, Directory, List<OneOf<File, Directory>>>>> listing, InitialWorkDirRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.class_ = class_ ?? InitialWorkDirRequirement_class.INITIALWORKDIRREQUIREMENT;
@@ -69,7 +72,7 @@ public class InitialWorkDirRequirement : IInitialWorkDirRequirement, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic class_ = default!;
         try
         {
@@ -124,7 +127,7 @@ public class InitialWorkDirRequirement : IInitialWorkDirRequirement, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new InitialWorkDirRequirement(
+        InitialWorkDirRequirement res__ = new(
           loadingOptions: loadingOptions,
           class_: class_,
           listing: listing
@@ -142,14 +145,16 @@ public class InitialWorkDirRequirement : IInitialWorkDirRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var class_Val = ISavable.SaveRelativeUri(class_, false,
+        object? class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not null) {
+        if (class_Val is not null)
+        {
             r["class"] = class_Val;
         }
 
-        var listingVal = ISavable.Save(listing, false, (string)baseUrl!, relativeUris);
-        if(listingVal is not null) {
+        object? listingVal = ISavable.Save(listing, false, (string)baseUrl!, relativeUris);
+        if (listingVal is not null)
+        {
             r["listing"] = listingVal;
         }
 
@@ -169,5 +174,5 @@ public class InitialWorkDirRequirement : IInitialWorkDirRequirement, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "listing" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "class", "listing" };
 }

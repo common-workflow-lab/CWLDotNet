@@ -4,6 +4,7 @@ public class ScatterFeatureRequirement_class : IEnumClass<ScatterFeatureRequirem
 {
     private string _Name;
     private static readonly List<ScatterFeatureRequirement_class> members = new();
+
     public static readonly ScatterFeatureRequirement_class SCATTERFEATUREREQUIREMENT =
                             new("ScatterFeatureRequirement");
 

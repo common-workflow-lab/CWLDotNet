@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -11,7 +12,8 @@ namespace CWLDotNet;
 /// result of executing an expression, such as getting a parameter from input.
 /// 
 /// </summary>
-public class EnvironmentDef : IEnvironmentDef, ISavable {
+public class EnvironmentDef : IEnvironmentDef, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -27,7 +29,8 @@ public class EnvironmentDef : IEnvironmentDef, ISavable {
     public OneOf<string> envValue { get; set; }
 
 
-    public EnvironmentDef (string envName, OneOf<string> envValue, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public EnvironmentDef(string envName, OneOf<string> envValue, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.envName = envName;
@@ -47,7 +50,7 @@ public class EnvironmentDef : IEnvironmentDef, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic envName = default!;
         try
         {
@@ -102,7 +105,7 @@ public class EnvironmentDef : IEnvironmentDef, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new EnvironmentDef(
+        EnvironmentDef res__ = new(
           loadingOptions: loadingOptions,
           envName: envName,
           envValue: envValue
@@ -120,13 +123,15 @@ public class EnvironmentDef : IEnvironmentDef, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var envNameVal = ISavable.Save(envName, false, (string)baseUrl!, relativeUris);
-        if(envNameVal is not null) {
+        object? envNameVal = ISavable.Save(envName, false, (string)baseUrl!, relativeUris);
+        if (envNameVal is not null)
+        {
             r["envName"] = envNameVal;
         }
 
-        var envValueVal = ISavable.Save(envValue, false, (string)baseUrl!, relativeUris);
-        if(envValueVal is not null) {
+        object? envValueVal = ISavable.Save(envValue, false, (string)baseUrl!, relativeUris);
+        if (envValueVal is not null)
+        {
             r["envValue"] = envValueVal;
         }
 
@@ -146,5 +151,5 @@ public class EnvironmentDef : IEnvironmentDef, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "envName", "envValue" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "envName", "envValue" };
 }

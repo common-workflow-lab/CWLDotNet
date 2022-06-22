@@ -29,3 +29,13 @@ jobs:
         with:
           fail_ci_if_error: true
           flags: unittests
+  dotnet-format:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v2
+        with:
+           dotnet-version: ${{ env.DOTNET_VERSION }}
+      - run: dotnet restore
+      - run: dotnet format --verify-no-changes --no-restore

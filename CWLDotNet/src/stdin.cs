@@ -4,6 +4,7 @@ public class stdin : IEnumClass<stdin>
 {
     private string _Name;
     private static readonly List<stdin> members = new();
+
     public static readonly stdin STDIN =
                             new("stdin");
 

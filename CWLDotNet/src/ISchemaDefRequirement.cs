@@ -18,5 +18,6 @@ namespace CWLDotNet;
 /// - A file can contain a list of type definitions
 /// 
 /// </summary>
-public interface ISchemaDefRequirement : IProcessRequirement {
+public interface ISchemaDefRequirement : IProcessRequirement
+{
 }

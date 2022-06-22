@@ -4,6 +4,7 @@ public class WorkReuse_class : IEnumClass<WorkReuse_class>
 {
     private string _Name;
     private static readonly List<WorkReuse_class> members = new();
+
     public static readonly WorkReuse_class WORKREUSE =
                             new("WorkReuse");
 

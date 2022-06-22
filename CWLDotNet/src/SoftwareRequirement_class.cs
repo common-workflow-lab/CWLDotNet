@@ -4,6 +4,7 @@ public class SoftwareRequirement_class : IEnumClass<SoftwareRequirement_class>
 {
     private string _Name;
     private static readonly List<SoftwareRequirement_class> members = new();
+
     public static readonly SoftwareRequirement_class SOFTWAREREQUIREMENT =
                             new("SoftwareRequirement");
 

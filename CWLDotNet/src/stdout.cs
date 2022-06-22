@@ -4,6 +4,7 @@ public class stdout : IEnumClass<stdout>
 {
     private string _Name;
     private static readonly List<stdout> members = new();
+
     public static readonly stdout STDOUT =
                             new("stdout");
 

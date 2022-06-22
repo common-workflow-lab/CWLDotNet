@@ -1,12 +1,14 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
 /// Auto-generated class implementation for https://w3id.org/cwl/cwl#CommandOutputRecordField
 /// </summary>
-public class CommandOutputRecordField : ICommandOutputRecordField, ISavable {
+public class CommandOutputRecordField : ICommandOutputRecordField, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -20,18 +22,18 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable {
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
     /// </summary>
-    public OneOf<None , string , List<string>> doc { get; set; }
+    public OneOf<None, string, List<string>> doc { get; set; }
 
     /// <summary>
     /// The field type
     /// 
     /// </summary>
-    public OneOf<CWLType , CommandOutputRecordSchema , CommandOutputEnumSchema , CommandOutputArraySchema , string , List<OneOf<CWLType , CommandOutputRecordSchema , CommandOutputEnumSchema , CommandOutputArraySchema , string>>> type { get; set; }
+    public OneOf<CWLType, CommandOutputRecordSchema, CommandOutputEnumSchema, CommandOutputArraySchema, string, List<OneOf<CWLType, CommandOutputRecordSchema, CommandOutputEnumSchema, CommandOutputArraySchema, string>>> type { get; set; }
 
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public OneOf<None , string> label { get; set; }
+    public OneOf<None, string> label { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -77,7 +79,7 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable {
     ///   3. Append the remainder of the string to the end of the file path.
     /// 
     /// </summary>
-    public OneOf<None , SecondaryFileSchema , List<SecondaryFileSchema>> secondaryFiles { get; set; }
+    public OneOf<None, SecondaryFileSchema, List<SecondaryFileSchema>> secondaryFiles { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -88,7 +90,7 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable {
     /// pipe.  Default: `false`.
     /// 
     /// </summary>
-    public OneOf<None , bool> streamable { get; set; }
+    public OneOf<None, bool> streamable { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -97,17 +99,18 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable {
     /// File object.
     /// 
     /// </summary>
-    public OneOf<None , string> format { get; set; }
+    public OneOf<None, string> format { get; set; }
 
     /// <summary>
     /// Describes how to generate this output object based on the files
     /// produced by a CommandLineTool
     /// 
     /// </summary>
-    public OneOf<None , CommandOutputBinding> outputBinding { get; set; }
+    public OneOf<None, CommandOutputBinding> outputBinding { get; set; }
 
 
-    public CommandOutputRecordField (OneOf<CWLType , CommandOutputRecordSchema , CommandOutputEnumSchema , CommandOutputArraySchema , string , List<OneOf<CWLType , CommandOutputRecordSchema , CommandOutputEnumSchema , CommandOutputArraySchema , string>>> type, string? name = null, OneOf<None , string , List<string>> doc = default, OneOf<None , string> label = default, OneOf<None , SecondaryFileSchema , List<SecondaryFileSchema>> secondaryFiles = default, OneOf<None , bool> streamable = default, OneOf<None , string> format = default, OneOf<None , CommandOutputBinding> outputBinding = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public CommandOutputRecordField(OneOf<CWLType, CommandOutputRecordSchema, CommandOutputEnumSchema, CommandOutputArraySchema, string, List<OneOf<CWLType, CommandOutputRecordSchema, CommandOutputEnumSchema, CommandOutputArraySchema, string>>> type, string? name = null, OneOf<None, string, List<string>> doc = default, OneOf<None, string> label = default, OneOf<None, SecondaryFileSchema, List<SecondaryFileSchema>> secondaryFiles = default, OneOf<None, bool> streamable = default, OneOf<None, string> format = default, OneOf<None, CommandOutputBinding> outputBinding = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.name = name;
@@ -133,7 +136,7 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic name = default!;
         if (doc_.ContainsKey("name"))
         {
@@ -166,7 +169,7 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable {
         {
             baseUri = (string)name;
         }
-            
+
         dynamic doc = default!;
         if (doc_.ContainsKey("doc"))
         {
@@ -309,46 +312,46 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new CommandOutputRecordField(
+        CommandOutputRecordField res__ = new(
           loadingOptions: loadingOptions,
           type: type
         );
 
-        if(name != null)
+        if (name != null)
         {
             res__.name = name;
         }
-        
-        if(doc != null)
+
+        if (doc != null)
         {
             res__.doc = doc;
         }
-        
-        if(label != null)
+
+        if (label != null)
         {
             res__.label = label;
         }
-        
-        if(secondaryFiles != null)
+
+        if (secondaryFiles != null)
         {
             res__.secondaryFiles = secondaryFiles;
         }
-        
-        if(streamable != null)
+
+        if (streamable != null)
         {
             res__.streamable = streamable;
         }
-        
-        if(format != null)
+
+        if (format != null)
         {
             res__.format = format;
         }
-        
-        if(outputBinding != null)
+
+        if (outputBinding != null)
         {
             res__.outputBinding = outputBinding;
         }
-        
+
         return res__;
     }
 
@@ -361,45 +364,53 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var nameVal = ISavable.SaveRelativeUri(name, true,
+        object? nameVal = ISavable.SaveRelativeUri(name, true,
             relativeUris, null, (string)baseUrl!);
-        if(nameVal is not null) {
+        if (nameVal is not null)
+        {
             r["name"] = nameVal;
         }
 
-        var docVal = ISavable.Save(doc, false, (string)this.name!, relativeUris);
-        if(docVal is not null) {
+        object? docVal = ISavable.Save(doc, false, (string)this.name!, relativeUris);
+        if (docVal is not null)
+        {
             r["doc"] = docVal;
         }
 
-        var typeVal = ISavable.Save(type, false, (string)this.name!, relativeUris);
-        if(typeVal is not null) {
+        object? typeVal = ISavable.Save(type, false, (string)this.name!, relativeUris);
+        if (typeVal is not null)
+        {
             r["type"] = typeVal;
         }
 
-        var labelVal = ISavable.Save(label, false, (string)this.name!, relativeUris);
-        if(labelVal is not null) {
+        object? labelVal = ISavable.Save(label, false, (string)this.name!, relativeUris);
+        if (labelVal is not null)
+        {
             r["label"] = labelVal;
         }
 
-        var secondaryFilesVal = ISavable.Save(secondaryFiles, false, (string)this.name!, relativeUris);
-        if(secondaryFilesVal is not null) {
+        object? secondaryFilesVal = ISavable.Save(secondaryFiles, false, (string)this.name!, relativeUris);
+        if (secondaryFilesVal is not null)
+        {
             r["secondaryFiles"] = secondaryFilesVal;
         }
 
-        var streamableVal = ISavable.Save(streamable, false, (string)this.name!, relativeUris);
-        if(streamableVal is not null) {
+        object? streamableVal = ISavable.Save(streamable, false, (string)this.name!, relativeUris);
+        if (streamableVal is not null)
+        {
             r["streamable"] = streamableVal;
         }
 
-        var formatVal = ISavable.SaveRelativeUri(format, true,
+        object? formatVal = ISavable.SaveRelativeUri(format, true,
             relativeUris, null, (string)this.name!);
-        if(formatVal is not null) {
+        if (formatVal is not null)
+        {
             r["format"] = formatVal;
         }
 
-        var outputBindingVal = ISavable.Save(outputBinding, false, (string)this.name!, relativeUris);
-        if(outputBindingVal is not null) {
+        object? outputBindingVal = ISavable.Save(outputBinding, false, (string)this.name!, relativeUris);
+        if (outputBindingVal is not null)
+        {
             r["outputBinding"] = outputBindingVal;
         }
 
@@ -419,5 +430,5 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "doc", "name", "type", "label", "secondaryFiles", "streamable", "format", "outputBinding" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "doc", "name", "type", "label", "secondaryFiles", "streamable", "format", "outputBinding" };
 }

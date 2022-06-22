@@ -4,6 +4,7 @@ public class Any : IEnumClass<Any>
 {
     private string _Name;
     private static readonly List<Any> members = new();
+
     public static readonly Any ANY =
                             new("Any");
 

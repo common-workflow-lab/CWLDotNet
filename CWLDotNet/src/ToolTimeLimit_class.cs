@@ -4,6 +4,7 @@ public class ToolTimeLimit_class : IEnumClass<ToolTimeLimit_class>
 {
     private string _Name;
     private static readonly List<ToolTimeLimit_class> members = new();
+
     public static readonly ToolTimeLimit_class TOOLTIMELIMIT =
                             new("ToolTimeLimit");
 

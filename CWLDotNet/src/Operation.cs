@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -15,7 +16,8 @@ namespace CWLDotNet;
 /// CommandLineTool, or ExpressionTool) with a compatible signature.
 /// 
 /// </summary>
-public class Operation : IOperation, ISavable {
+public class Operation : IOperation, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -23,18 +25,18 @@ public class Operation : IOperation, ISavable {
     /// <summary>
     /// The unique identifier for this object.
     /// </summary>
-    public OneOf<None , string> id { get; set; }
+    public OneOf<None, string> id { get; set; }
     public Operation_class class_ { get; set; }
 
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public OneOf<None , string> label { get; set; }
+    public OneOf<None, string> label { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
     /// </summary>
-    public OneOf<None , string , List<string>> doc { get; set; }
+    public OneOf<None, string, List<string>> doc { get; set; }
 
     /// <summary>
     /// Defines the input parameters of the process.  The process is ready to
@@ -68,7 +70,7 @@ public class Operation : IOperation, ISavable {
     /// unless overridden at user option.
     /// 
     /// </summary>
-    public OneOf<None , List<OneOf<InlineJavascriptRequirement , SchemaDefRequirement , LoadListingRequirement , DockerRequirement , SoftwareRequirement , InitialWorkDirRequirement , EnvVarRequirement , ShellCommandRequirement , ResourceRequirement , WorkReuse , NetworkAccess , InplaceUpdateRequirement , ToolTimeLimit , SubworkflowFeatureRequirement , ScatterFeatureRequirement , MultipleInputFeatureRequirement , StepInputExpressionRequirement>>> requirements { get; set; }
+    public OneOf<None, List<OneOf<InlineJavascriptRequirement, SchemaDefRequirement, LoadListingRequirement, DockerRequirement, SoftwareRequirement, InitialWorkDirRequirement, EnvVarRequirement, ShellCommandRequirement, ResourceRequirement, WorkReuse, NetworkAccess, InplaceUpdateRequirement, ToolTimeLimit, SubworkflowFeatureRequirement, ScatterFeatureRequirement, MultipleInputFeatureRequirement, StepInputExpressionRequirement>>> requirements { get; set; }
 
     /// <summary>
     /// Declares hints applying to either the runtime environment or the
@@ -77,14 +79,14 @@ public class Operation : IOperation, ISavable {
     /// the implementation may report a warning.
     /// 
     /// </summary>
-    public OneOf<None , List<object>> hints { get; set; }
+    public OneOf<None, List<object>> hints { get; set; }
 
     /// <summary>
     /// CWL document version. Always required at the document root. Not
     /// required for a Process embedded inside another Process.
     /// 
     /// </summary>
-    public OneOf<None , CWLVersion> cwlVersion { get; set; }
+    public OneOf<None, CWLVersion> cwlVersion { get; set; }
 
     /// <summary>
     /// An identifier for the type of computational operation, of this Process.
@@ -102,10 +104,11 @@ public class Operation : IOperation, ISavable {
     /// [Split read mapping](http://edamontology.org/operation_3199).
     /// 
     /// </summary>
-    public OneOf<None , List<string>> intent { get; set; }
+    public OneOf<None, List<string>> intent { get; set; }
 
 
-    public Operation (List<OperationInputParameter> inputs, List<OperationOutputParameter> outputs, OneOf<None , string> id = default, Operation_class? class_ = null, OneOf<None , string> label = default, OneOf<None , string , List<string>> doc = default, OneOf<None , List<OneOf<InlineJavascriptRequirement , SchemaDefRequirement , LoadListingRequirement , DockerRequirement , SoftwareRequirement , InitialWorkDirRequirement , EnvVarRequirement , ShellCommandRequirement , ResourceRequirement , WorkReuse , NetworkAccess , InplaceUpdateRequirement , ToolTimeLimit , SubworkflowFeatureRequirement , ScatterFeatureRequirement , MultipleInputFeatureRequirement , StepInputExpressionRequirement>>> requirements = default, OneOf<None , List<object>> hints = default, OneOf<None , CWLVersion> cwlVersion = default, OneOf<None , List<string>> intent = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public Operation(List<OperationInputParameter> inputs, List<OperationOutputParameter> outputs, OneOf<None, string> id = default, Operation_class? class_ = null, OneOf<None, string> label = default, OneOf<None, string, List<string>> doc = default, OneOf<None, List<OneOf<InlineJavascriptRequirement, SchemaDefRequirement, LoadListingRequirement, DockerRequirement, SoftwareRequirement, InitialWorkDirRequirement, EnvVarRequirement, ShellCommandRequirement, ResourceRequirement, WorkReuse, NetworkAccess, InplaceUpdateRequirement, ToolTimeLimit, SubworkflowFeatureRequirement, ScatterFeatureRequirement, MultipleInputFeatureRequirement, StepInputExpressionRequirement>>> requirements = default, OneOf<None, List<object>> hints = default, OneOf<None, CWLVersion> cwlVersion = default, OneOf<None, List<string>> intent = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.id = id;
@@ -133,7 +136,7 @@ public class Operation : IOperation, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic id = default!;
         if (doc_.ContainsKey("id"))
         {
@@ -166,7 +169,7 @@ public class Operation : IOperation, ISavable {
         {
             baseUri = (string)id;
         }
-            
+
         dynamic class_ = default!;
         try
         {
@@ -337,48 +340,48 @@ public class Operation : IOperation, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new Operation(
+        Operation res__ = new(
           loadingOptions: loadingOptions,
           class_: class_,
           inputs: inputs,
           outputs: outputs
         );
 
-        if(id != null)
+        if (id != null)
         {
             res__.id = id;
         }
-        
-        if(label != null)
+
+        if (label != null)
         {
             res__.label = label;
         }
-        
-        if(doc != null)
+
+        if (doc != null)
         {
             res__.doc = doc;
         }
-        
-        if(requirements != null)
+
+        if (requirements != null)
         {
             res__.requirements = requirements;
         }
-        
-        if(hints != null)
+
+        if (hints != null)
         {
             res__.hints = hints;
         }
-        
-        if(cwlVersion != null)
+
+        if (cwlVersion != null)
         {
             res__.cwlVersion = cwlVersion;
         }
-        
-        if(intent != null)
+
+        if (intent != null)
         {
             res__.intent = intent;
         }
-        
+
         return res__;
     }
 
@@ -391,57 +394,67 @@ public class Operation : IOperation, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var idVal = ISavable.SaveRelativeUri(id, true,
+        object? idVal = ISavable.SaveRelativeUri(id, true,
             relativeUris, null, (string)baseUrl!);
-        if(idVal is not null) {
+        if (idVal is not null)
+        {
             r["id"] = idVal;
         }
 
-        var class_Val = ISavable.SaveRelativeUri(class_, false,
+        object? class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)this.id.AsT1!);
-        if(class_Val is not null) {
+        if (class_Val is not null)
+        {
             r["class"] = class_Val;
         }
 
-        var labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
-        if(labelVal is not null) {
+        object? labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
+        if (labelVal is not null)
+        {
             r["label"] = labelVal;
         }
 
-        var docVal = ISavable.Save(doc, false, (string)this.id.AsT1!, relativeUris);
-        if(docVal is not null) {
+        object? docVal = ISavable.Save(doc, false, (string)this.id.AsT1!, relativeUris);
+        if (docVal is not null)
+        {
             r["doc"] = docVal;
         }
 
-        var inputsVal = ISavable.Save(inputs, false, (string)this.id.AsT1!, relativeUris);
-        if(inputsVal is not null) {
+        object? inputsVal = ISavable.Save(inputs, false, (string)this.id.AsT1!, relativeUris);
+        if (inputsVal is not null)
+        {
             r["inputs"] = inputsVal;
         }
 
-        var outputsVal = ISavable.Save(outputs, false, (string)this.id.AsT1!, relativeUris);
-        if(outputsVal is not null) {
+        object? outputsVal = ISavable.Save(outputs, false, (string)this.id.AsT1!, relativeUris);
+        if (outputsVal is not null)
+        {
             r["outputs"] = outputsVal;
         }
 
-        var requirementsVal = ISavable.Save(requirements, false, (string)this.id.AsT1!, relativeUris);
-        if(requirementsVal is not null) {
+        object? requirementsVal = ISavable.Save(requirements, false, (string)this.id.AsT1!, relativeUris);
+        if (requirementsVal is not null)
+        {
             r["requirements"] = requirementsVal;
         }
 
-        var hintsVal = ISavable.Save(hints, false, (string)this.id.AsT1!, relativeUris);
-        if(hintsVal is not null) {
+        object? hintsVal = ISavable.Save(hints, false, (string)this.id.AsT1!, relativeUris);
+        if (hintsVal is not null)
+        {
             r["hints"] = hintsVal;
         }
 
-        var cwlVersionVal = ISavable.SaveRelativeUri(cwlVersion, false,
+        object? cwlVersionVal = ISavable.SaveRelativeUri(cwlVersion, false,
             relativeUris, null, (string)this.id.AsT1!);
-        if(cwlVersionVal is not null) {
+        if (cwlVersionVal is not null)
+        {
             r["cwlVersion"] = cwlVersionVal;
         }
 
-        var intentVal = ISavable.SaveRelativeUri(intent, true,
+        object? intentVal = ISavable.SaveRelativeUri(intent, true,
             relativeUris, null, (string)this.id.AsT1!);
-        if(intentVal is not null) {
+        if (intentVal is not null)
+        {
             r["intent"] = intentVal;
         }
 
@@ -461,5 +474,5 @@ public class Operation : IOperation, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "id", "label", "doc", "inputs", "outputs", "requirements", "hints", "cwlVersion", "intent", "class" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "id", "label", "doc", "inputs", "outputs", "requirements", "hints", "cwlVersion", "intent", "class" };
 }

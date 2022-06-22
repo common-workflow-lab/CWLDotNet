@@ -1,12 +1,14 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
 /// Auto-generated class implementation for https://w3id.org/cwl/cwl#ExpressionToolOutputParameter
 /// </summary>
-public class ExpressionToolOutputParameter : IExpressionToolOutputParameter, ISavable {
+public class ExpressionToolOutputParameter : IExpressionToolOutputParameter, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -14,12 +16,12 @@ public class ExpressionToolOutputParameter : IExpressionToolOutputParameter, ISa
     /// <summary>
     /// The unique identifier for this object.
     /// </summary>
-    public OneOf<None , string> id { get; set; }
+    public OneOf<None, string> id { get; set; }
 
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public OneOf<None , string> label { get; set; }
+    public OneOf<None, string> label { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -65,7 +67,7 @@ public class ExpressionToolOutputParameter : IExpressionToolOutputParameter, ISa
     ///   3. Append the remainder of the string to the end of the file path.
     /// 
     /// </summary>
-    public OneOf<None , SecondaryFileSchema , List<SecondaryFileSchema>> secondaryFiles { get; set; }
+    public OneOf<None, SecondaryFileSchema, List<SecondaryFileSchema>> secondaryFiles { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -76,12 +78,12 @@ public class ExpressionToolOutputParameter : IExpressionToolOutputParameter, ISa
     /// pipe.  Default: `false`.
     /// 
     /// </summary>
-    public OneOf<None , bool> streamable { get; set; }
+    public OneOf<None, bool> streamable { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
     /// </summary>
-    public OneOf<None , string , List<string>> doc { get; set; }
+    public OneOf<None, string, List<string>> doc { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -90,16 +92,17 @@ public class ExpressionToolOutputParameter : IExpressionToolOutputParameter, ISa
     /// File object.
     /// 
     /// </summary>
-    public OneOf<None , string> format { get; set; }
+    public OneOf<None, string> format { get; set; }
 
     /// <summary>
     /// Specify valid types of data that may be assigned to this parameter.
     /// 
     /// </summary>
-    public OneOf<CWLType , OutputRecordSchema , OutputEnumSchema , OutputArraySchema , string , List<OneOf<CWLType , OutputRecordSchema , OutputEnumSchema , OutputArraySchema , string>>> type { get; set; }
+    public OneOf<CWLType, OutputRecordSchema, OutputEnumSchema, OutputArraySchema, string, List<OneOf<CWLType, OutputRecordSchema, OutputEnumSchema, OutputArraySchema, string>>> type { get; set; }
 
 
-    public ExpressionToolOutputParameter (OneOf<CWLType , OutputRecordSchema , OutputEnumSchema , OutputArraySchema , string , List<OneOf<CWLType , OutputRecordSchema , OutputEnumSchema , OutputArraySchema , string>>> type, OneOf<None , string> id = default, OneOf<None , string> label = default, OneOf<None , SecondaryFileSchema , List<SecondaryFileSchema>> secondaryFiles = default, OneOf<None , bool> streamable = default, OneOf<None , string , List<string>> doc = default, OneOf<None , string> format = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public ExpressionToolOutputParameter(OneOf<CWLType, OutputRecordSchema, OutputEnumSchema, OutputArraySchema, string, List<OneOf<CWLType, OutputRecordSchema, OutputEnumSchema, OutputArraySchema, string>>> type, OneOf<None, string> id = default, OneOf<None, string> label = default, OneOf<None, SecondaryFileSchema, List<SecondaryFileSchema>> secondaryFiles = default, OneOf<None, bool> streamable = default, OneOf<None, string, List<string>> doc = default, OneOf<None, string> format = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.id = id;
@@ -124,7 +127,7 @@ public class ExpressionToolOutputParameter : IExpressionToolOutputParameter, ISa
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic id = default!;
         if (doc_.ContainsKey("id"))
         {
@@ -157,7 +160,7 @@ public class ExpressionToolOutputParameter : IExpressionToolOutputParameter, ISa
         {
             baseUri = (string)id;
         }
-            
+
         dynamic label = default!;
         if (doc_.ContainsKey("label"))
         {
@@ -283,41 +286,41 @@ public class ExpressionToolOutputParameter : IExpressionToolOutputParameter, ISa
             throw new ValidationException("", errors);
         }
 
-        var res__ = new ExpressionToolOutputParameter(
+        ExpressionToolOutputParameter res__ = new(
           loadingOptions: loadingOptions,
           type: type
         );
 
-        if(id != null)
+        if (id != null)
         {
             res__.id = id;
         }
-        
-        if(label != null)
+
+        if (label != null)
         {
             res__.label = label;
         }
-        
-        if(secondaryFiles != null)
+
+        if (secondaryFiles != null)
         {
             res__.secondaryFiles = secondaryFiles;
         }
-        
-        if(streamable != null)
+
+        if (streamable != null)
         {
             res__.streamable = streamable;
         }
-        
-        if(doc != null)
+
+        if (doc != null)
         {
             res__.doc = doc;
         }
-        
-        if(format != null)
+
+        if (format != null)
         {
             res__.format = format;
         }
-        
+
         return res__;
     }
 
@@ -330,40 +333,47 @@ public class ExpressionToolOutputParameter : IExpressionToolOutputParameter, ISa
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var idVal = ISavable.SaveRelativeUri(id, true,
+        object? idVal = ISavable.SaveRelativeUri(id, true,
             relativeUris, null, (string)baseUrl!);
-        if(idVal is not null) {
+        if (idVal is not null)
+        {
             r["id"] = idVal;
         }
 
-        var labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
-        if(labelVal is not null) {
+        object? labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
+        if (labelVal is not null)
+        {
             r["label"] = labelVal;
         }
 
-        var secondaryFilesVal = ISavable.Save(secondaryFiles, false, (string)this.id.AsT1!, relativeUris);
-        if(secondaryFilesVal is not null) {
+        object? secondaryFilesVal = ISavable.Save(secondaryFiles, false, (string)this.id.AsT1!, relativeUris);
+        if (secondaryFilesVal is not null)
+        {
             r["secondaryFiles"] = secondaryFilesVal;
         }
 
-        var streamableVal = ISavable.Save(streamable, false, (string)this.id.AsT1!, relativeUris);
-        if(streamableVal is not null) {
+        object? streamableVal = ISavable.Save(streamable, false, (string)this.id.AsT1!, relativeUris);
+        if (streamableVal is not null)
+        {
             r["streamable"] = streamableVal;
         }
 
-        var docVal = ISavable.Save(doc, false, (string)this.id.AsT1!, relativeUris);
-        if(docVal is not null) {
+        object? docVal = ISavable.Save(doc, false, (string)this.id.AsT1!, relativeUris);
+        if (docVal is not null)
+        {
             r["doc"] = docVal;
         }
 
-        var formatVal = ISavable.SaveRelativeUri(format, true,
+        object? formatVal = ISavable.SaveRelativeUri(format, true,
             relativeUris, null, (string)this.id.AsT1!);
-        if(formatVal is not null) {
+        if (formatVal is not null)
+        {
             r["format"] = formatVal;
         }
 
-        var typeVal = ISavable.Save(type, false, (string)this.id.AsT1!, relativeUris);
-        if(typeVal is not null) {
+        object? typeVal = ISavable.Save(type, false, (string)this.id.AsT1!, relativeUris);
+        if (typeVal is not null)
+        {
             r["type"] = typeVal;
         }
 
@@ -383,5 +393,5 @@ public class ExpressionToolOutputParameter : IExpressionToolOutputParameter, ISa
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "label", "secondaryFiles", "streamable", "doc", "id", "format", "type" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "label", "secondaryFiles", "streamable", "doc", "id", "format", "type" };
 }

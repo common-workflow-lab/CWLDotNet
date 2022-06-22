@@ -8,5 +8,6 @@ namespace CWLDotNet;
 /// listed in the `source` field of [WorkflowStepInput](#WorkflowStepInput).
 /// 
 /// </summary>
-public interface IMultipleInputFeatureRequirement : IProcessRequirement {
+public interface IMultipleInputFeatureRequirement : IProcessRequirement
+{
 }

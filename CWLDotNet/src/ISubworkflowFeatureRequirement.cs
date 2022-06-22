@@ -8,5 +8,6 @@ namespace CWLDotNet;
 /// the `run` field of [WorkflowStep](#WorkflowStep).
 /// 
 /// </summary>
-public interface ISubworkflowFeatureRequirement : IProcessRequirement {
+public interface ISubworkflowFeatureRequirement : IProcessRequirement
+{
 }

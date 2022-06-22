@@ -6,5 +6,6 @@ namespace CWLDotNet;
 ///
 /// An output parameter for a CommandLineTool.
 /// </summary>
-public interface ICommandOutputParameter : IOutputParameter {
+public interface ICommandOutputParameter : IOutputParameter
+{
 }

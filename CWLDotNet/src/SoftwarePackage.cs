@@ -1,12 +1,14 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
 /// Auto-generated class implementation for https://w3id.org/cwl/cwl#SoftwarePackage
 /// </summary>
-public class SoftwarePackage : ISoftwarePackage, ISavable {
+public class SoftwarePackage : ISoftwarePackage, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -24,7 +26,7 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
     /// compatible.
     /// 
     /// </summary>
-    public OneOf<None , List<string>> version { get; set; }
+    public OneOf<None, List<string>> version { get; set; }
 
     /// <summary>
     /// One or more [IRI](https://en.wikipedia.org/wiki/Internationalized_Resource_Identifier)s
@@ -70,10 +72,11 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
     /// clutter.
     /// 
     /// </summary>
-    public OneOf<None , List<string>> specs { get; set; }
+    public OneOf<None, List<string>> specs { get; set; }
 
 
-    public SoftwarePackage (string package_, OneOf<None , List<string>> version = default, OneOf<None , List<string>> specs = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public SoftwarePackage(string package_, OneOf<None, List<string>> version = default, OneOf<None, List<string>> specs = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.package_ = package_;
@@ -94,7 +97,7 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic package_ = default!;
         try
         {
@@ -169,21 +172,21 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new SoftwarePackage(
+        SoftwarePackage res__ = new(
           loadingOptions: loadingOptions,
           package_: package_
         );
 
-        if(version != null)
+        if (version != null)
         {
             res__.version = version;
         }
-        
-        if(specs != null)
+
+        if (specs != null)
         {
             res__.specs = specs;
         }
-        
+
         return res__;
     }
 
@@ -196,19 +199,22 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var package_Val = ISavable.Save(package_, false, (string)baseUrl!, relativeUris);
-        if(package_Val is not null) {
+        object? package_Val = ISavable.Save(package_, false, (string)baseUrl!, relativeUris);
+        if (package_Val is not null)
+        {
             r["package"] = package_Val;
         }
 
-        var versionVal = ISavable.Save(version, false, (string)baseUrl!, relativeUris);
-        if(versionVal is not null) {
+        object? versionVal = ISavable.Save(version, false, (string)baseUrl!, relativeUris);
+        if (versionVal is not null)
+        {
             r["version"] = versionVal;
         }
 
-        var specsVal = ISavable.SaveRelativeUri(specs, false,
+        object? specsVal = ISavable.SaveRelativeUri(specs, false,
             relativeUris, null, (string)baseUrl!);
-        if(specsVal is not null) {
+        if (specsVal is not null)
+        {
             r["specs"] = specsVal;
         }
 
@@ -228,5 +234,5 @@ public class SoftwarePackage : ISoftwarePackage, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "package", "version", "specs" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "package", "version", "specs" };
 }

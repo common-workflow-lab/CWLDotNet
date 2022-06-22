@@ -4,6 +4,7 @@ public class Expression : IEnumClass<Expression>
 {
     private string _Name;
     private static readonly List<Expression> members = new();
+
     public static readonly Expression EXPRESSIONPLACEHOLDER =
                             new("ExpressionPlaceholder");
 

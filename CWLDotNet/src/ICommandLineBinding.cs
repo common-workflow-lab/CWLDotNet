@@ -41,5 +41,6 @@ namespace CWLDotNet;
 ///   - **null**: Add nothing.
 /// 
 /// </summary>
-public interface ICommandLineBinding : IInputBinding {
+public interface ICommandLineBinding : IInputBinding
+{
 }

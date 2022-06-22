@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -43,7 +44,8 @@ namespace CWLDotNet;
 ///   - **null**: Add nothing.
 /// 
 /// </summary>
-public class CommandLineBinding : ICommandLineBinding, ISavable {
+public class CommandLineBinding : ICommandLineBinding, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -54,7 +56,7 @@ public class CommandLineBinding : ICommandLineBinding, ISavable {
     /// CWL v2.0.  Use `InputParameter.loadContents` instead.
     /// 
     /// </summary>
-    public OneOf<None , bool> loadContents { get; set; }
+    public OneOf<None, bool> loadContents { get; set; }
 
     /// <summary>
     /// The sorting key.  Default position is 0. If a [CWL Parameter Reference](#Parameter_references)
@@ -66,12 +68,12 @@ public class CommandLineBinding : ICommandLineBinding, ISavable {
     /// single value of type int or a null.
     /// 
     /// </summary>
-    public OneOf<None , int , string> position { get; set; }
+    public OneOf<None, int, string> position { get; set; }
 
     /// <summary>
     /// Command line prefix to add before the value.
     /// </summary>
-    public OneOf<None , string> prefix { get; set; }
+    public OneOf<None, string> prefix { get; set; }
 
     /// <summary>
     /// If true (default), then the prefix and value must be added as separate
@@ -79,14 +81,14 @@ public class CommandLineBinding : ICommandLineBinding, ISavable {
     /// into a single command line argument.
     /// 
     /// </summary>
-    public OneOf<None , bool> separate { get; set; }
+    public OneOf<None, bool> separate { get; set; }
 
     /// <summary>
     /// Join the array elements into a single string with the elements
     /// separated by by `itemSeparator`.
     /// 
     /// </summary>
-    public OneOf<None , string> itemSeparator { get; set; }
+    public OneOf<None, string> itemSeparator { get; set; }
 
     /// <summary>
     /// If `valueFrom` is a constant string value, use this as the value and
@@ -107,7 +109,7 @@ public class CommandLineBinding : ICommandLineBinding, ISavable {
     /// the `valueFrom` field is required.
     /// 
     /// </summary>
-    public OneOf<None , string> valueFrom { get; set; }
+    public OneOf<None, string> valueFrom { get; set; }
 
     /// <summary>
     /// If `ShellCommandRequirement` is in the requirements for the current command,
@@ -118,10 +120,11 @@ public class CommandLineBinding : ICommandLineBinding, ISavable {
     /// permit interpretation of any shell metacharacters or directives.
     /// 
     /// </summary>
-    public OneOf<None , bool> shellQuote { get; set; }
+    public OneOf<None, bool> shellQuote { get; set; }
 
 
-    public CommandLineBinding (OneOf<None , bool> loadContents = default, OneOf<None , int , string> position = default, OneOf<None , string> prefix = default, OneOf<None , bool> separate = default, OneOf<None , string> itemSeparator = default, OneOf<None , string> valueFrom = default, OneOf<None , bool> shellQuote = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public CommandLineBinding(OneOf<None, bool> loadContents = default, OneOf<None, int, string> position = default, OneOf<None, string> prefix = default, OneOf<None, bool> separate = default, OneOf<None, string> itemSeparator = default, OneOf<None, string> valueFrom = default, OneOf<None, bool> shellQuote = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.loadContents = loadContents;
@@ -146,7 +149,7 @@ public class CommandLineBinding : ICommandLineBinding, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic loadContents = default!;
         if (doc_.ContainsKey("loadContents"))
         {
@@ -292,45 +295,45 @@ public class CommandLineBinding : ICommandLineBinding, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new CommandLineBinding(
+        CommandLineBinding res__ = new(
           loadingOptions: loadingOptions
         );
 
-        if(loadContents != null)
+        if (loadContents != null)
         {
             res__.loadContents = loadContents;
         }
-        
-        if(position != null)
+
+        if (position != null)
         {
             res__.position = position;
         }
-        
-        if(prefix != null)
+
+        if (prefix != null)
         {
             res__.prefix = prefix;
         }
-        
-        if(separate != null)
+
+        if (separate != null)
         {
             res__.separate = separate;
         }
-        
-        if(itemSeparator != null)
+
+        if (itemSeparator != null)
         {
             res__.itemSeparator = itemSeparator;
         }
-        
-        if(valueFrom != null)
+
+        if (valueFrom != null)
         {
             res__.valueFrom = valueFrom;
         }
-        
-        if(shellQuote != null)
+
+        if (shellQuote != null)
         {
             res__.shellQuote = shellQuote;
         }
-        
+
         return res__;
     }
 
@@ -343,38 +346,45 @@ public class CommandLineBinding : ICommandLineBinding, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var loadContentsVal = ISavable.Save(loadContents, false, (string)baseUrl!, relativeUris);
-        if(loadContentsVal is not null) {
+        object? loadContentsVal = ISavable.Save(loadContents, false, (string)baseUrl!, relativeUris);
+        if (loadContentsVal is not null)
+        {
             r["loadContents"] = loadContentsVal;
         }
 
-        var positionVal = ISavable.Save(position, false, (string)baseUrl!, relativeUris);
-        if(positionVal is not null) {
+        object? positionVal = ISavable.Save(position, false, (string)baseUrl!, relativeUris);
+        if (positionVal is not null)
+        {
             r["position"] = positionVal;
         }
 
-        var prefixVal = ISavable.Save(prefix, false, (string)baseUrl!, relativeUris);
-        if(prefixVal is not null) {
+        object? prefixVal = ISavable.Save(prefix, false, (string)baseUrl!, relativeUris);
+        if (prefixVal is not null)
+        {
             r["prefix"] = prefixVal;
         }
 
-        var separateVal = ISavable.Save(separate, false, (string)baseUrl!, relativeUris);
-        if(separateVal is not null) {
+        object? separateVal = ISavable.Save(separate, false, (string)baseUrl!, relativeUris);
+        if (separateVal is not null)
+        {
             r["separate"] = separateVal;
         }
 
-        var itemSeparatorVal = ISavable.Save(itemSeparator, false, (string)baseUrl!, relativeUris);
-        if(itemSeparatorVal is not null) {
+        object? itemSeparatorVal = ISavable.Save(itemSeparator, false, (string)baseUrl!, relativeUris);
+        if (itemSeparatorVal is not null)
+        {
             r["itemSeparator"] = itemSeparatorVal;
         }
 
-        var valueFromVal = ISavable.Save(valueFrom, false, (string)baseUrl!, relativeUris);
-        if(valueFromVal is not null) {
+        object? valueFromVal = ISavable.Save(valueFrom, false, (string)baseUrl!, relativeUris);
+        if (valueFromVal is not null)
+        {
             r["valueFrom"] = valueFromVal;
         }
 
-        var shellQuoteVal = ISavable.Save(shellQuote, false, (string)baseUrl!, relativeUris);
-        if(shellQuoteVal is not null) {
+        object? shellQuoteVal = ISavable.Save(shellQuote, false, (string)baseUrl!, relativeUris);
+        if (shellQuoteVal is not null)
+        {
             r["shellQuote"] = shellQuoteVal;
         }
 
@@ -394,5 +404,5 @@ public class CommandLineBinding : ICommandLineBinding, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "loadContents", "position", "prefix", "separate", "itemSeparator", "valueFrom", "shellQuote" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "loadContents", "position", "prefix", "separate", "itemSeparator", "valueFrom", "shellQuote" };
 }

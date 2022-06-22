@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -38,7 +39,8 @@ namespace CWLDotNet;
 /// not be enabled.
 /// 
 /// </summary>
-public class InplaceUpdateRequirement : IInplaceUpdateRequirement, ISavable {
+public class InplaceUpdateRequirement : IInplaceUpdateRequirement, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -50,7 +52,8 @@ public class InplaceUpdateRequirement : IInplaceUpdateRequirement, ISavable {
     public bool inplaceUpdate { get; set; }
 
 
-    public InplaceUpdateRequirement (bool inplaceUpdate, InplaceUpdateRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public InplaceUpdateRequirement(bool inplaceUpdate, InplaceUpdateRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.class_ = class_ ?? InplaceUpdateRequirement_class.INPLACEUPDATEREQUIREMENT;
@@ -70,7 +73,7 @@ public class InplaceUpdateRequirement : IInplaceUpdateRequirement, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic class_ = default!;
         try
         {
@@ -125,7 +128,7 @@ public class InplaceUpdateRequirement : IInplaceUpdateRequirement, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new InplaceUpdateRequirement(
+        InplaceUpdateRequirement res__ = new(
           loadingOptions: loadingOptions,
           class_: class_,
           inplaceUpdate: inplaceUpdate
@@ -143,14 +146,16 @@ public class InplaceUpdateRequirement : IInplaceUpdateRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var class_Val = ISavable.SaveRelativeUri(class_, false,
+        object? class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not null) {
+        if (class_Val is not null)
+        {
             r["class"] = class_Val;
         }
 
-        var inplaceUpdateVal = ISavable.Save(inplaceUpdate, false, (string)baseUrl!, relativeUris);
-        if(inplaceUpdateVal is not null) {
+        object? inplaceUpdateVal = ISavable.Save(inplaceUpdate, false, (string)baseUrl!, relativeUris);
+        if (inplaceUpdateVal is not null)
+        {
             r["inplaceUpdate"] = inplaceUpdateVal;
         }
 
@@ -170,5 +175,5 @@ public class InplaceUpdateRequirement : IInplaceUpdateRequirement, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "inplaceUpdate" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "class", "inplaceUpdate" };
 }

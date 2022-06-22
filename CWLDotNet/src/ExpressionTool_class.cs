@@ -4,6 +4,7 @@ public class ExpressionTool_class : IEnumClass<ExpressionTool_class>
 {
     private string _Name;
     private static readonly List<ExpressionTool_class> members = new();
+
     public static readonly ExpressionTool_class EXPRESSIONTOOL =
                             new("ExpressionTool");
 

@@ -7,5 +7,6 @@ namespace CWLDotNet;
 /// Describe an input parameter of an operation.
 /// 
 /// </summary>
-public interface IOperationInputParameter : IInputParameter {
+public interface IOperationInputParameter : IInputParameter
+{
 }

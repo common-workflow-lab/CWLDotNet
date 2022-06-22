@@ -4,6 +4,7 @@ public class DockerRequirement_class : IEnumClass<DockerRequirement_class>
 {
     private string _Name;
     private static readonly List<DockerRequirement_class> members = new();
+
     public static readonly DockerRequirement_class DOCKERREQUIREMENT =
                             new("DockerRequirement");
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -8,7 +9,8 @@ namespace CWLDotNet;
 ///
 /// An input parameter for a CommandLineTool.
 /// </summary>
-public class CommandInputParameter : ICommandInputParameter, ISavable {
+public class CommandInputParameter : ICommandInputParameter, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -16,12 +18,12 @@ public class CommandInputParameter : ICommandInputParameter, ISavable {
     /// <summary>
     /// The unique identifier for this object.
     /// </summary>
-    public OneOf<None , string> id { get; set; }
+    public OneOf<None, string> id { get; set; }
 
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public OneOf<None , string> label { get; set; }
+    public OneOf<None, string> label { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -67,7 +69,7 @@ public class CommandInputParameter : ICommandInputParameter, ISavable {
     ///   3. Append the remainder of the string to the end of the file path.
     /// 
     /// </summary>
-    public OneOf<None , SecondaryFileSchema , List<SecondaryFileSchema>> secondaryFiles { get; set; }
+    public OneOf<None, SecondaryFileSchema, List<SecondaryFileSchema>> secondaryFiles { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -78,12 +80,12 @@ public class CommandInputParameter : ICommandInputParameter, ISavable {
     /// pipe.  Default: `false`.
     /// 
     /// </summary>
-    public OneOf<None , bool> streamable { get; set; }
+    public OneOf<None, bool> streamable { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
     /// </summary>
-    public OneOf<None , string , List<string>> doc { get; set; }
+    public OneOf<None, string, List<string>> doc { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -94,7 +96,7 @@ public class CommandInputParameter : ICommandInputParameter, ISavable {
     /// available, file formats may be tested by exact match.
     /// 
     /// </summary>
-    public OneOf<None , string , List<string>> format { get; set; }
+    public OneOf<None, string, List<string>> format { get; set; }
 
     /// <summary>
     /// Only valid when `type: File` or is an array of `items: File`.
@@ -107,7 +109,7 @@ public class CommandInputParameter : ICommandInputParameter, ISavable {
     /// the implementation must raise a fatal error.
     /// 
     /// </summary>
-    public OneOf<None , bool> loadContents { get; set; }
+    public OneOf<None, bool> loadContents { get; set; }
 
     /// <summary>
     /// Only valid when `type: Directory` or is an array of `items: Directory`.
@@ -122,7 +124,7 @@ public class CommandInputParameter : ICommandInputParameter, ISavable {
     ///   3. By default: `no_listing`
     /// 
     /// </summary>
-    public OneOf<None , LoadListingEnum> loadListing { get; set; }
+    public OneOf<None, LoadListingEnum> loadListing { get; set; }
 
     /// <summary>
     /// The default value to use for this parameter if the parameter is missing
@@ -131,23 +133,24 @@ public class CommandInputParameter : ICommandInputParameter, ISavable {
     /// (e.g. dependent `valueFrom` fields).
     /// 
     /// </summary>
-    public OneOf<None , object> default_ { get; set; }
+    public OneOf<None, object> default_ { get; set; }
 
     /// <summary>
     /// Specify valid types of data that may be assigned to this parameter.
     /// 
     /// </summary>
-    public OneOf<CWLType , stdin , CommandInputRecordSchema , CommandInputEnumSchema , CommandInputArraySchema , string , List<OneOf<CWLType , CommandInputRecordSchema , CommandInputEnumSchema , CommandInputArraySchema , string>>> type { get; set; }
+    public OneOf<CWLType, stdin, CommandInputRecordSchema, CommandInputEnumSchema, CommandInputArraySchema, string, List<OneOf<CWLType, CommandInputRecordSchema, CommandInputEnumSchema, CommandInputArraySchema, string>>> type { get; set; }
 
     /// <summary>
     /// Describes how to turns the input parameters of a process into
     /// command line arguments.
     /// 
     /// </summary>
-    public OneOf<None , CommandLineBinding> inputBinding { get; set; }
+    public OneOf<None, CommandLineBinding> inputBinding { get; set; }
 
 
-    public CommandInputParameter (OneOf<CWLType , stdin , CommandInputRecordSchema , CommandInputEnumSchema , CommandInputArraySchema , string , List<OneOf<CWLType , CommandInputRecordSchema , CommandInputEnumSchema , CommandInputArraySchema , string>>> type, OneOf<None , string> id = default, OneOf<None , string> label = default, OneOf<None , SecondaryFileSchema , List<SecondaryFileSchema>> secondaryFiles = default, OneOf<None , bool> streamable = default, OneOf<None , string , List<string>> doc = default, OneOf<None , string , List<string>> format = default, OneOf<None , bool> loadContents = default, OneOf<None , LoadListingEnum> loadListing = default, OneOf<None , object> default_ = default, OneOf<None , CommandLineBinding> inputBinding = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public CommandInputParameter(OneOf<CWLType, stdin, CommandInputRecordSchema, CommandInputEnumSchema, CommandInputArraySchema, string, List<OneOf<CWLType, CommandInputRecordSchema, CommandInputEnumSchema, CommandInputArraySchema, string>>> type, OneOf<None, string> id = default, OneOf<None, string> label = default, OneOf<None, SecondaryFileSchema, List<SecondaryFileSchema>> secondaryFiles = default, OneOf<None, bool> streamable = default, OneOf<None, string, List<string>> doc = default, OneOf<None, string, List<string>> format = default, OneOf<None, bool> loadContents = default, OneOf<None, LoadListingEnum> loadListing = default, OneOf<None, object> default_ = default, OneOf<None, CommandLineBinding> inputBinding = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.id = id;
@@ -176,7 +179,7 @@ public class CommandInputParameter : ICommandInputParameter, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic id = default!;
         if (doc_.ContainsKey("id"))
         {
@@ -209,7 +212,7 @@ public class CommandInputParameter : ICommandInputParameter, ISavable {
         {
             baseUri = (string)id;
         }
-            
+
         dynamic label = default!;
         if (doc_.ContainsKey("label"))
         {
@@ -403,61 +406,61 @@ public class CommandInputParameter : ICommandInputParameter, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new CommandInputParameter(
+        CommandInputParameter res__ = new(
           loadingOptions: loadingOptions,
           type: type
         );
 
-        if(id != null)
+        if (id != null)
         {
             res__.id = id;
         }
-        
-        if(label != null)
+
+        if (label != null)
         {
             res__.label = label;
         }
-        
-        if(secondaryFiles != null)
+
+        if (secondaryFiles != null)
         {
             res__.secondaryFiles = secondaryFiles;
         }
-        
-        if(streamable != null)
+
+        if (streamable != null)
         {
             res__.streamable = streamable;
         }
-        
-        if(doc != null)
+
+        if (doc != null)
         {
             res__.doc = doc;
         }
-        
-        if(format != null)
+
+        if (format != null)
         {
             res__.format = format;
         }
-        
-        if(loadContents != null)
+
+        if (loadContents != null)
         {
             res__.loadContents = loadContents;
         }
-        
-        if(loadListing != null)
+
+        if (loadListing != null)
         {
             res__.loadListing = loadListing;
         }
-        
-        if(default_ != null)
+
+        if (default_ != null)
         {
             res__.default_ = default_;
         }
-        
-        if(inputBinding != null)
+
+        if (inputBinding != null)
         {
             res__.inputBinding = inputBinding;
         }
-        
+
         return res__;
     }
 
@@ -470,60 +473,71 @@ public class CommandInputParameter : ICommandInputParameter, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var idVal = ISavable.SaveRelativeUri(id, true,
+        object? idVal = ISavable.SaveRelativeUri(id, true,
             relativeUris, null, (string)baseUrl!);
-        if(idVal is not null) {
+        if (idVal is not null)
+        {
             r["id"] = idVal;
         }
 
-        var labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
-        if(labelVal is not null) {
+        object? labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
+        if (labelVal is not null)
+        {
             r["label"] = labelVal;
         }
 
-        var secondaryFilesVal = ISavable.Save(secondaryFiles, false, (string)this.id.AsT1!, relativeUris);
-        if(secondaryFilesVal is not null) {
+        object? secondaryFilesVal = ISavable.Save(secondaryFiles, false, (string)this.id.AsT1!, relativeUris);
+        if (secondaryFilesVal is not null)
+        {
             r["secondaryFiles"] = secondaryFilesVal;
         }
 
-        var streamableVal = ISavable.Save(streamable, false, (string)this.id.AsT1!, relativeUris);
-        if(streamableVal is not null) {
+        object? streamableVal = ISavable.Save(streamable, false, (string)this.id.AsT1!, relativeUris);
+        if (streamableVal is not null)
+        {
             r["streamable"] = streamableVal;
         }
 
-        var docVal = ISavable.Save(doc, false, (string)this.id.AsT1!, relativeUris);
-        if(docVal is not null) {
+        object? docVal = ISavable.Save(doc, false, (string)this.id.AsT1!, relativeUris);
+        if (docVal is not null)
+        {
             r["doc"] = docVal;
         }
 
-        var formatVal = ISavable.SaveRelativeUri(format, true,
+        object? formatVal = ISavable.SaveRelativeUri(format, true,
             relativeUris, null, (string)this.id.AsT1!);
-        if(formatVal is not null) {
+        if (formatVal is not null)
+        {
             r["format"] = formatVal;
         }
 
-        var loadContentsVal = ISavable.Save(loadContents, false, (string)this.id.AsT1!, relativeUris);
-        if(loadContentsVal is not null) {
+        object? loadContentsVal = ISavable.Save(loadContents, false, (string)this.id.AsT1!, relativeUris);
+        if (loadContentsVal is not null)
+        {
             r["loadContents"] = loadContentsVal;
         }
 
-        var loadListingVal = ISavable.Save(loadListing, false, (string)this.id.AsT1!, relativeUris);
-        if(loadListingVal is not null) {
+        object? loadListingVal = ISavable.Save(loadListing, false, (string)this.id.AsT1!, relativeUris);
+        if (loadListingVal is not null)
+        {
             r["loadListing"] = loadListingVal;
         }
 
-        var default_Val = ISavable.Save(default_, false, (string)this.id.AsT1!, relativeUris);
-        if(default_Val is not null) {
+        object? default_Val = ISavable.Save(default_, false, (string)this.id.AsT1!, relativeUris);
+        if (default_Val is not null)
+        {
             r["default"] = default_Val;
         }
 
-        var typeVal = ISavable.Save(type, false, (string)this.id.AsT1!, relativeUris);
-        if(typeVal is not null) {
+        object? typeVal = ISavable.Save(type, false, (string)this.id.AsT1!, relativeUris);
+        if (typeVal is not null)
+        {
             r["type"] = typeVal;
         }
 
-        var inputBindingVal = ISavable.Save(inputBinding, false, (string)this.id.AsT1!, relativeUris);
-        if(inputBindingVal is not null) {
+        object? inputBindingVal = ISavable.Save(inputBinding, false, (string)this.id.AsT1!, relativeUris);
+        if (inputBindingVal is not null)
+        {
             r["inputBinding"] = inputBindingVal;
         }
 
@@ -543,5 +557,5 @@ public class CommandInputParameter : ICommandInputParameter, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "label", "secondaryFiles", "streamable", "doc", "id", "format", "loadContents", "loadListing", "default", "type", "inputBinding" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "label", "secondaryFiles", "streamable", "doc", "id", "format", "loadContents", "loadListing", "default", "type", "inputBinding" };
 }

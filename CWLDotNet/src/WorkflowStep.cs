@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -87,7 +88,8 @@ namespace CWLDotNet;
 /// a subworkflow (recursive workflows are not allowed).
 /// 
 /// </summary>
-public class WorkflowStep : IWorkflowStep, ISavable {
+public class WorkflowStep : IWorkflowStep, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -95,17 +97,17 @@ public class WorkflowStep : IWorkflowStep, ISavable {
     /// <summary>
     /// The unique identifier for this object.
     /// </summary>
-    public OneOf<None , string> id { get; set; }
+    public OneOf<None, string> id { get; set; }
 
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public OneOf<None , string> label { get; set; }
+    public OneOf<None, string> label { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
     /// </summary>
-    public OneOf<None , string , List<string>> doc { get; set; }
+    public OneOf<None, string, List<string>> doc { get; set; }
 
     /// <summary>
     /// Defines the input parameters of the workflow step.  The process is ready to
@@ -122,7 +124,7 @@ public class WorkflowStep : IWorkflowStep, ISavable {
     /// used to generate and/or validate the output object.
     /// 
     /// </summary>
-    public OneOf<List<OneOf<string , WorkflowStepOutput>>> out_ { get; set; }
+    public OneOf<List<OneOf<string, WorkflowStepOutput>>> out_ { get; set; }
 
     /// <summary>
     /// Declares requirements that apply to either the runtime environment or the
@@ -133,7 +135,7 @@ public class WorkflowStep : IWorkflowStep, ISavable {
     /// unless overridden at user option.
     /// 
     /// </summary>
-    public OneOf<None , List<OneOf<InlineJavascriptRequirement , SchemaDefRequirement , LoadListingRequirement , DockerRequirement , SoftwareRequirement , InitialWorkDirRequirement , EnvVarRequirement , ShellCommandRequirement , ResourceRequirement , WorkReuse , NetworkAccess , InplaceUpdateRequirement , ToolTimeLimit , SubworkflowFeatureRequirement , ScatterFeatureRequirement , MultipleInputFeatureRequirement , StepInputExpressionRequirement>>> requirements { get; set; }
+    public OneOf<None, List<OneOf<InlineJavascriptRequirement, SchemaDefRequirement, LoadListingRequirement, DockerRequirement, SoftwareRequirement, InitialWorkDirRequirement, EnvVarRequirement, ShellCommandRequirement, ResourceRequirement, WorkReuse, NetworkAccess, InplaceUpdateRequirement, ToolTimeLimit, SubworkflowFeatureRequirement, ScatterFeatureRequirement, MultipleInputFeatureRequirement, StepInputExpressionRequirement>>> requirements { get; set; }
 
     /// <summary>
     /// Declares hints applying to either the runtime environment or the
@@ -142,14 +144,14 @@ public class WorkflowStep : IWorkflowStep, ISavable {
     /// the implementation may report a warning.
     /// 
     /// </summary>
-    public OneOf<None , List<object>> hints { get; set; }
+    public OneOf<None, List<object>> hints { get; set; }
 
     /// <summary>
     /// Specifies the process to run.  If `run` is a string, it must be an absolute IRI
     /// or a relative path from the primary document.
     /// 
     /// </summary>
-    public OneOf<string , CommandLineTool , ExpressionTool , Workflow , Operation> run { get; set; }
+    public OneOf<string, CommandLineTool, ExpressionTool, Workflow, Operation> run { get; set; }
 
     /// <summary>
     /// If defined, only run the step when the expression evaluates to
@@ -157,17 +159,18 @@ public class WorkflowStep : IWorkflowStep, ISavable {
     /// produces a `null` on each output.
     /// 
     /// </summary>
-    public OneOf<None , string> when { get; set; }
-    public OneOf<None , string , List<string>> scatter { get; set; }
+    public OneOf<None, string> when { get; set; }
+    public OneOf<None, string, List<string>> scatter { get; set; }
 
     /// <summary>
     /// Required if `scatter` is an array of more than one element.
     /// 
     /// </summary>
-    public OneOf<None , ScatterMethod> scatterMethod { get; set; }
+    public OneOf<None, ScatterMethod> scatterMethod { get; set; }
 
 
-    public WorkflowStep (List<WorkflowStepInput> in_, OneOf<List<OneOf<string , WorkflowStepOutput>>> out_, OneOf<string , CommandLineTool , ExpressionTool , Workflow , Operation> run, OneOf<None , string> id = default, OneOf<None , string> label = default, OneOf<None , string , List<string>> doc = default, OneOf<None , List<OneOf<InlineJavascriptRequirement , SchemaDefRequirement , LoadListingRequirement , DockerRequirement , SoftwareRequirement , InitialWorkDirRequirement , EnvVarRequirement , ShellCommandRequirement , ResourceRequirement , WorkReuse , NetworkAccess , InplaceUpdateRequirement , ToolTimeLimit , SubworkflowFeatureRequirement , ScatterFeatureRequirement , MultipleInputFeatureRequirement , StepInputExpressionRequirement>>> requirements = default, OneOf<None , List<object>> hints = default, OneOf<None , string> when = default, OneOf<None , string , List<string>> scatter = default, OneOf<None , ScatterMethod> scatterMethod = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public WorkflowStep(List<WorkflowStepInput> in_, OneOf<List<OneOf<string, WorkflowStepOutput>>> out_, OneOf<string, CommandLineTool, ExpressionTool, Workflow, Operation> run, OneOf<None, string> id = default, OneOf<None, string> label = default, OneOf<None, string, List<string>> doc = default, OneOf<None, List<OneOf<InlineJavascriptRequirement, SchemaDefRequirement, LoadListingRequirement, DockerRequirement, SoftwareRequirement, InitialWorkDirRequirement, EnvVarRequirement, ShellCommandRequirement, ResourceRequirement, WorkReuse, NetworkAccess, InplaceUpdateRequirement, ToolTimeLimit, SubworkflowFeatureRequirement, ScatterFeatureRequirement, MultipleInputFeatureRequirement, StepInputExpressionRequirement>>> requirements = default, OneOf<None, List<object>> hints = default, OneOf<None, string> when = default, OneOf<None, string, List<string>> scatter = default, OneOf<None, ScatterMethod> scatterMethod = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.id = id;
@@ -196,7 +199,7 @@ public class WorkflowStep : IWorkflowStep, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic id = default!;
         if (doc_.ContainsKey("id"))
         {
@@ -229,7 +232,7 @@ public class WorkflowStep : IWorkflowStep, ISavable {
         {
             baseUri = (string)id;
         }
-            
+
         dynamic label = default!;
         if (doc_.ContainsKey("label"))
         {
@@ -417,53 +420,53 @@ public class WorkflowStep : IWorkflowStep, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new WorkflowStep(
+        WorkflowStep res__ = new(
           loadingOptions: loadingOptions,
           in_: in_,
           out_: out_,
           run: run
         );
 
-        if(id != null)
+        if (id != null)
         {
             res__.id = id;
         }
-        
-        if(label != null)
+
+        if (label != null)
         {
             res__.label = label;
         }
-        
-        if(doc != null)
+
+        if (doc != null)
         {
             res__.doc = doc;
         }
-        
-        if(requirements != null)
+
+        if (requirements != null)
         {
             res__.requirements = requirements;
         }
-        
-        if(hints != null)
+
+        if (hints != null)
         {
             res__.hints = hints;
         }
-        
-        if(when != null)
+
+        if (when != null)
         {
             res__.when = when;
         }
-        
-        if(scatter != null)
+
+        if (scatter != null)
         {
             res__.scatter = scatter;
         }
-        
-        if(scatterMethod != null)
+
+        if (scatterMethod != null)
         {
             res__.scatterMethod = scatterMethod;
         }
-        
+
         return res__;
     }
 
@@ -476,62 +479,73 @@ public class WorkflowStep : IWorkflowStep, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var idVal = ISavable.SaveRelativeUri(id, true,
+        object? idVal = ISavable.SaveRelativeUri(id, true,
             relativeUris, null, (string)baseUrl!);
-        if(idVal is not null) {
+        if (idVal is not null)
+        {
             r["id"] = idVal;
         }
 
-        var labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
-        if(labelVal is not null) {
+        object? labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
+        if (labelVal is not null)
+        {
             r["label"] = labelVal;
         }
 
-        var docVal = ISavable.Save(doc, false, (string)this.id.AsT1!, relativeUris);
-        if(docVal is not null) {
+        object? docVal = ISavable.Save(doc, false, (string)this.id.AsT1!, relativeUris);
+        if (docVal is not null)
+        {
             r["doc"] = docVal;
         }
 
-        var in_Val = ISavable.Save(in_, false, (string)this.id.AsT1!, relativeUris);
-        if(in_Val is not null) {
+        object? in_Val = ISavable.Save(in_, false, (string)this.id.AsT1!, relativeUris);
+        if (in_Val is not null)
+        {
             r["in"] = in_Val;
         }
 
-        var out_Val = ISavable.SaveRelativeUri(out_, true,
+        object? out_Val = ISavable.SaveRelativeUri(out_, true,
             relativeUris, null, (string)this.id.AsT1!);
-        if(out_Val is not null) {
+        if (out_Val is not null)
+        {
             r["out"] = out_Val;
         }
 
-        var requirementsVal = ISavable.Save(requirements, false, (string)this.id.AsT1!, relativeUris);
-        if(requirementsVal is not null) {
+        object? requirementsVal = ISavable.Save(requirements, false, (string)this.id.AsT1!, relativeUris);
+        if (requirementsVal is not null)
+        {
             r["requirements"] = requirementsVal;
         }
 
-        var hintsVal = ISavable.Save(hints, false, (string)this.id.AsT1!, relativeUris);
-        if(hintsVal is not null) {
+        object? hintsVal = ISavable.Save(hints, false, (string)this.id.AsT1!, relativeUris);
+        if (hintsVal is not null)
+        {
             r["hints"] = hintsVal;
         }
 
-        var runVal = ISavable.Save(run, false, (string)this.id.AsT1!, relativeUris);
-        if(runVal is not null) {
+        object? runVal = ISavable.Save(run, false, (string)this.id.AsT1!, relativeUris);
+        if (runVal is not null)
+        {
             r["run"] = runVal;
         }
 
-        var whenVal = ISavable.Save(when, false, (string)this.id.AsT1!, relativeUris);
-        if(whenVal is not null) {
+        object? whenVal = ISavable.Save(when, false, (string)this.id.AsT1!, relativeUris);
+        if (whenVal is not null)
+        {
             r["when"] = whenVal;
         }
 
-        var scatterVal = ISavable.SaveRelativeUri(scatter, false,
+        object? scatterVal = ISavable.SaveRelativeUri(scatter, false,
             relativeUris, 0, (string)this.id.AsT1!);
-        if(scatterVal is not null) {
+        if (scatterVal is not null)
+        {
             r["scatter"] = scatterVal;
         }
 
-        var scatterMethodVal = ISavable.SaveRelativeUri(scatterMethod, false,
+        object? scatterMethodVal = ISavable.SaveRelativeUri(scatterMethod, false,
             relativeUris, null, (string)this.id.AsT1!);
-        if(scatterMethodVal is not null) {
+        if (scatterMethodVal is not null)
+        {
             r["scatterMethod"] = scatterMethodVal;
         }
 
@@ -551,5 +565,5 @@ public class WorkflowStep : IWorkflowStep, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "id", "label", "doc", "in", "out", "requirements", "hints", "run", "when", "scatter", "scatterMethod" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "id", "label", "doc", "in", "out", "requirements", "hints", "run", "when", "scatter", "scatterMethod" };
 }

@@ -14,5 +14,6 @@ namespace CWLDotNet;
 /// arbitrary locations, see discussion for `entryname`.
 /// 
 /// </summary>
-public interface IDirent  {
+public interface IDirent
+{
 }

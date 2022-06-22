@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -10,7 +11,8 @@ namespace CWLDotNet;
 /// the defined process.
 /// 
 /// </summary>
-public class SoftwareRequirement : ISoftwareRequirement, ISavable {
+public class SoftwareRequirement : ISoftwareRequirement, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -26,7 +28,8 @@ public class SoftwareRequirement : ISoftwareRequirement, ISavable {
     public List<SoftwarePackage> packages { get; set; }
 
 
-    public SoftwareRequirement (List<SoftwarePackage> packages, SoftwareRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public SoftwareRequirement(List<SoftwarePackage> packages, SoftwareRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.class_ = class_ ?? SoftwareRequirement_class.SOFTWAREREQUIREMENT;
@@ -46,7 +49,7 @@ public class SoftwareRequirement : ISoftwareRequirement, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic class_ = default!;
         try
         {
@@ -101,7 +104,7 @@ public class SoftwareRequirement : ISoftwareRequirement, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new SoftwareRequirement(
+        SoftwareRequirement res__ = new(
           loadingOptions: loadingOptions,
           class_: class_,
           packages: packages
@@ -119,14 +122,16 @@ public class SoftwareRequirement : ISoftwareRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var class_Val = ISavable.SaveRelativeUri(class_, false,
+        object? class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not null) {
+        if (class_Val is not null)
+        {
             r["class"] = class_Val;
         }
 
-        var packagesVal = ISavable.Save(packages, false, (string)baseUrl!, relativeUris);
-        if(packagesVal is not null) {
+        object? packagesVal = ISavable.Save(packages, false, (string)baseUrl!, relativeUris);
+        if (packagesVal is not null)
+        {
             r["packages"] = packagesVal;
         }
 
@@ -146,5 +151,5 @@ public class SoftwareRequirement : ISoftwareRequirement, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "packages" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "class", "packages" };
 }

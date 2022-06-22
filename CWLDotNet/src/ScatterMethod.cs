@@ -4,6 +4,7 @@ public class ScatterMethod : IEnumClass<ScatterMethod>
 {
     private string _Name;
     private static readonly List<ScatterMethod> members = new();
+
     public static readonly ScatterMethod DOTPRODUCT =
                             new("dotproduct");
     public static readonly ScatterMethod NESTED_CROSSPRODUCT =

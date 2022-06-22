@@ -19,5 +19,6 @@ namespace CWLDotNet;
 /// in the Schema Salad specification.
 /// 
 /// </summary>
-public interface ISecondaryFileSchema  {
+public interface ISecondaryFileSchema
+{
 }

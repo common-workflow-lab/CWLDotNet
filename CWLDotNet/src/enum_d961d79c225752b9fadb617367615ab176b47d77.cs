@@ -4,6 +4,7 @@ public class enum_d961d79c225752b9fadb617367615ab176b47d77 : IEnumClass<enum_d96
 {
     private string _Name;
     private static readonly List<enum_d961d79c225752b9fadb617367615ab176b47d77> members = new();
+
     public static readonly enum_d961d79c225752b9fadb617367615ab176b47d77 ENUM =
                             new("enum");
 

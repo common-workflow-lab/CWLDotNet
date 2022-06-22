@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -16,7 +17,8 @@ namespace CWLDotNet;
 /// to connect the output value to downstream parameters.
 /// 
 /// </summary>
-public class WorkflowStepOutput : IWorkflowStepOutput, ISavable {
+public class WorkflowStepOutput : IWorkflowStepOutput, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -24,10 +26,11 @@ public class WorkflowStepOutput : IWorkflowStepOutput, ISavable {
     /// <summary>
     /// The unique identifier for this object.
     /// </summary>
-    public OneOf<None , string> id { get; set; }
+    public OneOf<None, string> id { get; set; }
 
 
-    public WorkflowStepOutput (OneOf<None , string> id = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public WorkflowStepOutput(OneOf<None, string> id = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.id = id;
@@ -46,7 +49,7 @@ public class WorkflowStepOutput : IWorkflowStepOutput, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic id = default!;
         if (doc_.ContainsKey("id"))
         {
@@ -79,7 +82,7 @@ public class WorkflowStepOutput : IWorkflowStepOutput, ISavable {
         {
             baseUri = (string)id;
         }
-            
+
         Dictionary<object, object> extensionFields = new();
         foreach (KeyValuePair<object, object> v in doc_)
         {
@@ -106,15 +109,15 @@ public class WorkflowStepOutput : IWorkflowStepOutput, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new WorkflowStepOutput(
+        WorkflowStepOutput res__ = new(
           loadingOptions: loadingOptions
         );
 
-        if(id != null)
+        if (id != null)
         {
             res__.id = id;
         }
-        
+
         return res__;
     }
 
@@ -127,9 +130,10 @@ public class WorkflowStepOutput : IWorkflowStepOutput, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var idVal = ISavable.SaveRelativeUri(id, true,
+        object? idVal = ISavable.SaveRelativeUri(id, true,
             relativeUris, null, (string)baseUrl!);
-        if(idVal is not null) {
+        if (idVal is not null)
+        {
             r["id"] = idVal;
         }
 
@@ -149,5 +153,5 @@ public class WorkflowStepOutput : IWorkflowStepOutput, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "id" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "id" };
 }

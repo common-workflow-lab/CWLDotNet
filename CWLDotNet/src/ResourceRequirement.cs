@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -33,7 +34,8 @@ namespace CWLDotNet;
 /// If neither "min" nor "max" is specified for a resource, use the default values below.
 /// 
 /// </summary>
-public class ResourceRequirement : IResourceRequirement, ISavable {
+public class ResourceRequirement : IResourceRequirement, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -71,7 +73,7 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
     /// next whole number.
     /// 
     /// </summary>
-    public OneOf<None , int , long , double , string> coresMin { get; set; }
+    public OneOf<None, int, long, double, string> coresMin { get; set; }
 
     /// <summary>
     /// Maximum reserved number of CPU cores.
@@ -79,7 +81,7 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
     /// See `coresMin` for discussion about fractional CPU requests.
     /// 
     /// </summary>
-    public OneOf<None , int , long , double , string> coresMax { get; set; }
+    public OneOf<None, int, long, double, string> coresMax { get; set; }
 
     /// <summary>
     /// Minimum reserved RAM in mebibytes (2**20) (default is 256)
@@ -91,7 +93,7 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
     /// non-zero integer.
     /// 
     /// </summary>
-    public OneOf<None , int , long , double , string> ramMin { get; set; }
+    public OneOf<None, int, long, double, string> ramMin { get; set; }
 
     /// <summary>
     /// Maximum reserved RAM in mebibytes (2**20)
@@ -99,7 +101,7 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
     /// See `ramMin` for discussion about fractional RAM requests.
     /// 
     /// </summary>
-    public OneOf<None , int , long , double , string> ramMax { get; set; }
+    public OneOf<None, int, long, double, string> ramMax { get; set; }
 
     /// <summary>
     /// Minimum reserved filesystem based storage for the designated temporary directory, in mebibytes (2**20) (default is 1024)
@@ -111,7 +113,7 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
     /// must be a non-zero integer.
     /// 
     /// </summary>
-    public OneOf<None , int , long , double , string> tmpdirMin { get; set; }
+    public OneOf<None, int, long, double, string> tmpdirMin { get; set; }
 
     /// <summary>
     /// Maximum reserved filesystem based storage for the designated temporary directory, in mebibytes (2**20)
@@ -119,7 +121,7 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
     /// See `tmpdirMin` for discussion about fractional storage requests.
     /// 
     /// </summary>
-    public OneOf<None , int , long , double , string> tmpdirMax { get; set; }
+    public OneOf<None, int, long, double, string> tmpdirMax { get; set; }
 
     /// <summary>
     /// Minimum reserved filesystem based storage for the designated output directory, in mebibytes (2**20) (default is 1024)
@@ -131,7 +133,7 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
     /// must be a non-zero integer.
     /// 
     /// </summary>
-    public OneOf<None , int , long , double , string> outdirMin { get; set; }
+    public OneOf<None, int, long, double, string> outdirMin { get; set; }
 
     /// <summary>
     /// Maximum reserved filesystem based storage for the designated output directory, in mebibytes (2**20)
@@ -139,10 +141,11 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
     /// See `outdirMin` for discussion about fractional storage requests.
     /// 
     /// </summary>
-    public OneOf<None , int , long , double , string> outdirMax { get; set; }
+    public OneOf<None, int, long, double, string> outdirMax { get; set; }
 
 
-    public ResourceRequirement (ResourceRequirement_class? class_ = null, OneOf<None , int , long , double , string> coresMin = default, OneOf<None , int , long , double , string> coresMax = default, OneOf<None , int , long , double , string> ramMin = default, OneOf<None , int , long , double , string> ramMax = default, OneOf<None , int , long , double , string> tmpdirMin = default, OneOf<None , int , long , double , string> tmpdirMax = default, OneOf<None , int , long , double , string> outdirMin = default, OneOf<None , int , long , double , string> outdirMax = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public ResourceRequirement(ResourceRequirement_class? class_ = null, OneOf<None, int, long, double, string> coresMin = default, OneOf<None, int, long, double, string> coresMax = default, OneOf<None, int, long, double, string> ramMin = default, OneOf<None, int, long, double, string> ramMax = default, OneOf<None, int, long, double, string> tmpdirMin = default, OneOf<None, int, long, double, string> tmpdirMax = default, OneOf<None, int, long, double, string> outdirMin = default, OneOf<None, int, long, double, string> outdirMax = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.class_ = class_ ?? ResourceRequirement_class.RESOURCEREQUIREMENT;
@@ -169,7 +172,7 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic class_ = default!;
         try
         {
@@ -346,51 +349,51 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new ResourceRequirement(
+        ResourceRequirement res__ = new(
           loadingOptions: loadingOptions,
           class_: class_
         );
 
-        if(coresMin != null)
+        if (coresMin != null)
         {
             res__.coresMin = coresMin;
         }
-        
-        if(coresMax != null)
+
+        if (coresMax != null)
         {
             res__.coresMax = coresMax;
         }
-        
-        if(ramMin != null)
+
+        if (ramMin != null)
         {
             res__.ramMin = ramMin;
         }
-        
-        if(ramMax != null)
+
+        if (ramMax != null)
         {
             res__.ramMax = ramMax;
         }
-        
-        if(tmpdirMin != null)
+
+        if (tmpdirMin != null)
         {
             res__.tmpdirMin = tmpdirMin;
         }
-        
-        if(tmpdirMax != null)
+
+        if (tmpdirMax != null)
         {
             res__.tmpdirMax = tmpdirMax;
         }
-        
-        if(outdirMin != null)
+
+        if (outdirMin != null)
         {
             res__.outdirMin = outdirMin;
         }
-        
-        if(outdirMax != null)
+
+        if (outdirMax != null)
         {
             res__.outdirMax = outdirMax;
         }
-        
+
         return res__;
     }
 
@@ -403,49 +406,58 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var class_Val = ISavable.SaveRelativeUri(class_, false,
+        object? class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not null) {
+        if (class_Val is not null)
+        {
             r["class"] = class_Val;
         }
 
-        var coresMinVal = ISavable.Save(coresMin, false, (string)baseUrl!, relativeUris);
-        if(coresMinVal is not null) {
+        object? coresMinVal = ISavable.Save(coresMin, false, (string)baseUrl!, relativeUris);
+        if (coresMinVal is not null)
+        {
             r["coresMin"] = coresMinVal;
         }
 
-        var coresMaxVal = ISavable.Save(coresMax, false, (string)baseUrl!, relativeUris);
-        if(coresMaxVal is not null) {
+        object? coresMaxVal = ISavable.Save(coresMax, false, (string)baseUrl!, relativeUris);
+        if (coresMaxVal is not null)
+        {
             r["coresMax"] = coresMaxVal;
         }
 
-        var ramMinVal = ISavable.Save(ramMin, false, (string)baseUrl!, relativeUris);
-        if(ramMinVal is not null) {
+        object? ramMinVal = ISavable.Save(ramMin, false, (string)baseUrl!, relativeUris);
+        if (ramMinVal is not null)
+        {
             r["ramMin"] = ramMinVal;
         }
 
-        var ramMaxVal = ISavable.Save(ramMax, false, (string)baseUrl!, relativeUris);
-        if(ramMaxVal is not null) {
+        object? ramMaxVal = ISavable.Save(ramMax, false, (string)baseUrl!, relativeUris);
+        if (ramMaxVal is not null)
+        {
             r["ramMax"] = ramMaxVal;
         }
 
-        var tmpdirMinVal = ISavable.Save(tmpdirMin, false, (string)baseUrl!, relativeUris);
-        if(tmpdirMinVal is not null) {
+        object? tmpdirMinVal = ISavable.Save(tmpdirMin, false, (string)baseUrl!, relativeUris);
+        if (tmpdirMinVal is not null)
+        {
             r["tmpdirMin"] = tmpdirMinVal;
         }
 
-        var tmpdirMaxVal = ISavable.Save(tmpdirMax, false, (string)baseUrl!, relativeUris);
-        if(tmpdirMaxVal is not null) {
+        object? tmpdirMaxVal = ISavable.Save(tmpdirMax, false, (string)baseUrl!, relativeUris);
+        if (tmpdirMaxVal is not null)
+        {
             r["tmpdirMax"] = tmpdirMaxVal;
         }
 
-        var outdirMinVal = ISavable.Save(outdirMin, false, (string)baseUrl!, relativeUris);
-        if(outdirMinVal is not null) {
+        object? outdirMinVal = ISavable.Save(outdirMin, false, (string)baseUrl!, relativeUris);
+        if (outdirMinVal is not null)
+        {
             r["outdirMin"] = outdirMinVal;
         }
 
-        var outdirMaxVal = ISavable.Save(outdirMax, false, (string)baseUrl!, relativeUris);
-        if(outdirMaxVal is not null) {
+        object? outdirMaxVal = ISavable.Save(outdirMax, false, (string)baseUrl!, relativeUris);
+        if (outdirMaxVal is not null)
+        {
             r["outdirMax"] = outdirMaxVal;
         }
 
@@ -465,5 +477,5 @@ public class ResourceRequirement : IResourceRequirement, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "coresMin", "coresMax", "ramMin", "ramMax", "tmpdirMin", "tmpdirMax", "outdirMin", "outdirMax" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "class", "coresMin", "coresMax", "ramMin", "ramMax", "tmpdirMin", "tmpdirMax", "outdirMin", "outdirMax" };
 }

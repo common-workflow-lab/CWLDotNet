@@ -7,5 +7,6 @@ namespace CWLDotNet;
 /// Define an input or output parameter to a process.
 /// 
 /// </summary>
-public interface IParameter : IFieldBase,IDocumented,IIdentified {
+public interface IParameter : IFieldBase, IDocumented, IIdentified
+{
 }

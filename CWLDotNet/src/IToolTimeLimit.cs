@@ -13,5 +13,6 @@ namespace CWLDotNet;
 /// wall-time for the execution of the command line itself.
 /// 
 /// </summary>
-public interface IToolTimeLimit : IProcessRequirement {
+public interface IToolTimeLimit : IProcessRequirement
+{
 }

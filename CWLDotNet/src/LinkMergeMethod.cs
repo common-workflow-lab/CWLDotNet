@@ -4,6 +4,7 @@ public class LinkMergeMethod : IEnumClass<LinkMergeMethod>
 {
     private string _Name;
     private static readonly List<LinkMergeMethod> members = new();
+
     public static readonly LinkMergeMethod MERGE_NESTED =
                             new("merge_nested");
     public static readonly LinkMergeMethod MERGE_FLATTENED =

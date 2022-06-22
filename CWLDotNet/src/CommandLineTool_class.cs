@@ -4,6 +4,7 @@ public class CommandLineTool_class : IEnumClass<CommandLineTool_class>
 {
     private string _Name;
     private static readonly List<CommandLineTool_class> members = new();
+
     public static readonly CommandLineTool_class COMMANDLINETOOL =
                             new("CommandLineTool");
 

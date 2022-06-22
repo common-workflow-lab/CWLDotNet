@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -21,7 +22,8 @@ namespace CWLDotNet;
 /// in the Schema Salad specification.
 /// 
 /// </summary>
-public class SecondaryFileSchema : ISecondaryFileSchema, ISavable {
+public class SecondaryFileSchema : ISecondaryFileSchema, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -87,10 +89,11 @@ public class SecondaryFileSchema : ISecondaryFileSchema, ISavable {
     /// input and `false` for secondary files on output.
     /// 
     /// </summary>
-    public OneOf<None , bool , string> required { get; set; }
+    public OneOf<None, bool, string> required { get; set; }
 
 
-    public SecondaryFileSchema (OneOf<string> pattern, OneOf<None , bool , string> required = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public SecondaryFileSchema(OneOf<string> pattern, OneOf<None, bool, string> required = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.pattern = pattern;
@@ -110,7 +113,7 @@ public class SecondaryFileSchema : ISecondaryFileSchema, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic pattern = default!;
         try
         {
@@ -168,16 +171,16 @@ public class SecondaryFileSchema : ISecondaryFileSchema, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new SecondaryFileSchema(
+        SecondaryFileSchema res__ = new(
           loadingOptions: loadingOptions,
           pattern: pattern
         );
 
-        if(required != null)
+        if (required != null)
         {
             res__.required = required;
         }
-        
+
         return res__;
     }
 
@@ -190,13 +193,15 @@ public class SecondaryFileSchema : ISecondaryFileSchema, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var patternVal = ISavable.Save(pattern, false, (string)baseUrl!, relativeUris);
-        if(patternVal is not null) {
+        object? patternVal = ISavable.Save(pattern, false, (string)baseUrl!, relativeUris);
+        if (patternVal is not null)
+        {
             r["pattern"] = patternVal;
         }
 
-        var requiredVal = ISavable.Save(required, false, (string)baseUrl!, relativeUris);
-        if(requiredVal is not null) {
+        object? requiredVal = ISavable.Save(required, false, (string)baseUrl!, relativeUris);
+        if (requiredVal is not null)
+        {
             r["required"] = requiredVal;
         }
 
@@ -216,5 +221,5 @@ public class SecondaryFileSchema : ISecondaryFileSchema, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "pattern", "required" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "pattern", "required" };
 }

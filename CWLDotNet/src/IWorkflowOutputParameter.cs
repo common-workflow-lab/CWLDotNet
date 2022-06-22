@@ -13,5 +13,6 @@ namespace CWLDotNet;
 /// `linkMerge` and `pickValue`.
 /// 
 /// </summary>
-public interface IWorkflowOutputParameter : IOutputParameter {
+public interface IWorkflowOutputParameter : IOutputParameter
+{
 }

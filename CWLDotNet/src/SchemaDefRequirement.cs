@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -20,7 +21,8 @@ namespace CWLDotNet;
 /// - A file can contain a list of type definitions
 /// 
 /// </summary>
-public class SchemaDefRequirement : ISchemaDefRequirement, ISavable {
+public class SchemaDefRequirement : ISchemaDefRequirement, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -33,10 +35,11 @@ public class SchemaDefRequirement : ISchemaDefRequirement, ISavable {
     /// <summary>
     /// The list of type definitions.
     /// </summary>
-    public List<OneOf<CommandInputRecordSchema , CommandInputEnumSchema , CommandInputArraySchema>> types { get; set; }
+    public List<OneOf<CommandInputRecordSchema, CommandInputEnumSchema, CommandInputArraySchema>> types { get; set; }
 
 
-    public SchemaDefRequirement (List<OneOf<CommandInputRecordSchema , CommandInputEnumSchema , CommandInputArraySchema>> types, SchemaDefRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public SchemaDefRequirement(List<OneOf<CommandInputRecordSchema, CommandInputEnumSchema, CommandInputArraySchema>> types, SchemaDefRequirement_class? class_ = null, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.class_ = class_ ?? SchemaDefRequirement_class.SCHEMADEFREQUIREMENT;
@@ -56,7 +59,7 @@ public class SchemaDefRequirement : ISchemaDefRequirement, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic class_ = default!;
         try
         {
@@ -111,7 +114,7 @@ public class SchemaDefRequirement : ISchemaDefRequirement, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new SchemaDefRequirement(
+        SchemaDefRequirement res__ = new(
           loadingOptions: loadingOptions,
           class_: class_,
           types: types
@@ -129,14 +132,16 @@ public class SchemaDefRequirement : ISchemaDefRequirement, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var class_Val = ISavable.SaveRelativeUri(class_, false,
+        object? class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)baseUrl!);
-        if(class_Val is not null) {
+        if (class_Val is not null)
+        {
             r["class"] = class_Val;
         }
 
-        var typesVal = ISavable.Save(types, false, (string)baseUrl!, relativeUris);
-        if(typesVal is not null) {
+        object? typesVal = ISavable.Save(types, false, (string)baseUrl!, relativeUris);
+        if (typesVal is not null)
+        {
             r["types"] = typesVal;
         }
 
@@ -156,5 +161,5 @@ public class SchemaDefRequirement : ISchemaDefRequirement, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "class", "types" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "class", "types" };
 }

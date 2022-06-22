@@ -1,12 +1,14 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
 /// Auto-generated class implementation for https://w3id.org/cwl/cwl#OutputArraySchema
 /// </summary>
-public class OutputArraySchema : IOutputArraySchema, ISavable {
+public class OutputArraySchema : IOutputArraySchema, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -14,12 +16,12 @@ public class OutputArraySchema : IOutputArraySchema, ISavable {
     /// <summary>
     /// The identifier for this type
     /// </summary>
-    public OneOf<None , string> name { get; set; }
+    public OneOf<None, string> name { get; set; }
 
     /// <summary>
     /// Defines the type of the array elements.
     /// </summary>
-    public OneOf<CWLType , OutputRecordSchema , OutputEnumSchema , OutputArraySchema , string , List<OneOf<CWLType , OutputRecordSchema , OutputEnumSchema , OutputArraySchema , string>>> items { get; set; }
+    public OneOf<CWLType, OutputRecordSchema, OutputEnumSchema, OutputArraySchema, string, List<OneOf<CWLType, OutputRecordSchema, OutputEnumSchema, OutputArraySchema, string>>> items { get; set; }
 
     /// <summary>
     /// Must be `array`
@@ -29,15 +31,16 @@ public class OutputArraySchema : IOutputArraySchema, ISavable {
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public OneOf<None , string> label { get; set; }
+    public OneOf<None, string> label { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
     /// </summary>
-    public OneOf<None , string , List<string>> doc { get; set; }
+    public OneOf<None, string, List<string>> doc { get; set; }
 
 
-    public OutputArraySchema (OneOf<CWLType , OutputRecordSchema , OutputEnumSchema , OutputArraySchema , string , List<OneOf<CWLType , OutputRecordSchema , OutputEnumSchema , OutputArraySchema , string>>> items, enum_d062602be0b4b8fd33e69e29a841317b6ab665bc type, OneOf<None , string> name = default, OneOf<None , string> label = default, OneOf<None , string , List<string>> doc = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public OutputArraySchema(OneOf<CWLType, OutputRecordSchema, OutputEnumSchema, OutputArraySchema, string, List<OneOf<CWLType, OutputRecordSchema, OutputEnumSchema, OutputArraySchema, string>>> items, enum_d062602be0b4b8fd33e69e29a841317b6ab665bc type, OneOf<None, string> name = default, OneOf<None, string> label = default, OneOf<None, string, List<string>> doc = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.name = name;
@@ -60,7 +63,7 @@ public class OutputArraySchema : IOutputArraySchema, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic name = default!;
         if (doc_.ContainsKey("name"))
         {
@@ -93,7 +96,7 @@ public class OutputArraySchema : IOutputArraySchema, ISavable {
         {
             baseUri = (string)name;
         }
-            
+
         dynamic items = default!;
         try
         {
@@ -182,27 +185,27 @@ public class OutputArraySchema : IOutputArraySchema, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new OutputArraySchema(
+        OutputArraySchema res__ = new(
           loadingOptions: loadingOptions,
           items: items,
           type: type
         );
 
-        if(name != null)
+        if (name != null)
         {
             res__.name = name;
         }
-        
-        if(label != null)
+
+        if (label != null)
         {
             res__.label = label;
         }
-        
-        if(doc != null)
+
+        if (doc != null)
         {
             res__.doc = doc;
         }
-        
+
         return res__;
     }
 
@@ -215,29 +218,34 @@ public class OutputArraySchema : IOutputArraySchema, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var nameVal = ISavable.SaveRelativeUri(name, true,
+        object? nameVal = ISavable.SaveRelativeUri(name, true,
             relativeUris, null, (string)baseUrl!);
-        if(nameVal is not null) {
+        if (nameVal is not null)
+        {
             r["name"] = nameVal;
         }
 
-        var itemsVal = ISavable.Save(items, false, (string)this.name.AsT1!, relativeUris);
-        if(itemsVal is not null) {
+        object? itemsVal = ISavable.Save(items, false, (string)this.name.AsT1!, relativeUris);
+        if (itemsVal is not null)
+        {
             r["items"] = itemsVal;
         }
 
-        var typeVal = ISavable.Save(type, false, (string)this.name.AsT1!, relativeUris);
-        if(typeVal is not null) {
+        object? typeVal = ISavable.Save(type, false, (string)this.name.AsT1!, relativeUris);
+        if (typeVal is not null)
+        {
             r["type"] = typeVal;
         }
 
-        var labelVal = ISavable.Save(label, false, (string)this.name.AsT1!, relativeUris);
-        if(labelVal is not null) {
+        object? labelVal = ISavable.Save(label, false, (string)this.name.AsT1!, relativeUris);
+        if (labelVal is not null)
+        {
             r["label"] = labelVal;
         }
 
-        var docVal = ISavable.Save(doc, false, (string)this.name.AsT1!, relativeUris);
-        if(docVal is not null) {
+        object? docVal = ISavable.Save(doc, false, (string)this.name.AsT1!, relativeUris);
+        if (docVal is not null)
+        {
             r["doc"] = docVal;
         }
 
@@ -257,5 +265,5 @@ public class OutputArraySchema : IOutputArraySchema, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "items", "type", "label", "doc", "name" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "items", "type", "label", "doc", "name" };
 }

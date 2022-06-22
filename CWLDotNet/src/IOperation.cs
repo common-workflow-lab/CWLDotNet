@@ -13,5 +13,6 @@ namespace CWLDotNet;
 /// CommandLineTool, or ExpressionTool) with a compatible signature.
 /// 
 /// </summary>
-public interface IOperation : IProcess {
+public interface IOperation : IProcess
+{
 }

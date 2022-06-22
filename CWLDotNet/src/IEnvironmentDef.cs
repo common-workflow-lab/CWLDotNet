@@ -9,5 +9,6 @@ namespace CWLDotNet;
 /// result of executing an expression, such as getting a parameter from input.
 /// 
 /// </summary>
-public interface IEnvironmentDef  {
+public interface IEnvironmentDef
+{
 }

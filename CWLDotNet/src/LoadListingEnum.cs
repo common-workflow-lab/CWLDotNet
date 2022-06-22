@@ -4,6 +4,7 @@ public class LoadListingEnum : IEnumClass<LoadListingEnum>
 {
     private string _Name;
     private static readonly List<LoadListingEnum> members = new();
+
     public static readonly LoadListingEnum NO_LISTING =
                             new("no_listing");
     public static readonly LoadListingEnum SHALLOW_LISTING =

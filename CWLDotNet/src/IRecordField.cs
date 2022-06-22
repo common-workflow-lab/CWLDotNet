@@ -6,5 +6,6 @@ namespace CWLDotNet;
 ///
 /// A field of a record.
 /// </summary>
-public interface IRecordField : IDocumented {
+public interface IRecordField : IDocumented
+{
 }

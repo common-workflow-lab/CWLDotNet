@@ -1,12 +1,14 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
 /// Auto-generated class implementation for https://w3id.org/cwl/cwl#CommandLineBindable
 /// </summary>
-public class CommandLineBindable : ICommandLineBindable, ISavable {
+public class CommandLineBindable : ICommandLineBindable, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -14,10 +16,11 @@ public class CommandLineBindable : ICommandLineBindable, ISavable {
     /// <summary>
     /// Describes how to turn this object into command line arguments.
     /// </summary>
-    public OneOf<None , CommandLineBinding> inputBinding { get; set; }
+    public OneOf<None, CommandLineBinding> inputBinding { get; set; }
 
 
-    public CommandLineBindable (OneOf<None , CommandLineBinding> inputBinding = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public CommandLineBindable(OneOf<None, CommandLineBinding> inputBinding = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.inputBinding = inputBinding;
@@ -36,7 +39,7 @@ public class CommandLineBindable : ICommandLineBindable, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic inputBinding = default!;
         if (doc_.ContainsKey("inputBinding"))
         {
@@ -80,15 +83,15 @@ public class CommandLineBindable : ICommandLineBindable, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new CommandLineBindable(
+        CommandLineBindable res__ = new(
           loadingOptions: loadingOptions
         );
 
-        if(inputBinding != null)
+        if (inputBinding != null)
         {
             res__.inputBinding = inputBinding;
         }
-        
+
         return res__;
     }
 
@@ -101,8 +104,9 @@ public class CommandLineBindable : ICommandLineBindable, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var inputBindingVal = ISavable.Save(inputBinding, false, (string)baseUrl!, relativeUris);
-        if(inputBindingVal is not null) {
+        object? inputBindingVal = ISavable.Save(inputBinding, false, (string)baseUrl!, relativeUris);
+        if (inputBindingVal is not null)
+        {
             r["inputBinding"] = inputBindingVal;
         }
 
@@ -122,5 +126,5 @@ public class CommandLineBindable : ICommandLineBindable, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "inputBinding" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "inputBinding" };
 }

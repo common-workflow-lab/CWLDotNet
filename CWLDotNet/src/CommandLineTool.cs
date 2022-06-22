@@ -1,6 +1,7 @@
 using System.Collections;
 using OneOf;
 using OneOf.Types;
+
 namespace CWLDotNet;
 
 /// <summary>
@@ -9,7 +10,8 @@ namespace CWLDotNet;
 /// This defines the schema of the CWL Command Line Tool Description document.
 /// 
 /// </summary>
-public class CommandLineTool : ICommandLineTool, ISavable {
+public class CommandLineTool : ICommandLineTool, ISavable
+{
     readonly LoadingOptions loadingOptions;
 
     readonly Dictionary<object, object> extensionFields;
@@ -17,18 +19,18 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// <summary>
     /// The unique identifier for this object.
     /// </summary>
-    public OneOf<None , string> id { get; set; }
+    public OneOf<None, string> id { get; set; }
     public CommandLineTool_class class_ { get; set; }
 
     /// <summary>
     /// A short, human-readable label of this object.
     /// </summary>
-    public OneOf<None , string> label { get; set; }
+    public OneOf<None, string> label { get; set; }
 
     /// <summary>
     /// A documentation string for this object, or an array of strings which should be concatenated.
     /// </summary>
-    public OneOf<None , string , List<string>> doc { get; set; }
+    public OneOf<None, string, List<string>> doc { get; set; }
 
     /// <summary>
     /// Defines the input parameters of the process.  The process is ready to
@@ -62,7 +64,7 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// unless overridden at user option.
     /// 
     /// </summary>
-    public OneOf<None , List<OneOf<InlineJavascriptRequirement , SchemaDefRequirement , LoadListingRequirement , DockerRequirement , SoftwareRequirement , InitialWorkDirRequirement , EnvVarRequirement , ShellCommandRequirement , ResourceRequirement , WorkReuse , NetworkAccess , InplaceUpdateRequirement , ToolTimeLimit , SubworkflowFeatureRequirement , ScatterFeatureRequirement , MultipleInputFeatureRequirement , StepInputExpressionRequirement>>> requirements { get; set; }
+    public OneOf<None, List<OneOf<InlineJavascriptRequirement, SchemaDefRequirement, LoadListingRequirement, DockerRequirement, SoftwareRequirement, InitialWorkDirRequirement, EnvVarRequirement, ShellCommandRequirement, ResourceRequirement, WorkReuse, NetworkAccess, InplaceUpdateRequirement, ToolTimeLimit, SubworkflowFeatureRequirement, ScatterFeatureRequirement, MultipleInputFeatureRequirement, StepInputExpressionRequirement>>> requirements { get; set; }
 
     /// <summary>
     /// Declares hints applying to either the runtime environment or the
@@ -71,14 +73,14 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// the implementation may report a warning.
     /// 
     /// </summary>
-    public OneOf<None , List<object>> hints { get; set; }
+    public OneOf<None, List<object>> hints { get; set; }
 
     /// <summary>
     /// CWL document version. Always required at the document root. Not
     /// required for a Process embedded inside another Process.
     /// 
     /// </summary>
-    public OneOf<None , CWLVersion> cwlVersion { get; set; }
+    public OneOf<None, CWLVersion> cwlVersion { get; set; }
 
     /// <summary>
     /// An identifier for the type of computational operation, of this Process.
@@ -96,7 +98,7 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// [Split read mapping](http://edamontology.org/operation_3199).
     /// 
     /// </summary>
-    public OneOf<None , List<string>> intent { get; set; }
+    public OneOf<None, List<string>> intent { get; set; }
 
     /// <summary>
     /// Specifies the program to execute.  If an array, the first element of
@@ -116,7 +118,7 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// executable.
     /// 
     /// </summary>
-    public OneOf<None , string , List<string>> baseCommand { get; set; }
+    public OneOf<None, string, List<string>> baseCommand { get; set; }
 
     /// <summary>
     /// Command line bindings which are not directly associated with input
@@ -125,14 +127,14 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// as an argument.
     /// 
     /// </summary>
-    public OneOf<None , List<OneOf<string , CommandLineBinding>>> arguments_ { get; set; }
+    public OneOf<None, List<OneOf<string, CommandLineBinding>>> arguments_ { get; set; }
 
     /// <summary>
     /// A path to a file whose contents must be piped into the command's
     /// standard input stream.
     /// 
     /// </summary>
-    public OneOf<None , string> stdin { get; set; }
+    public OneOf<None, string> stdin { get; set; }
 
     /// <summary>
     /// Capture the command's standard error stream to a file written to
@@ -146,7 +148,7 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// characters (such as the path separator `/`) it is an error.
     /// 
     /// </summary>
-    public OneOf<None , string> stderr { get; set; }
+    public OneOf<None, string> stderr { get; set; }
 
     /// <summary>
     /// Capture the command's standard output stream to a file written to
@@ -160,7 +162,7 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// characters (such as the path separator `/`) it is an error.
     /// 
     /// </summary>
-    public OneOf<None , string> stdout { get; set; }
+    public OneOf<None, string> stdout { get; set; }
 
     /// <summary>
     /// Exit codes that indicate the process completed successfully.
@@ -168,7 +170,7 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// If not specified, only exit code 0 is considered success.
     /// 
     /// </summary>
-    public OneOf<None , List<int>> successCodes { get; set; }
+    public OneOf<None, List<int>> successCodes { get; set; }
 
     /// <summary>
     /// Exit codes that indicate the process failed due to a possibly
@@ -178,16 +180,17 @@ public class CommandLineTool : ICommandLineTool, ISavable {
     /// If not specified, no exit codes are considered temporary failure.
     /// 
     /// </summary>
-    public OneOf<None , List<int>> temporaryFailCodes { get; set; }
+    public OneOf<None, List<int>> temporaryFailCodes { get; set; }
 
     /// <summary>
     /// Exit codes that indicate the process failed due to a permanent logic error, where executing the process with the same runtime environment and same inputs is expected to always fail.
     /// If not specified, all exit codes except 0 are considered permanent failure.
     /// </summary>
-    public OneOf<None , List<int>> permanentFailCodes { get; set; }
+    public OneOf<None, List<int>> permanentFailCodes { get; set; }
 
 
-    public CommandLineTool (List<CommandInputParameter> inputs, List<CommandOutputParameter> outputs, OneOf<None , string> id = default, CommandLineTool_class? class_ = null, OneOf<None , string> label = default, OneOf<None , string , List<string>> doc = default, OneOf<None , List<OneOf<InlineJavascriptRequirement , SchemaDefRequirement , LoadListingRequirement , DockerRequirement , SoftwareRequirement , InitialWorkDirRequirement , EnvVarRequirement , ShellCommandRequirement , ResourceRequirement , WorkReuse , NetworkAccess , InplaceUpdateRequirement , ToolTimeLimit , SubworkflowFeatureRequirement , ScatterFeatureRequirement , MultipleInputFeatureRequirement , StepInputExpressionRequirement>>> requirements = default, OneOf<None , List<object>> hints = default, OneOf<None , CWLVersion> cwlVersion = default, OneOf<None , List<string>> intent = default, OneOf<None , string , List<string>> baseCommand = default, OneOf<None , List<OneOf<string , CommandLineBinding>>> arguments_ = default, OneOf<None , string> stdin = default, OneOf<None , string> stderr = default, OneOf<None , string> stdout = default, OneOf<None , List<int>> successCodes = default, OneOf<None , List<int>> temporaryFailCodes = default, OneOf<None , List<int>> permanentFailCodes = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null) {
+    public CommandLineTool(List<CommandInputParameter> inputs, List<CommandOutputParameter> outputs, OneOf<None, string> id = default, CommandLineTool_class? class_ = null, OneOf<None, string> label = default, OneOf<None, string, List<string>> doc = default, OneOf<None, List<OneOf<InlineJavascriptRequirement, SchemaDefRequirement, LoadListingRequirement, DockerRequirement, SoftwareRequirement, InitialWorkDirRequirement, EnvVarRequirement, ShellCommandRequirement, ResourceRequirement, WorkReuse, NetworkAccess, InplaceUpdateRequirement, ToolTimeLimit, SubworkflowFeatureRequirement, ScatterFeatureRequirement, MultipleInputFeatureRequirement, StepInputExpressionRequirement>>> requirements = default, OneOf<None, List<object>> hints = default, OneOf<None, CWLVersion> cwlVersion = default, OneOf<None, List<string>> intent = default, OneOf<None, string, List<string>> baseCommand = default, OneOf<None, List<OneOf<string, CommandLineBinding>>> arguments_ = default, OneOf<None, string> stdin = default, OneOf<None, string> stderr = default, OneOf<None, string> stdout = default, OneOf<None, List<int>> successCodes = default, OneOf<None, List<int>> temporaryFailCodes = default, OneOf<None, List<int>> permanentFailCodes = default, LoadingOptions? loadingOptions = null, Dictionary<object, object>? extensionFields = null)
+    {
         this.loadingOptions = loadingOptions ?? new LoadingOptions();
         this.extensionFields = extensionFields ?? new Dictionary<object, object>();
         this.id = id;
@@ -223,7 +226,7 @@ public class CommandLineTool : ICommandLineTool, ISavable {
         Dictionary<object, object> doc_ = ((IDictionary)doc__)
             .Cast<dynamic>()
             .ToDictionary(entry => entry.Key, entry => entry.Value);
-            
+
         dynamic id = default!;
         if (doc_.ContainsKey("id"))
         {
@@ -256,7 +259,7 @@ public class CommandLineTool : ICommandLineTool, ISavable {
         {
             baseUri = (string)id;
         }
-            
+
         dynamic class_ = default!;
         try
         {
@@ -563,88 +566,88 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             throw new ValidationException("", errors);
         }
 
-        var res__ = new CommandLineTool(
+        CommandLineTool res__ = new(
           loadingOptions: loadingOptions,
           class_: class_,
           inputs: inputs,
           outputs: outputs
         );
 
-        if(id != null)
+        if (id != null)
         {
             res__.id = id;
         }
-        
-        if(label != null)
+
+        if (label != null)
         {
             res__.label = label;
         }
-        
-        if(doc != null)
+
+        if (doc != null)
         {
             res__.doc = doc;
         }
-        
-        if(requirements != null)
+
+        if (requirements != null)
         {
             res__.requirements = requirements;
         }
-        
-        if(hints != null)
+
+        if (hints != null)
         {
             res__.hints = hints;
         }
-        
-        if(cwlVersion != null)
+
+        if (cwlVersion != null)
         {
             res__.cwlVersion = cwlVersion;
         }
-        
-        if(intent != null)
+
+        if (intent != null)
         {
             res__.intent = intent;
         }
-        
-        if(baseCommand != null)
+
+        if (baseCommand != null)
         {
             res__.baseCommand = baseCommand;
         }
-        
-        if(arguments_ != null)
+
+        if (arguments_ != null)
         {
             res__.arguments_ = arguments_;
         }
-        
-        if(stdin != null)
+
+        if (stdin != null)
         {
             res__.stdin = stdin;
         }
-        
-        if(stderr != null)
+
+        if (stderr != null)
         {
             res__.stderr = stderr;
         }
-        
-        if(stdout != null)
+
+        if (stdout != null)
         {
             res__.stdout = stdout;
         }
-        
-        if(successCodes != null)
+
+        if (successCodes != null)
         {
             res__.successCodes = successCodes;
         }
-        
-        if(temporaryFailCodes != null)
+
+        if (temporaryFailCodes != null)
         {
             res__.temporaryFailCodes = temporaryFailCodes;
         }
-        
-        if(permanentFailCodes != null)
+
+        if (permanentFailCodes != null)
         {
             res__.permanentFailCodes = permanentFailCodes;
         }
-        
+
         return res__;
     }
 
@@ -657,97 +660,115 @@ public class CommandLineTool : ICommandLineTool, ISavable {
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        var idVal = ISavable.SaveRelativeUri(id, true,
+        object? idVal = ISavable.SaveRelativeUri(id, true,
             relativeUris, null, (string)baseUrl!);
-        if(idVal is not null) {
+        if (idVal is not null)
+        {
             r["id"] = idVal;
         }
 
-        var class_Val = ISavable.SaveRelativeUri(class_, false,
+        object? class_Val = ISavable.SaveRelativeUri(class_, false,
             relativeUris, null, (string)this.id.AsT1!);
-        if(class_Val is not null) {
+        if (class_Val is not null)
+        {
             r["class"] = class_Val;
         }
 
-        var labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
-        if(labelVal is not null) {
+        object? labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
+        if (labelVal is not null)
+        {
             r["label"] = labelVal;
         }
 
-        var docVal = ISavable.Save(doc, false, (string)this.id.AsT1!, relativeUris);
-        if(docVal is not null) {
+        object? docVal = ISavable.Save(doc, false, (string)this.id.AsT1!, relativeUris);
+        if (docVal is not null)
+        {
             r["doc"] = docVal;
         }
 
-        var inputsVal = ISavable.Save(inputs, false, (string)this.id.AsT1!, relativeUris);
-        if(inputsVal is not null) {
+        object? inputsVal = ISavable.Save(inputs, false, (string)this.id.AsT1!, relativeUris);
+        if (inputsVal is not null)
+        {
             r["inputs"] = inputsVal;
         }
 
-        var outputsVal = ISavable.Save(outputs, false, (string)this.id.AsT1!, relativeUris);
-        if(outputsVal is not null) {
+        object? outputsVal = ISavable.Save(outputs, false, (string)this.id.AsT1!, relativeUris);
+        if (outputsVal is not null)
+        {
             r["outputs"] = outputsVal;
         }
 
-        var requirementsVal = ISavable.Save(requirements, false, (string)this.id.AsT1!, relativeUris);
-        if(requirementsVal is not null) {
+        object? requirementsVal = ISavable.Save(requirements, false, (string)this.id.AsT1!, relativeUris);
+        if (requirementsVal is not null)
+        {
             r["requirements"] = requirementsVal;
         }
 
-        var hintsVal = ISavable.Save(hints, false, (string)this.id.AsT1!, relativeUris);
-        if(hintsVal is not null) {
+        object? hintsVal = ISavable.Save(hints, false, (string)this.id.AsT1!, relativeUris);
+        if (hintsVal is not null)
+        {
             r["hints"] = hintsVal;
         }
 
-        var cwlVersionVal = ISavable.SaveRelativeUri(cwlVersion, false,
+        object? cwlVersionVal = ISavable.SaveRelativeUri(cwlVersion, false,
             relativeUris, null, (string)this.id.AsT1!);
-        if(cwlVersionVal is not null) {
+        if (cwlVersionVal is not null)
+        {
             r["cwlVersion"] = cwlVersionVal;
         }
 
-        var intentVal = ISavable.SaveRelativeUri(intent, true,
+        object? intentVal = ISavable.SaveRelativeUri(intent, true,
             relativeUris, null, (string)this.id.AsT1!);
-        if(intentVal is not null) {
+        if (intentVal is not null)
+        {
             r["intent"] = intentVal;
         }
 
-        var baseCommandVal = ISavable.Save(baseCommand, false, (string)this.id.AsT1!, relativeUris);
-        if(baseCommandVal is not null) {
+        object? baseCommandVal = ISavable.Save(baseCommand, false, (string)this.id.AsT1!, relativeUris);
+        if (baseCommandVal is not null)
+        {
             r["baseCommand"] = baseCommandVal;
         }
 
-        var arguments_Val = ISavable.Save(arguments_, false, (string)this.id.AsT1!, relativeUris);
-        if(arguments_Val is not null) {
+        object? arguments_Val = ISavable.Save(arguments_, false, (string)this.id.AsT1!, relativeUris);
+        if (arguments_Val is not null)
+        {
             r["arguments"] = arguments_Val;
         }
 
-        var stdinVal = ISavable.Save(stdin, false, (string)this.id.AsT1!, relativeUris);
-        if(stdinVal is not null) {
+        object? stdinVal = ISavable.Save(stdin, false, (string)this.id.AsT1!, relativeUris);
+        if (stdinVal is not null)
+        {
             r["stdin"] = stdinVal;
         }
 
-        var stderrVal = ISavable.Save(stderr, false, (string)this.id.AsT1!, relativeUris);
-        if(stderrVal is not null) {
+        object? stderrVal = ISavable.Save(stderr, false, (string)this.id.AsT1!, relativeUris);
+        if (stderrVal is not null)
+        {
             r["stderr"] = stderrVal;
         }
 
-        var stdoutVal = ISavable.Save(stdout, false, (string)this.id.AsT1!, relativeUris);
-        if(stdoutVal is not null) {
+        object? stdoutVal = ISavable.Save(stdout, false, (string)this.id.AsT1!, relativeUris);
+        if (stdoutVal is not null)
+        {
             r["stdout"] = stdoutVal;
         }
 
-        var successCodesVal = ISavable.Save(successCodes, false, (string)this.id.AsT1!, relativeUris);
-        if(successCodesVal is not null) {
+        object? successCodesVal = ISavable.Save(successCodes, false, (string)this.id.AsT1!, relativeUris);
+        if (successCodesVal is not null)
+        {
             r["successCodes"] = successCodesVal;
         }
 
-        var temporaryFailCodesVal = ISavable.Save(temporaryFailCodes, false, (string)this.id.AsT1!, relativeUris);
-        if(temporaryFailCodesVal is not null) {
+        object? temporaryFailCodesVal = ISavable.Save(temporaryFailCodes, false, (string)this.id.AsT1!, relativeUris);
+        if (temporaryFailCodesVal is not null)
+        {
             r["temporaryFailCodes"] = temporaryFailCodesVal;
         }
 
-        var permanentFailCodesVal = ISavable.Save(permanentFailCodes, false, (string)this.id.AsT1!, relativeUris);
-        if(permanentFailCodesVal is not null) {
+        object? permanentFailCodesVal = ISavable.Save(permanentFailCodes, false, (string)this.id.AsT1!, relativeUris);
+        if (permanentFailCodesVal is not null)
+        {
             r["permanentFailCodes"] = permanentFailCodesVal;
         }
 
@@ -767,5 +788,5 @@ public class CommandLineTool : ICommandLineTool, ISavable {
         return r;
     }
 
-    static readonly System.Collections.Generic.HashSet<string>attr = new() { "id", "label", "doc", "inputs", "outputs", "requirements", "hints", "cwlVersion", "intent", "class", "baseCommand", "arguments", "stdin", "stderr", "stdout", "successCodes", "temporaryFailCodes", "permanentFailCodes" };
+    static readonly System.Collections.Generic.HashSet<string> attr = new() { "id", "label", "doc", "inputs", "outputs", "requirements", "hints", "cwlVersion", "intent", "class", "baseCommand", "arguments", "stdin", "stderr", "stdout", "successCodes", "temporaryFailCodes", "permanentFailCodes" };
 }

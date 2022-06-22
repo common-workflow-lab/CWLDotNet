@@ -4,6 +4,7 @@ public class MultipleInputFeatureRequirement_class : IEnumClass<MultipleInputFea
 {
     private string _Name;
     private static readonly List<MultipleInputFeatureRequirement_class> members = new();
+
     public static readonly MultipleInputFeatureRequirement_class MULTIPLEINPUTFEATUREREQUIREMENT =
                             new("MultipleInputFeatureRequirement");
 
