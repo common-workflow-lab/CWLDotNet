@@ -1,0 +1,17 @@
+#pragma warning disable CS0108
+namespace CWLDotNet;
+
+/// <summary>
+/// Auto-generated interface for https://w3id.org/cwl/cwl#ProcessRequirement
+///
+/// A process requirement declares a prerequisite that may or must be fulfilled
+/// before executing a process.  See [`Process.hints`](#process) and
+/// [`Process.requirements`](#process).
+/// 
+/// Process requirements are the primary mechanism for specifying extensions to
+/// the CWL core specification.
+/// 
+/// </summary>
+public interface IProcessRequirement
+{
+}
