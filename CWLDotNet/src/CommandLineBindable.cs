@@ -104,7 +104,8 @@ public class CommandLineBindable : ICommandLineBindable, ISavable
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        object? inputBindingVal = ISavable.Save(inputBinding, false, (string)baseUrl!, relativeUris);
+        object? inputBindingVal = ISavable.Save(inputBinding,
+                                        false, (string)baseUrl!, relativeUris);
         if (inputBindingVal is not null)
         {
             r["inputBinding"] = inputBindingVal;

@@ -413,49 +413,57 @@ public class ResourceRequirement : IResourceRequirement, ISavable
             r["class"] = class_Val;
         }
 
-        object? coresMinVal = ISavable.Save(coresMin, false, (string)baseUrl!, relativeUris);
+        object? coresMinVal = ISavable.Save(coresMin,
+                                        false, (string)baseUrl!, relativeUris);
         if (coresMinVal is not null)
         {
             r["coresMin"] = coresMinVal;
         }
 
-        object? coresMaxVal = ISavable.Save(coresMax, false, (string)baseUrl!, relativeUris);
+        object? coresMaxVal = ISavable.Save(coresMax,
+                                        false, (string)baseUrl!, relativeUris);
         if (coresMaxVal is not null)
         {
             r["coresMax"] = coresMaxVal;
         }
 
-        object? ramMinVal = ISavable.Save(ramMin, false, (string)baseUrl!, relativeUris);
+        object? ramMinVal = ISavable.Save(ramMin,
+                                        false, (string)baseUrl!, relativeUris);
         if (ramMinVal is not null)
         {
             r["ramMin"] = ramMinVal;
         }
 
-        object? ramMaxVal = ISavable.Save(ramMax, false, (string)baseUrl!, relativeUris);
+        object? ramMaxVal = ISavable.Save(ramMax,
+                                        false, (string)baseUrl!, relativeUris);
         if (ramMaxVal is not null)
         {
             r["ramMax"] = ramMaxVal;
         }
 
-        object? tmpdirMinVal = ISavable.Save(tmpdirMin, false, (string)baseUrl!, relativeUris);
+        object? tmpdirMinVal = ISavable.Save(tmpdirMin,
+                                        false, (string)baseUrl!, relativeUris);
         if (tmpdirMinVal is not null)
         {
             r["tmpdirMin"] = tmpdirMinVal;
         }
 
-        object? tmpdirMaxVal = ISavable.Save(tmpdirMax, false, (string)baseUrl!, relativeUris);
+        object? tmpdirMaxVal = ISavable.Save(tmpdirMax,
+                                        false, (string)baseUrl!, relativeUris);
         if (tmpdirMaxVal is not null)
         {
             r["tmpdirMax"] = tmpdirMaxVal;
         }
 
-        object? outdirMinVal = ISavable.Save(outdirMin, false, (string)baseUrl!, relativeUris);
+        object? outdirMinVal = ISavable.Save(outdirMin,
+                                        false, (string)baseUrl!, relativeUris);
         if (outdirMinVal is not null)
         {
             r["outdirMin"] = outdirMinVal;
         }
 
-        object? outdirMaxVal = ISavable.Save(outdirMax, false, (string)baseUrl!, relativeUris);
+        object? outdirMaxVal = ISavable.Save(outdirMax,
+                                        false, (string)baseUrl!, relativeUris);
         if (outdirMaxVal is not null)
         {
             r["outdirMax"] = outdirMaxVal;

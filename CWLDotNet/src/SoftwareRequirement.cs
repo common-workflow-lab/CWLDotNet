@@ -129,7 +129,8 @@ public class SoftwareRequirement : ISoftwareRequirement, ISavable
             r["class"] = class_Val;
         }
 
-        object? packagesVal = ISavable.Save(packages, false, (string)baseUrl!, relativeUris);
+        object? packagesVal = ISavable.Save(packages,
+                                        false, (string)baseUrl!, relativeUris);
         if (packagesVal is not null)
         {
             r["packages"] = packagesVal;

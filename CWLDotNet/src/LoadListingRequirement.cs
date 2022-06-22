@@ -132,7 +132,8 @@ public class LoadListingRequirement : ILoadListingRequirement, ISavable
             r["class"] = class_Val;
         }
 
-        object? loadListingVal = ISavable.Save(loadListing, false, (string)baseUrl!, relativeUris);
+        object? loadListingVal = ISavable.Save(loadListing,
+                                        false, (string)baseUrl!, relativeUris);
         if (loadListingVal is not null)
         {
             r["loadListing"] = loadListingVal;

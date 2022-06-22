@@ -132,7 +132,8 @@ public class WorkReuse : IWorkReuse, ISavable
             r["class"] = class_Val;
         }
 
-        object? enableReuseVal = ISavable.Save(enableReuse, false, (string)baseUrl!, relativeUris);
+        object? enableReuseVal = ISavable.Save(enableReuse,
+                                        false, (string)baseUrl!, relativeUris);
         if (enableReuseVal is not null)
         {
             r["enableReuse"] = enableReuseVal;

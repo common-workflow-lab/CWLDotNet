@@ -199,13 +199,15 @@ public class SoftwarePackage : ISoftwarePackage, ISavable
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        object? package_Val = ISavable.Save(package_, false, (string)baseUrl!, relativeUris);
+        object? package_Val = ISavable.Save(package_,
+                                        false, (string)baseUrl!, relativeUris);
         if (package_Val is not null)
         {
             r["package"] = package_Val;
         }
 
-        object? versionVal = ISavable.Save(version, false, (string)baseUrl!, relativeUris);
+        object? versionVal = ISavable.Save(version,
+                                        false, (string)baseUrl!, relativeUris);
         if (versionVal is not null)
         {
             r["version"] = versionVal;

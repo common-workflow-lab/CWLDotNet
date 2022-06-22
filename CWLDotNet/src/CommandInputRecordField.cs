@@ -445,31 +445,36 @@ public class CommandInputRecordField : ICommandInputRecordField, ISavable
             r["name"] = nameVal;
         }
 
-        object? docVal = ISavable.Save(doc, false, (string)this.name!, relativeUris);
+        object? docVal = ISavable.Save(doc,
+                                        false, (string)this.name!, relativeUris);
         if (docVal is not null)
         {
             r["doc"] = docVal;
         }
 
-        object? typeVal = ISavable.Save(type, false, (string)this.name!, relativeUris);
+        object? typeVal = ISavable.Save(type,
+                                        false, (string)this.name!, relativeUris);
         if (typeVal is not null)
         {
             r["type"] = typeVal;
         }
 
-        object? labelVal = ISavable.Save(label, false, (string)this.name!, relativeUris);
+        object? labelVal = ISavable.Save(label,
+                                        false, (string)this.name!, relativeUris);
         if (labelVal is not null)
         {
             r["label"] = labelVal;
         }
 
-        object? secondaryFilesVal = ISavable.Save(secondaryFiles, false, (string)this.name!, relativeUris);
+        object? secondaryFilesVal = ISavable.Save(secondaryFiles,
+                                        false, (string)this.name!, relativeUris);
         if (secondaryFilesVal is not null)
         {
             r["secondaryFiles"] = secondaryFilesVal;
         }
 
-        object? streamableVal = ISavable.Save(streamable, false, (string)this.name!, relativeUris);
+        object? streamableVal = ISavable.Save(streamable,
+                                        false, (string)this.name!, relativeUris);
         if (streamableVal is not null)
         {
             r["streamable"] = streamableVal;
@@ -482,19 +487,22 @@ public class CommandInputRecordField : ICommandInputRecordField, ISavable
             r["format"] = formatVal;
         }
 
-        object? loadContentsVal = ISavable.Save(loadContents, false, (string)this.name!, relativeUris);
+        object? loadContentsVal = ISavable.Save(loadContents,
+                                        false, (string)this.name!, relativeUris);
         if (loadContentsVal is not null)
         {
             r["loadContents"] = loadContentsVal;
         }
 
-        object? loadListingVal = ISavable.Save(loadListing, false, (string)this.name!, relativeUris);
+        object? loadListingVal = ISavable.Save(loadListing,
+                                        false, (string)this.name!, relativeUris);
         if (loadListingVal is not null)
         {
             r["loadListing"] = loadListingVal;
         }
 
-        object? inputBindingVal = ISavable.Save(inputBinding, false, (string)this.name!, relativeUris);
+        object? inputBindingVal = ISavable.Save(inputBinding,
+                                        false, (string)this.name!, relativeUris);
         if (inputBindingVal is not null)
         {
             r["inputBinding"] = inputBindingVal;

@@ -152,7 +152,8 @@ public class InitialWorkDirRequirement : IInitialWorkDirRequirement, ISavable
             r["class"] = class_Val;
         }
 
-        object? listingVal = ISavable.Save(listing, false, (string)baseUrl!, relativeUris);
+        object? listingVal = ISavable.Save(listing,
+                                        false, (string)baseUrl!, relativeUris);
         if (listingVal is not null)
         {
             r["listing"] = listingVal;

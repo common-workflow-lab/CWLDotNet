@@ -346,43 +346,50 @@ public class CommandLineBinding : ICommandLineBinding, ISavable
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        object? loadContentsVal = ISavable.Save(loadContents, false, (string)baseUrl!, relativeUris);
+        object? loadContentsVal = ISavable.Save(loadContents,
+                                        false, (string)baseUrl!, relativeUris);
         if (loadContentsVal is not null)
         {
             r["loadContents"] = loadContentsVal;
         }
 
-        object? positionVal = ISavable.Save(position, false, (string)baseUrl!, relativeUris);
+        object? positionVal = ISavable.Save(position,
+                                        false, (string)baseUrl!, relativeUris);
         if (positionVal is not null)
         {
             r["position"] = positionVal;
         }
 
-        object? prefixVal = ISavable.Save(prefix, false, (string)baseUrl!, relativeUris);
+        object? prefixVal = ISavable.Save(prefix,
+                                        false, (string)baseUrl!, relativeUris);
         if (prefixVal is not null)
         {
             r["prefix"] = prefixVal;
         }
 
-        object? separateVal = ISavable.Save(separate, false, (string)baseUrl!, relativeUris);
+        object? separateVal = ISavable.Save(separate,
+                                        false, (string)baseUrl!, relativeUris);
         if (separateVal is not null)
         {
             r["separate"] = separateVal;
         }
 
-        object? itemSeparatorVal = ISavable.Save(itemSeparator, false, (string)baseUrl!, relativeUris);
+        object? itemSeparatorVal = ISavable.Save(itemSeparator,
+                                        false, (string)baseUrl!, relativeUris);
         if (itemSeparatorVal is not null)
         {
             r["itemSeparator"] = itemSeparatorVal;
         }
 
-        object? valueFromVal = ISavable.Save(valueFrom, false, (string)baseUrl!, relativeUris);
+        object? valueFromVal = ISavable.Save(valueFrom,
+                                        false, (string)baseUrl!, relativeUris);
         if (valueFromVal is not null)
         {
             r["valueFrom"] = valueFromVal;
         }
 
-        object? shellQuoteVal = ISavable.Save(shellQuote, false, (string)baseUrl!, relativeUris);
+        object? shellQuoteVal = ISavable.Save(shellQuote,
+                                        false, (string)baseUrl!, relativeUris);
         if (shellQuoteVal is not null)
         {
             r["shellQuote"] = shellQuoteVal;

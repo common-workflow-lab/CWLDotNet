@@ -153,7 +153,8 @@ public class InplaceUpdateRequirement : IInplaceUpdateRequirement, ISavable
             r["class"] = class_Val;
         }
 
-        object? inplaceUpdateVal = ISavable.Save(inplaceUpdate, false, (string)baseUrl!, relativeUris);
+        object? inplaceUpdateVal = ISavable.Save(inplaceUpdate,
+                                        false, (string)baseUrl!, relativeUris);
         if (inplaceUpdateVal is not null)
         {
             r["inplaceUpdate"] = inplaceUpdateVal;

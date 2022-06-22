@@ -516,43 +516,50 @@ public class WorkflowStepInput : IWorkflowStepInput, ISavable
             r["source"] = sourceVal;
         }
 
-        object? linkMergeVal = ISavable.Save(linkMerge, false, (string)this.id.AsT1!, relativeUris);
+        object? linkMergeVal = ISavable.Save(linkMerge,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (linkMergeVal is not null)
         {
             r["linkMerge"] = linkMergeVal;
         }
 
-        object? pickValueVal = ISavable.Save(pickValue, false, (string)this.id.AsT1!, relativeUris);
+        object? pickValueVal = ISavable.Save(pickValue,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (pickValueVal is not null)
         {
             r["pickValue"] = pickValueVal;
         }
 
-        object? loadContentsVal = ISavable.Save(loadContents, false, (string)this.id.AsT1!, relativeUris);
+        object? loadContentsVal = ISavable.Save(loadContents,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (loadContentsVal is not null)
         {
             r["loadContents"] = loadContentsVal;
         }
 
-        object? loadListingVal = ISavable.Save(loadListing, false, (string)this.id.AsT1!, relativeUris);
+        object? loadListingVal = ISavable.Save(loadListing,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (loadListingVal is not null)
         {
             r["loadListing"] = loadListingVal;
         }
 
-        object? labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
+        object? labelVal = ISavable.Save(label,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (labelVal is not null)
         {
             r["label"] = labelVal;
         }
 
-        object? default_Val = ISavable.Save(default_, false, (string)this.id.AsT1!, relativeUris);
+        object? default_Val = ISavable.Save(default_,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (default_Val is not null)
         {
             r["default"] = default_Val;
         }
 
-        object? valueFromVal = ISavable.Save(valueFrom, false, (string)this.id.AsT1!, relativeUris);
+        object? valueFromVal = ISavable.Save(valueFrom,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (valueFromVal is not null)
         {
             r["valueFrom"] = valueFromVal;

@@ -139,7 +139,8 @@ public class SchemaDefRequirement : ISchemaDefRequirement, ISavable
             r["class"] = class_Val;
         }
 
-        object? typesVal = ISavable.Save(types, false, (string)baseUrl!, relativeUris);
+        object? typesVal = ISavable.Save(types,
+                                        false, (string)baseUrl!, relativeUris);
         if (typesVal is not null)
         {
             r["types"] = typesVal;

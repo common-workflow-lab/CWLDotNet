@@ -193,13 +193,15 @@ public class SecondaryFileSchema : ISecondaryFileSchema, ISavable
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        object? patternVal = ISavable.Save(pattern, false, (string)baseUrl!, relativeUris);
+        object? patternVal = ISavable.Save(pattern,
+                                        false, (string)baseUrl!, relativeUris);
         if (patternVal is not null)
         {
             r["pattern"] = patternVal;
         }
 
-        object? requiredVal = ISavable.Save(required, false, (string)baseUrl!, relativeUris);
+        object? requiredVal = ISavable.Save(required,
+                                        false, (string)baseUrl!, relativeUris);
         if (requiredVal is not null)
         {
             r["required"] = requiredVal;

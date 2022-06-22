@@ -371,31 +371,36 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable
             r["name"] = nameVal;
         }
 
-        object? docVal = ISavable.Save(doc, false, (string)this.name!, relativeUris);
+        object? docVal = ISavable.Save(doc,
+                                        false, (string)this.name!, relativeUris);
         if (docVal is not null)
         {
             r["doc"] = docVal;
         }
 
-        object? typeVal = ISavable.Save(type, false, (string)this.name!, relativeUris);
+        object? typeVal = ISavable.Save(type,
+                                        false, (string)this.name!, relativeUris);
         if (typeVal is not null)
         {
             r["type"] = typeVal;
         }
 
-        object? labelVal = ISavable.Save(label, false, (string)this.name!, relativeUris);
+        object? labelVal = ISavable.Save(label,
+                                        false, (string)this.name!, relativeUris);
         if (labelVal is not null)
         {
             r["label"] = labelVal;
         }
 
-        object? secondaryFilesVal = ISavable.Save(secondaryFiles, false, (string)this.name!, relativeUris);
+        object? secondaryFilesVal = ISavable.Save(secondaryFiles,
+                                        false, (string)this.name!, relativeUris);
         if (secondaryFilesVal is not null)
         {
             r["secondaryFiles"] = secondaryFilesVal;
         }
 
-        object? streamableVal = ISavable.Save(streamable, false, (string)this.name!, relativeUris);
+        object? streamableVal = ISavable.Save(streamable,
+                                        false, (string)this.name!, relativeUris);
         if (streamableVal is not null)
         {
             r["streamable"] = streamableVal;
@@ -408,7 +413,8 @@ public class CommandOutputRecordField : ICommandOutputRecordField, ISavable
             r["format"] = formatVal;
         }
 
-        object? outputBindingVal = ISavable.Save(outputBinding, false, (string)this.name!, relativeUris);
+        object? outputBindingVal = ISavable.Save(outputBinding,
+                                        false, (string)this.name!, relativeUris);
         if (outputBindingVal is not null)
         {
             r["outputBinding"] = outputBindingVal;

@@ -228,19 +228,22 @@ public class Dirent : IDirent, ISavable
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        object? entrynameVal = ISavable.Save(entryname, false, (string)baseUrl!, relativeUris);
+        object? entrynameVal = ISavable.Save(entryname,
+                                        false, (string)baseUrl!, relativeUris);
         if (entrynameVal is not null)
         {
             r["entryname"] = entrynameVal;
         }
 
-        object? entryVal = ISavable.Save(entry, false, (string)baseUrl!, relativeUris);
+        object? entryVal = ISavable.Save(entry,
+                                        false, (string)baseUrl!, relativeUris);
         if (entryVal is not null)
         {
             r["entry"] = entryVal;
         }
 
-        object? writableVal = ISavable.Save(writable, false, (string)baseUrl!, relativeUris);
+        object? writableVal = ISavable.Save(writable,
+                                        false, (string)baseUrl!, relativeUris);
         if (writableVal is not null)
         {
             r["writable"] = writableVal;

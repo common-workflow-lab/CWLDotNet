@@ -128,7 +128,8 @@ public class EnumSchema : IEnumSchema, ISavable
             r["symbols"] = symbolsVal;
         }
 
-        object? typeVal = ISavable.Save(type, false, (string)baseUrl!, relativeUris);
+        object? typeVal = ISavable.Save(type,
+                                        false, (string)baseUrl!, relativeUris);
         if (typeVal is not null)
         {
             r["type"] = typeVal;

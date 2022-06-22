@@ -140,7 +140,8 @@ public class InlineJavascriptRequirement : IInlineJavascriptRequirement, ISavabl
             r["class"] = class_Val;
         }
 
-        object? expressionLibVal = ISavable.Save(expressionLib, false, (string)baseUrl!, relativeUris);
+        object? expressionLibVal = ISavable.Save(expressionLib,
+                                        false, (string)baseUrl!, relativeUris);
         if (expressionLibVal is not null)
         {
             r["expressionLib"] = expressionLibVal;

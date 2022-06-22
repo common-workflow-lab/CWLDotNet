@@ -118,13 +118,15 @@ public class ArraySchema : IArraySchema, ISavable
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        object? itemsVal = ISavable.Save(items, false, (string)baseUrl!, relativeUris);
+        object? itemsVal = ISavable.Save(items,
+                                        false, (string)baseUrl!, relativeUris);
         if (itemsVal is not null)
         {
             r["items"] = itemsVal;
         }
 
-        object? typeVal = ISavable.Save(type, false, (string)baseUrl!, relativeUris);
+        object? typeVal = ISavable.Save(type,
+                                        false, (string)baseUrl!, relativeUris);
         if (typeVal is not null)
         {
             r["type"] = typeVal;

@@ -604,43 +604,50 @@ public class File : IFile, ISavable
             r["path"] = pathVal;
         }
 
-        object? basenameVal = ISavable.Save(basename, false, (string)baseUrl!, relativeUris);
+        object? basenameVal = ISavable.Save(basename,
+                                        false, (string)baseUrl!, relativeUris);
         if (basenameVal is not null)
         {
             r["basename"] = basenameVal;
         }
 
-        object? dirnameVal = ISavable.Save(dirname, false, (string)baseUrl!, relativeUris);
+        object? dirnameVal = ISavable.Save(dirname,
+                                        false, (string)baseUrl!, relativeUris);
         if (dirnameVal is not null)
         {
             r["dirname"] = dirnameVal;
         }
 
-        object? namerootVal = ISavable.Save(nameroot, false, (string)baseUrl!, relativeUris);
+        object? namerootVal = ISavable.Save(nameroot,
+                                        false, (string)baseUrl!, relativeUris);
         if (namerootVal is not null)
         {
             r["nameroot"] = namerootVal;
         }
 
-        object? nameextVal = ISavable.Save(nameext, false, (string)baseUrl!, relativeUris);
+        object? nameextVal = ISavable.Save(nameext,
+                                        false, (string)baseUrl!, relativeUris);
         if (nameextVal is not null)
         {
             r["nameext"] = nameextVal;
         }
 
-        object? checksumVal = ISavable.Save(checksum, false, (string)baseUrl!, relativeUris);
+        object? checksumVal = ISavable.Save(checksum,
+                                        false, (string)baseUrl!, relativeUris);
         if (checksumVal is not null)
         {
             r["checksum"] = checksumVal;
         }
 
-        object? sizeVal = ISavable.Save(size, false, (string)baseUrl!, relativeUris);
+        object? sizeVal = ISavable.Save(size,
+                                        false, (string)baseUrl!, relativeUris);
         if (sizeVal is not null)
         {
             r["size"] = sizeVal;
         }
 
-        object? secondaryFilesVal = ISavable.Save(secondaryFiles, false, (string)baseUrl!, relativeUris);
+        object? secondaryFilesVal = ISavable.Save(secondaryFiles,
+                                        false, (string)baseUrl!, relativeUris);
         if (secondaryFilesVal is not null)
         {
             r["secondaryFiles"] = secondaryFilesVal;
@@ -653,7 +660,8 @@ public class File : IFile, ISavable
             r["format"] = formatVal;
         }
 
-        object? contentsVal = ISavable.Save(contents, false, (string)baseUrl!, relativeUris);
+        object? contentsVal = ISavable.Save(contents,
+                                        false, (string)baseUrl!, relativeUris);
         if (contentsVal is not null)
         {
             r["contents"] = contentsVal;

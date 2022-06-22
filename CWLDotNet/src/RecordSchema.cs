@@ -125,13 +125,15 @@ public class RecordSchema : IRecordSchema, ISavable
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        object? fieldsVal = ISavable.Save(fields, false, (string)baseUrl!, relativeUris);
+        object? fieldsVal = ISavable.Save(fields,
+                                        false, (string)baseUrl!, relativeUris);
         if (fieldsVal is not null)
         {
             r["fields"] = fieldsVal;
         }
 
-        object? typeVal = ISavable.Save(type, false, (string)baseUrl!, relativeUris);
+        object? typeVal = ISavable.Save(type,
+                                        false, (string)baseUrl!, relativeUris);
         if (typeVal is not null)
         {
             r["type"] = typeVal;

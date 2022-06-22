@@ -138,7 +138,8 @@ public class NetworkAccess : INetworkAccess, ISavable
             r["class"] = class_Val;
         }
 
-        object? networkAccessVal = ISavable.Save(networkAccess, false, (string)baseUrl!, relativeUris);
+        object? networkAccessVal = ISavable.Save(networkAccess,
+                                        false, (string)baseUrl!, relativeUris);
         if (networkAccessVal is not null)
         {
             r["networkAccess"] = networkAccessVal;

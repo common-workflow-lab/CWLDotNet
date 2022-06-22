@@ -486,19 +486,22 @@ public class WorkflowStep : IWorkflowStep, ISavable
             r["id"] = idVal;
         }
 
-        object? labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
+        object? labelVal = ISavable.Save(label,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (labelVal is not null)
         {
             r["label"] = labelVal;
         }
 
-        object? docVal = ISavable.Save(doc, false, (string)this.id.AsT1!, relativeUris);
+        object? docVal = ISavable.Save(doc,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (docVal is not null)
         {
             r["doc"] = docVal;
         }
 
-        object? in_Val = ISavable.Save(in_, false, (string)this.id.AsT1!, relativeUris);
+        object? in_Val = ISavable.Save(in_,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (in_Val is not null)
         {
             r["in"] = in_Val;
@@ -511,25 +514,29 @@ public class WorkflowStep : IWorkflowStep, ISavable
             r["out"] = out_Val;
         }
 
-        object? requirementsVal = ISavable.Save(requirements, false, (string)this.id.AsT1!, relativeUris);
+        object? requirementsVal = ISavable.Save(requirements,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (requirementsVal is not null)
         {
             r["requirements"] = requirementsVal;
         }
 
-        object? hintsVal = ISavable.Save(hints, false, (string)this.id.AsT1!, relativeUris);
+        object? hintsVal = ISavable.Save(hints,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (hintsVal is not null)
         {
             r["hints"] = hintsVal;
         }
 
-        object? runVal = ISavable.Save(run, false, (string)this.id.AsT1!, relativeUris);
+        object? runVal = ISavable.Save(run,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (runVal is not null)
         {
             r["run"] = runVal;
         }
 
-        object? whenVal = ISavable.Save(when, false, (string)this.id.AsT1!, relativeUris);
+        object? whenVal = ISavable.Save(when,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (whenVal is not null)
         {
             r["when"] = whenVal;

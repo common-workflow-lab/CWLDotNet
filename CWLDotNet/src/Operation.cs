@@ -408,37 +408,43 @@ public class Operation : IOperation, ISavable
             r["class"] = class_Val;
         }
 
-        object? labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
+        object? labelVal = ISavable.Save(label,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (labelVal is not null)
         {
             r["label"] = labelVal;
         }
 
-        object? docVal = ISavable.Save(doc, false, (string)this.id.AsT1!, relativeUris);
+        object? docVal = ISavable.Save(doc,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (docVal is not null)
         {
             r["doc"] = docVal;
         }
 
-        object? inputsVal = ISavable.Save(inputs, false, (string)this.id.AsT1!, relativeUris);
+        object? inputsVal = ISavable.Save(inputs,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (inputsVal is not null)
         {
             r["inputs"] = inputsVal;
         }
 
-        object? outputsVal = ISavable.Save(outputs, false, (string)this.id.AsT1!, relativeUris);
+        object? outputsVal = ISavable.Save(outputs,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (outputsVal is not null)
         {
             r["outputs"] = outputsVal;
         }
 
-        object? requirementsVal = ISavable.Save(requirements, false, (string)this.id.AsT1!, relativeUris);
+        object? requirementsVal = ISavable.Save(requirements,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (requirementsVal is not null)
         {
             r["requirements"] = requirementsVal;
         }
 
-        object? hintsVal = ISavable.Save(hints, false, (string)this.id.AsT1!, relativeUris);
+        object? hintsVal = ISavable.Save(hints,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (hintsVal is not null)
         {
             r["hints"] = hintsVal;

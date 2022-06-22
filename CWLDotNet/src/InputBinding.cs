@@ -107,7 +107,8 @@ public class InputBinding : IInputBinding, ISavable
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        object? loadContentsVal = ISavable.Save(loadContents, false, (string)baseUrl!, relativeUris);
+        object? loadContentsVal = ISavable.Save(loadContents,
+                                        false, (string)baseUrl!, relativeUris);
         if (loadContentsVal is not null)
         {
             r["loadContents"] = loadContentsVal;

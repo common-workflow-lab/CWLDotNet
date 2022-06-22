@@ -322,13 +322,15 @@ public class Directory : IDirectory, ISavable
             r["path"] = pathVal;
         }
 
-        object? basenameVal = ISavable.Save(basename, false, (string)baseUrl!, relativeUris);
+        object? basenameVal = ISavable.Save(basename,
+                                        false, (string)baseUrl!, relativeUris);
         if (basenameVal is not null)
         {
             r["basename"] = basenameVal;
         }
 
-        object? listingVal = ISavable.Save(listing, false, (string)baseUrl!, relativeUris);
+        object? listingVal = ISavable.Save(listing,
+                                        false, (string)baseUrl!, relativeUris);
         if (listingVal is not null)
         {
             r["listing"] = listingVal;

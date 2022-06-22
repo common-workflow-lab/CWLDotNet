@@ -123,13 +123,15 @@ public class EnvironmentDef : IEnvironmentDef, ISavable
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        object? envNameVal = ISavable.Save(envName, false, (string)baseUrl!, relativeUris);
+        object? envNameVal = ISavable.Save(envName,
+                                        false, (string)baseUrl!, relativeUris);
         if (envNameVal is not null)
         {
             r["envName"] = envNameVal;
         }
 
-        object? envValueVal = ISavable.Save(envValue, false, (string)baseUrl!, relativeUris);
+        object? envValueVal = ISavable.Save(envValue,
+                                        false, (string)baseUrl!, relativeUris);
         if (envValueVal is not null)
         {
             r["envValue"] = envValueVal;

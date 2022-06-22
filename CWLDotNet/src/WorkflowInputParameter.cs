@@ -478,25 +478,29 @@ public class WorkflowInputParameter : IWorkflowInputParameter, ISavable
             r["id"] = idVal;
         }
 
-        object? labelVal = ISavable.Save(label, false, (string)this.id.AsT1!, relativeUris);
+        object? labelVal = ISavable.Save(label,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (labelVal is not null)
         {
             r["label"] = labelVal;
         }
 
-        object? secondaryFilesVal = ISavable.Save(secondaryFiles, false, (string)this.id.AsT1!, relativeUris);
+        object? secondaryFilesVal = ISavable.Save(secondaryFiles,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (secondaryFilesVal is not null)
         {
             r["secondaryFiles"] = secondaryFilesVal;
         }
 
-        object? streamableVal = ISavable.Save(streamable, false, (string)this.id.AsT1!, relativeUris);
+        object? streamableVal = ISavable.Save(streamable,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (streamableVal is not null)
         {
             r["streamable"] = streamableVal;
         }
 
-        object? docVal = ISavable.Save(doc, false, (string)this.id.AsT1!, relativeUris);
+        object? docVal = ISavable.Save(doc,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (docVal is not null)
         {
             r["doc"] = docVal;
@@ -509,31 +513,36 @@ public class WorkflowInputParameter : IWorkflowInputParameter, ISavable
             r["format"] = formatVal;
         }
 
-        object? loadContentsVal = ISavable.Save(loadContents, false, (string)this.id.AsT1!, relativeUris);
+        object? loadContentsVal = ISavable.Save(loadContents,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (loadContentsVal is not null)
         {
             r["loadContents"] = loadContentsVal;
         }
 
-        object? loadListingVal = ISavable.Save(loadListing, false, (string)this.id.AsT1!, relativeUris);
+        object? loadListingVal = ISavable.Save(loadListing,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (loadListingVal is not null)
         {
             r["loadListing"] = loadListingVal;
         }
 
-        object? default_Val = ISavable.Save(default_, false, (string)this.id.AsT1!, relativeUris);
+        object? default_Val = ISavable.Save(default_,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (default_Val is not null)
         {
             r["default"] = default_Val;
         }
 
-        object? typeVal = ISavable.Save(type, false, (string)this.id.AsT1!, relativeUris);
+        object? typeVal = ISavable.Save(type,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (typeVal is not null)
         {
             r["type"] = typeVal;
         }
 
-        object? inputBindingVal = ISavable.Save(inputBinding, false, (string)this.id.AsT1!, relativeUris);
+        object? inputBindingVal = ISavable.Save(inputBinding,
+                                        false, (string)this.id.AsT1!, relativeUris);
         if (inputBindingVal is not null)
         {
             r["inputBinding"] = inputBindingVal;

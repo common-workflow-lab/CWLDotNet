@@ -272,25 +272,29 @@ public class CommandOutputBinding : ICommandOutputBinding, ISavable
             r[loadingOptions.PrefixUrl((string)ef.Value)] = ef.Value;
         }
 
-        object? loadContentsVal = ISavable.Save(loadContents, false, (string)baseUrl!, relativeUris);
+        object? loadContentsVal = ISavable.Save(loadContents,
+                                        false, (string)baseUrl!, relativeUris);
         if (loadContentsVal is not null)
         {
             r["loadContents"] = loadContentsVal;
         }
 
-        object? loadListingVal = ISavable.Save(loadListing, false, (string)baseUrl!, relativeUris);
+        object? loadListingVal = ISavable.Save(loadListing,
+                                        false, (string)baseUrl!, relativeUris);
         if (loadListingVal is not null)
         {
             r["loadListing"] = loadListingVal;
         }
 
-        object? globVal = ISavable.Save(glob, false, (string)baseUrl!, relativeUris);
+        object? globVal = ISavable.Save(glob,
+                                        false, (string)baseUrl!, relativeUris);
         if (globVal is not null)
         {
             r["glob"] = globVal;
         }
 
-        object? outputEvalVal = ISavable.Save(outputEval, false, (string)baseUrl!, relativeUris);
+        object? outputEvalVal = ISavable.Save(outputEval,
+                                        false, (string)baseUrl!, relativeUris);
         if (outputEvalVal is not null)
         {
             r["outputEval"] = outputEvalVal;

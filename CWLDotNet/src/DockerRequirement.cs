@@ -334,37 +334,43 @@ public class DockerRequirement : IDockerRequirement, ISavable
             r["class"] = class_Val;
         }
 
-        object? dockerPullVal = ISavable.Save(dockerPull, false, (string)baseUrl!, relativeUris);
+        object? dockerPullVal = ISavable.Save(dockerPull,
+                                        false, (string)baseUrl!, relativeUris);
         if (dockerPullVal is not null)
         {
             r["dockerPull"] = dockerPullVal;
         }
 
-        object? dockerLoadVal = ISavable.Save(dockerLoad, false, (string)baseUrl!, relativeUris);
+        object? dockerLoadVal = ISavable.Save(dockerLoad,
+                                        false, (string)baseUrl!, relativeUris);
         if (dockerLoadVal is not null)
         {
             r["dockerLoad"] = dockerLoadVal;
         }
 
-        object? dockerFileVal = ISavable.Save(dockerFile, false, (string)baseUrl!, relativeUris);
+        object? dockerFileVal = ISavable.Save(dockerFile,
+                                        false, (string)baseUrl!, relativeUris);
         if (dockerFileVal is not null)
         {
             r["dockerFile"] = dockerFileVal;
         }
 
-        object? dockerImportVal = ISavable.Save(dockerImport, false, (string)baseUrl!, relativeUris);
+        object? dockerImportVal = ISavable.Save(dockerImport,
+                                        false, (string)baseUrl!, relativeUris);
         if (dockerImportVal is not null)
         {
             r["dockerImport"] = dockerImportVal;
         }
 
-        object? dockerImageIdVal = ISavable.Save(dockerImageId, false, (string)baseUrl!, relativeUris);
+        object? dockerImageIdVal = ISavable.Save(dockerImageId,
+                                        false, (string)baseUrl!, relativeUris);
         if (dockerImageIdVal is not null)
         {
             r["dockerImageId"] = dockerImageIdVal;
         }
 
-        object? dockerOutputDirectoryVal = ISavable.Save(dockerOutputDirectory, false, (string)baseUrl!, relativeUris);
+        object? dockerOutputDirectoryVal = ISavable.Save(dockerOutputDirectory,
+                                        false, (string)baseUrl!, relativeUris);
         if (dockerOutputDirectoryVal is not null)
         {
             r["dockerOutputDirectory"] = dockerOutputDirectoryVal;

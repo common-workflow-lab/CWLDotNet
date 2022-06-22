@@ -180,13 +180,15 @@ public class RecordField : IRecordField, ISavable
             r["name"] = nameVal;
         }
 
-        object? docVal = ISavable.Save(doc, false, (string)this.name!, relativeUris);
+        object? docVal = ISavable.Save(doc,
+                                        false, (string)this.name!, relativeUris);
         if (docVal is not null)
         {
             r["doc"] = docVal;
         }
 
-        object? typeVal = ISavable.Save(type, false, (string)this.name!, relativeUris);
+        object? typeVal = ISavable.Save(type,
+                                        false, (string)this.name!, relativeUris);
         if (typeVal is not null)
         {
             r["type"] = typeVal;
