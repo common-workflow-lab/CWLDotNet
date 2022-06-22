@@ -30,7 +30,7 @@ public static class Utilities
     {
         Uri splitUri = new(uri, UriKind.RelativeOrAbsolute);
         UriBuilder split;
-        if(!splitUri.IsAbsoluteUri) 
+        if(!splitUri.IsAbsoluteUri)
         {
             var guid = Guid.NewGuid();
             Uri stubUri = new ("http://"+ guid + ".com");
@@ -39,7 +39,6 @@ public static class Utilities
             split.Scheme = "";
             split.Host = "";
             return split;
-
         } else 
         {
             return new UriBuilder(splitUri);
