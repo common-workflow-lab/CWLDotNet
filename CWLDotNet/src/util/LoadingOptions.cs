@@ -94,9 +94,9 @@ public class LoadingOptions
             }
         }
 
-        Uri split = new(url, UriKind.RelativeOrAbsolute);
-        bool hasFragment = split.IsAbsoluteUri && split.Fragment != "";
-        if ((split.IsAbsoluteUri && (split.Scheme.Equals("http") || split.Scheme.Equals("https") || split.Scheme.Equals("file")))
+        UriBuilder split = Utilities.Split(url);
+        bool hasFragment = split.Fragment != "";
+        if (split.Scheme.Equals("http") || split.Scheme.Equals("https") || split.Scheme.Equals("file")
             || url.StartsWith("$(")
             || url.StartsWith("${"))
         {
@@ -104,32 +104,22 @@ public class LoadingOptions
         }
         else if (scopeId && !hasFragment)
         {
-            Uri splitbase = new(baseUrl);
+            UriBuilder splitbase = Utilities.Split(baseUrl);
             string frg;
             if (splitbase.Fragment.Length > 0)
             {
-                frg = splitbase.FragmentWithoutFragmentation() + "/" + (split.IsAbsoluteUri ? split.AbsolutePath : url);
+                frg = splitbase.FragmentWithoutFragmentation() + split.Path;
             }
             else
             {
-                frg = split.IsAbsoluteUri ? split.AbsolutePath : split.OriginalString;
-            }
-
-            string pt;
-            if (!splitbase.AbsolutePath.Equals(""))
-            {
-                pt = splitbase.AbsolutePath;
-            }
-            else
-            {
-                pt = "/";
+                frg = split.Path.Substring(1);
             }
 
             UriBuilder builder = new()
             {
                 Scheme = splitbase.Scheme,
                 Host = splitbase.Host,
-                Path = pt,
+                Path = splitbase.Path,
                 Fragment = frg
             };
 
@@ -137,7 +127,7 @@ public class LoadingOptions
         }
         else if (scopedRef != null && !hasFragment)
         {
-            Uri splitbase = new(baseUrl);
+            UriBuilder splitbase = Utilities.Split(baseUrl);
             List<string> sp = new(splitbase.FragmentWithoutFragmentation().Split("/").ToList());
             int? n = scopedRef;
             while (n > 0 && sp.Count > 0)
@@ -153,7 +143,7 @@ public class LoadingOptions
             {
                 Scheme = splitbase.Scheme,
                 Host = splitbase.Host,
-                Path = splitbase.AbsolutePath,
+                Path = splitbase.Path,
                 Query = splitbase.Query,
                 Fragment = fragment
             };
@@ -167,8 +157,8 @@ public class LoadingOptions
 
         if (vocabTerm)
         {
-            split = new Uri(url, UriKind.RelativeOrAbsolute);
-            if (split.IsAbsoluteUri && split.Scheme.Length > 0)
+            split = Utilities.Split(url);
+            if (split.Scheme.Length > 0)
             {
                 if (rvocab.ContainsKey(url))
                 {
