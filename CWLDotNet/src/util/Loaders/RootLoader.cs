@@ -5,7 +5,7 @@ namespace CWLDotNet;
 
 public class RootLoader
 {
-    public static OneOf<CommandLineTool, ExpressionTool, Workflow, Operation, List<OneOf<CommandLineTool, ExpressionTool, Workflow, Operation>>> LoadDocument(in Dictionary<object, object> doc, in string baseUri_, in LoadingOptions? loadingOptions_ = null)
+    public static OneOf<CommandLineTool, ExpressionTool, Workflow, Operation, List<OneOf<CommandLineTool, ExpressionTool, Workflow, Operation>>> LoadDocument(Dictionary<object, object> doc, string baseUri_, LoadingOptions? loadingOptions_ = null)
     {
         string baseUri = EnsureBaseUri(baseUri_);
         LoadingOptions loadingOptions;
@@ -23,7 +23,7 @@ public class RootLoader
         return outDoc;
     }
 
-    public static OneOf<CommandLineTool, ExpressionTool, Workflow, Operation, List<OneOf<CommandLineTool, ExpressionTool, Workflow, Operation>>> LoadDocument(in string doc, in string uri_, in LoadingOptions? loadingOptions_ = null)
+    public static OneOf<CommandLineTool, ExpressionTool, Workflow, Operation, List<OneOf<CommandLineTool, ExpressionTool, Workflow, Operation>>> LoadDocument(string doc, string uri_, LoadingOptions? loadingOptions_ = null)
     {
         string uri = EnsureBaseUri(uri_);
         LoadingOptions loadingOptions;
@@ -53,4 +53,5 @@ public class RootLoader
 
         return baseUri;
     }
+
 }
