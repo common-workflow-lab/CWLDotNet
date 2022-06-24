@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IWorkflowStep
+   | Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IWorkflowStep
+   | Documentation ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CWLDotNet.IWorkflowStep">
+  
+  
+  <h1 id="CWLDotNet_IWorkflowStep" data-uid="CWLDotNet.IWorkflowStep" class="text-break">Interface IWorkflowStep
+  </h1>
+  <div class="markdown level0 summary"><p>Auto-generated interface for <a href="https://w3id.org/cwl/cwl#WorkflowStep">https://w3id.org/cwl/cwl#WorkflowStep</a></p>
+<p>A workflow step is an executable element of a workflow.  It specifies the
+underlying process implementation (such as <code>CommandLineTool</code> or another
+<code>Workflow</code>) in the <code>run</code> field and connects the input and output parameters
+of the underlying process to workflow parameters.</p>
+<h1 id="scattergather">Scatter/gather</h1>
+<p>To use scatter/gather,
+<a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> must be specified
+in the workflow or workflow step requirements.</p>
+<p>A &quot;scatter&quot; operation specifies that the associated workflow step or
+subworkflow should execute separately over a list of input elements.  Each
+job making up a scatter operation is independent and may be executed
+concurrently.</p>
+<p>The <code>scatter</code> field specifies one or more input parameters which will be
+scattered.  An input parameter may be listed more than once.  The declared
+type of each input parameter is implicitly becomes an array of items of the
+input parameter type.  If a parameter is listed more than once, it becomes
+a nested array.  As a result, upstream parameters which are connected to
+scattered parameters must be arrays.</p>
+<p>All output parameter types are also implicitly wrapped in arrays.  Each job
+in the scatter results in an entry in the output array.</p>
+<p>If any scattered parameter runtime value is an empty array, all outputs are
+set to empty arrays and no work is done for the step, according to
+applicable scattering rules.</p>
+<p>If <code>scatter</code> declares more than one input parameter, <code>scatterMethod</code>
+describes how to decompose the input into a discrete set of jobs.</p>
+<ul>
+<li><p><strong>dotproduct</strong> specifies that each of the input arrays are aligned and one
+element taken from each array to construct each job.  It is an error
+if all input arrays are not the same length.</p>
+</li>
+<li><p><strong>nested_crossproduct</strong> specifies the Cartesian product of the inputs,
+producing a job for every combination of the scattered inputs.  The
+output must be nested arrays for each level of scattering, in the
+order that the input arrays are listed in the <code>scatter</code> field.</p>
+</li>
+<li><p><strong>flat_crossproduct</strong> specifies the Cartesian product of the inputs,
+producing a job for every combination of the scattered inputs.  The
+output arrays must be flattened to a single level, but otherwise listed in the
+order that the input arrays are listed in the <code>scatter</code> field.</p>
+</li>
+</ul>
+<h1 id="conditional-execution-optional">Conditional execution (Optional)</h1>
+<p>Conditional execution makes execution of a step conditional on an
+expression.  A step that is not executed is &quot;skipped&quot;.  A skipped
+step produces <code>null</code> for all output parameters.</p>
+<p>The condition is evaluated after <code>scatter</code>, using the input object
+of each individual scatter job.  This means over a set of scatter
+jobs, some may be executed and some may be skipped.  When the
+results are gathered, skipped steps must be <code>null</code> in the output
+arrays.</p>
+<p>The <code>when</code> field controls conditional execution.  This is an
+expression that must be evaluated with <code>inputs</code> bound to the step
+input object (or individual scatter job), and returns a boolean
+value.  It is an error if this expression returns a value other
+than <code>true</code> or <code>false</code>.</p>
+<p>Conditionals in CWL are an optional feature and are not required
+to be implemented by all consumers of CWL documents.  An
+implementation that does not support conditionals must return a
+fatal error when attempting execute a workflow that uses
+conditional constructs the implementation does not support.</p>
+<h1 id="subworkflows">Subworkflows</h1>
+<p>To specify a nested workflow as part of a workflow step,
+<a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> must be
+specified in the workflow or workflow step requirements.</p>
+<p>It is a fatal error if a workflow directly or indirectly invokes itself as
+a subworkflow (recursive workflows are not allowed).</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CWLDotNet.html">CWLDotNet</a></h6>
+  <h6><strong>Assembly</strong>: CWLDotNet.dll</h6>
+  <h5 id="CWLDotNet_IWorkflowStep_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IWorkflowStep : IIdentified, ILabeled, IDocumented</code></pre>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

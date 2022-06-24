@@ -119,8 +119,8 @@ public class File : IFile, ISavable
     /// field to `location`, and remove the `path` field.
     /// 
     /// If the `path` contains [POSIX shell metacharacters](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_02)
-    /// (`|`,`&`, `;`, `<`, `>`, `(`,`)`, `$`,`` ` ``, `\`, `"`, `'`,
-    /// `<space>`, `<tab>`, and `<newline>`) or characters
+    /// (`|`,`&amp;`, `;`, `&lt;`, `&gt;`, `(`,`)`, `$`,`` ` ``, `\`, `"`, `'`,
+    /// `&lt;space&gt;`, `&lt;tab&gt;`, and `&lt;newline&gt;`) or characters
     /// [not allowed](http://www.iana.org/assignments/idna-tables-6.3.0/idna-tables-6.3.0.xhtml)
     /// for [Internationalized Domain Names for Applications](https://tools.ietf.org/html/rfc6452)
     /// then implementations may terminate the process with a
@@ -215,8 +215,8 @@ public class File : IFile, ISavable
     /// input file format is the same, `owl:equivalentClass` or
     /// `rdfs:subClassOf` the format required by the input parameter.
     /// `owl:equivalentClass` is transitive with `rdfs:subClassOf`, e.g. if
-    /// `<B> owl:equivalentClass <C>` and `<B> owl:subclassOf <A>` then infer
-    /// `<C> owl:subclassOf <A>`.
+    /// `&lt;B&gt; owl:equivalentClass &lt;C&gt;` and `&lt;B&gt; owl:subclassOf &lt;A&gt;` then infer
+    /// `&lt;C&gt; owl:subclassOf &lt;A&gt;`.
     /// 
     /// File format ontologies may be provided in the "$schemas" metadata at the
     /// root of the document.  If no ontologies are specified in `$schemas`, the

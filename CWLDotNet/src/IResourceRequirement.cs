@@ -24,7 +24,7 @@ namespace CWLDotNet;
 /// If "min" is specified but "max" is not, then "max" == "min"
 /// If "max" is specified by "min" is not, then "min" == "max".
 /// 
-/// It is an error if max < min.
+/// It is an error if max &lt; min.
 /// 
 /// It is an error if the value of any of these fields is negative.
 /// 

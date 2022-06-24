@@ -76,9 +76,9 @@ namespace CWLDotNet;
 /// 
 ///   For the first level of a list input, pick the first non-null element.  The result is a scalar.
 ///   It is an error if there is no non-null element.  Examples:
-///   * `[null, x, null, y] -> x`
-///   * `[null, [null], null, y] -> [null]`
-///   * `[null, null, null] -> Runtime Error`
+///   * `[null, x, null, y] -&gt; x`
+///   * `[null, [null], null, y] -&gt; [null]`
+///   * `[null, null, null] -&gt; Runtime Error`
 /// 
 ///   *Intended use case*: If-else pattern where the
 ///   value comes either from a conditional step or from a default or
@@ -90,10 +90,10 @@ namespace CWLDotNet;
 ///   For the first level of a list input, pick the single non-null element.  The result is a scalar.
 ///   It is an error if there is more than one non-null element.  Examples:
 /// 
-///   * `[null, x, null] -> x`
-///   * `[null, x, null, y] -> Runtime Error`
-///   * `[null, [null], null] -> [null]`
-///   * `[null, null, null] -> Runtime Error`
+///   * `[null, x, null] -&gt; x`
+///   * `[null, x, null, y] -&gt; Runtime Error`
+///   * `[null, [null], null] -&gt; [null]`
+///   * `[null, null, null] -&gt; Runtime Error`
 /// 
 ///   *Intended use case*: Switch type patterns where developer considers
 ///   more than one active code path as a workflow error
@@ -104,10 +104,10 @@ namespace CWLDotNet;
 ///   For the first level of a list input, pick all non-null values.
 ///   The result is a list, which may be empty.  Examples:
 /// 
-///   * `[null, x, null] -> [x]`
-///   * `[x, null, y] -> [x, y]`
-///   * `[null, [x], [null]] -> [[x], [null]]`
-///   * `[null, null, null] -> []`
+///   * `[null, x, null] -&gt; [x]`
+///   * `[x, null, y] -&gt; [x, y]`
+///   * `[null, [x], [null]] -&gt; [[x], [null]]`
+///   * `[null, null, null] -&gt; []`
 /// 
 ///   *Intended use case*: It is valid to have more than one source, but
 ///    sources are conditional, so null sources (from skipped steps)

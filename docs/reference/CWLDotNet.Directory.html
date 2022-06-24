@@ -1,0 +1,502 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Directory
+   | Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Directory
+   | Documentation ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CWLDotNet.Directory">
+  
+  
+  <h1 id="CWLDotNet_Directory" data-uid="CWLDotNet.Directory" class="text-break">Class Directory
+  </h1>
+  <div class="markdown level0 summary"><p>Auto-generated class implementation for <a href="https://w3id.org/cwl/cwl#Directory">https://w3id.org/cwl/cwl#Directory</a></p>
+<p>Represents a directory to present to a command line tool.</p>
+<p>Directories are represented as objects with <code>class</code> of <code>Directory</code>.  Directory objects have
+a number of properties that provide metadata about the directory.</p>
+<p>The <code>location</code> property of a Directory is a URI that uniquely identifies
+the directory.  Implementations must support the file:// URI scheme and may
+support other schemes such as http://.  Alternately to <code>location</code>,
+implementations must also accept the <code>path</code> property on Directory, which
+must be a filesystem path available on the same host as the CWL runner (for
+inputs) or the runtime environment of a command line tool execution (for
+command line tool outputs).</p>
+<p>A Directory object may have a <code>listing</code> field.  This is a list of File and
+Directory objects that are contained in the Directory.  For each entry in
+<code>listing</code>, the <code>basename</code> property defines the name of the File or
+Subdirectory when staged to disk.  If <code>listing</code> is not provided, the
+implementation must have some way of fetching the Directory listing at
+runtime based on the <code>location</code> field.</p>
+<p>If a Directory does not have <code>location</code>, it is a Directory literal.  A
+Directory literal must provide <code>listing</code>.  Directory literals must be
+created on disk at runtime as needed.</p>
+<p>The resources in a Directory literal do not need to have any implied
+relationship in their <code>location</code>.  For example, a Directory listing may
+contain two files located on different hosts.  It is the responsibility of
+the runtime to ensure that those files are staged to disk appropriately.
+Secondary files associated with files in <code>listing</code> must also be staged to
+the same Directory.</p>
+<p>When executing a CommandLineTool, Directories must be recursively staged
+first and have local values of <code>path</code> assigend.</p>
+<p>Directory objects in CommandLineTool output must provide either a
+<code>location</code> URI or a <code>path</code> property in the context of the tool execution
+runtime (local to the compute node, or within the executing container).</p>
+<p>An ExpressionTool may forward file references from input to output by using
+the same value for <code>location</code>.</p>
+<p>Name conflicts (the same <code>basename</code> appearing multiple times in <code>listing</code>
+or in any entry in <code>secondaryFiles</code> in the listing) is a fatal error.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">Directory</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="CWLDotNet.IDirectory.html">IDirectory</a></div>
+    <div><a class="xref" href="CWLDotNet.ISavable.html">ISavable</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CWLDotNet.html">CWLDotNet</a></h6>
+  <h6><strong>Assembly</strong>: CWLDotNet.dll</h6>
+  <h5 id="CWLDotNet_Directory_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Directory : IDirectory, ISavable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <a id="CWLDotNet_Directory__ctor_" data-uid="CWLDotNet.Directory.#ctor*"></a>
+  <h4 id="CWLDotNet_Directory__ctor_CWLDotNet_Directory_class_OneOf_OneOf_OneOf_Types_None_System_String__OneOf_OneOf_OneOf_Types_None_System_String__OneOf_OneOf_OneOf_Types_None_System_String__OneOf_OneOf_OneOf_Types_None_List_OneOf_OneOf_CWLDotNet_File_CWLDotNet_Directory____CWLDotNet_LoadingOptions_System_Nullable_Dictionary_System_Object_System_Object___" data-uid="CWLDotNet.Directory.#ctor(CWLDotNet.Directory_class,OneOf.OneOf{OneOf.Types.None,System.String},OneOf.OneOf{OneOf.Types.None,System.String},OneOf.OneOf{OneOf.Types.None,System.String},OneOf.OneOf{OneOf.Types.None,List{OneOf.OneOf{CWLDotNet.File,CWLDotNet.Directory}}},CWLDotNet.LoadingOptions,System.Nullable{Dictionary{System.Object,System.Object}})">Directory(Directory_class, OneOf&lt;None, String&gt;, OneOf&lt;None, String&gt;, OneOf&lt;None, String&gt;, OneOf&lt;None, List&lt;OneOf&lt;File, Directory&gt;&gt;&gt;, LoadingOptions, Nullable&lt;Dictionary&lt;Object, Object&gt;&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Directory(Directory_class class_ = null, OneOf&lt;None, string&gt; location = default(OneOf&lt;None, string&gt;), OneOf&lt;None, string&gt; path = default(OneOf&lt;None, string&gt;), OneOf&lt;None, string&gt; basename = default(OneOf&lt;None, string&gt;), OneOf&lt;None, List&lt;OneOf&lt;File, Directory&gt;&gt;&gt; listing = default(OneOf&lt;None, List&lt;OneOf&lt;File, Directory&gt;&gt;&gt;), LoadingOptions loadingOptions = null, Dictionary&lt;object, object&gt;? extensionFields = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.Directory_class.html">Directory_class</a></td>
+        <td><span class="parametername">class_</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">location</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">basename</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">OneOf.OneOf</span>&lt;<a class="xref" href="CWLDotNet.File.html">File</a>, <a class="xref" href="CWLDotNet.Directory.html">Directory</a>&gt;&gt;&gt;</td>
+        <td><span class="parametername">listing</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.LoadingOptions.html">LoadingOptions</a></td>
+        <td><span class="parametername">loadingOptions</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Dictionary</span>&lt;<span class="xref">System.Object</span>, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><span class="parametername">extensionFields</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <a id="CWLDotNet_Directory_basename_" data-uid="CWLDotNet.Directory.basename*"></a>
+  <h4 id="CWLDotNet_Directory_basename" data-uid="CWLDotNet.Directory.basename">basename</h4>
+  <div class="markdown level1 summary"><p>The base name of the directory, that is, the name of the file without any
+leading directory path.  The base name must not contain a slash <code>/</code>.</p>
+<p>If not provided, the implementation must set this field based on the
+<code>location</code> field by taking the final path component after parsing
+<code>location</code> as an IRI.  If <code>basename</code> is provided, it is not required to
+match the value from <code>location</code>.</p>
+<p>When this file is made available to a CommandLineTool, it must be named
+with <code>basename</code>, i.e. the final component of the <code>path</code> field must match
+<code>basename</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; basename { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_Directory_class__" data-uid="CWLDotNet.Directory.class_*"></a>
+  <h4 id="CWLDotNet_Directory_class_" data-uid="CWLDotNet.Directory.class_">class_</h4>
+  <div class="markdown level1 summary"><p>Must be <code>Directory</code> to indicate this object describes a Directory.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Directory_class class_ { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.Directory_class.html">Directory_class</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_Directory_listing_" data-uid="CWLDotNet.Directory.listing*"></a>
+  <h4 id="CWLDotNet_Directory_listing" data-uid="CWLDotNet.Directory.listing">listing</h4>
+  <div class="markdown level1 summary"><p>List of files or subdirectories contained in this directory.  The name
+of each file or subdirectory is determined by the <code>basename</code> field of
+each <code>File</code> or <code>Directory</code> object.  It is an error if a <code>File</code> shares a
+<code>basename</code> with any other entry in <code>listing</code>.  If two or more
+<code>Directory</code> object share the same <code>basename</code>, this must be treated as
+equivalent to a single subdirectory with the listings recursively
+merged.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, List&lt;OneOf&lt;File, Directory&gt;&gt;&gt; listing { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">OneOf.OneOf</span>&lt;<a class="xref" href="CWLDotNet.File.html">File</a>, <a class="xref" href="CWLDotNet.Directory.html">Directory</a>&gt;&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_Directory_location_" data-uid="CWLDotNet.Directory.location*"></a>
+  <h4 id="CWLDotNet_Directory_location" data-uid="CWLDotNet.Directory.location">location</h4>
+  <div class="markdown level1 summary"><p>An IRI that identifies the directory resource.  This may be a relative
+reference, in which case it must be resolved using the base IRI of the
+document.  The location may refer to a local or remote resource.  If
+the <code>listing</code> field is not set, the implementation must use the
+location IRI to retrieve directory listing.  If an implementation is
+unable to retrieve the directory listing stored at a remote resource (due to
+unsupported protocol, access denied, or other issue) it must signal an
+error.</p>
+<p>If the <code>location</code> field is not provided, the <code>listing</code> field must be
+provided.  The implementation must assign a unique identifier for
+the <code>location</code> field.</p>
+<p>If the <code>path</code> field is provided but the <code>location</code> field is not, an
+implementation may assign the value of the <code>path</code> field to <code>location</code>,
+then follow the rules above.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; location { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_Directory_path_" data-uid="CWLDotNet.Directory.path*"></a>
+  <h4 id="CWLDotNet_Directory_path" data-uid="CWLDotNet.Directory.path">path</h4>
+  <div class="markdown level1 summary"><p>The local path where the Directory is made available prior to executing a
+CommandLineTool.  This must be set by the implementation.  This field
+must not be used in any other context.  The command line tool being
+executed must be able to to access the directory at <code>path</code> using the POSIX
+<code>opendir(2)</code> syscall.</p>
+<p>If the <code>path</code> contains <a href="http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_02">POSIX shell metacharacters</a>
+(<code>|</code>,<code>&amp;amp;</code>, <code>;</code>, <code>&amp;lt;</code>, <code>&gt;</code>, <code>(</code>,<code>)</code>, <code>$</code>,<code>`</code>, <code>\</code>, <code>&amp;quot;</code>, <code>&amp;apos;</code>,
+<code>&amp;lt;space&gt;</code>, <code>&amp;lt;tab&gt;</code>, and <code>&amp;lt;newline&gt;</code>) or characters
+<a href="http://www.iana.org/assignments/idna-tables-6.3.0/idna-tables-6.3.0.xhtml">not allowed</a>
+for <a href="https://tools.ietf.org/html/rfc6452">Internationalized Domain Names for Applications</a>
+then implementations may terminate the process with a
+<code>permanentFailure</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; path { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="CWLDotNet_Directory_FromDoc_" data-uid="CWLDotNet.Directory.FromDoc*"></a>
+  <h4 id="CWLDotNet_Directory_FromDoc_System_Object_System_String_CWLDotNet_LoadingOptions_System_String_" data-uid="CWLDotNet.Directory.FromDoc(System.Object,System.String,CWLDotNet.LoadingOptions,System.String)">FromDoc(Object, String, LoadingOptions, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISavable FromDoc(object doc__, string baseUri, LoadingOptions loadingOptions, string docRoot = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">doc__</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">baseUri</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.LoadingOptions.html">LoadingOptions</a></td>
+        <td><span class="parametername">loadingOptions</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">docRoot</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.ISavable.html">ISavable</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_Directory_Save_" data-uid="CWLDotNet.Directory.Save*"></a>
+  <h4 id="CWLDotNet_Directory_Save_System_Boolean_System_String_System_Boolean_" data-uid="CWLDotNet.Directory.Save(System.Boolean,System.String,System.Boolean)">Save(Boolean, String, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;object, object&gt; Save(bool top = false, string baseUrl = &quot;&quot;, bool relativeUris = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">top</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">baseUrl</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">relativeUris</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<span class="xref">System.Object</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="CWLDotNet.IDirectory.html">IDirectory</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.ISavable.html">ISavable</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

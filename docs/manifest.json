@@ -1,0 +1,2351 @@
+{
+  "homepages": [],
+  "source_base_path": "D:/Code/cwl/cwl-dotnet/CWLDotNet",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../DocFx/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "nBSI5r2/9VzbAUiyvRni64MGpxMhj+Jt81WCJhzpIzs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.Any.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.Any.html",
+          "hash": "gpFooFN8nlK0QuATMX+7ggDsHhCDwsTXnxBYQWKdI74="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ArraySchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ArraySchema.html",
+          "hash": "YM7XDzYCyKLZIPCGA87m2ycnj6BiY9CWiPSsVVCI4Z4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.CWLType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.CWLType.html",
+          "hash": "Iu5LDxi58LKaOmAHC86HmIEDY61B3+aJPenJylPHBg8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.CWLVersion.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.CWLVersion.html",
+          "hash": "sRSCXGixTQzrOR55702YbHfrDLEoxjQ1CmQdu/u36cE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.CommandInputArraySchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.CommandInputArraySchema.html",
+          "hash": "aUGVvnleBhf2Kha59t4QJ77Inr/HDnfWYbirhL6qs5g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.CommandInputEnumSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.CommandInputEnumSchema.html",
+          "hash": "ddNGjeH8Zemi+a2N4Jxp/dmiRY9SKBM8/ZVIkm0jvbk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.CommandInputParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.CommandInputParameter.html",
+          "hash": "hm1DHviYjcBmu5kpzuBKKR8LRecpAGA1b0LpNsNYpqM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.CommandInputRecordField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.CommandInputRecordField.html",
+          "hash": "iXaPJPS6nEj9YKCquglL7ENvLt7NF8xZ+k2VJU4fUCs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.CommandInputRecordSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.CommandInputRecordSchema.html",
+          "hash": "hC4Tnc5IT03hNohl9NKfcrTrFYvgAgak4XDu+q5t87E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.CommandLineBindable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.CommandLineBindable.html",
+          "hash": "8TKd56wjDIE21FX2Sbct6WJ4XylqI4vGgDP7SM58Bvc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.CommandLineBinding.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.CommandLineBinding.html",
+          "hash": "ZzLwt8kM5pAxuut8/Ki1kVizN+iA8CRZK7azFapvAow="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.CommandLineTool.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.CommandLineTool.html",
+          "hash": "1XrNWJydwK1q1sBebsW1O6XEXLcobJ82X+JEg1Iodt4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.CommandLineTool_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.CommandLineTool_class.html",
+          "hash": "DtJu4nlPZWNalSR2TbthvGdKdzdjzSxlPMS0wQ52UWc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.CommandOutputArraySchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.CommandOutputArraySchema.html",
+          "hash": "jY/MktMFSddta8J/1RGVqJiXcXHxq7y6dPSV2lZUe7Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.CommandOutputBinding.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.CommandOutputBinding.html",
+          "hash": "UujY0EWdkrFDOnTbKf75k9qrJxVr7V8p+fIqxjuo0aQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.CommandOutputEnumSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.CommandOutputEnumSchema.html",
+          "hash": "yp3qaqyqxs9w3NHp12K9webDtVReBNT60FxhdkPqQN8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.CommandOutputParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.CommandOutputParameter.html",
+          "hash": "2bTeReEoTO7fF2hbJa+nbNT/LE1MoKNB3A2dgBfAX1w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.CommandOutputRecordField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.CommandOutputRecordField.html",
+          "hash": "DiwMw9Ixh5o/qtOfzvwoG/TAHT/KWv+YjjyxWF6o8mI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.CommandOutputRecordSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.CommandOutputRecordSchema.html",
+          "hash": "uuajujOUSYFY5aN2hsXa9w170NeUnqMaW91M5cj0Slo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.DefaultFetcher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.DefaultFetcher.html",
+          "hash": "4hyEgzhVtOrK16tvNbBgO+ZnVwP3oMtA1khTr7SBINc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.Directory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.Directory.html",
+          "hash": "qOPCVNyUWVrOb0XgHZqgO85dFU7u2pNTYw3O2qNLE3w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.Directory_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.Directory_class.html",
+          "hash": "5Nh15PonH83nKQ5yHjAG8hnXUxbVFUkHC4aBpgskr+8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.Dirent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.Dirent.html",
+          "hash": "2ELxgjCdC0QLKgJ4KgmDYrMZGMJsMckZkghsMksKyzo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.DockerRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.DockerRequirement.html",
+          "hash": "LOpp8L74uOlbN77b+T8i053K15UrNXEYCLSck0OL5E0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.DockerRequirement_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.DockerRequirement_class.html",
+          "hash": "78JZIc1CxJuLpE2YdQZWo9fHwtY0eTS9xu+RsVV6EEs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.EnumSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.EnumSchema.html",
+          "hash": "IyQtA1jjaHAuAH2zbpBpFaxYiHAPKlGAlQ0yOOupciI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.EnvVarRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.EnvVarRequirement.html",
+          "hash": "PykOurHtzj3iVeBmuWGy4UyZ7sc8OSJ3BJqKmNWVaTU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.EnvVarRequirement_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.EnvVarRequirement_class.html",
+          "hash": "/ugepjcwd4tF+X4MU2FKnG3ZQja5amiWz0bUkXAnBm4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.EnvironmentDef.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.EnvironmentDef.html",
+          "hash": "kYc6CKnzFPTmiUnEZRD+K6buRxi8ftZZ48vYI/cBGl0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.Expression.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.Expression.html",
+          "hash": "ue42lio2yB/KnAk1gM+WWsVg6zBMLW1bJrbdL8nsCLo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ExpressionTool.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ExpressionTool.html",
+          "hash": "57jOD6Pkc/ucXdX3kbt6hkX/dZpmJm8T5oADTvsyYA4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ExpressionToolOutputParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ExpressionToolOutputParameter.html",
+          "hash": "IadSOWHOGVcsMeZB1AU6JuZ6KJL4sg/vQqv+T6SvL0s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ExpressionTool_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ExpressionTool_class.html",
+          "hash": "EZeD5dygqfbLi7cGbGYRnbYKKJXKOnYLmWLzCiBrLvo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.File.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.File.html",
+          "hash": "5AD1N1ftMBcbeVUCGTXH4TsPg/e1XDzm2q2mLBFo1FY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.File_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.File_class.html",
+          "hash": "ziiae8V1s5dl8xj3p6/4pYc6HFX1HT9AslkZkVieuyQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IArraySchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IArraySchema.html",
+          "hash": "SuVm+YhIHfQgRoPLG7u7VzzpViBBohuWd0TTGlxiDVs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ICommandInputArraySchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ICommandInputArraySchema.html",
+          "hash": "ZfmMNJz6RDr3j+IeKtY3+fn3NrVopaQ4nPUO+xNnqk4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ICommandInputEnumSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ICommandInputEnumSchema.html",
+          "hash": "YEvs3rbBdj4QJkgRdo+bxBdlQF91vcZWBc54pAgDhZw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ICommandInputParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ICommandInputParameter.html",
+          "hash": "F3VLvVgX8bBDca0VULzui4pHbWMeMdbyxSt+O9IdAwA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ICommandInputRecordField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ICommandInputRecordField.html",
+          "hash": "JEBUCkNrWOST6bcdV4uXhM2rVL7qb9VcYoqkERq4Ysg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ICommandInputRecordSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ICommandInputRecordSchema.html",
+          "hash": "TecEJN1cO4H2SM1qfkzj0uHGuzz/gzdFbXZvF+v2fTM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ICommandInputSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ICommandInputSchema.html",
+          "hash": "ag94HP0AdOhLNacyBItaFwBevApVRayBBe9A22bIqM4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ICommandLineBindable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ICommandLineBindable.html",
+          "hash": "Wm1T/YQGIcRuj5vf2MN+t0rgFzv2V2GLR/MjcEbgSlU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ICommandLineBinding.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ICommandLineBinding.html",
+          "hash": "nfICGOqRA71UlLjepBjjcFSdSHKGKrVOTH+OWnz6ySY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ICommandLineTool.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ICommandLineTool.html",
+          "hash": "jIH2NKfRNQam9ORr6qPWty6U6hRFG/rN8pbOcz/qtj8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ICommandOutputArraySchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ICommandOutputArraySchema.html",
+          "hash": "E8dFI1fcD9INB4Dk7RD2HE9ktS9doLCcwyQj3mbjSJ8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ICommandOutputBinding.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ICommandOutputBinding.html",
+          "hash": "Di0lrYrp3DHXWNNisfthl6DLpXmxbcn02S0Kjs/FuDY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ICommandOutputEnumSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ICommandOutputEnumSchema.html",
+          "hash": "30vWDYXMafJrOBjeF3h7ZaauJFoOdJJ/iWoW0QuJ+Fo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ICommandOutputParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ICommandOutputParameter.html",
+          "hash": "Key3lsomOrJ2qnbOFaJjB7w+SreHA20+OPIhCJSpaME="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ICommandOutputRecordField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ICommandOutputRecordField.html",
+          "hash": "Z97MrYrFnqejE4UM2fPBH4UwQkzXrLUAtiG3g4VBwUQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ICommandOutputRecordSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ICommandOutputRecordSchema.html",
+          "hash": "bcR4rePLW4oJZO6S9t2xcCvhoB6jahoQ3ipxcIqU6Yo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IDirectory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IDirectory.html",
+          "hash": "PRf5t9V4sO+3ns7p95YZcIEIg4osWJ0Rj/AqvOhj62Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IDirent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IDirent.html",
+          "hash": "18w1pUHilOBiUfySAyRf+gAqTZ4arNbnYUhDzo0RLi4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IDockerRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IDockerRequirement.html",
+          "hash": "K0HLEWnGIC44PY8nZEdTXEPJPp7wameyEDVn5I5EXoQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IDocumented.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IDocumented.html",
+          "hash": "ouuktwojkzm0BfGsLIkaheK4IHuR/Li/0NFWxH6o+i0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IEnumClass-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IEnumClass-1.html",
+          "hash": "Oh0Itx58JGyADpzReKoQ2jX4gSZST9N8kNnVyMLc0Jw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IEnumClass.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IEnumClass.html",
+          "hash": "anI7uWU7wC8BBYjOASQ20WmpCJ8kOt2tWW7xHRlqqNw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IEnumSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IEnumSchema.html",
+          "hash": "nzXIFCH++PF39EfwWP4synDmOQFfNVr4nnX3UtpKubw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IEnvVarRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IEnvVarRequirement.html",
+          "hash": "dVuo5hutyyYu1yynrlfJKq4sMpgEZzKaE42yBpoIzA8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IEnvironmentDef.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IEnvironmentDef.html",
+          "hash": "pcY3w1t28HlLWphlj7JyLvscmOsTdWVh8g8ZVBM7Hu0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IExpressionTool.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IExpressionTool.html",
+          "hash": "yaWTUFmIWkp4QNFevrkznqgxGAyQvksLeZaHcI5a9S0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IExpressionToolOutputParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IExpressionToolOutputParameter.html",
+          "hash": "wQ4BkRzNft82anBicCp8dGYKpYLEvY3x+GrFdIUz7dk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IFetcher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IFetcher.html",
+          "hash": "tyYxjE6KcjmCsNt7JV6SCRUCVRPYUzbvZmSE34+7C7A="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IFieldBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IFieldBase.html",
+          "hash": "9YhhZNbp97JbQJU9mn1dGkeQv+mGUN0llidUYvULG0g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IFile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IFile.html",
+          "hash": "4lG6E5Ts0nD900xxM9mQxpAhdDuSnZOHGQ2LH6VcogU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IIOSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IIOSchema.html",
+          "hash": "DLkScB2gx29rdSiN4gweZL/aFBPGtDR8eBcEE6V2b3s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IIdentified.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IIdentified.html",
+          "hash": "Lyc2o6afwkNAKgop7WRImzgIj/0KGCt5ThCQORlA1DQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IInitialWorkDirRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IInitialWorkDirRequirement.html",
+          "hash": "a3e799xGD2tjJ8X6AHi1Uf43wwGWAaoazDBY9OpGn8s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IInlineJavascriptRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IInlineJavascriptRequirement.html",
+          "hash": "sdRIR+t27Z/k+bGX+ojj1Qc5/YYmtvar7wAM12+c3B8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IInplaceUpdateRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IInplaceUpdateRequirement.html",
+          "hash": "pKBY+USRZXkKnyXMX+46yYc/aqKq/Xx58BibM90zFZA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IInputArraySchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IInputArraySchema.html",
+          "hash": "AOH7ikuSzX+RQkkBfX3BO9tgPbGgRlH092/5M4U31qc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IInputBinding.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IInputBinding.html",
+          "hash": "P/c49TTClelULn9/BipK07hVYnJDcPSlwOKh+qfD4I0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IInputEnumSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IInputEnumSchema.html",
+          "hash": "1ofrYpuIshmAiDeVVdb4oq3c5jmJ4jK6JVcG45QrkRw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IInputFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IInputFormat.html",
+          "hash": "lLIqQVd2exRliYrEuGxD+hhzjUuA7hjdtRymXLuF7xw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IInputParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IInputParameter.html",
+          "hash": "uWoLdGOFqAWgoEwUXZfy41camzLLkwGkIkBzMskfMx4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IInputRecordField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IInputRecordField.html",
+          "hash": "pC/ZbMH99wzmcTZOCsbF3I29z3dNWd9QsIhbUalnU6E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IInputRecordSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IInputRecordSchema.html",
+          "hash": "Q2YutqBF5fAr3L9+Cxxg3y8nlaorBqodv8YYgjyQLaU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IInputSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IInputSchema.html",
+          "hash": "8P4wCeU0j3EItC+kE1Av4oQzBNNUG50C9UhTRTB7mF4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ILabeled.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ILabeled.html",
+          "hash": "f1Kyr6S9UzUUa7nBKAgnfpGyGD/6edUVuxfRSh3P25w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ILoadContents.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ILoadContents.html",
+          "hash": "eNkCn/81zv5dy3APDiFf5qR5vrKnXkYRc0jHgCt99IA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ILoadListingRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ILoadListingRequirement.html",
+          "hash": "uNjQ6H7jWVprAwgOoWZN3hbpg/nW/+gMigWW547jf5Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IMultipleInputFeatureRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IMultipleInputFeatureRequirement.html",
+          "hash": "RpzuEmhUTKFpn5fcsGqeL2ACGLt3DjsnHSsJNsoaOkQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.INetworkAccess.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.INetworkAccess.html",
+          "hash": "7eWZbluABUSCPVyRt4FHmuhi5yPRhujKx5uLIE9QE3o="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IOperation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IOperation.html",
+          "hash": "S2B5cZGpfv5Vr9MeO9E+OqCWdjv2a/oR9zSCI2Xc4iU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IOperationInputParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IOperationInputParameter.html",
+          "hash": "+e4M3K8kNokDB17+rhRPc0RyVvSTir5Yx017lQN2+IY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IOperationOutputParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IOperationOutputParameter.html",
+          "hash": "wkOXtcjegEAh93TJfyrkU7Habyoa3XFmE8AsKftWmys="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IOutputArraySchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IOutputArraySchema.html",
+          "hash": "DU1U/bGSkueLlbQsex0HSkfmaFU2NtfwQAAF5koUit8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IOutputEnumSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IOutputEnumSchema.html",
+          "hash": "HBWqObMYWs4ISm2mEbEetcqQzSjyQen8v6An4Vtp4ao="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IOutputFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IOutputFormat.html",
+          "hash": "kU+UwSYQpD4YbEeMD3DGgkKCrvEYlMD0ItFlA0EbA60="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IOutputParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IOutputParameter.html",
+          "hash": "sfuu5udIbhj1C7uz+vVzsQeZzz7Az4tzRl1fRRVCXGI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IOutputRecordField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IOutputRecordField.html",
+          "hash": "y+ds5+UAJcBbjpsl8cqFtqaRKCUA7S9GnUBf2xTbmn8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IOutputRecordSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IOutputRecordSchema.html",
+          "hash": "hDJjSzV/Zt5zFFd1U+QfDfadtJ3YIjZ3ARIU7wHbXjs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IOutputSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IOutputSchema.html",
+          "hash": "fIRpOVGNfdVfFG1O1NLCK9TnWrfiwCz0LOvavhIl3L4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IParameter.html",
+          "hash": "JcthMClizyYYLOD2Rw7wUoLbSO7dMYkqttzQiA8fsts="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IProcess.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IProcess.html",
+          "hash": "UQ/fC3xfwgsZk+yASZZWY029UaFsdIQVQnYO9/fBnw4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IProcessRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IProcessRequirement.html",
+          "hash": "WzwJvBICZ7bXB6pUvMjZA89lOqZUc5yp1bdh764IycQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IRecordField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IRecordField.html",
+          "hash": "W5eoJP2oqwtLv4dZpoAAxDXS8rJlKu1B2o20NqStfB4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IRecordSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IRecordSchema.html",
+          "hash": "rsHphdicrpKn/rpi2KfA2oitUQMLCP449iN7zK6Rmx8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IResourceRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IResourceRequirement.html",
+          "hash": "VzNEr61NFm5QezydIeZsOkY5sv4sz0fOZvEPNz1MRNQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ISavable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ISavable.html",
+          "hash": "QS9Diz+y3dbcklyxOyIJQbHQ4tbxbiMCw9E2HAG4Njw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IScatterFeatureRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IScatterFeatureRequirement.html",
+          "hash": "TjZcIiHC0bMtzPtRKg94xf7Tcy8q5Stvm6G0ae0k8KU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ISchemaDefRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ISchemaDefRequirement.html",
+          "hash": "AzvIHUmxaIuOveUrwtmTyarsBlE7MHvIR7fbFh1XPvI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ISecondaryFileSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ISecondaryFileSchema.html",
+          "hash": "uncbMQdr4J9stwiK+AjB4l3IXMb5mPG+ant/rN++s/8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IShellCommandRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IShellCommandRequirement.html",
+          "hash": "MtM6KlUYB2swc8XTHam6ion99qtIUNwdypPRdRZ0Ujc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ISink.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ISink.html",
+          "hash": "FrenAEjjGHQY6bep8HCmbZDsfxwdm3uB+rPOste/Rlg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ISoftwarePackage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ISoftwarePackage.html",
+          "hash": "/RoCjUH5X2HiiSkEDjVuXjI2p78qEflF2iisVieU3Jw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ISoftwareRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ISoftwareRequirement.html",
+          "hash": "rbRwo2AoJdzOEyVNwUkiiovjiVOH1bKVadpymbRWdos="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IStepInputExpressionRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IStepInputExpressionRequirement.html",
+          "hash": "8BrgRIM765ktpv3fxgVnTf9Z1WRQt/p83hhDsNcLJBY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ISubworkflowFeatureRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ISubworkflowFeatureRequirement.html",
+          "hash": "x8SQwcaZ147XfyGrx8LJ/OPGDO56cDEaQn9ciZdoqtU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IToolTimeLimit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IToolTimeLimit.html",
+          "hash": "5kVEbUE9EPdnDIOzFI9Npw3pH72vKCPLF7h0LxqFmP8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IWorkReuse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IWorkReuse.html",
+          "hash": "qtJIKuCebMUMguYcsxCVR8I+JdGq53SCOmSELWphTMw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IWorkflow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IWorkflow.html",
+          "hash": "Pcdsp6vWO0/M1HPmscGEFcRNIISnkV+Lv6FvRUztLKw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IWorkflowInputParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IWorkflowInputParameter.html",
+          "hash": "c+ypSCjoywow0OPFFKHiCGaksjcF9Fk78j2ZZXgzvXU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IWorkflowOutputParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IWorkflowOutputParameter.html",
+          "hash": "9i+BSdOFezmvldIdFIlMjXsNqB8VxPM8PLkhpdM9XWE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IWorkflowStep.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IWorkflowStep.html",
+          "hash": "CcENbtuly4f/2L0e1moY03JpxSebvQWbuQRLXSFer50="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IWorkflowStepInput.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IWorkflowStepInput.html",
+          "hash": "vsAf3Z+nS33/2KYFSLAiodmoSycUzawseV7n5TaP+Uc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.IWorkflowStepOutput.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.IWorkflowStepOutput.html",
+          "hash": "warW5NzquqNPtNvECn1yOasqkXFUNMwQNvrWgGyWJ2I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.InitialWorkDirRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.InitialWorkDirRequirement.html",
+          "hash": "yd/ZBwJSg/mroNip6e5KQ3OPfE05nRhRAFmKgZGWXQc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.InitialWorkDirRequirement_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.InitialWorkDirRequirement_class.html",
+          "hash": "irENB1l8eoQ57tLpTqLi62WDvivazkPoKUE6ni00kyg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.InlineJavascriptRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.InlineJavascriptRequirement.html",
+          "hash": "Og6pnRgyMTrg1n5QxEoIg5ZAn9Un+bEtqzwoW5QdDp0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.InlineJavascriptRequirement_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.InlineJavascriptRequirement_class.html",
+          "hash": "N/oF+YysXNzDWQxShr0MFoBe2SrmP3heDO+/1Fgnaxc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.InplaceUpdateRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.InplaceUpdateRequirement.html",
+          "hash": "QlcE4HjRuHNHA+rHeu63X9y8ZoyMEqMDNp+H+1aAWHk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.InplaceUpdateRequirement_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.InplaceUpdateRequirement_class.html",
+          "hash": "xhcNvXkemizmQrMEc98dRmmStlMf6L2pbECVrka+JLM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.InputArraySchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.InputArraySchema.html",
+          "hash": "ESzyw+883djr4jUZWlmBjMRb/XvyYHnupeQcOCoVQAA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.InputBinding.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.InputBinding.html",
+          "hash": "8VQxC6ZBOdtD+9YUPcCcN7xAoQZ85VzO3Pg6XVqkcjU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.InputEnumSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.InputEnumSchema.html",
+          "hash": "RRQmHxPvDzUuK/mVD1R3i5swiigUtQz2Y9WXWSP+nJk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.InputRecordField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.InputRecordField.html",
+          "hash": "0NsJmmvlDMMV9lV/zYb6axKje2Zd5SkpP7n530pG57k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.InputRecordSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.InputRecordSchema.html",
+          "hash": "KQIiRWyMPTX+cxJKnZfTv9Jw1KAYe08HdL+9+u2KPno="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.LinkMergeMethod.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.LinkMergeMethod.html",
+          "hash": "Z7FguUjZy0tI4blt4ozpa194x6Wmq/u/KNVCGDcqj+c="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.LoadListingEnum.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.LoadListingEnum.html",
+          "hash": "8Aa5LUXHtVkJ4w5BYpXYNW0soTmucbvs0Ogiqe/8Zuc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.LoadListingRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.LoadListingRequirement.html",
+          "hash": "fydiRuRkziW/c1/TWnQHt8cEbC/CO6+XIhpVA3fXetI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.LoadListingRequirement_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.LoadListingRequirement_class.html",
+          "hash": "w5/ZlA+WVCByTtFvzM29JXAMoUfGe/V5/qvDVxS2qKg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.LoadingOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.LoadingOptions.html",
+          "hash": "PbEDNmvU0alg/gh2LoJeajhD5ykpy6eFGB3BmAQ8RQo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.MultipleInputFeatureRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.MultipleInputFeatureRequirement.html",
+          "hash": "jMOCuXTthHJ/VlDz8StI0rn5nIlZnwWS304TJwE9ZkE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.MultipleInputFeatureRequirement_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.MultipleInputFeatureRequirement_class.html",
+          "hash": "O6PG1aDXFhOJ65ReZo4Rk7Qwg8+dSxQRxC107yJOSgU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.NetworkAccess.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.NetworkAccess.html",
+          "hash": "RqqwH0QkL/cv8oBDCOwaFw+uCl3tgJxh4oGR9bCPJUc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.NetworkAccess_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.NetworkAccess_class.html",
+          "hash": "fd01s+0+fK79vKlxFTDZuOqnVEWS4w2q+S6gNH048wU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.Operation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.Operation.html",
+          "hash": "q37wJ2sfSOheZCLUYSIJrWD8TL7Vv6ORglgMBvJDefw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.OperationInputParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.OperationInputParameter.html",
+          "hash": "bQX4LbxXbxCqTuwepzHSKI0naO3FWR9nCUAN243+g2s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.OperationOutputParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.OperationOutputParameter.html",
+          "hash": "IV3CXKGELj2195oWg8SctiDtOBRUUYHi3jeD0sk1WFE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.Operation_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.Operation_class.html",
+          "hash": "uCZNgFws3/b1+Bqx2R1hg31fvMB+NdF6TzLcthV+QOA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.OutputArraySchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.OutputArraySchema.html",
+          "hash": "ikOItjM2WsDuYT2lzfjdALihTBuX3yUkna+Fi6tdDlc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.OutputEnumSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.OutputEnumSchema.html",
+          "hash": "TWVWi/OzZXbtrlBPFVO9j5X9mu58QKmg2rpeFeDDzTc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.OutputRecordField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.OutputRecordField.html",
+          "hash": "DhCc0MWk3Qvj+/q8v1HS8HLFRaZzr5EnBw5dG8saf6U="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.OutputRecordSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.OutputRecordSchema.html",
+          "hash": "GWVOcM/VUuFocDIABemPol1jyWsi1XHyjLZj6V6qnZw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.PickValueMethod.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.PickValueMethod.html",
+          "hash": "Ze20QCMPFAAXWSWyZyHYvp0qgBWQqKOko/Y9VFR3LsA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.PrimitiveType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.PrimitiveType.html",
+          "hash": "dCtuMK4eNvpWfx4AvT6rBZcQpWRF/WdVX2sV3w7aI24="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.RecordField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.RecordField.html",
+          "hash": "j6Euh5Zn3Gy+X9DBzxnps7ydXTTgsWkF6M4nzqxcHb4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.RecordSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.RecordSchema.html",
+          "hash": "N6FLDzlB38xLLnjKif947NZMrvo7x/hCcxDc3WtA8L8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ResourceRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ResourceRequirement.html",
+          "hash": "hUGG3+KWRpH00l7x51ACu9xRf3y03d37D4D/iFtNdT8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ResourceRequirement_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ResourceRequirement_class.html",
+          "hash": "7+QZ0vjtVxKnZ3xpWWte+kOW6ecJwjgApKB1vHghMgc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.RootLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.RootLoader.html",
+          "hash": "V8PrNvuibj9cb9ygD51zU1cFEV5IIWvvRHsZP69XTPk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ScatterFeatureRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ScatterFeatureRequirement.html",
+          "hash": "8vaY+WVCEVvYmebfMeksQJigxj/hxGUOWbF860h7nt4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ScatterFeatureRequirement_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ScatterFeatureRequirement_class.html",
+          "hash": "Ie3eDVCXtI+DkAIft8mHRuUCxId34SX1Xyb0udMOtpA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ScatterMethod.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ScatterMethod.html",
+          "hash": "0TKmaSX2SMaKhjTMgmhCf5NvBKuyLaLh1s07UQKXf5M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.SchemaDefRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.SchemaDefRequirement.html",
+          "hash": "q8JN6hgUtozkqhEegL6yUeL3uiY9myw6ROmHWVn30yA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.SchemaDefRequirement_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.SchemaDefRequirement_class.html",
+          "hash": "L12UNH4cvGLN8TZtO88r4V8MrXm94C384oJZuevdjnk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.SecondaryFileSchema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.SecondaryFileSchema.html",
+          "hash": "ob5MJLqNo+jFRk3xISub6cZxKr0/BAXYvpRQoGyaSmY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ShellCommandRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ShellCommandRequirement.html",
+          "hash": "A8huZhRknOqisUBCSciCoEVCMf4wDFxwvVJOdzABm3g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ShellCommandRequirement_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ShellCommandRequirement_class.html",
+          "hash": "f734J3No4tW+2tNdxW1Inf9hllstMfGjCHeeGDWPa58="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.SoftwarePackage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.SoftwarePackage.html",
+          "hash": "9JXRzg4jwxPmG2A/cXRAqUQn3TmFNqS1wV8VKk/aJk8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.SoftwareRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.SoftwareRequirement.html",
+          "hash": "MmPLWycSFkzfyj27dCWjJqydW5m2BQxBMjzk0ZhHIoA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.SoftwareRequirement_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.SoftwareRequirement_class.html",
+          "hash": "zZ28XNWhwqc8ITumMIjmcRzYoQgwMylZeBUWXrny1Xk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.StepInputExpressionRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.StepInputExpressionRequirement.html",
+          "hash": "8EPKCe8IJQn1rIfrGRqNgBLKgCP77Wz6RyKRiVo4sF0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.StepInputExpressionRequirement_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.StepInputExpressionRequirement_class.html",
+          "hash": "2QAujjoJox9oSeizibU87VSWHd/wrKFEYnRIwVnE8hg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.SubworkflowFeatureRequirement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.SubworkflowFeatureRequirement.html",
+          "hash": "IHZVYBLsvQTXaDF6njsumbk4MgU47wSiWYJpUhE32Yc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.SubworkflowFeatureRequirement_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.SubworkflowFeatureRequirement_class.html",
+          "hash": "R1UCKBr6q80qWbRsVipZOqWuksoA6yNV5MKoqXCJJlM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ToolTimeLimit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ToolTimeLimit.html",
+          "hash": "Jko50j1fUxGtcYCJPdRWdNrtGQQaRMyDrfrCtLFnACo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ToolTimeLimit_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ToolTimeLimit_class.html",
+          "hash": "Bx0sRwNk/uWUX5T/2eFYESmWXAlKcfEBg++OKZFgcCo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.Utilities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.Utilities.html",
+          "hash": "UXRoywDg4aKtTSg/4VLP8g6tLdata6ggd5B0CzSjeYE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.ValidationException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.ValidationException.html",
+          "hash": "sQAJ4Ga0SnBa8BsBa+fTtoewMMb97mX40uD+pxmEvbU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.WorkReuse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.WorkReuse.html",
+          "hash": "S5owocgxZ1tNFXZI5PIwg5IJeULxnOQ1WrRWQIdjvms="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.WorkReuse_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.WorkReuse_class.html",
+          "hash": "kNrlkuRRG35fg1tCbLFxKgwkHYD2QwT75Z+OK900M0E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.Workflow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.Workflow.html",
+          "hash": "ywTfYymYZhoklvKw90qEa/mbyUJs/C6EeKUi7E/7/4g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.WorkflowInputParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.WorkflowInputParameter.html",
+          "hash": "QVvql7XzS0B6H/9g/HX9Sw9AoFeOaOayhAARq1bXeLk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.WorkflowOutputParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.WorkflowOutputParameter.html",
+          "hash": "Ry6nFnxaIBA13ECH4P3FTl7CbtrXl0aoPqV+Pf5P9Zg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.WorkflowStep.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.WorkflowStep.html",
+          "hash": "b0JjzXPA+F5NcbSoBMkkLDg54QcXSoQSvVQjoCp4RsM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.WorkflowStepInput.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.WorkflowStepInput.html",
+          "hash": "ubctiP1IJWfo3wo9aLjFcwV3rJxLzwbJcR+7Kud3SoA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.WorkflowStepOutput.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.WorkflowStepOutput.html",
+          "hash": "s4HxNnEyZGXbXAU1cTaxVI1pcwjTqVIUSYWYioMpOf4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.Workflow_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.Workflow_class.html",
+          "hash": "QX2ibiyU0UoXCp4fB+1PUne2uwjvuUWmjx0MgE+wA14="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.enum_d062602be0b4b8fd33e69e29a841317b6ab665bc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.enum_d062602be0b4b8fd33e69e29a841317b6ab665bc.html",
+          "hash": "Jf5eMcZwKJN2wzch+6pY+5sspp3IDFeSZpISXEmp54M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.enum_d961d79c225752b9fadb617367615ab176b47d77.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.enum_d961d79c225752b9fadb617367615ab176b47d77.html",
+          "hash": "v4F6ko5kngOxRhOjlqB4FL8qxjPVEwOw/BV6nTT3L/A="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.enum_d9cba076fca539106791a4f46d198c7fcfbdb779.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.enum_d9cba076fca539106791a4f46d198c7fcfbdb779.html",
+          "hash": "wjdRO8hU5nUvt6d4n5v/mKtiMbv2cvmegItJBFfyVZ0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.stderr.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.stderr.html",
+          "hash": "TwASIPJjV9thq8SVzFhh60RAxnP8AyTQu8K1Llm/gwk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.stdin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.stdin.html",
+          "hash": "eWkIHF+njY1HesRjNgGpPvcXISJDh/aPWwhZnrUH4NU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.stdout.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.stdout.html",
+          "hash": "9brtjvYxylgWYeJKoDNtTlDpJs6/lM9bgcGUgE0Fogw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "../DocFx/reference/CWLDotNet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/CWLDotNet.html",
+          "hash": "/XDDUAo7s8TH/s/hWjm5Qmdegcy3pg++IHNg50HnuMU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "../DocFx/reference/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "reference/toc.html",
+          "hash": "wCzRaLL2hOw+AjUIvhWKe1IcV2aV2Mjy82eLniL+xEY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "../DocFx/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "SoP1HlpNoAk8wxiGmX8hl2TdPrHMxLSNCGGz0GlXW8M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because config changed.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "ConfigChanged"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 1,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 187,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

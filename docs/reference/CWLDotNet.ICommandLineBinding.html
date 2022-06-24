@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface ICommandLineBinding
+   | Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface ICommandLineBinding
+   | Documentation ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CWLDotNet.ICommandLineBinding">
+  
+  
+  <h1 id="CWLDotNet_ICommandLineBinding" data-uid="CWLDotNet.ICommandLineBinding" class="text-break">Interface ICommandLineBinding
+  </h1>
+  <div class="markdown level0 summary"><p>Auto-generated interface for <a href="https://w3id.org/cwl/cwl#CommandLineBinding">https://w3id.org/cwl/cwl#CommandLineBinding</a></p>
+<p>When listed under <code>inputBinding</code> in the input schema, the term
+&quot;value&quot; refers to the the corresponding value in the input object.  For
+binding objects listed in <code>CommandLineTool.arguments</code>, the term &quot;value&quot;
+refers to the effective value after evaluating <code>valueFrom</code>.</p>
+<p>The binding behavior when building the command line depends on the data
+type of the value.  If there is a mismatch between the type described by
+the input schema and the effective value, such as resulting from an
+expression evaluation, an implementation must use the data type of the
+effective value.</p>
+<ul>
+<li><p><strong>string</strong>: Add <code>prefix</code> and the string to the command line.</p>
+</li>
+<li><p><strong>number</strong>: Add <code>prefix</code> and decimal representation to command line.</p>
+</li>
+<li><p><strong>boolean</strong>: If true, add <code>prefix</code> to the command line.  If false, add
+nothing.</p>
+</li>
+<li><p><strong>File</strong>: Add <code>prefix</code> and the value of
+<a href="#File"><code>File.path</code></a> to the command line.</p>
+</li>
+<li><p><strong>Directory</strong>: Add <code>prefix</code> and the value of
+<a href="#Directory"><code>Directory.path</code></a> to the command line.</p>
+</li>
+<li><p><strong>array</strong>: If <code>itemSeparator</code> is specified, add <code>prefix</code> and the join
+the array into a single string with <code>itemSeparator</code> separating the
+items.  Otherwise first add <code>prefix</code>, then recursively process
+individual elements.
+If the array is empty, it does not add anything to command line.</p>
+</li>
+<li><p><strong>object</strong>: Add <code>prefix</code> only, and recursively add object fields for
+which <code>inputBinding</code> is specified.</p>
+</li>
+<li><p><strong>null</strong>: Add nothing.</p>
+</li>
+</ul>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CWLDotNet.html">CWLDotNet</a></h6>
+  <h6><strong>Assembly</strong>: CWLDotNet.dll</h6>
+  <h5 id="CWLDotNet_ICommandLineBinding_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface ICommandLineBinding : IInputBinding</code></pre>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

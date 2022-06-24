@@ -1,0 +1,606 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ResourceRequirement
+   | Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ResourceRequirement
+   | Documentation ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CWLDotNet.ResourceRequirement">
+  
+  
+  <h1 id="CWLDotNet_ResourceRequirement" data-uid="CWLDotNet.ResourceRequirement" class="text-break">Class ResourceRequirement
+  </h1>
+  <div class="markdown level0 summary"><p>Auto-generated class implementation for <a href="https://w3id.org/cwl/cwl#ResourceRequirement">https://w3id.org/cwl/cwl#ResourceRequirement</a></p>
+<p>Specify basic hardware resource requirements.</p>
+<p>&quot;min&quot; is the minimum amount of a resource that must be reserved to
+schedule a job. If &quot;min&quot; cannot be satisfied, the job should not
+be run.</p>
+<p>&quot;max&quot; is the maximum amount of a resource that the job shall be
+allocated. If a node has sufficient resources, multiple jobs may
+be scheduled on a single node provided each job's &quot;max&quot; resource
+requirements are met. If a job attempts to exceed its resource
+allocation, an implementation may deny additional resources, which
+may result in job failure.</p>
+<p>If both &quot;min&quot; and &quot;max&quot; are specified, an implementation may
+choose to allocate any amount between &quot;min&quot; and &quot;max&quot;, with the
+actual allocation provided in the <code>runtime</code> object.</p>
+<p>If &quot;min&quot; is specified but &quot;max&quot; is not, then &quot;max&quot; == &quot;min&quot;
+If &quot;max&quot; is specified by &quot;min&quot; is not, then &quot;min&quot; == &quot;max&quot;.</p>
+<p>It is an error if max &lt; min.</p>
+<p>It is an error if the value of any of these fields is negative.</p>
+<p>If neither &quot;min&quot; nor &quot;max&quot; is specified for a resource, use the default values below.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">ResourceRequirement</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="CWLDotNet.IResourceRequirement.html">IResourceRequirement</a></div>
+    <div><a class="xref" href="CWLDotNet.IProcessRequirement.html">IProcessRequirement</a></div>
+    <div><a class="xref" href="CWLDotNet.ISavable.html">ISavable</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CWLDotNet.html">CWLDotNet</a></h6>
+  <h6><strong>Assembly</strong>: CWLDotNet.dll</h6>
+  <h5 id="CWLDotNet_ResourceRequirement_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ResourceRequirement : IResourceRequirement, IProcessRequirement, ISavable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <a id="CWLDotNet_ResourceRequirement__ctor_" data-uid="CWLDotNet.ResourceRequirement.#ctor*"></a>
+  <h4 id="CWLDotNet_ResourceRequirement__ctor_CWLDotNet_ResourceRequirement_class_OneOf_OneOf_OneOf_Types_None_System_Int32_System_Int64_System_Double_System_String__OneOf_OneOf_OneOf_Types_None_System_Int32_System_Int64_System_Double_System_String__OneOf_OneOf_OneOf_Types_None_System_Int32_System_Int64_System_Double_System_String__OneOf_OneOf_OneOf_Types_None_System_Int32_System_Int64_System_Double_System_String__OneOf_OneOf_OneOf_Types_None_System_Int32_System_Int64_System_Double_System_String__OneOf_OneOf_OneOf_Types_None_System_Int32_System_Int64_System_Double_System_String__OneOf_OneOf_OneOf_Types_None_System_Int32_System_Int64_System_Double_System_String__OneOf_OneOf_OneOf_Types_None_System_Int32_System_Int64_System_Double_System_String__CWLDotNet_LoadingOptions_System_Nullable_Dictionary_System_Object_System_Object___" data-uid="CWLDotNet.ResourceRequirement.#ctor(CWLDotNet.ResourceRequirement_class,OneOf.OneOf{OneOf.Types.None,System.Int32,System.Int64,System.Double,System.String},OneOf.OneOf{OneOf.Types.None,System.Int32,System.Int64,System.Double,System.String},OneOf.OneOf{OneOf.Types.None,System.Int32,System.Int64,System.Double,System.String},OneOf.OneOf{OneOf.Types.None,System.Int32,System.Int64,System.Double,System.String},OneOf.OneOf{OneOf.Types.None,System.Int32,System.Int64,System.Double,System.String},OneOf.OneOf{OneOf.Types.None,System.Int32,System.Int64,System.Double,System.String},OneOf.OneOf{OneOf.Types.None,System.Int32,System.Int64,System.Double,System.String},OneOf.OneOf{OneOf.Types.None,System.Int32,System.Int64,System.Double,System.String},CWLDotNet.LoadingOptions,System.Nullable{Dictionary{System.Object,System.Object}})">ResourceRequirement(ResourceRequirement_class, OneOf&lt;None, Int32, Int64, Double, String&gt;, OneOf&lt;None, Int32, Int64, Double, String&gt;, OneOf&lt;None, Int32, Int64, Double, String&gt;, OneOf&lt;None, Int32, Int64, Double, String&gt;, OneOf&lt;None, Int32, Int64, Double, String&gt;, OneOf&lt;None, Int32, Int64, Double, String&gt;, OneOf&lt;None, Int32, Int64, Double, String&gt;, OneOf&lt;None, Int32, Int64, Double, String&gt;, LoadingOptions, Nullable&lt;Dictionary&lt;Object, Object&gt;&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ResourceRequirement(ResourceRequirement_class class_ = null, OneOf&lt;None, int, long, double, string&gt; coresMin = default(OneOf&lt;None, int, long, double, string&gt;), OneOf&lt;None, int, long, double, string&gt; coresMax = default(OneOf&lt;None, int, long, double, string&gt;), OneOf&lt;None, int, long, double, string&gt; ramMin = default(OneOf&lt;None, int, long, double, string&gt;), OneOf&lt;None, int, long, double, string&gt; ramMax = default(OneOf&lt;None, int, long, double, string&gt;), OneOf&lt;None, int, long, double, string&gt; tmpdirMin = default(OneOf&lt;None, int, long, double, string&gt;), OneOf&lt;None, int, long, double, string&gt; tmpdirMax = default(OneOf&lt;None, int, long, double, string&gt;), OneOf&lt;None, int, long, double, string&gt; outdirMin = default(OneOf&lt;None, int, long, double, string&gt;), OneOf&lt;None, int, long, double, string&gt; outdirMax = default(OneOf&lt;None, int, long, double, string&gt;), LoadingOptions loadingOptions = null, Dictionary&lt;object, object&gt;? extensionFields = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.ResourceRequirement_class.html">ResourceRequirement_class</a></td>
+        <td><span class="parametername">class_</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int64</span>, <span class="xref">System.Double</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">coresMin</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int64</span>, <span class="xref">System.Double</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">coresMax</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int64</span>, <span class="xref">System.Double</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">ramMin</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int64</span>, <span class="xref">System.Double</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">ramMax</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int64</span>, <span class="xref">System.Double</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">tmpdirMin</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int64</span>, <span class="xref">System.Double</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">tmpdirMax</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int64</span>, <span class="xref">System.Double</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">outdirMin</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int64</span>, <span class="xref">System.Double</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">outdirMax</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.LoadingOptions.html">LoadingOptions</a></td>
+        <td><span class="parametername">loadingOptions</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Dictionary</span>&lt;<span class="xref">System.Object</span>, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><span class="parametername">extensionFields</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <a id="CWLDotNet_ResourceRequirement_class__" data-uid="CWLDotNet.ResourceRequirement.class_*"></a>
+  <h4 id="CWLDotNet_ResourceRequirement_class_" data-uid="CWLDotNet.ResourceRequirement.class_">class_</h4>
+  <div class="markdown level1 summary"><p>Always 'ResourceRequirement'</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ResourceRequirement_class class_ { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.ResourceRequirement_class.html">ResourceRequirement_class</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_ResourceRequirement_coresMax_" data-uid="CWLDotNet.ResourceRequirement.coresMax*"></a>
+  <h4 id="CWLDotNet_ResourceRequirement_coresMax" data-uid="CWLDotNet.ResourceRequirement.coresMax">coresMax</h4>
+  <div class="markdown level1 summary"><p>Maximum reserved number of CPU cores.</p>
+<p>See <code>coresMin</code> for discussion about fractional CPU requests.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, int, long, double, string&gt; coresMax { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int64</span>, <span class="xref">System.Double</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_ResourceRequirement_coresMin_" data-uid="CWLDotNet.ResourceRequirement.coresMin*"></a>
+  <h4 id="CWLDotNet_ResourceRequirement_coresMin" data-uid="CWLDotNet.ResourceRequirement.coresMin">coresMin</h4>
+  <div class="markdown level1 summary"><p>Minimum reserved number of CPU cores (default is 1).</p>
+<p>May be a fractional value to indicate to a scheduling
+algorithm that one core can be allocated to multiple
+jobs. For example, a value of 0.25 indicates that up to 4
+jobs may run in parallel on 1 core.  A value of 1.25 means
+that up to 3 jobs can run on a 4 core system (4/1.25 ≈ 3).</p>
+<p>Processes can only share a core allocation if the sum of each
+of their <code>ramMax</code>, <code>tmpdirMax</code>, and <code>outdirMax</code> requests also
+do not exceed the capacity of the node.</p>
+<p>Processes sharing a core must have the same level of isolation
+(typically a container or VM) that they would normally.</p>
+<p>The reported number of CPU cores reserved for the process,
+which is available to expressions on the CommandLineTool as
+<code>runtime.cores</code>, must be a non-zero integer, and may be
+calculated by rounding up the cores request to the next whole
+number.</p>
+<p>Scheduling systems may allocate fractional CPU resources by
+setting quotas or scheduling weights.  Scheduling systems that
+do not support fractional CPUs may round up the request to the
+next whole number.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, int, long, double, string&gt; coresMin { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int64</span>, <span class="xref">System.Double</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_ResourceRequirement_outdirMax_" data-uid="CWLDotNet.ResourceRequirement.outdirMax*"></a>
+  <h4 id="CWLDotNet_ResourceRequirement_outdirMax" data-uid="CWLDotNet.ResourceRequirement.outdirMax">outdirMax</h4>
+  <div class="markdown level1 summary"><p>Maximum reserved filesystem based storage for the designated output directory, in mebibytes (2**20)</p>
+<p>See <code>outdirMin</code> for discussion about fractional storage requests.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, int, long, double, string&gt; outdirMax { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int64</span>, <span class="xref">System.Double</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_ResourceRequirement_outdirMin_" data-uid="CWLDotNet.ResourceRequirement.outdirMin*"></a>
+  <h4 id="CWLDotNet_ResourceRequirement_outdirMin" data-uid="CWLDotNet.ResourceRequirement.outdirMin">outdirMin</h4>
+  <div class="markdown level1 summary"><p>Minimum reserved filesystem based storage for the designated output directory, in mebibytes (2**20) (default is 1024)</p>
+<p>May be a fractional value.  If so, the actual storage request
+must be rounded up to the next whole number.  The reported
+amount of storage reserved for the process, which is available
+to expressions on the CommandLineTool as <code>runtime.outdirSize</code>,
+must be a non-zero integer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, int, long, double, string&gt; outdirMin { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int64</span>, <span class="xref">System.Double</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_ResourceRequirement_ramMax_" data-uid="CWLDotNet.ResourceRequirement.ramMax*"></a>
+  <h4 id="CWLDotNet_ResourceRequirement_ramMax" data-uid="CWLDotNet.ResourceRequirement.ramMax">ramMax</h4>
+  <div class="markdown level1 summary"><p>Maximum reserved RAM in mebibytes (2**20)</p>
+<p>See <code>ramMin</code> for discussion about fractional RAM requests.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, int, long, double, string&gt; ramMax { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int64</span>, <span class="xref">System.Double</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_ResourceRequirement_ramMin_" data-uid="CWLDotNet.ResourceRequirement.ramMin*"></a>
+  <h4 id="CWLDotNet_ResourceRequirement_ramMin" data-uid="CWLDotNet.ResourceRequirement.ramMin">ramMin</h4>
+  <div class="markdown level1 summary"><p>Minimum reserved RAM in mebibytes (2**20) (default is 256)</p>
+<p>May be a fractional value.  If so, the actual RAM request must
+be rounded up to the next whole number.  The reported amount of
+RAM reserved for the process, which is available to
+expressions on the CommandLineTool as <code>runtime.ram</code>, must be a
+non-zero integer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, int, long, double, string&gt; ramMin { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int64</span>, <span class="xref">System.Double</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_ResourceRequirement_tmpdirMax_" data-uid="CWLDotNet.ResourceRequirement.tmpdirMax*"></a>
+  <h4 id="CWLDotNet_ResourceRequirement_tmpdirMax" data-uid="CWLDotNet.ResourceRequirement.tmpdirMax">tmpdirMax</h4>
+  <div class="markdown level1 summary"><p>Maximum reserved filesystem based storage for the designated temporary directory, in mebibytes (2**20)</p>
+<p>See <code>tmpdirMin</code> for discussion about fractional storage requests.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, int, long, double, string&gt; tmpdirMax { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int64</span>, <span class="xref">System.Double</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_ResourceRequirement_tmpdirMin_" data-uid="CWLDotNet.ResourceRequirement.tmpdirMin*"></a>
+  <h4 id="CWLDotNet_ResourceRequirement_tmpdirMin" data-uid="CWLDotNet.ResourceRequirement.tmpdirMin">tmpdirMin</h4>
+  <div class="markdown level1 summary"><p>Minimum reserved filesystem based storage for the designated temporary directory, in mebibytes (2**20) (default is 1024)</p>
+<p>May be a fractional value.  If so, the actual storage request
+must be rounded up to the next whole number.  The reported
+amount of storage reserved for the process, which is available
+to expressions on the CommandLineTool as <code>runtime.tmpdirSize</code>,
+must be a non-zero integer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, int, long, double, string&gt; tmpdirMin { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int64</span>, <span class="xref">System.Double</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="CWLDotNet_ResourceRequirement_FromDoc_" data-uid="CWLDotNet.ResourceRequirement.FromDoc*"></a>
+  <h4 id="CWLDotNet_ResourceRequirement_FromDoc_System_Object_System_String_CWLDotNet_LoadingOptions_System_String_" data-uid="CWLDotNet.ResourceRequirement.FromDoc(System.Object,System.String,CWLDotNet.LoadingOptions,System.String)">FromDoc(Object, String, LoadingOptions, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISavable FromDoc(object doc__, string baseUri, LoadingOptions loadingOptions, string docRoot = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">doc__</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">baseUri</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.LoadingOptions.html">LoadingOptions</a></td>
+        <td><span class="parametername">loadingOptions</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">docRoot</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.ISavable.html">ISavable</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_ResourceRequirement_Save_" data-uid="CWLDotNet.ResourceRequirement.Save*"></a>
+  <h4 id="CWLDotNet_ResourceRequirement_Save_System_Boolean_System_String_System_Boolean_" data-uid="CWLDotNet.ResourceRequirement.Save(System.Boolean,System.String,System.Boolean)">Save(Boolean, String, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;object, object&gt; Save(bool top = false, string baseUrl = &quot;&quot;, bool relativeUris = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">top</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">baseUrl</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">relativeUris</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<span class="xref">System.Object</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="CWLDotNet.IResourceRequirement.html">IResourceRequirement</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.IProcessRequirement.html">IProcessRequirement</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.ISavable.html">ISavable</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
