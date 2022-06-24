@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IInplaceUpdateRequirement
+   | Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IInplaceUpdateRequirement
+   | Documentation ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CWLDotNet.IInplaceUpdateRequirement">
+  
+  
+  <h1 id="CWLDotNet_IInplaceUpdateRequirement" data-uid="CWLDotNet.IInplaceUpdateRequirement" class="text-break">Interface IInplaceUpdateRequirement
+  </h1>
+  <div class="markdown level0 summary"><p>Auto-generated interface for <a href="https://w3id.org/cwl/cwl#InplaceUpdateRequirement">https://w3id.org/cwl/cwl#InplaceUpdateRequirement</a></p>
+<p>If <code>inplaceUpdate</code> is true, then an implementation supporting this
+feature may permit tools to directly update files with <code>writable: true</code> in InitialWorkDirRequirement.  That is, as an optimization,
+files may be destructively modified in place as opposed to copied
+and updated.</p>
+<p>An implementation must ensure that only one workflow step may
+access a writable file at a time.  It is an error if a file which
+is writable by one workflow step file is accessed (for reading or
+writing) by any other workflow step running independently.
+However, a file which has been updated in a previous completed
+step may be used as input to multiple steps, provided it is
+read-only in every step.</p>
+<p>Workflow steps which modify a file must produce the modified file
+as output.  Downstream steps which futher process the file must
+use the output of previous steps, and not refer to a common input
+(this is necessary for both ordering and correctness).</p>
+<p>Workflow authors should provide this in the <code>hints</code> section.  The
+intent of this feature is that workflows produce the same results
+whether or not InplaceUpdateRequirement is supported by the
+implementation, and this feature is primarily available as an
+optimization for particular environments.</p>
+<p>Users and implementers should be aware that workflows that
+destructively modify inputs may not be repeatable or reproducible.
+In particular, enabling this feature implies that WorkReuse should
+not be enabled.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CWLDotNet.html">CWLDotNet</a></h6>
+  <h6><strong>Assembly</strong>: CWLDotNet.dll</h6>
+  <h5 id="CWLDotNet_IInplaceUpdateRequirement_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IInplaceUpdateRequirement : IProcessRequirement</code></pre>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

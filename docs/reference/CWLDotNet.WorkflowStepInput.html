@@ -1,0 +1,701 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class WorkflowStepInput
+   | Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class WorkflowStepInput
+   | Documentation ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CWLDotNet.WorkflowStepInput">
+  
+  
+  <h1 id="CWLDotNet_WorkflowStepInput" data-uid="CWLDotNet.WorkflowStepInput" class="text-break">Class WorkflowStepInput
+  </h1>
+  <div class="markdown level0 summary"><p>Auto-generated class implementation for <a href="https://w3id.org/cwl/cwl#WorkflowStepInput">https://w3id.org/cwl/cwl#WorkflowStepInput</a></p>
+<p>The input of a workflow step connects an upstream parameter (from the
+workflow inputs, or the outputs of other workflows steps) with the input
+parameters of the process specified by the <code>run</code> field. Only input parameters
+declared by the target process will be passed through at runtime to the process
+though additonal parameters may be specified (for use within <code>valueFrom</code>
+expressions for instance) - unconnected or unused parameters do not represent an
+error condition.</p>
+<h1 id="input-object">Input object</h1>
+<p>A WorkflowStepInput object must contain an <code>id</code> field in the form
+<code>#fieldname</code> or <code>#prefix/fieldname</code>.  When the <code>id</code> field contains a slash
+<code>/</code> the field name consists of the characters following the final slash
+(the prefix portion may contain one or more slashes to indicate scope).
+This defines a field of the workflow step input object with the value of
+the <code>source</code> parameter(s).</p>
+<h1 id="merging-multiple-inbound-data-links">Merging multiple inbound data links</h1>
+<p>To merge multiple inbound data links,
+<a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> must be specified
+in the workflow or workflow step requirements.</p>
+<p>If the sink parameter is an array, or named in a <a href="#WorkflowStep">workflow
+scatter</a> operation, there may be multiple inbound
+data links listed in the <code>source</code> field.  The values from the
+input links are merged depending on the method specified in the
+<code>linkMerge</code> field.  If both <code>linkMerge</code> and <code>pickValue</code> are null
+or not specified, and there is more than one element in the
+<code>source</code> array, the default method is &quot;merge_nested&quot;.</p>
+<p>If both <code>linkMerge</code> and <code>pickValue</code> are null or not specified, and
+there is only a single element in the <code>source</code>, then the input
+parameter takes the scalar value from the single input link (it is
+<em>not</em> wrapped in a single-list).</p>
+<ul>
+<li><strong>merge_nested</strong></li>
+</ul>
+<p>The input must be an array consisting of exactly one entry for each
+input link.  If &quot;merge_nested&quot; is specified with a single link, the value
+from the link must be wrapped in a single-item list.</p>
+<ul>
+<li><strong>merge_flattened</strong></li>
+</ul>
+<ol>
+<li>The source and sink parameters must be compatible types, or the source
+type must be compatible with single element from the &quot;items&quot; type of
+the destination array parameter.</li>
+<li>Source parameters which are arrays are concatenated.
+Source parameters which are single element types are appended as
+single elements.</li>
+</ol>
+<h1 id="picking-non-null-values-among-inbound-data-links">Picking non-null values among inbound data links</h1>
+<p>If present, <code>pickValue</code> specifies how to picking non-null values among inbound data links.</p>
+<p><code>pickValue</code> is evaluated</p>
+<ol>
+<li>Once all source values from upstream step or parameters are available.</li>
+<li>After <code>linkMerge</code>.</li>
+<li>Before <code>scatter</code> or <code>valueFrom</code>.</li>
+</ol>
+<p>This is specifically intended to be useful in combination with
+<a href="#WorkflowStep">conditional execution</a>, where several upstream
+steps may be connected to a single input (<code>source</code> is a list), and
+skipped steps produce null values.</p>
+<p>Static type checkers should check for type consistency after infering what the type
+will be after <code>pickValue</code> is applied, just as they do currently for <code>linkMerge</code>.</p>
+<ul>
+<li><strong>first_non_null</strong></li>
+</ul>
+<p>For the first level of a list input, pick the first non-null element.  The result is a scalar.
+It is an error if there is no non-null element.  Examples:</p>
+<ul>
+<li><code>[null, x, null, y] -&gt; x</code></li>
+<li><code>[null, [null], null, y] -&gt; [null]</code></li>
+<li><code>[null, null, null] -&gt; Runtime Error</code></li>
+</ul>
+<p><em>Intended use case</em>: If-else pattern where the
+value comes either from a conditional step or from a default or
+fallback value. The conditional step(s) should be placed first in
+the list.</p>
+<ul>
+<li><strong>the_only_non_null</strong></li>
+</ul>
+<p>For the first level of a list input, pick the single non-null element.  The result is a scalar.
+It is an error if there is more than one non-null element.  Examples:</p>
+<ul>
+<li><code>[null, x, null] -&gt; x</code></li>
+<li><code>[null, x, null, y] -&gt; Runtime Error</code></li>
+<li><code>[null, [null], null] -&gt; [null]</code></li>
+<li><code>[null, null, null] -&gt; Runtime Error</code></li>
+</ul>
+<p><em>Intended use case</em>: Switch type patterns where developer considers
+more than one active code path as a workflow error
+(possibly indicating an error in writing <code>when</code> condition expressions).</p>
+<ul>
+<li><strong>all_non_null</strong></li>
+</ul>
+<p>For the first level of a list input, pick all non-null values.
+The result is a list, which may be empty.  Examples:</p>
+<ul>
+<li><code>[null, x, null] -&gt; [x]</code></li>
+<li><code>[x, null, y] -&gt; [x, y]</code></li>
+<li><code>[null, [x], [null]] -&gt; [[x], [null]]</code></li>
+<li><code>[null, null, null] -&gt; []</code></li>
+</ul>
+<p><em>Intended use case</em>: It is valid to have more than one source, but
+sources are conditional, so null sources (from skipped steps)
+should be filtered out.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">WorkflowStepInput</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="CWLDotNet.IWorkflowStepInput.html">IWorkflowStepInput</a></div>
+    <div><a class="xref" href="CWLDotNet.IIdentified.html">IIdentified</a></div>
+    <div><a class="xref" href="CWLDotNet.ISink.html">ISink</a></div>
+    <div><a class="xref" href="CWLDotNet.ILoadContents.html">ILoadContents</a></div>
+    <div><a class="xref" href="CWLDotNet.ILabeled.html">ILabeled</a></div>
+    <div><a class="xref" href="CWLDotNet.ISavable.html">ISavable</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CWLDotNet.html">CWLDotNet</a></h6>
+  <h6><strong>Assembly</strong>: CWLDotNet.dll</h6>
+  <h5 id="CWLDotNet_WorkflowStepInput_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class WorkflowStepInput : IWorkflowStepInput, IIdentified, ISink, ILoadContents, ILabeled, ISavable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <a id="CWLDotNet_WorkflowStepInput__ctor_" data-uid="CWLDotNet.WorkflowStepInput.#ctor*"></a>
+  <h4 id="CWLDotNet_WorkflowStepInput__ctor_OneOf_OneOf_OneOf_Types_None_System_String__OneOf_OneOf_OneOf_Types_None_System_String_List_System_String___OneOf_OneOf_OneOf_Types_None_CWLDotNet_LinkMergeMethod__OneOf_OneOf_OneOf_Types_None_CWLDotNet_PickValueMethod__OneOf_OneOf_OneOf_Types_None_System_Boolean__OneOf_OneOf_OneOf_Types_None_CWLDotNet_LoadListingEnum__OneOf_OneOf_OneOf_Types_None_System_String__OneOf_OneOf_OneOf_Types_None_System_Object__OneOf_OneOf_OneOf_Types_None_System_String__CWLDotNet_LoadingOptions_System_Nullable_Dictionary_System_Object_System_Object___" data-uid="CWLDotNet.WorkflowStepInput.#ctor(OneOf.OneOf{OneOf.Types.None,System.String},OneOf.OneOf{OneOf.Types.None,System.String,List{System.String}},OneOf.OneOf{OneOf.Types.None,CWLDotNet.LinkMergeMethod},OneOf.OneOf{OneOf.Types.None,CWLDotNet.PickValueMethod},OneOf.OneOf{OneOf.Types.None,System.Boolean},OneOf.OneOf{OneOf.Types.None,CWLDotNet.LoadListingEnum},OneOf.OneOf{OneOf.Types.None,System.String},OneOf.OneOf{OneOf.Types.None,System.Object},OneOf.OneOf{OneOf.Types.None,System.String},CWLDotNet.LoadingOptions,System.Nullable{Dictionary{System.Object,System.Object}})">WorkflowStepInput(OneOf&lt;None, String&gt;, OneOf&lt;None, String, List&lt;String&gt;&gt;, OneOf&lt;None, LinkMergeMethod&gt;, OneOf&lt;None, PickValueMethod&gt;, OneOf&lt;None, Boolean&gt;, OneOf&lt;None, LoadListingEnum&gt;, OneOf&lt;None, String&gt;, OneOf&lt;None, Object&gt;, OneOf&lt;None, String&gt;, LoadingOptions, Nullable&lt;Dictionary&lt;Object, Object&gt;&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WorkflowStepInput(OneOf&lt;None, string&gt; id = default(OneOf&lt;None, string&gt;), OneOf&lt;None, string, List&lt;string&gt;&gt; source = default(OneOf&lt;None, string, List&lt;string&gt;&gt;), OneOf&lt;None, LinkMergeMethod&gt; linkMerge = default(OneOf&lt;None, LinkMergeMethod&gt;), OneOf&lt;None, PickValueMethod&gt; pickValue = default(OneOf&lt;None, PickValueMethod&gt;), OneOf&lt;None, bool&gt; loadContents = default(OneOf&lt;None, bool&gt;), OneOf&lt;None, LoadListingEnum&gt; loadListing = default(OneOf&lt;None, LoadListingEnum&gt;), OneOf&lt;None, string&gt; label = default(OneOf&lt;None, string&gt;), OneOf&lt;None, object&gt; default_ = default(OneOf&lt;None, object&gt;), OneOf&lt;None, string&gt; valueFrom = default(OneOf&lt;None, string&gt;), LoadingOptions loadingOptions = null, Dictionary&lt;object, object&gt;? extensionFields = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>, <span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;&gt;</td>
+        <td><span class="parametername">source</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <a class="xref" href="CWLDotNet.LinkMergeMethod.html">LinkMergeMethod</a>&gt;</td>
+        <td><span class="parametername">linkMerge</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <a class="xref" href="CWLDotNet.PickValueMethod.html">PickValueMethod</a>&gt;</td>
+        <td><span class="parametername">pickValue</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">loadContents</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <a class="xref" href="CWLDotNet.LoadListingEnum.html">LoadListingEnum</a>&gt;</td>
+        <td><span class="parametername">loadListing</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">label</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">default_</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">valueFrom</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.LoadingOptions.html">LoadingOptions</a></td>
+        <td><span class="parametername">loadingOptions</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Dictionary</span>&lt;<span class="xref">System.Object</span>, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><span class="parametername">extensionFields</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <a id="CWLDotNet_WorkflowStepInput_default__" data-uid="CWLDotNet.WorkflowStepInput.default_*"></a>
+  <h4 id="CWLDotNet_WorkflowStepInput_default_" data-uid="CWLDotNet.WorkflowStepInput.default_">default_</h4>
+  <div class="markdown level1 summary"><p>The default value for this parameter to use if either there is no
+<code>source</code> field, or the value produced by the <code>source</code> is <code>null</code>.  The
+default must be applied prior to scattering or evaluating <code>valueFrom</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, object&gt; default_ { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_WorkflowStepInput_id_" data-uid="CWLDotNet.WorkflowStepInput.id*"></a>
+  <h4 id="CWLDotNet_WorkflowStepInput_id" data-uid="CWLDotNet.WorkflowStepInput.id">id</h4>
+  <div class="markdown level1 summary"><p>The unique identifier for this object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; id { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_WorkflowStepInput_label_" data-uid="CWLDotNet.WorkflowStepInput.label*"></a>
+  <h4 id="CWLDotNet_WorkflowStepInput_label" data-uid="CWLDotNet.WorkflowStepInput.label">label</h4>
+  <div class="markdown level1 summary"><p>A short, human-readable label of this object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; label { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_WorkflowStepInput_linkMerge_" data-uid="CWLDotNet.WorkflowStepInput.linkMerge*"></a>
+  <h4 id="CWLDotNet_WorkflowStepInput_linkMerge" data-uid="CWLDotNet.WorkflowStepInput.linkMerge">linkMerge</h4>
+  <div class="markdown level1 summary"><p>The method to use to merge multiple inbound links into a single array.
+If not specified, the default method is &quot;merge_nested&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, LinkMergeMethod&gt; linkMerge { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <a class="xref" href="CWLDotNet.LinkMergeMethod.html">LinkMergeMethod</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_WorkflowStepInput_loadContents_" data-uid="CWLDotNet.WorkflowStepInput.loadContents*"></a>
+  <h4 id="CWLDotNet_WorkflowStepInput_loadContents" data-uid="CWLDotNet.WorkflowStepInput.loadContents">loadContents</h4>
+  <div class="markdown level1 summary"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>If true, the file (or each file in the array) must be a UTF-8
+text file 64 KiB or smaller, and the implementation must read
+the entire contents of the file (or file array) and place it
+in the <code>contents</code> field of the File object for use by
+expressions.  If the size of the file is greater than 64 KiB,
+the implementation must raise a fatal error.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, bool&gt; loadContents { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_WorkflowStepInput_loadListing_" data-uid="CWLDotNet.WorkflowStepInput.loadListing*"></a>
+  <h4 id="CWLDotNet_WorkflowStepInput_loadListing" data-uid="CWLDotNet.WorkflowStepInput.loadListing">loadListing</h4>
+  <div class="markdown level1 summary"><p>Only valid when <code>type: Directory</code> or is an array of <code>items: Directory</code>.</p>
+<p>Specify the desired behavior for loading the <code>listing</code> field of
+a Directory object for use by expressions.</p>
+<p>The order of precedence for loadListing is:</p>
+<ol>
+<li><code>loadListing</code> on an individual parameter</li>
+<li>Inherited from <code>LoadListingRequirement</code></li>
+<li>By default: <code>no_listing</code></li>
+</ol>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, LoadListingEnum&gt; loadListing { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <a class="xref" href="CWLDotNet.LoadListingEnum.html">LoadListingEnum</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_WorkflowStepInput_pickValue_" data-uid="CWLDotNet.WorkflowStepInput.pickValue*"></a>
+  <h4 id="CWLDotNet_WorkflowStepInput_pickValue" data-uid="CWLDotNet.WorkflowStepInput.pickValue">pickValue</h4>
+  <div class="markdown level1 summary"><p>The method to use to choose non-null elements among multiple sources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, PickValueMethod&gt; pickValue { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <a class="xref" href="CWLDotNet.PickValueMethod.html">PickValueMethod</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_WorkflowStepInput_source_" data-uid="CWLDotNet.WorkflowStepInput.source*"></a>
+  <h4 id="CWLDotNet_WorkflowStepInput_source" data-uid="CWLDotNet.WorkflowStepInput.source">source</h4>
+  <div class="markdown level1 summary"><p>Specifies one or more workflow parameters that will provide input to
+the underlying step parameter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string, List&lt;string&gt;&gt; source { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>, <span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_WorkflowStepInput_valueFrom_" data-uid="CWLDotNet.WorkflowStepInput.valueFrom*"></a>
+  <h4 id="CWLDotNet_WorkflowStepInput_valueFrom" data-uid="CWLDotNet.WorkflowStepInput.valueFrom">valueFrom</h4>
+  <div class="markdown level1 summary"><p>To use valueFrom, <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a> must
+be specified in the workflow or workflow step requirements.</p>
+<p>If <code>valueFrom</code> is a constant string value, use this as the value for
+this input parameter.</p>
+<p>If <code>valueFrom</code> is a parameter reference or expression, it must be
+evaluated to yield the actual value to be assiged to the input field.</p>
+<p>The <code>self</code> value in the parameter reference or expression must be</p>
+<ol>
+<li><code>null</code> if there is no <code>source</code> field</li>
+<li>the value of the parameter(s) specified in the <code>source</code> field when this
+workflow input parameter <strong>is not</strong> specified in this workflow step's <code>scatter</code> field.</li>
+<li>an element of the parameter specified in the <code>source</code> field when this workflow input
+parameter <strong>is</strong> specified in this workflow step's <code>scatter</code> field.</li>
+</ol>
+<p>The value of <code>inputs</code> in the parameter reference or expression must be
+the input object to the workflow step after assigning the <code>source</code>
+values, applying <code>default</code>, and then scattering.  The order of
+evaluating <code>valueFrom</code> among step input parameters is undefined and the
+result of evaluating <code>valueFrom</code> on a parameter must not be visible to
+evaluation of <code>valueFrom</code> on other parameters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; valueFrom { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="CWLDotNet_WorkflowStepInput_FromDoc_" data-uid="CWLDotNet.WorkflowStepInput.FromDoc*"></a>
+  <h4 id="CWLDotNet_WorkflowStepInput_FromDoc_System_Object_System_String_CWLDotNet_LoadingOptions_System_String_" data-uid="CWLDotNet.WorkflowStepInput.FromDoc(System.Object,System.String,CWLDotNet.LoadingOptions,System.String)">FromDoc(Object, String, LoadingOptions, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISavable FromDoc(object doc__, string baseUri, LoadingOptions loadingOptions, string docRoot = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">doc__</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">baseUri</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.LoadingOptions.html">LoadingOptions</a></td>
+        <td><span class="parametername">loadingOptions</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">docRoot</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.ISavable.html">ISavable</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_WorkflowStepInput_Save_" data-uid="CWLDotNet.WorkflowStepInput.Save*"></a>
+  <h4 id="CWLDotNet_WorkflowStepInput_Save_System_Boolean_System_String_System_Boolean_" data-uid="CWLDotNet.WorkflowStepInput.Save(System.Boolean,System.String,System.Boolean)">Save(Boolean, String, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;object, object&gt; Save(bool top = false, string baseUrl = &quot;&quot;, bool relativeUris = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">top</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">baseUrl</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">relativeUris</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<span class="xref">System.Object</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="CWLDotNet.IWorkflowStepInput.html">IWorkflowStepInput</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.IIdentified.html">IIdentified</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.ISink.html">ISink</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.ILoadContents.html">ILoadContents</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.ILabeled.html">ILabeled</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.ISavable.html">ISavable</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

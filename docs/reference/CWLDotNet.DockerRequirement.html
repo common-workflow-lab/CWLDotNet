@@ -1,0 +1,540 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class DockerRequirement
+   | Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class DockerRequirement
+   | Documentation ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CWLDotNet.DockerRequirement">
+  
+  
+  <h1 id="CWLDotNet_DockerRequirement" data-uid="CWLDotNet.DockerRequirement" class="text-break">Class DockerRequirement
+  </h1>
+  <div class="markdown level0 summary"><p>Auto-generated class implementation for <a href="https://w3id.org/cwl/cwl#DockerRequirement">https://w3id.org/cwl/cwl#DockerRequirement</a></p>
+<p>Indicates that a workflow component should be run in a
+<a href="http://docker.com">Docker</a> or Docker-compatible (such as
+<a href="https://www.sylabs.io/">Singularity</a> and <a href="https://github.com/indigo-dc/udocker">udocker</a>) container environment and
+specifies how to fetch or build the image.</p>
+<p>If a CommandLineTool lists <code>DockerRequirement</code> under
+<code>hints</code> (or <code>requirements</code>), it may (or must) be run in the specified Docker
+container.</p>
+<p>The platform must first acquire or install the correct Docker image as
+specified by <code>dockerPull</code>, <code>dockerImport</code>, <code>dockerLoad</code> or <code>dockerFile</code>.</p>
+<p>The platform must execute the tool in the container using <code>docker run</code> with
+the appropriate Docker image and tool command line.</p>
+<p>The workflow platform may provide input files and the designated output
+directory through the use of volume bind mounts.  The platform should rewrite
+file paths in the input object to correspond to the Docker bind mounted
+locations. That is, the platform should rewrite values in the parameter context
+such as <code>runtime.outdir</code>, <code>runtime.tmpdir</code> and others to be valid paths
+within the container. The platform must ensure that <code>runtime.outdir</code> and
+<code>runtime.tmpdir</code> are distinct directories.</p>
+<p>When running a tool contained in Docker, the workflow platform must not
+assume anything about the contents of the Docker container, such as the
+presence or absence of specific software, except to assume that the
+generated command line represents a valid command within the runtime
+environment of the container.</p>
+<p>A container image may specify an
+<a href="https://docs.docker.com/engine/reference/builder/#entrypoint">ENTRYPOINT</a>
+and/or
+<a href="https://docs.docker.com/engine/reference/builder/#cmd">CMD</a>.
+Command line arguments will be appended after all elements of
+ENTRYPOINT, and will override all elements specified using CMD (in
+other words, CMD is only used when the CommandLineTool definition
+produces an empty command line).</p>
+<p>Use of implicit ENTRYPOINT or CMD are discouraged due to reproducibility
+concerns of the implicit hidden execution point (For further discussion, see
+<a href="https://doi.org/10.12688/f1000research.15140.1">https://doi.org/10.12688/f1000research.15140.1</a>). Portable
+CommandLineTool wrappers in which use of a container is optional must not rely on ENTRYPOINT or CMD.
+CommandLineTools which do rely on ENTRYPOINT or CMD must list <code>DockerRequirement</code> in the
+<code>requirements</code> section.</p>
+<h2 id="interaction-with-other-requirements">Interaction with other requirements</h2>
+<p>If <a href="#EnvVarRequirement">EnvVarRequirement</a> is specified alongside a
+DockerRequirement, the environment variables must be provided to Docker
+using <code>--env</code> or <code>--env-file</code> and interact with the container's preexisting
+environment as defined by Docker.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">DockerRequirement</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="CWLDotNet.IDockerRequirement.html">IDockerRequirement</a></div>
+    <div><a class="xref" href="CWLDotNet.IProcessRequirement.html">IProcessRequirement</a></div>
+    <div><a class="xref" href="CWLDotNet.ISavable.html">ISavable</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CWLDotNet.html">CWLDotNet</a></h6>
+  <h6><strong>Assembly</strong>: CWLDotNet.dll</h6>
+  <h5 id="CWLDotNet_DockerRequirement_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DockerRequirement : IDockerRequirement, IProcessRequirement, ISavable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <a id="CWLDotNet_DockerRequirement__ctor_" data-uid="CWLDotNet.DockerRequirement.#ctor*"></a>
+  <h4 id="CWLDotNet_DockerRequirement__ctor_CWLDotNet_DockerRequirement_class_OneOf_OneOf_OneOf_Types_None_System_String__OneOf_OneOf_OneOf_Types_None_System_String__OneOf_OneOf_OneOf_Types_None_System_String__OneOf_OneOf_OneOf_Types_None_System_String__OneOf_OneOf_OneOf_Types_None_System_String__OneOf_OneOf_OneOf_Types_None_System_String__CWLDotNet_LoadingOptions_System_Nullable_Dictionary_System_Object_System_Object___" data-uid="CWLDotNet.DockerRequirement.#ctor(CWLDotNet.DockerRequirement_class,OneOf.OneOf{OneOf.Types.None,System.String},OneOf.OneOf{OneOf.Types.None,System.String},OneOf.OneOf{OneOf.Types.None,System.String},OneOf.OneOf{OneOf.Types.None,System.String},OneOf.OneOf{OneOf.Types.None,System.String},OneOf.OneOf{OneOf.Types.None,System.String},CWLDotNet.LoadingOptions,System.Nullable{Dictionary{System.Object,System.Object}})">DockerRequirement(DockerRequirement_class, OneOf&lt;None, String&gt;, OneOf&lt;None, String&gt;, OneOf&lt;None, String&gt;, OneOf&lt;None, String&gt;, OneOf&lt;None, String&gt;, OneOf&lt;None, String&gt;, LoadingOptions, Nullable&lt;Dictionary&lt;Object, Object&gt;&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DockerRequirement(DockerRequirement_class class_ = null, OneOf&lt;None, string&gt; dockerPull = default(OneOf&lt;None, string&gt;), OneOf&lt;None, string&gt; dockerLoad = default(OneOf&lt;None, string&gt;), OneOf&lt;None, string&gt; dockerFile = default(OneOf&lt;None, string&gt;), OneOf&lt;None, string&gt; dockerImport = default(OneOf&lt;None, string&gt;), OneOf&lt;None, string&gt; dockerImageId = default(OneOf&lt;None, string&gt;), OneOf&lt;None, string&gt; dockerOutputDirectory = default(OneOf&lt;None, string&gt;), LoadingOptions loadingOptions = null, Dictionary&lt;object, object&gt;? extensionFields = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.DockerRequirement_class.html">DockerRequirement_class</a></td>
+        <td><span class="parametername">class_</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">dockerPull</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">dockerLoad</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">dockerFile</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">dockerImport</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">dockerImageId</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">dockerOutputDirectory</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.LoadingOptions.html">LoadingOptions</a></td>
+        <td><span class="parametername">loadingOptions</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Dictionary</span>&lt;<span class="xref">System.Object</span>, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><span class="parametername">extensionFields</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <a id="CWLDotNet_DockerRequirement_class__" data-uid="CWLDotNet.DockerRequirement.class_*"></a>
+  <h4 id="CWLDotNet_DockerRequirement_class_" data-uid="CWLDotNet.DockerRequirement.class_">class_</h4>
+  <div class="markdown level1 summary"><p>Always 'DockerRequirement'</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DockerRequirement_class class_ { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.DockerRequirement_class.html">DockerRequirement_class</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_DockerRequirement_dockerFile_" data-uid="CWLDotNet.DockerRequirement.dockerFile*"></a>
+  <h4 id="CWLDotNet_DockerRequirement_dockerFile" data-uid="CWLDotNet.DockerRequirement.dockerFile">dockerFile</h4>
+  <div class="markdown level1 summary"><p>Supply the contents of a Dockerfile which will be built using <code>docker build</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; dockerFile { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_DockerRequirement_dockerImageId_" data-uid="CWLDotNet.DockerRequirement.dockerImageId*"></a>
+  <h4 id="CWLDotNet_DockerRequirement_dockerImageId" data-uid="CWLDotNet.DockerRequirement.dockerImageId">dockerImageId</h4>
+  <div class="markdown level1 summary"><p>The image id that will be used for <code>docker run</code>.  May be a
+human-readable image name or the image identifier hash.  May be skipped
+if <code>dockerPull</code> is specified, in which case the <code>dockerPull</code> image id
+must be used.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; dockerImageId { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_DockerRequirement_dockerImport_" data-uid="CWLDotNet.DockerRequirement.dockerImport*"></a>
+  <h4 id="CWLDotNet_DockerRequirement_dockerImport" data-uid="CWLDotNet.DockerRequirement.dockerImport">dockerImport</h4>
+  <div class="markdown level1 summary"><p>Provide HTTP URL to download and gunzip a Docker images using `docker import.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; dockerImport { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_DockerRequirement_dockerLoad_" data-uid="CWLDotNet.DockerRequirement.dockerLoad*"></a>
+  <h4 id="CWLDotNet_DockerRequirement_dockerLoad" data-uid="CWLDotNet.DockerRequirement.dockerLoad">dockerLoad</h4>
+  <div class="markdown level1 summary"><p>Specify a HTTP URL from which to download a Docker image using <code>docker load</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; dockerLoad { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_DockerRequirement_dockerOutputDirectory_" data-uid="CWLDotNet.DockerRequirement.dockerOutputDirectory*"></a>
+  <h4 id="CWLDotNet_DockerRequirement_dockerOutputDirectory" data-uid="CWLDotNet.DockerRequirement.dockerOutputDirectory">dockerOutputDirectory</h4>
+  <div class="markdown level1 summary"><p>Set the designated output directory to a specific location inside the
+Docker container.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; dockerOutputDirectory { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_DockerRequirement_dockerPull_" data-uid="CWLDotNet.DockerRequirement.dockerPull*"></a>
+  <h4 id="CWLDotNet_DockerRequirement_dockerPull" data-uid="CWLDotNet.DockerRequirement.dockerPull">dockerPull</h4>
+  <div class="markdown level1 summary"><p>Specify a Docker image to retrieve using <code>docker pull</code>. Can contain the
+immutable digest to ensure an exact container is used:
+<code>dockerPull: ubuntu@sha256:45b23dee08af5e43a7fea6c4cf9c25ccf269ee113168c19722f87876677c5cb2</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; dockerPull { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="CWLDotNet_DockerRequirement_FromDoc_" data-uid="CWLDotNet.DockerRequirement.FromDoc*"></a>
+  <h4 id="CWLDotNet_DockerRequirement_FromDoc_System_Object_System_String_CWLDotNet_LoadingOptions_System_String_" data-uid="CWLDotNet.DockerRequirement.FromDoc(System.Object,System.String,CWLDotNet.LoadingOptions,System.String)">FromDoc(Object, String, LoadingOptions, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISavable FromDoc(object doc__, string baseUri, LoadingOptions loadingOptions, string docRoot = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">doc__</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">baseUri</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.LoadingOptions.html">LoadingOptions</a></td>
+        <td><span class="parametername">loadingOptions</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">docRoot</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.ISavable.html">ISavable</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_DockerRequirement_Save_" data-uid="CWLDotNet.DockerRequirement.Save*"></a>
+  <h4 id="CWLDotNet_DockerRequirement_Save_System_Boolean_System_String_System_Boolean_" data-uid="CWLDotNet.DockerRequirement.Save(System.Boolean,System.String,System.Boolean)">Save(Boolean, String, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;object, object&gt; Save(bool top = false, string baseUrl = &quot;&quot;, bool relativeUris = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">top</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">baseUrl</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">relativeUris</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<span class="xref">System.Object</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="CWLDotNet.IDockerRequirement.html">IDockerRequirement</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.IProcessRequirement.html">IProcessRequirement</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.ISavable.html">ISavable</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,554 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class CommandLineBinding
+   | Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class CommandLineBinding
+   | Documentation ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CWLDotNet.CommandLineBinding">
+  
+  
+  <h1 id="CWLDotNet_CommandLineBinding" data-uid="CWLDotNet.CommandLineBinding" class="text-break">Class CommandLineBinding
+  </h1>
+  <div class="markdown level0 summary"><p>Auto-generated class implementation for <a href="https://w3id.org/cwl/cwl#CommandLineBinding">https://w3id.org/cwl/cwl#CommandLineBinding</a></p>
+<p>When listed under <code>inputBinding</code> in the input schema, the term
+&quot;value&quot; refers to the the corresponding value in the input object.  For
+binding objects listed in <code>CommandLineTool.arguments</code>, the term &quot;value&quot;
+refers to the effective value after evaluating <code>valueFrom</code>.</p>
+<p>The binding behavior when building the command line depends on the data
+type of the value.  If there is a mismatch between the type described by
+the input schema and the effective value, such as resulting from an
+expression evaluation, an implementation must use the data type of the
+effective value.</p>
+<ul>
+<li><p><strong>string</strong>: Add <code>prefix</code> and the string to the command line.</p>
+</li>
+<li><p><strong>number</strong>: Add <code>prefix</code> and decimal representation to command line.</p>
+</li>
+<li><p><strong>boolean</strong>: If true, add <code>prefix</code> to the command line.  If false, add
+nothing.</p>
+</li>
+<li><p><strong>File</strong>: Add <code>prefix</code> and the value of
+<a href="#File"><code>File.path</code></a> to the command line.</p>
+</li>
+<li><p><strong>Directory</strong>: Add <code>prefix</code> and the value of
+<a href="#Directory"><code>Directory.path</code></a> to the command line.</p>
+</li>
+<li><p><strong>array</strong>: If <code>itemSeparator</code> is specified, add <code>prefix</code> and the join
+the array into a single string with <code>itemSeparator</code> separating the
+items.  Otherwise first add <code>prefix</code>, then recursively process
+individual elements.
+If the array is empty, it does not add anything to command line.</p>
+</li>
+<li><p><strong>object</strong>: Add <code>prefix</code> only, and recursively add object fields for
+which <code>inputBinding</code> is specified.</p>
+</li>
+<li><p><strong>null</strong>: Add nothing.</p>
+</li>
+</ul>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">CommandLineBinding</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="CWLDotNet.ICommandLineBinding.html">ICommandLineBinding</a></div>
+    <div><a class="xref" href="CWLDotNet.IInputBinding.html">IInputBinding</a></div>
+    <div><a class="xref" href="CWLDotNet.ISavable.html">ISavable</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CWLDotNet.html">CWLDotNet</a></h6>
+  <h6><strong>Assembly</strong>: CWLDotNet.dll</h6>
+  <h5 id="CWLDotNet_CommandLineBinding_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class CommandLineBinding : ICommandLineBinding, IInputBinding, ISavable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <a id="CWLDotNet_CommandLineBinding__ctor_" data-uid="CWLDotNet.CommandLineBinding.#ctor*"></a>
+  <h4 id="CWLDotNet_CommandLineBinding__ctor_OneOf_OneOf_OneOf_Types_None_System_Boolean__OneOf_OneOf_OneOf_Types_None_System_Int32_System_String__OneOf_OneOf_OneOf_Types_None_System_String__OneOf_OneOf_OneOf_Types_None_System_Boolean__OneOf_OneOf_OneOf_Types_None_System_String__OneOf_OneOf_OneOf_Types_None_System_String__OneOf_OneOf_OneOf_Types_None_System_Boolean__CWLDotNet_LoadingOptions_System_Nullable_Dictionary_System_Object_System_Object___" data-uid="CWLDotNet.CommandLineBinding.#ctor(OneOf.OneOf{OneOf.Types.None,System.Boolean},OneOf.OneOf{OneOf.Types.None,System.Int32,System.String},OneOf.OneOf{OneOf.Types.None,System.String},OneOf.OneOf{OneOf.Types.None,System.Boolean},OneOf.OneOf{OneOf.Types.None,System.String},OneOf.OneOf{OneOf.Types.None,System.String},OneOf.OneOf{OneOf.Types.None,System.Boolean},CWLDotNet.LoadingOptions,System.Nullable{Dictionary{System.Object,System.Object}})">CommandLineBinding(OneOf&lt;None, Boolean&gt;, OneOf&lt;None, Int32, String&gt;, OneOf&lt;None, String&gt;, OneOf&lt;None, Boolean&gt;, OneOf&lt;None, String&gt;, OneOf&lt;None, String&gt;, OneOf&lt;None, Boolean&gt;, LoadingOptions, Nullable&lt;Dictionary&lt;Object, Object&gt;&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CommandLineBinding(OneOf&lt;None, bool&gt; loadContents = default(OneOf&lt;None, bool&gt;), OneOf&lt;None, int, string&gt; position = default(OneOf&lt;None, int, string&gt;), OneOf&lt;None, string&gt; prefix = default(OneOf&lt;None, string&gt;), OneOf&lt;None, bool&gt; separate = default(OneOf&lt;None, bool&gt;), OneOf&lt;None, string&gt; itemSeparator = default(OneOf&lt;None, string&gt;), OneOf&lt;None, string&gt; valueFrom = default(OneOf&lt;None, string&gt;), OneOf&lt;None, bool&gt; shellQuote = default(OneOf&lt;None, bool&gt;), LoadingOptions loadingOptions = null, Dictionary&lt;object, object&gt;? extensionFields = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">loadContents</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Int32</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">position</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">prefix</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">separate</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">itemSeparator</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">valueFrom</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">shellQuote</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.LoadingOptions.html">LoadingOptions</a></td>
+        <td><span class="parametername">loadingOptions</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Dictionary</span>&lt;<span class="xref">System.Object</span>, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><span class="parametername">extensionFields</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <a id="CWLDotNet_CommandLineBinding_itemSeparator_" data-uid="CWLDotNet.CommandLineBinding.itemSeparator*"></a>
+  <h4 id="CWLDotNet_CommandLineBinding_itemSeparator" data-uid="CWLDotNet.CommandLineBinding.itemSeparator">itemSeparator</h4>
+  <div class="markdown level1 summary"><p>Join the array elements into a single string with the elements
+separated by by <code>itemSeparator</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; itemSeparator { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineBinding_loadContents_" data-uid="CWLDotNet.CommandLineBinding.loadContents*"></a>
+  <h4 id="CWLDotNet_CommandLineBinding_loadContents" data-uid="CWLDotNet.CommandLineBinding.loadContents">loadContents</h4>
+  <div class="markdown level1 summary"><p>Use of <code>loadContents</code> in <code>InputBinding</code> is deprecated.
+Preserved for v1.0 backwards compatibility.  Will be removed in
+CWL v2.0.  Use <code>InputParameter.loadContents</code> instead.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, bool&gt; loadContents { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineBinding_position_" data-uid="CWLDotNet.CommandLineBinding.position*"></a>
+  <h4 id="CWLDotNet_CommandLineBinding_position" data-uid="CWLDotNet.CommandLineBinding.position">position</h4>
+  <div class="markdown level1 summary"><p>The sorting key.  Default position is 0. If a <a href="#Parameter_references">CWL Parameter Reference</a>
+or <a href="#Expressions_(Optional)">CWL Expression</a> is used and if the
+inputBinding is associated with an input parameter, then the value of
+<code>self</code> will be the value of the input parameter.  Input parameter
+defaults (as specified by the <code>InputParameter.default</code> field) must be
+applied before evaluating the expression. Expressions must return a
+single value of type int or a null.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, int, string&gt; position { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Int32</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineBinding_prefix_" data-uid="CWLDotNet.CommandLineBinding.prefix*"></a>
+  <h4 id="CWLDotNet_CommandLineBinding_prefix" data-uid="CWLDotNet.CommandLineBinding.prefix">prefix</h4>
+  <div class="markdown level1 summary"><p>Command line prefix to add before the value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; prefix { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineBinding_separate_" data-uid="CWLDotNet.CommandLineBinding.separate*"></a>
+  <h4 id="CWLDotNet_CommandLineBinding_separate" data-uid="CWLDotNet.CommandLineBinding.separate">separate</h4>
+  <div class="markdown level1 summary"><p>If true (default), then the prefix and value must be added as separate
+command line arguments; if false, prefix and value must be concatenated
+into a single command line argument.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, bool&gt; separate { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineBinding_shellQuote_" data-uid="CWLDotNet.CommandLineBinding.shellQuote*"></a>
+  <h4 id="CWLDotNet_CommandLineBinding_shellQuote" data-uid="CWLDotNet.CommandLineBinding.shellQuote">shellQuote</h4>
+  <div class="markdown level1 summary"><p>If <code>ShellCommandRequirement</code> is in the requirements for the current command,
+this controls whether the value is quoted on the command line (default is true).
+Use <code>shellQuote: false</code> to inject metacharacters for operations such as pipes.</p>
+<p>If <code>shellQuote</code> is true or not provided, the implementation must not
+permit interpretation of any shell metacharacters or directives.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, bool&gt; shellQuote { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineBinding_valueFrom_" data-uid="CWLDotNet.CommandLineBinding.valueFrom*"></a>
+  <h4 id="CWLDotNet_CommandLineBinding_valueFrom" data-uid="CWLDotNet.CommandLineBinding.valueFrom">valueFrom</h4>
+  <div class="markdown level1 summary"><p>If <code>valueFrom</code> is a constant string value, use this as the value and
+apply the binding rules above.</p>
+<p>If <code>valueFrom</code> is an expression, evaluate the expression to yield the
+actual value to use to build the command line and apply the binding
+rules above.  If the inputBinding is associated with an input
+parameter, the value of <code>self</code> in the expression will be the value of
+the input parameter.  Input parameter defaults (as specified by the
+<code>InputParameter.default</code> field) must be applied before evaluating the
+expression.</p>
+<p>If the value of the associated input parameter is <code>null</code>, <code>valueFrom</code> is
+not evaluated and nothing is added to the command line.</p>
+<p>When a binding is part of the <code>CommandLineTool.arguments</code> field,
+the <code>valueFrom</code> field is required.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; valueFrom { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="CWLDotNet_CommandLineBinding_FromDoc_" data-uid="CWLDotNet.CommandLineBinding.FromDoc*"></a>
+  <h4 id="CWLDotNet_CommandLineBinding_FromDoc_System_Object_System_String_CWLDotNet_LoadingOptions_System_String_" data-uid="CWLDotNet.CommandLineBinding.FromDoc(System.Object,System.String,CWLDotNet.LoadingOptions,System.String)">FromDoc(Object, String, LoadingOptions, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISavable FromDoc(object doc__, string baseUri, LoadingOptions loadingOptions, string docRoot = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">doc__</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">baseUri</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.LoadingOptions.html">LoadingOptions</a></td>
+        <td><span class="parametername">loadingOptions</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">docRoot</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.ISavable.html">ISavable</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineBinding_Save_" data-uid="CWLDotNet.CommandLineBinding.Save*"></a>
+  <h4 id="CWLDotNet_CommandLineBinding_Save_System_Boolean_System_String_System_Boolean_" data-uid="CWLDotNet.CommandLineBinding.Save(System.Boolean,System.String,System.Boolean)">Save(Boolean, String, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;object, object&gt; Save(bool top = false, string baseUrl = &quot;&quot;, bool relativeUris = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">top</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">baseUrl</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">relativeUris</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<span class="xref">System.Object</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="CWLDotNet.ICommandLineBinding.html">ICommandLineBinding</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.IInputBinding.html">IInputBinding</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.ISavable.html">ISavable</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

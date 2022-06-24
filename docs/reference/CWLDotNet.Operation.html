@@ -1,0 +1,626 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Operation
+   | Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Operation
+   | Documentation ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CWLDotNet.Operation">
+  
+  
+  <h1 id="CWLDotNet_Operation" data-uid="CWLDotNet.Operation" class="text-break">Class Operation
+  </h1>
+  <div class="markdown level0 summary"><p>Auto-generated class implementation for <a href="https://w3id.org/cwl/cwl#Operation">https://w3id.org/cwl/cwl#Operation</a></p>
+<p>This record describes an abstract operation.  It is a potential
+step of a workflow that has not yet been bound to a concrete
+implementation.  It specifies an input and output signature, but
+does not provide enough information to be executed.  An
+implementation (or other tooling) may provide a means of binding
+an Operation to a concrete process (such as Workflow,
+CommandLineTool, or ExpressionTool) with a compatible signature.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">Operation</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="CWLDotNet.IOperation.html">IOperation</a></div>
+    <div><a class="xref" href="CWLDotNet.IProcess.html">IProcess</a></div>
+    <div><a class="xref" href="CWLDotNet.IIdentified.html">IIdentified</a></div>
+    <div><a class="xref" href="CWLDotNet.ILabeled.html">ILabeled</a></div>
+    <div><a class="xref" href="CWLDotNet.IDocumented.html">IDocumented</a></div>
+    <div><a class="xref" href="CWLDotNet.ISavable.html">ISavable</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CWLDotNet.html">CWLDotNet</a></h6>
+  <h6><strong>Assembly</strong>: CWLDotNet.dll</h6>
+  <h5 id="CWLDotNet_Operation_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Operation : IOperation, IProcess, IIdentified, ILabeled, IDocumented, ISavable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <a id="CWLDotNet_Operation__ctor_" data-uid="CWLDotNet.Operation.#ctor*"></a>
+  <h4 id="CWLDotNet_Operation__ctor_List_CWLDotNet_OperationInputParameter__List_CWLDotNet_OperationOutputParameter__OneOf_OneOf_OneOf_Types_None_System_String__CWLDotNet_Operation_class_OneOf_OneOf_OneOf_Types_None_System_String__OneOf_OneOf_OneOf_Types_None_System_String_List_System_String___OneOf_OneOf_OneOf_Types_None_List_OneOf_OneOf_CWLDotNet_InlineJavascriptRequirement_CWLDotNet_SchemaDefRequirement_CWLDotNet_LoadListingRequirement_CWLDotNet_DockerRequirement_CWLDotNet_SoftwareRequirement_CWLDotNet_InitialWorkDirRequirement_CWLDotNet_EnvVarRequirement_CWLDotNet_ShellCommandRequirement_CWLDotNet_ResourceRequirement_CWLDotNet_WorkReuse_CWLDotNet_NetworkAccess_CWLDotNet_InplaceUpdateRequirement_CWLDotNet_ToolTimeLimit_CWLDotNet_SubworkflowFeatureRequirement_CWLDotNet_ScatterFeatureRequirement_CWLDotNet_MultipleInputFeatureRequirement_CWLDotNet_StepInputExpressionRequirement____OneOf_OneOf_OneOf_Types_None_List_System_Object___OneOf_OneOf_OneOf_Types_None_CWLDotNet_CWLVersion__OneOf_OneOf_OneOf_Types_None_List_System_String___CWLDotNet_LoadingOptions_System_Nullable_Dictionary_System_Object_System_Object___" data-uid="CWLDotNet.Operation.#ctor(List{CWLDotNet.OperationInputParameter},List{CWLDotNet.OperationOutputParameter},OneOf.OneOf{OneOf.Types.None,System.String},CWLDotNet.Operation_class,OneOf.OneOf{OneOf.Types.None,System.String},OneOf.OneOf{OneOf.Types.None,System.String,List{System.String}},OneOf.OneOf{OneOf.Types.None,List{OneOf.OneOf{CWLDotNet.InlineJavascriptRequirement,CWLDotNet.SchemaDefRequirement,CWLDotNet.LoadListingRequirement,CWLDotNet.DockerRequirement,CWLDotNet.SoftwareRequirement,CWLDotNet.InitialWorkDirRequirement,CWLDotNet.EnvVarRequirement,CWLDotNet.ShellCommandRequirement,CWLDotNet.ResourceRequirement,CWLDotNet.WorkReuse,CWLDotNet.NetworkAccess,CWLDotNet.InplaceUpdateRequirement,CWLDotNet.ToolTimeLimit,CWLDotNet.SubworkflowFeatureRequirement,CWLDotNet.ScatterFeatureRequirement,CWLDotNet.MultipleInputFeatureRequirement,CWLDotNet.StepInputExpressionRequirement}}},OneOf.OneOf{OneOf.Types.None,List{System.Object}},OneOf.OneOf{OneOf.Types.None,CWLDotNet.CWLVersion},OneOf.OneOf{OneOf.Types.None,List{System.String}},CWLDotNet.LoadingOptions,System.Nullable{Dictionary{System.Object,System.Object}})">Operation(List&lt;OperationInputParameter&gt;, List&lt;OperationOutputParameter&gt;, OneOf&lt;None, String&gt;, Operation_class, OneOf&lt;None, String&gt;, OneOf&lt;None, String, List&lt;String&gt;&gt;, OneOf&lt;None, List&lt;OneOf&lt;InlineJavascriptRequirement, SchemaDefRequirement, LoadListingRequirement, DockerRequirement, SoftwareRequirement, InitialWorkDirRequirement, EnvVarRequirement, ShellCommandRequirement, ResourceRequirement, WorkReuse, NetworkAccess, InplaceUpdateRequirement, ToolTimeLimit, SubworkflowFeatureRequirement, ScatterFeatureRequirement, MultipleInputFeatureRequirement, StepInputExpressionRequirement&gt;&gt;&gt;, OneOf&lt;None, List&lt;Object&gt;&gt;, OneOf&lt;None, CWLVersion&gt;, OneOf&lt;None, List&lt;String&gt;&gt;, LoadingOptions, Nullable&lt;Dictionary&lt;Object, Object&gt;&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Operation(List&lt;OperationInputParameter&gt; inputs, List&lt;OperationOutputParameter&gt; outputs, OneOf&lt;None, string&gt; id = default(OneOf&lt;None, string&gt;), Operation_class class_ = null, OneOf&lt;None, string&gt; label = default(OneOf&lt;None, string&gt;), OneOf&lt;None, string, List&lt;string&gt;&gt; doc = default(OneOf&lt;None, string, List&lt;string&gt;&gt;), OneOf&lt;None, List&lt;OneOf&lt;InlineJavascriptRequirement, SchemaDefRequirement, LoadListingRequirement, DockerRequirement, SoftwareRequirement, InitialWorkDirRequirement, EnvVarRequirement, ShellCommandRequirement, ResourceRequirement, WorkReuse, NetworkAccess, InplaceUpdateRequirement, ToolTimeLimit, SubworkflowFeatureRequirement, ScatterFeatureRequirement, MultipleInputFeatureRequirement, StepInputExpressionRequirement&gt;&gt;&gt; requirements = default(OneOf&lt;None, List&lt;OneOf&lt;InlineJavascriptRequirement, SchemaDefRequirement, LoadListingRequirement, DockerRequirement, SoftwareRequirement, InitialWorkDirRequirement, EnvVarRequirement, ShellCommandRequirement, ResourceRequirement, WorkReuse, NetworkAccess, InplaceUpdateRequirement, ToolTimeLimit, SubworkflowFeatureRequirement, ScatterFeatureRequirement, MultipleInputFeatureRequirement, StepInputExpressionRequirement&gt;&gt;&gt;), OneOf&lt;None, List&lt;object&gt;&gt; hints = default(OneOf&lt;None, List&lt;object&gt;&gt;), OneOf&lt;None, CWLVersion&gt; cwlVersion = default(OneOf&lt;None, CWLVersion&gt;), OneOf&lt;None, List&lt;string&gt;&gt; intent = default(OneOf&lt;None, List&lt;string&gt;&gt;), LoadingOptions loadingOptions = null, Dictionary&lt;object, object&gt;? extensionFields = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="CWLDotNet.OperationInputParameter.html">OperationInputParameter</a>&gt;</td>
+        <td><span class="parametername">inputs</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="CWLDotNet.OperationOutputParameter.html">OperationOutputParameter</a>&gt;</td>
+        <td><span class="parametername">outputs</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.Operation_class.html">Operation_class</a></td>
+        <td><span class="parametername">class_</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">label</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>, <span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;&gt;</td>
+        <td><span class="parametername">doc</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">OneOf.OneOf</span>&lt;<a class="xref" href="CWLDotNet.InlineJavascriptRequirement.html">InlineJavascriptRequirement</a>, <a class="xref" href="CWLDotNet.SchemaDefRequirement.html">SchemaDefRequirement</a>, <a class="xref" href="CWLDotNet.LoadListingRequirement.html">LoadListingRequirement</a>, <a class="xref" href="CWLDotNet.DockerRequirement.html">DockerRequirement</a>, <a class="xref" href="CWLDotNet.SoftwareRequirement.html">SoftwareRequirement</a>, <a class="xref" href="CWLDotNet.InitialWorkDirRequirement.html">InitialWorkDirRequirement</a>, <a class="xref" href="CWLDotNet.EnvVarRequirement.html">EnvVarRequirement</a>, <a class="xref" href="CWLDotNet.ShellCommandRequirement.html">ShellCommandRequirement</a>, <a class="xref" href="CWLDotNet.ResourceRequirement.html">ResourceRequirement</a>, <a class="xref" href="CWLDotNet.WorkReuse.html">WorkReuse</a>, <a class="xref" href="CWLDotNet.NetworkAccess.html">NetworkAccess</a>, <a class="xref" href="CWLDotNet.InplaceUpdateRequirement.html">InplaceUpdateRequirement</a>, <a class="xref" href="CWLDotNet.ToolTimeLimit.html">ToolTimeLimit</a>, <a class="xref" href="CWLDotNet.SubworkflowFeatureRequirement.html">SubworkflowFeatureRequirement</a>, <a class="xref" href="CWLDotNet.ScatterFeatureRequirement.html">ScatterFeatureRequirement</a>, <a class="xref" href="CWLDotNet.MultipleInputFeatureRequirement.html">MultipleInputFeatureRequirement</a>, <a class="xref" href="CWLDotNet.StepInputExpressionRequirement.html">StepInputExpressionRequirement</a>&gt;&gt;&gt;</td>
+        <td><span class="parametername">requirements</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><span class="parametername">hints</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <a class="xref" href="CWLDotNet.CWLVersion.html">CWLVersion</a>&gt;</td>
+        <td><span class="parametername">cwlVersion</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;&gt;</td>
+        <td><span class="parametername">intent</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.LoadingOptions.html">LoadingOptions</a></td>
+        <td><span class="parametername">loadingOptions</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Dictionary</span>&lt;<span class="xref">System.Object</span>, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><span class="parametername">extensionFields</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <a id="CWLDotNet_Operation_class__" data-uid="CWLDotNet.Operation.class_*"></a>
+  <h4 id="CWLDotNet_Operation_class_" data-uid="CWLDotNet.Operation.class_">class_</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Operation_class class_ { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.Operation_class.html">Operation_class</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_Operation_cwlVersion_" data-uid="CWLDotNet.Operation.cwlVersion*"></a>
+  <h4 id="CWLDotNet_Operation_cwlVersion" data-uid="CWLDotNet.Operation.cwlVersion">cwlVersion</h4>
+  <div class="markdown level1 summary"><p>CWL document version. Always required at the document root. Not
+required for a Process embedded inside another Process.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, CWLVersion&gt; cwlVersion { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <a class="xref" href="CWLDotNet.CWLVersion.html">CWLVersion</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_Operation_doc_" data-uid="CWLDotNet.Operation.doc*"></a>
+  <h4 id="CWLDotNet_Operation_doc" data-uid="CWLDotNet.Operation.doc">doc</h4>
+  <div class="markdown level1 summary"><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string, List&lt;string&gt;&gt; doc { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>, <span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_Operation_hints_" data-uid="CWLDotNet.Operation.hints*"></a>
+  <h4 id="CWLDotNet_Operation_hints" data-uid="CWLDotNet.Operation.hints">hints</h4>
+  <div class="markdown level1 summary"><p>Declares hints applying to either the runtime environment or the
+workflow engine that may be helpful in executing this process.  It is
+not an error if an implementation cannot satisfy all hints, however
+the implementation may report a warning.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, List&lt;object&gt;&gt; hints { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_Operation_id_" data-uid="CWLDotNet.Operation.id*"></a>
+  <h4 id="CWLDotNet_Operation_id" data-uid="CWLDotNet.Operation.id">id</h4>
+  <div class="markdown level1 summary"><p>The unique identifier for this object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; id { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_Operation_inputs_" data-uid="CWLDotNet.Operation.inputs*"></a>
+  <h4 id="CWLDotNet_Operation_inputs" data-uid="CWLDotNet.Operation.inputs">inputs</h4>
+  <div class="markdown level1 summary"><p>Defines the input parameters of the process.  The process is ready to
+run when all required input parameters are associated with concrete
+values.  Input parameters include a schema for each parameter which is
+used to validate the input object.  It may also be used to build a user
+interface for constructing the input object.</p>
+<p>When accepting an input object, all input parameters must have a value.
+If an input parameter is missing from the input object, it must be
+assigned a value of <code>null</code> (or the value of <code>default</code> for that
+parameter, if provided) for the purposes of validation and evaluation
+of expressions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;OperationInputParameter&gt; inputs { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="CWLDotNet.OperationInputParameter.html">OperationInputParameter</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_Operation_intent_" data-uid="CWLDotNet.Operation.intent*"></a>
+  <h4 id="CWLDotNet_Operation_intent" data-uid="CWLDotNet.Operation.intent">intent</h4>
+  <div class="markdown level1 summary"><p>An identifier for the type of computational operation, of this Process.
+Especially useful for &quot;class: Operation&quot;, but can also be used for
+CommandLineTool, Workflow, or ExpressionTool.</p>
+<p>If provided, then this must be an IRI of a concept node that
+represents the type of operation, preferrably defined within an ontology.</p>
+<p>For example, in the domain of bioinformatics, one can use an IRI from
+the EDAM Ontology's <a href="http://edamontology.org/operation_0004">Operation concept nodes</a>,
+like <a href="http://edamontology.org/operation_2928">Alignment</a>,
+or <a href="http://edamontology.org/operation_3432">Clustering</a>; or a more
+specific Operation concept like
+<a href="http://edamontology.org/operation_3199">Split read mapping</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, List&lt;string&gt;&gt; intent { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_Operation_label_" data-uid="CWLDotNet.Operation.label*"></a>
+  <h4 id="CWLDotNet_Operation_label" data-uid="CWLDotNet.Operation.label">label</h4>
+  <div class="markdown level1 summary"><p>A short, human-readable label of this object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; label { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_Operation_outputs_" data-uid="CWLDotNet.Operation.outputs*"></a>
+  <h4 id="CWLDotNet_Operation_outputs" data-uid="CWLDotNet.Operation.outputs">outputs</h4>
+  <div class="markdown level1 summary"><p>Defines the parameters representing the output of the process.  May be
+used to generate and/or validate the output object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;OperationOutputParameter&gt; outputs { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="CWLDotNet.OperationOutputParameter.html">OperationOutputParameter</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_Operation_requirements_" data-uid="CWLDotNet.Operation.requirements*"></a>
+  <h4 id="CWLDotNet_Operation_requirements" data-uid="CWLDotNet.Operation.requirements">requirements</h4>
+  <div class="markdown level1 summary"><p>Declares requirements that apply to either the runtime environment or the
+workflow engine that must be met in order to execute this process.  If
+an implementation cannot satisfy all requirements, or a requirement is
+listed which is not recognized by the implementation, it is a fatal
+error and the implementation must not attempt to run the process,
+unless overridden at user option.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, List&lt;OneOf&lt;InlineJavascriptRequirement, SchemaDefRequirement, LoadListingRequirement, DockerRequirement, SoftwareRequirement, InitialWorkDirRequirement, EnvVarRequirement, ShellCommandRequirement, ResourceRequirement, WorkReuse, NetworkAccess, InplaceUpdateRequirement, ToolTimeLimit, SubworkflowFeatureRequirement, ScatterFeatureRequirement, MultipleInputFeatureRequirement, StepInputExpressionRequirement&gt;&gt;&gt; requirements { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">OneOf.OneOf</span>&lt;<a class="xref" href="CWLDotNet.InlineJavascriptRequirement.html">InlineJavascriptRequirement</a>, <a class="xref" href="CWLDotNet.SchemaDefRequirement.html">SchemaDefRequirement</a>, <a class="xref" href="CWLDotNet.LoadListingRequirement.html">LoadListingRequirement</a>, <a class="xref" href="CWLDotNet.DockerRequirement.html">DockerRequirement</a>, <a class="xref" href="CWLDotNet.SoftwareRequirement.html">SoftwareRequirement</a>, <a class="xref" href="CWLDotNet.InitialWorkDirRequirement.html">InitialWorkDirRequirement</a>, <a class="xref" href="CWLDotNet.EnvVarRequirement.html">EnvVarRequirement</a>, <a class="xref" href="CWLDotNet.ShellCommandRequirement.html">ShellCommandRequirement</a>, <a class="xref" href="CWLDotNet.ResourceRequirement.html">ResourceRequirement</a>, <a class="xref" href="CWLDotNet.WorkReuse.html">WorkReuse</a>, <a class="xref" href="CWLDotNet.NetworkAccess.html">NetworkAccess</a>, <a class="xref" href="CWLDotNet.InplaceUpdateRequirement.html">InplaceUpdateRequirement</a>, <a class="xref" href="CWLDotNet.ToolTimeLimit.html">ToolTimeLimit</a>, <a class="xref" href="CWLDotNet.SubworkflowFeatureRequirement.html">SubworkflowFeatureRequirement</a>, <a class="xref" href="CWLDotNet.ScatterFeatureRequirement.html">ScatterFeatureRequirement</a>, <a class="xref" href="CWLDotNet.MultipleInputFeatureRequirement.html">MultipleInputFeatureRequirement</a>, <a class="xref" href="CWLDotNet.StepInputExpressionRequirement.html">StepInputExpressionRequirement</a>&gt;&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="CWLDotNet_Operation_FromDoc_" data-uid="CWLDotNet.Operation.FromDoc*"></a>
+  <h4 id="CWLDotNet_Operation_FromDoc_System_Object_System_String_CWLDotNet_LoadingOptions_System_String_" data-uid="CWLDotNet.Operation.FromDoc(System.Object,System.String,CWLDotNet.LoadingOptions,System.String)">FromDoc(Object, String, LoadingOptions, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISavable FromDoc(object doc__, string baseUri, LoadingOptions loadingOptions, string docRoot = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">doc__</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">baseUri</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.LoadingOptions.html">LoadingOptions</a></td>
+        <td><span class="parametername">loadingOptions</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">docRoot</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.ISavable.html">ISavable</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_Operation_Save_" data-uid="CWLDotNet.Operation.Save*"></a>
+  <h4 id="CWLDotNet_Operation_Save_System_Boolean_System_String_System_Boolean_" data-uid="CWLDotNet.Operation.Save(System.Boolean,System.String,System.Boolean)">Save(Boolean, String, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;object, object&gt; Save(bool top = false, string baseUrl = &quot;&quot;, bool relativeUris = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">top</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">baseUrl</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">relativeUris</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<span class="xref">System.Object</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="CWLDotNet.IOperation.html">IOperation</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.IProcess.html">IProcess</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.IIdentified.html">IIdentified</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.ILabeled.html">ILabeled</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.IDocumented.html">IDocumented</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.ISavable.html">ISavable</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

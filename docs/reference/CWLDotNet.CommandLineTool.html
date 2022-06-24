@@ -1,0 +1,888 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class CommandLineTool
+   | Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class CommandLineTool
+   | Documentation ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CWLDotNet.CommandLineTool">
+  
+  
+  <h1 id="CWLDotNet_CommandLineTool" data-uid="CWLDotNet.CommandLineTool" class="text-break">Class CommandLineTool
+  </h1>
+  <div class="markdown level0 summary"><p>Auto-generated class implementation for <a href="https://w3id.org/cwl/cwl#CommandLineTool">https://w3id.org/cwl/cwl#CommandLineTool</a></p>
+<p>This defines the schema of the CWL Command Line Tool Description document.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">CommandLineTool</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="CWLDotNet.ICommandLineTool.html">ICommandLineTool</a></div>
+    <div><a class="xref" href="CWLDotNet.IProcess.html">IProcess</a></div>
+    <div><a class="xref" href="CWLDotNet.IIdentified.html">IIdentified</a></div>
+    <div><a class="xref" href="CWLDotNet.ILabeled.html">ILabeled</a></div>
+    <div><a class="xref" href="CWLDotNet.IDocumented.html">IDocumented</a></div>
+    <div><a class="xref" href="CWLDotNet.ISavable.html">ISavable</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CWLDotNet.html">CWLDotNet</a></h6>
+  <h6><strong>Assembly</strong>: CWLDotNet.dll</h6>
+  <h5 id="CWLDotNet_CommandLineTool_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class CommandLineTool : ICommandLineTool, IProcess, IIdentified, ILabeled, IDocumented, ISavable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <a id="CWLDotNet_CommandLineTool__ctor_" data-uid="CWLDotNet.CommandLineTool.#ctor*"></a>
+  <h4 id="CWLDotNet_CommandLineTool__ctor_List_CWLDotNet_CommandInputParameter__List_CWLDotNet_CommandOutputParameter__OneOf_OneOf_OneOf_Types_None_System_String__CWLDotNet_CommandLineTool_class_OneOf_OneOf_OneOf_Types_None_System_String__OneOf_OneOf_OneOf_Types_None_System_String_List_System_String___OneOf_OneOf_OneOf_Types_None_List_OneOf_OneOf_CWLDotNet_InlineJavascriptRequirement_CWLDotNet_SchemaDefRequirement_CWLDotNet_LoadListingRequirement_CWLDotNet_DockerRequirement_CWLDotNet_SoftwareRequirement_CWLDotNet_InitialWorkDirRequirement_CWLDotNet_EnvVarRequirement_CWLDotNet_ShellCommandRequirement_CWLDotNet_ResourceRequirement_CWLDotNet_WorkReuse_CWLDotNet_NetworkAccess_CWLDotNet_InplaceUpdateRequirement_CWLDotNet_ToolTimeLimit_CWLDotNet_SubworkflowFeatureRequirement_CWLDotNet_ScatterFeatureRequirement_CWLDotNet_MultipleInputFeatureRequirement_CWLDotNet_StepInputExpressionRequirement____OneOf_OneOf_OneOf_Types_None_List_System_Object___OneOf_OneOf_OneOf_Types_None_CWLDotNet_CWLVersion__OneOf_OneOf_OneOf_Types_None_List_System_String___OneOf_OneOf_OneOf_Types_None_System_String_List_System_String___OneOf_OneOf_OneOf_Types_None_List_OneOf_OneOf_System_String_CWLDotNet_CommandLineBinding____OneOf_OneOf_OneOf_Types_None_System_String__OneOf_OneOf_OneOf_Types_None_System_String__OneOf_OneOf_OneOf_Types_None_System_String__OneOf_OneOf_OneOf_Types_None_List_System_Int32___OneOf_OneOf_OneOf_Types_None_List_System_Int32___OneOf_OneOf_OneOf_Types_None_List_System_Int32___CWLDotNet_LoadingOptions_System_Nullable_Dictionary_System_Object_System_Object___" data-uid="CWLDotNet.CommandLineTool.#ctor(List{CWLDotNet.CommandInputParameter},List{CWLDotNet.CommandOutputParameter},OneOf.OneOf{OneOf.Types.None,System.String},CWLDotNet.CommandLineTool_class,OneOf.OneOf{OneOf.Types.None,System.String},OneOf.OneOf{OneOf.Types.None,System.String,List{System.String}},OneOf.OneOf{OneOf.Types.None,List{OneOf.OneOf{CWLDotNet.InlineJavascriptRequirement,CWLDotNet.SchemaDefRequirement,CWLDotNet.LoadListingRequirement,CWLDotNet.DockerRequirement,CWLDotNet.SoftwareRequirement,CWLDotNet.InitialWorkDirRequirement,CWLDotNet.EnvVarRequirement,CWLDotNet.ShellCommandRequirement,CWLDotNet.ResourceRequirement,CWLDotNet.WorkReuse,CWLDotNet.NetworkAccess,CWLDotNet.InplaceUpdateRequirement,CWLDotNet.ToolTimeLimit,CWLDotNet.SubworkflowFeatureRequirement,CWLDotNet.ScatterFeatureRequirement,CWLDotNet.MultipleInputFeatureRequirement,CWLDotNet.StepInputExpressionRequirement}}},OneOf.OneOf{OneOf.Types.None,List{System.Object}},OneOf.OneOf{OneOf.Types.None,CWLDotNet.CWLVersion},OneOf.OneOf{OneOf.Types.None,List{System.String}},OneOf.OneOf{OneOf.Types.None,System.String,List{System.String}},OneOf.OneOf{OneOf.Types.None,List{OneOf.OneOf{System.String,CWLDotNet.CommandLineBinding}}},OneOf.OneOf{OneOf.Types.None,System.String},OneOf.OneOf{OneOf.Types.None,System.String},OneOf.OneOf{OneOf.Types.None,System.String},OneOf.OneOf{OneOf.Types.None,List{System.Int32}},OneOf.OneOf{OneOf.Types.None,List{System.Int32}},OneOf.OneOf{OneOf.Types.None,List{System.Int32}},CWLDotNet.LoadingOptions,System.Nullable{Dictionary{System.Object,System.Object}})">CommandLineTool(List&lt;CommandInputParameter&gt;, List&lt;CommandOutputParameter&gt;, OneOf&lt;None, String&gt;, CommandLineTool_class, OneOf&lt;None, String&gt;, OneOf&lt;None, String, List&lt;String&gt;&gt;, OneOf&lt;None, List&lt;OneOf&lt;InlineJavascriptRequirement, SchemaDefRequirement, LoadListingRequirement, DockerRequirement, SoftwareRequirement, InitialWorkDirRequirement, EnvVarRequirement, ShellCommandRequirement, ResourceRequirement, WorkReuse, NetworkAccess, InplaceUpdateRequirement, ToolTimeLimit, SubworkflowFeatureRequirement, ScatterFeatureRequirement, MultipleInputFeatureRequirement, StepInputExpressionRequirement&gt;&gt;&gt;, OneOf&lt;None, List&lt;Object&gt;&gt;, OneOf&lt;None, CWLVersion&gt;, OneOf&lt;None, List&lt;String&gt;&gt;, OneOf&lt;None, String, List&lt;String&gt;&gt;, OneOf&lt;None, List&lt;OneOf&lt;String, CommandLineBinding&gt;&gt;&gt;, OneOf&lt;None, String&gt;, OneOf&lt;None, String&gt;, OneOf&lt;None, String&gt;, OneOf&lt;None, List&lt;Int32&gt;&gt;, OneOf&lt;None, List&lt;Int32&gt;&gt;, OneOf&lt;None, List&lt;Int32&gt;&gt;, LoadingOptions, Nullable&lt;Dictionary&lt;Object, Object&gt;&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CommandLineTool(List&lt;CommandInputParameter&gt; inputs, List&lt;CommandOutputParameter&gt; outputs, OneOf&lt;None, string&gt; id = default(OneOf&lt;None, string&gt;), CommandLineTool_class class_ = null, OneOf&lt;None, string&gt; label = default(OneOf&lt;None, string&gt;), OneOf&lt;None, string, List&lt;string&gt;&gt; doc = default(OneOf&lt;None, string, List&lt;string&gt;&gt;), OneOf&lt;None, List&lt;OneOf&lt;InlineJavascriptRequirement, SchemaDefRequirement, LoadListingRequirement, DockerRequirement, SoftwareRequirement, InitialWorkDirRequirement, EnvVarRequirement, ShellCommandRequirement, ResourceRequirement, WorkReuse, NetworkAccess, InplaceUpdateRequirement, ToolTimeLimit, SubworkflowFeatureRequirement, ScatterFeatureRequirement, MultipleInputFeatureRequirement, StepInputExpressionRequirement&gt;&gt;&gt; requirements = default(OneOf&lt;None, List&lt;OneOf&lt;InlineJavascriptRequirement, SchemaDefRequirement, LoadListingRequirement, DockerRequirement, SoftwareRequirement, InitialWorkDirRequirement, EnvVarRequirement, ShellCommandRequirement, ResourceRequirement, WorkReuse, NetworkAccess, InplaceUpdateRequirement, ToolTimeLimit, SubworkflowFeatureRequirement, ScatterFeatureRequirement, MultipleInputFeatureRequirement, StepInputExpressionRequirement&gt;&gt;&gt;), OneOf&lt;None, List&lt;object&gt;&gt; hints = default(OneOf&lt;None, List&lt;object&gt;&gt;), OneOf&lt;None, CWLVersion&gt; cwlVersion = default(OneOf&lt;None, CWLVersion&gt;), OneOf&lt;None, List&lt;string&gt;&gt; intent = default(OneOf&lt;None, List&lt;string&gt;&gt;), OneOf&lt;None, string, List&lt;string&gt;&gt; baseCommand = default(OneOf&lt;None, string, List&lt;string&gt;&gt;), OneOf&lt;None, List&lt;OneOf&lt;string, CommandLineBinding&gt;&gt;&gt; arguments_ = default(OneOf&lt;None, List&lt;OneOf&lt;string, CommandLineBinding&gt;&gt;&gt;), OneOf&lt;None, string&gt; stdin = default(OneOf&lt;None, string&gt;), OneOf&lt;None, string&gt; stderr = default(OneOf&lt;None, string&gt;), OneOf&lt;None, string&gt; stdout = default(OneOf&lt;None, string&gt;), OneOf&lt;None, List&lt;int&gt;&gt; successCodes = default(OneOf&lt;None, List&lt;int&gt;&gt;), OneOf&lt;None, List&lt;int&gt;&gt; temporaryFailCodes = default(OneOf&lt;None, List&lt;int&gt;&gt;), OneOf&lt;None, List&lt;int&gt;&gt; permanentFailCodes = default(OneOf&lt;None, List&lt;int&gt;&gt;), LoadingOptions loadingOptions = null, Dictionary&lt;object, object&gt;? extensionFields = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="CWLDotNet.CommandInputParameter.html">CommandInputParameter</a>&gt;</td>
+        <td><span class="parametername">inputs</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="CWLDotNet.CommandOutputParameter.html">CommandOutputParameter</a>&gt;</td>
+        <td><span class="parametername">outputs</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.CommandLineTool_class.html">CommandLineTool_class</a></td>
+        <td><span class="parametername">class_</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">label</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>, <span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;&gt;</td>
+        <td><span class="parametername">doc</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">OneOf.OneOf</span>&lt;<a class="xref" href="CWLDotNet.InlineJavascriptRequirement.html">InlineJavascriptRequirement</a>, <a class="xref" href="CWLDotNet.SchemaDefRequirement.html">SchemaDefRequirement</a>, <a class="xref" href="CWLDotNet.LoadListingRequirement.html">LoadListingRequirement</a>, <a class="xref" href="CWLDotNet.DockerRequirement.html">DockerRequirement</a>, <a class="xref" href="CWLDotNet.SoftwareRequirement.html">SoftwareRequirement</a>, <a class="xref" href="CWLDotNet.InitialWorkDirRequirement.html">InitialWorkDirRequirement</a>, <a class="xref" href="CWLDotNet.EnvVarRequirement.html">EnvVarRequirement</a>, <a class="xref" href="CWLDotNet.ShellCommandRequirement.html">ShellCommandRequirement</a>, <a class="xref" href="CWLDotNet.ResourceRequirement.html">ResourceRequirement</a>, <a class="xref" href="CWLDotNet.WorkReuse.html">WorkReuse</a>, <a class="xref" href="CWLDotNet.NetworkAccess.html">NetworkAccess</a>, <a class="xref" href="CWLDotNet.InplaceUpdateRequirement.html">InplaceUpdateRequirement</a>, <a class="xref" href="CWLDotNet.ToolTimeLimit.html">ToolTimeLimit</a>, <a class="xref" href="CWLDotNet.SubworkflowFeatureRequirement.html">SubworkflowFeatureRequirement</a>, <a class="xref" href="CWLDotNet.ScatterFeatureRequirement.html">ScatterFeatureRequirement</a>, <a class="xref" href="CWLDotNet.MultipleInputFeatureRequirement.html">MultipleInputFeatureRequirement</a>, <a class="xref" href="CWLDotNet.StepInputExpressionRequirement.html">StepInputExpressionRequirement</a>&gt;&gt;&gt;</td>
+        <td><span class="parametername">requirements</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><span class="parametername">hints</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <a class="xref" href="CWLDotNet.CWLVersion.html">CWLVersion</a>&gt;</td>
+        <td><span class="parametername">cwlVersion</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;&gt;</td>
+        <td><span class="parametername">intent</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>, <span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;&gt;</td>
+        <td><span class="parametername">baseCommand</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">OneOf.OneOf</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="CWLDotNet.CommandLineBinding.html">CommandLineBinding</a>&gt;&gt;&gt;</td>
+        <td><span class="parametername">arguments_</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">stdin</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">stderr</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">stdout</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">System.Int32</span>&gt;&gt;</td>
+        <td><span class="parametername">successCodes</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">System.Int32</span>&gt;&gt;</td>
+        <td><span class="parametername">temporaryFailCodes</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">System.Int32</span>&gt;&gt;</td>
+        <td><span class="parametername">permanentFailCodes</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.LoadingOptions.html">LoadingOptions</a></td>
+        <td><span class="parametername">loadingOptions</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Dictionary</span>&lt;<span class="xref">System.Object</span>, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><span class="parametername">extensionFields</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <a id="CWLDotNet_CommandLineTool_arguments__" data-uid="CWLDotNet.CommandLineTool.arguments_*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_arguments_" data-uid="CWLDotNet.CommandLineTool.arguments_">arguments_</h4>
+  <div class="markdown level1 summary"><p>Command line bindings which are not directly associated with input
+parameters. If the value is a string, it is used as a string literal
+argument. If it is an Expression, the result of the evaluation is used
+as an argument.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, List&lt;OneOf&lt;string, CommandLineBinding&gt;&gt;&gt; arguments_ { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">OneOf.OneOf</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="CWLDotNet.CommandLineBinding.html">CommandLineBinding</a>&gt;&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineTool_baseCommand_" data-uid="CWLDotNet.CommandLineTool.baseCommand*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_baseCommand" data-uid="CWLDotNet.CommandLineTool.baseCommand">baseCommand</h4>
+  <div class="markdown level1 summary"><p>Specifies the program to execute.  If an array, the first element of
+the array is the command to execute, and subsequent elements are
+mandatory command line arguments.  The elements in <code>baseCommand</code> must
+appear before any command line bindings from <code>inputBinding</code> or
+<code>arguments</code>.</p>
+<p>If <code>baseCommand</code> is not provided or is an empty array, the first
+element of the command line produced after processing <code>inputBinding</code> or
+<code>arguments</code> must be used as the program to execute.</p>
+<p>If the program includes a path separator character it must
+be an absolute path, otherwise it is an error.  If the program does not
+include a path separator, search the <code>$PATH</code> variable in the runtime
+environment of the workflow runner find the absolute path of the
+executable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string, List&lt;string&gt;&gt; baseCommand { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>, <span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineTool_class__" data-uid="CWLDotNet.CommandLineTool.class_*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_class_" data-uid="CWLDotNet.CommandLineTool.class_">class_</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CommandLineTool_class class_ { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.CommandLineTool_class.html">CommandLineTool_class</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineTool_cwlVersion_" data-uid="CWLDotNet.CommandLineTool.cwlVersion*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_cwlVersion" data-uid="CWLDotNet.CommandLineTool.cwlVersion">cwlVersion</h4>
+  <div class="markdown level1 summary"><p>CWL document version. Always required at the document root. Not
+required for a Process embedded inside another Process.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, CWLVersion&gt; cwlVersion { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <a class="xref" href="CWLDotNet.CWLVersion.html">CWLVersion</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineTool_doc_" data-uid="CWLDotNet.CommandLineTool.doc*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_doc" data-uid="CWLDotNet.CommandLineTool.doc">doc</h4>
+  <div class="markdown level1 summary"><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string, List&lt;string&gt;&gt; doc { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>, <span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineTool_hints_" data-uid="CWLDotNet.CommandLineTool.hints*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_hints" data-uid="CWLDotNet.CommandLineTool.hints">hints</h4>
+  <div class="markdown level1 summary"><p>Declares hints applying to either the runtime environment or the
+workflow engine that may be helpful in executing this process.  It is
+not an error if an implementation cannot satisfy all hints, however
+the implementation may report a warning.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, List&lt;object&gt;&gt; hints { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineTool_id_" data-uid="CWLDotNet.CommandLineTool.id*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_id" data-uid="CWLDotNet.CommandLineTool.id">id</h4>
+  <div class="markdown level1 summary"><p>The unique identifier for this object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; id { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineTool_inputs_" data-uid="CWLDotNet.CommandLineTool.inputs*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_inputs" data-uid="CWLDotNet.CommandLineTool.inputs">inputs</h4>
+  <div class="markdown level1 summary"><p>Defines the input parameters of the process.  The process is ready to
+run when all required input parameters are associated with concrete
+values.  Input parameters include a schema for each parameter which is
+used to validate the input object.  It may also be used to build a user
+interface for constructing the input object.</p>
+<p>When accepting an input object, all input parameters must have a value.
+If an input parameter is missing from the input object, it must be
+assigned a value of <code>null</code> (or the value of <code>default</code> for that
+parameter, if provided) for the purposes of validation and evaluation
+of expressions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;CommandInputParameter&gt; inputs { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="CWLDotNet.CommandInputParameter.html">CommandInputParameter</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineTool_intent_" data-uid="CWLDotNet.CommandLineTool.intent*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_intent" data-uid="CWLDotNet.CommandLineTool.intent">intent</h4>
+  <div class="markdown level1 summary"><p>An identifier for the type of computational operation, of this Process.
+Especially useful for &quot;class: Operation&quot;, but can also be used for
+CommandLineTool, Workflow, or ExpressionTool.</p>
+<p>If provided, then this must be an IRI of a concept node that
+represents the type of operation, preferrably defined within an ontology.</p>
+<p>For example, in the domain of bioinformatics, one can use an IRI from
+the EDAM Ontology's <a href="http://edamontology.org/operation_0004">Operation concept nodes</a>,
+like <a href="http://edamontology.org/operation_2928">Alignment</a>,
+or <a href="http://edamontology.org/operation_3432">Clustering</a>; or a more
+specific Operation concept like
+<a href="http://edamontology.org/operation_3199">Split read mapping</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, List&lt;string&gt;&gt; intent { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineTool_label_" data-uid="CWLDotNet.CommandLineTool.label*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_label" data-uid="CWLDotNet.CommandLineTool.label">label</h4>
+  <div class="markdown level1 summary"><p>A short, human-readable label of this object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; label { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineTool_outputs_" data-uid="CWLDotNet.CommandLineTool.outputs*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_outputs" data-uid="CWLDotNet.CommandLineTool.outputs">outputs</h4>
+  <div class="markdown level1 summary"><p>Defines the parameters representing the output of the process.  May be
+used to generate and/or validate the output object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;CommandOutputParameter&gt; outputs { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="CWLDotNet.CommandOutputParameter.html">CommandOutputParameter</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineTool_permanentFailCodes_" data-uid="CWLDotNet.CommandLineTool.permanentFailCodes*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_permanentFailCodes" data-uid="CWLDotNet.CommandLineTool.permanentFailCodes">permanentFailCodes</h4>
+  <div class="markdown level1 summary"><p>Exit codes that indicate the process failed due to a permanent logic error, where executing the process with the same runtime environment and same inputs is expected to always fail.
+If not specified, all exit codes except 0 are considered permanent failure.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, List&lt;int&gt;&gt; permanentFailCodes { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">System.Int32</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineTool_requirements_" data-uid="CWLDotNet.CommandLineTool.requirements*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_requirements" data-uid="CWLDotNet.CommandLineTool.requirements">requirements</h4>
+  <div class="markdown level1 summary"><p>Declares requirements that apply to either the runtime environment or the
+workflow engine that must be met in order to execute this process.  If
+an implementation cannot satisfy all requirements, or a requirement is
+listed which is not recognized by the implementation, it is a fatal
+error and the implementation must not attempt to run the process,
+unless overridden at user option.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, List&lt;OneOf&lt;InlineJavascriptRequirement, SchemaDefRequirement, LoadListingRequirement, DockerRequirement, SoftwareRequirement, InitialWorkDirRequirement, EnvVarRequirement, ShellCommandRequirement, ResourceRequirement, WorkReuse, NetworkAccess, InplaceUpdateRequirement, ToolTimeLimit, SubworkflowFeatureRequirement, ScatterFeatureRequirement, MultipleInputFeatureRequirement, StepInputExpressionRequirement&gt;&gt;&gt; requirements { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">OneOf.OneOf</span>&lt;<a class="xref" href="CWLDotNet.InlineJavascriptRequirement.html">InlineJavascriptRequirement</a>, <a class="xref" href="CWLDotNet.SchemaDefRequirement.html">SchemaDefRequirement</a>, <a class="xref" href="CWLDotNet.LoadListingRequirement.html">LoadListingRequirement</a>, <a class="xref" href="CWLDotNet.DockerRequirement.html">DockerRequirement</a>, <a class="xref" href="CWLDotNet.SoftwareRequirement.html">SoftwareRequirement</a>, <a class="xref" href="CWLDotNet.InitialWorkDirRequirement.html">InitialWorkDirRequirement</a>, <a class="xref" href="CWLDotNet.EnvVarRequirement.html">EnvVarRequirement</a>, <a class="xref" href="CWLDotNet.ShellCommandRequirement.html">ShellCommandRequirement</a>, <a class="xref" href="CWLDotNet.ResourceRequirement.html">ResourceRequirement</a>, <a class="xref" href="CWLDotNet.WorkReuse.html">WorkReuse</a>, <a class="xref" href="CWLDotNet.NetworkAccess.html">NetworkAccess</a>, <a class="xref" href="CWLDotNet.InplaceUpdateRequirement.html">InplaceUpdateRequirement</a>, <a class="xref" href="CWLDotNet.ToolTimeLimit.html">ToolTimeLimit</a>, <a class="xref" href="CWLDotNet.SubworkflowFeatureRequirement.html">SubworkflowFeatureRequirement</a>, <a class="xref" href="CWLDotNet.ScatterFeatureRequirement.html">ScatterFeatureRequirement</a>, <a class="xref" href="CWLDotNet.MultipleInputFeatureRequirement.html">MultipleInputFeatureRequirement</a>, <a class="xref" href="CWLDotNet.StepInputExpressionRequirement.html">StepInputExpressionRequirement</a>&gt;&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineTool_stderr_" data-uid="CWLDotNet.CommandLineTool.stderr*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_stderr" data-uid="CWLDotNet.CommandLineTool.stderr">stderr</h4>
+  <div class="markdown level1 summary"><p>Capture the command's standard error stream to a file written to
+the designated output directory.</p>
+<p>If <code>stderr</code> is a string, it specifies the file name to use.</p>
+<p>If <code>stderr</code> is an expression, the expression is evaluated and must
+return a string with the file name to use to capture stderr.  If the
+return value is not a string, or the resulting path contains illegal
+characters (such as the path separator <code>/</code>) it is an error.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; stderr { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineTool_stdin_" data-uid="CWLDotNet.CommandLineTool.stdin*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_stdin" data-uid="CWLDotNet.CommandLineTool.stdin">stdin</h4>
+  <div class="markdown level1 summary"><p>A path to a file whose contents must be piped into the command's
+standard input stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; stdin { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineTool_stdout_" data-uid="CWLDotNet.CommandLineTool.stdout*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_stdout" data-uid="CWLDotNet.CommandLineTool.stdout">stdout</h4>
+  <div class="markdown level1 summary"><p>Capture the command's standard output stream to a file written to
+the designated output directory.</p>
+<p>If the <code>CommandLineTool</code> contains logically chained commands
+(e.g. <code>echo a &amp;amp;&amp;amp; echo b</code>) <code>stdout</code> must include the output of
+every command.</p>
+<p>If <code>stdout</code> is a string, it specifies the file name to use.</p>
+<p>If <code>stdout</code> is an expression, the expression is evaluated and must
+return a string with the file name to use to capture stdout.  If the
+return value is not a string, or the resulting path contains illegal
+characters (such as the path separator <code>/</code>) it is an error.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, string&gt; stdout { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineTool_successCodes_" data-uid="CWLDotNet.CommandLineTool.successCodes*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_successCodes" data-uid="CWLDotNet.CommandLineTool.successCodes">successCodes</h4>
+  <div class="markdown level1 summary"><p>Exit codes that indicate the process completed successfully.</p>
+<p>If not specified, only exit code 0 is considered success.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, List&lt;int&gt;&gt; successCodes { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">System.Int32</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineTool_temporaryFailCodes_" data-uid="CWLDotNet.CommandLineTool.temporaryFailCodes*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_temporaryFailCodes" data-uid="CWLDotNet.CommandLineTool.temporaryFailCodes">temporaryFailCodes</h4>
+  <div class="markdown level1 summary"><p>Exit codes that indicate the process failed due to a possibly
+temporary condition, where executing the process with the same
+runtime environment and inputs may produce different results.</p>
+<p>If not specified, no exit codes are considered temporary failure.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OneOf&lt;None, List&lt;int&gt;&gt; temporaryFailCodes { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">OneOf.OneOf</span>&lt;<span class="xref">OneOf.Types.None</span>, <span class="xref">List</span>&lt;<span class="xref">System.Int32</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="CWLDotNet_CommandLineTool_FromDoc_" data-uid="CWLDotNet.CommandLineTool.FromDoc*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_FromDoc_System_Object_System_String_CWLDotNet_LoadingOptions_System_String_" data-uid="CWLDotNet.CommandLineTool.FromDoc(System.Object,System.String,CWLDotNet.LoadingOptions,System.String)">FromDoc(Object, String, LoadingOptions, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISavable FromDoc(object doc__, string baseUri, LoadingOptions loadingOptions, string docRoot = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">doc__</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">baseUri</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.LoadingOptions.html">LoadingOptions</a></td>
+        <td><span class="parametername">loadingOptions</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">docRoot</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CWLDotNet.ISavable.html">ISavable</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CWLDotNet_CommandLineTool_Save_" data-uid="CWLDotNet.CommandLineTool.Save*"></a>
+  <h4 id="CWLDotNet_CommandLineTool_Save_System_Boolean_System_String_System_Boolean_" data-uid="CWLDotNet.CommandLineTool.Save(System.Boolean,System.String,System.Boolean)">Save(Boolean, String, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;object, object&gt; Save(bool top = false, string baseUrl = &quot;&quot;, bool relativeUris = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">top</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">baseUrl</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">relativeUris</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<span class="xref">System.Object</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="CWLDotNet.ICommandLineTool.html">ICommandLineTool</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.IProcess.html">IProcess</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.IIdentified.html">IIdentified</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.ILabeled.html">ILabeled</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.IDocumented.html">IDocumented</a>
+  </div>
+  <div>
+      <a class="xref" href="CWLDotNet.ISavable.html">ISavable</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -104,8 +104,11 @@ public class WorkflowOutputParameter : IWorkflowOutputParameter, ISavable
     public OneOf<None, string> format { get; set; }
 
     /// <summary>
-    /// Specifies one or more workflow parameters that supply the value of to
-    /// the output parameter.
+    /// Specifies one or more names of an output from a workflow step (in the form 
+    /// `step_name/output_name` with a `/` separator`), or a workflow input name,
+    /// that supply their value(s) to the output parameter.
+    /// the output parameter.  It is valid to reference workflow level inputs
+    /// here.
     /// 
     /// </summary>
     public OneOf<None, string, List<string>> outputSource { get; set; }
