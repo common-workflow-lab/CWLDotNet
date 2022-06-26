@@ -26,7 +26,7 @@ doc.Switch(
 );
 ```
 
-### Creating, editing and serializing documents
+### Creating, Editing and Serializing Documents
 ```csharp
 using System.Text.Json;
 using CWLDotNet;
