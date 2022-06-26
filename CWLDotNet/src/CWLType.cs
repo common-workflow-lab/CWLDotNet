@@ -5,6 +5,20 @@ public class CWLType : IEnumClass<CWLType>
     private string _Name;
     private static readonly List<CWLType> members = new();
 
+    public static readonly CWLType NULL =
+                            new("null");
+    public static readonly CWLType BOOLEAN =
+                            new("boolean");
+    public static readonly CWLType INT =
+                            new("int");
+    public static readonly CWLType LONG =
+                            new("long");
+    public static readonly CWLType FLOAT =
+                            new("float");
+    public static readonly CWLType DOUBLE =
+                            new("double");
+    public static readonly CWLType STRING =
+                            new("string");
     public static readonly CWLType FILE =
                             new("File");
     public static readonly CWLType DIRECTORY =
