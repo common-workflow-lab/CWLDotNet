@@ -398,5 +398,5 @@ FodyWeavers.xsd
 *.sln.iml
 
 # DocFx
-DocFx/
+DocFx/reference
 CWLDotNet/log.txt

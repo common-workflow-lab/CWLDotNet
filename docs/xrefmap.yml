@@ -2239,6 +2239,12 @@ references:
   commentId: T:CWLDotNet.CWLType
   fullName: CWLDotNet.CWLType
   nameWithType: CWLType
+- uid: CWLDotNet.CWLType.BOOLEAN
+  name: BOOLEAN
+  href: reference/CWLDotNet.CWLType.html#CWLDotNet_CWLType_BOOLEAN
+  commentId: F:CWLDotNet.CWLType.BOOLEAN
+  fullName: CWLDotNet.CWLType.BOOLEAN
+  nameWithType: CWLType.BOOLEAN
 - uid: CWLDotNet.CWLType.Contains(System.String)
   name: Contains(String)
   href: reference/CWLDotNet.CWLType.html#CWLDotNet_CWLType_Contains_System_String_
@@ -2258,12 +2264,36 @@ references:
   commentId: F:CWLDotNet.CWLType.DIRECTORY
   fullName: CWLDotNet.CWLType.DIRECTORY
   nameWithType: CWLType.DIRECTORY
+- uid: CWLDotNet.CWLType.DOUBLE
+  name: DOUBLE
+  href: reference/CWLDotNet.CWLType.html#CWLDotNet_CWLType_DOUBLE
+  commentId: F:CWLDotNet.CWLType.DOUBLE
+  fullName: CWLDotNet.CWLType.DOUBLE
+  nameWithType: CWLType.DOUBLE
 - uid: CWLDotNet.CWLType.FILE
   name: FILE
   href: reference/CWLDotNet.CWLType.html#CWLDotNet_CWLType_FILE
   commentId: F:CWLDotNet.CWLType.FILE
   fullName: CWLDotNet.CWLType.FILE
   nameWithType: CWLType.FILE
+- uid: CWLDotNet.CWLType.FLOAT
+  name: FLOAT
+  href: reference/CWLDotNet.CWLType.html#CWLDotNet_CWLType_FLOAT
+  commentId: F:CWLDotNet.CWLType.FLOAT
+  fullName: CWLDotNet.CWLType.FLOAT
+  nameWithType: CWLType.FLOAT
+- uid: CWLDotNet.CWLType.INT
+  name: INT
+  href: reference/CWLDotNet.CWLType.html#CWLDotNet_CWLType_INT
+  commentId: F:CWLDotNet.CWLType.INT
+  fullName: CWLDotNet.CWLType.INT
+  nameWithType: CWLType.INT
+- uid: CWLDotNet.CWLType.LONG
+  name: LONG
+  href: reference/CWLDotNet.CWLType.html#CWLDotNet_CWLType_LONG
+  commentId: F:CWLDotNet.CWLType.LONG
+  fullName: CWLDotNet.CWLType.LONG
+  nameWithType: CWLType.LONG
 - uid: CWLDotNet.CWLType.Members
   name: Members
   href: reference/CWLDotNet.CWLType.html#CWLDotNet_CWLType_Members
@@ -2290,6 +2320,12 @@ references:
   isSpec: "True"
   fullName: CWLDotNet.CWLType.Name
   nameWithType: CWLType.Name
+- uid: CWLDotNet.CWLType.NULL
+  name: "NULL"
+  href: reference/CWLDotNet.CWLType.html#CWLDotNet_CWLType_NULL
+  commentId: F:CWLDotNet.CWLType.NULL
+  fullName: CWLDotNet.CWLType.NULL
+  nameWithType: CWLType.NULL
 - uid: CWLDotNet.CWLType.Parse(System.String)
   name: Parse(String)
   href: reference/CWLDotNet.CWLType.html#CWLDotNet_CWLType_Parse_System_String_
@@ -2303,6 +2339,12 @@ references:
   isSpec: "True"
   fullName: CWLDotNet.CWLType.Parse
   nameWithType: CWLType.Parse
+- uid: CWLDotNet.CWLType.STRING
+  name: STRING
+  href: reference/CWLDotNet.CWLType.html#CWLDotNet_CWLType_STRING
+  commentId: F:CWLDotNet.CWLType.STRING
+  fullName: CWLDotNet.CWLType.STRING
+  nameWithType: CWLType.STRING
 - uid: CWLDotNet.CWLType.Symbols
   name: Symbols()
   href: reference/CWLDotNet.CWLType.html#CWLDotNet_CWLType_Symbols
@@ -10354,19 +10396,6 @@ references:
   isSpec: "True"
   fullName: CWLDotNet.Utilities.Shortname
   nameWithType: Utilities.Shortname
-- uid: CWLDotNet.Utilities.Split(System.String)
-  name: Split(String)
-  href: reference/CWLDotNet.Utilities.html#CWLDotNet_Utilities_Split_System_String_
-  commentId: M:CWLDotNet.Utilities.Split(System.String)
-  fullName: CWLDotNet.Utilities.Split(System.String)
-  nameWithType: Utilities.Split(String)
-- uid: CWLDotNet.Utilities.Split*
-  name: Split
-  href: reference/CWLDotNet.Utilities.html#CWLDotNet_Utilities_Split_
-  commentId: Overload:CWLDotNet.Utilities.Split
-  isSpec: "True"
-  fullName: CWLDotNet.Utilities.Split
-  nameWithType: Utilities.Split
 - uid: CWLDotNet.ValidationException
   name: ValidationException
   href: reference/CWLDotNet.ValidationException.html

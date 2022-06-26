@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "nBSI5r2/9VzbAUiyvRni64MGpxMhj+Jt81WCJhzpIzs="
+          "hash": "5Xv5odrMlSX4YI8sT1ugGi/mraGTzMnxV2lUA61N9wg="
         }
       },
       "is_incremental": false,
@@ -54,7 +54,7 @@
       "output": {
         ".html": {
           "relative_path": "reference/CWLDotNet.CWLType.html",
-          "hash": "Iu5LDxi58LKaOmAHC86HmIEDY61B3+aJPenJylPHBg8="
+          "hash": "KCd7VDS2/O+jLOFJoYs78MpNbJJOVSrM/MH3KBUXftk="
         }
       },
       "is_incremental": false,
@@ -2064,7 +2064,7 @@
       "output": {
         ".html": {
           "relative_path": "reference/CWLDotNet.Utilities.html",
-          "hash": "UXRoywDg4aKtTSg/4VLP8g6tLdata6ggd5B0CzSjeYE="
+          "hash": "ANpzjqhj4qg8Z8FuneSDtXLCohQNmi8nDUxgb25827Q="
         }
       },
       "is_incremental": false,
@@ -2302,25 +2302,23 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because config changed.",
+        "can_incremental": true,
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "ConfigChanged"
+        "skipped_file_count": 0
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 1,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 187,
-          "skipped_file_count": 0
+          "skipped_file_count": 187
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
