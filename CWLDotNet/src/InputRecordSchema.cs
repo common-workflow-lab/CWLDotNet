@@ -233,28 +233,28 @@ public class InputRecordSchema : IInputRecordSchema, ISavable
         }
 
         object? fieldsVal = ISavable.Save(fields,
-                                        false, (string)this.name.AsT1!, relativeUris);
+                                        false, (string)(this.name.Value is None ? "" : name.Value)!, relativeUris);
         if (fieldsVal is not null)
         {
             r["fields"] = fieldsVal;
         }
 
         object? typeVal = ISavable.Save(type,
-                                        false, (string)this.name.AsT1!, relativeUris);
+                                        false, (string)(this.name.Value is None ? "" : name.Value)!, relativeUris);
         if (typeVal is not null)
         {
             r["type"] = typeVal;
         }
 
         object? labelVal = ISavable.Save(label,
-                                        false, (string)this.name.AsT1!, relativeUris);
+                                        false, (string)(this.name.Value is None ? "" : name.Value)!, relativeUris);
         if (labelVal is not null)
         {
             r["label"] = labelVal;
         }
 
         object? docVal = ISavable.Save(doc,
-                                        false, (string)this.name.AsT1!, relativeUris);
+                                        false, (string)(this.name.Value is None ? "" : name.Value)!, relativeUris);
         if (docVal is not null)
         {
             r["doc"] = docVal;

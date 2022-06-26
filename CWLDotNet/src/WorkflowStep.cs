@@ -487,70 +487,70 @@ public class WorkflowStep : IWorkflowStep, ISavable
         }
 
         object? labelVal = ISavable.Save(label,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (labelVal is not null)
         {
             r["label"] = labelVal;
         }
 
         object? docVal = ISavable.Save(doc,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (docVal is not null)
         {
             r["doc"] = docVal;
         }
 
         object? in_Val = ISavable.Save(in_,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (in_Val is not null)
         {
             r["in"] = in_Val;
         }
 
         object? out_Val = ISavable.SaveRelativeUri(out_, true,
-            relativeUris, null, (string)this.id.AsT1!);
+            relativeUris, null, (string)(this.id.Value is None ? "" : id.Value)!);
         if (out_Val is not null)
         {
             r["out"] = out_Val;
         }
 
         object? requirementsVal = ISavable.Save(requirements,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (requirementsVal is not null)
         {
             r["requirements"] = requirementsVal;
         }
 
         object? hintsVal = ISavable.Save(hints,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (hintsVal is not null)
         {
             r["hints"] = hintsVal;
         }
 
         object? runVal = ISavable.Save(run,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (runVal is not null)
         {
             r["run"] = runVal;
         }
 
         object? whenVal = ISavable.Save(when,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (whenVal is not null)
         {
             r["when"] = whenVal;
         }
 
         object? scatterVal = ISavable.SaveRelativeUri(scatter, false,
-            relativeUris, 0, (string)this.id.AsT1!);
+            relativeUris, 0, (string)(this.id.Value is None ? "" : id.Value)!);
         if (scatterVal is not null)
         {
             r["scatter"] = scatterVal;
         }
 
         object? scatterMethodVal = ISavable.SaveRelativeUri(scatterMethod, false,
-            relativeUris, null, (string)this.id.AsT1!);
+            relativeUris, null, (string)(this.id.Value is None ? "" : id.Value)!);
         if (scatterMethodVal is not null)
         {
             r["scatterMethod"] = scatterMethodVal;
