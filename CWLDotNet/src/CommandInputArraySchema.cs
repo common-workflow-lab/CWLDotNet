@@ -254,35 +254,35 @@ public class CommandInputArraySchema : ICommandInputArraySchema, ISavable
         }
 
         object? itemsVal = ISavable.Save(items,
-                                        false, (string)this.name.AsT1!, relativeUris);
+                                        false, (string)(this.name.Value is None ? "" : name.Value)!, relativeUris);
         if (itemsVal is not null)
         {
             r["items"] = itemsVal;
         }
 
         object? typeVal = ISavable.Save(type,
-                                        false, (string)this.name.AsT1!, relativeUris);
+                                        false, (string)(this.name.Value is None ? "" : name.Value)!, relativeUris);
         if (typeVal is not null)
         {
             r["type"] = typeVal;
         }
 
         object? labelVal = ISavable.Save(label,
-                                        false, (string)this.name.AsT1!, relativeUris);
+                                        false, (string)(this.name.Value is None ? "" : name.Value)!, relativeUris);
         if (labelVal is not null)
         {
             r["label"] = labelVal;
         }
 
         object? docVal = ISavable.Save(doc,
-                                        false, (string)this.name.AsT1!, relativeUris);
+                                        false, (string)(this.name.Value is None ? "" : name.Value)!, relativeUris);
         if (docVal is not null)
         {
             r["doc"] = docVal;
         }
 
         object? inputBindingVal = ISavable.Save(inputBinding,
-                                        false, (string)this.name.AsT1!, relativeUris);
+                                        false, (string)(this.name.Value is None ? "" : name.Value)!, relativeUris);
         if (inputBindingVal is not null)
         {
             r["inputBinding"] = inputBindingVal;

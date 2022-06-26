@@ -426,70 +426,70 @@ public class ExpressionTool : IExpressionTool, ISavable
         }
 
         object? class_Val = ISavable.SaveRelativeUri(class_, false,
-            relativeUris, null, (string)this.id.AsT1!);
+            relativeUris, null, (string)(this.id.Value is None ? "" : id.Value)!);
         if (class_Val is not null)
         {
             r["class"] = class_Val;
         }
 
         object? labelVal = ISavable.Save(label,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (labelVal is not null)
         {
             r["label"] = labelVal;
         }
 
         object? docVal = ISavable.Save(doc,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (docVal is not null)
         {
             r["doc"] = docVal;
         }
 
         object? inputsVal = ISavable.Save(inputs,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (inputsVal is not null)
         {
             r["inputs"] = inputsVal;
         }
 
         object? outputsVal = ISavable.Save(outputs,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (outputsVal is not null)
         {
             r["outputs"] = outputsVal;
         }
 
         object? requirementsVal = ISavable.Save(requirements,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (requirementsVal is not null)
         {
             r["requirements"] = requirementsVal;
         }
 
         object? hintsVal = ISavable.Save(hints,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (hintsVal is not null)
         {
             r["hints"] = hintsVal;
         }
 
         object? cwlVersionVal = ISavable.SaveRelativeUri(cwlVersion, false,
-            relativeUris, null, (string)this.id.AsT1!);
+            relativeUris, null, (string)(this.id.Value is None ? "" : id.Value)!);
         if (cwlVersionVal is not null)
         {
             r["cwlVersion"] = cwlVersionVal;
         }
 
         object? intentVal = ISavable.SaveRelativeUri(intent, true,
-            relativeUris, null, (string)this.id.AsT1!);
+            relativeUris, null, (string)(this.id.Value is None ? "" : id.Value)!);
         if (intentVal is not null)
         {
             r["intent"] = intentVal;
         }
 
         object? expressionVal = ISavable.Save(expression,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (expressionVal is not null)
         {
             r["expression"] = expressionVal;

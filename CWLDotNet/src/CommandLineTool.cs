@@ -672,119 +672,119 @@ public class CommandLineTool : ICommandLineTool, ISavable
         }
 
         object? class_Val = ISavable.SaveRelativeUri(class_, false,
-            relativeUris, null, (string)this.id.AsT1!);
+            relativeUris, null, (string)(this.id.Value is None ? "" : id.Value)!);
         if (class_Val is not null)
         {
             r["class"] = class_Val;
         }
 
         object? labelVal = ISavable.Save(label,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (labelVal is not null)
         {
             r["label"] = labelVal;
         }
 
         object? docVal = ISavable.Save(doc,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (docVal is not null)
         {
             r["doc"] = docVal;
         }
 
         object? inputsVal = ISavable.Save(inputs,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (inputsVal is not null)
         {
             r["inputs"] = inputsVal;
         }
 
         object? outputsVal = ISavable.Save(outputs,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (outputsVal is not null)
         {
             r["outputs"] = outputsVal;
         }
 
         object? requirementsVal = ISavable.Save(requirements,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (requirementsVal is not null)
         {
             r["requirements"] = requirementsVal;
         }
 
         object? hintsVal = ISavable.Save(hints,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (hintsVal is not null)
         {
             r["hints"] = hintsVal;
         }
 
         object? cwlVersionVal = ISavable.SaveRelativeUri(cwlVersion, false,
-            relativeUris, null, (string)this.id.AsT1!);
+            relativeUris, null, (string)(this.id.Value is None ? "" : id.Value)!);
         if (cwlVersionVal is not null)
         {
             r["cwlVersion"] = cwlVersionVal;
         }
 
         object? intentVal = ISavable.SaveRelativeUri(intent, true,
-            relativeUris, null, (string)this.id.AsT1!);
+            relativeUris, null, (string)(this.id.Value is None ? "" : id.Value)!);
         if (intentVal is not null)
         {
             r["intent"] = intentVal;
         }
 
         object? baseCommandVal = ISavable.Save(baseCommand,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (baseCommandVal is not null)
         {
             r["baseCommand"] = baseCommandVal;
         }
 
         object? arguments_Val = ISavable.Save(arguments_,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (arguments_Val is not null)
         {
             r["arguments"] = arguments_Val;
         }
 
         object? stdinVal = ISavable.Save(stdin,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (stdinVal is not null)
         {
             r["stdin"] = stdinVal;
         }
 
         object? stderrVal = ISavable.Save(stderr,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (stderrVal is not null)
         {
             r["stderr"] = stderrVal;
         }
 
         object? stdoutVal = ISavable.Save(stdout,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (stdoutVal is not null)
         {
             r["stdout"] = stdoutVal;
         }
 
         object? successCodesVal = ISavable.Save(successCodes,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (successCodesVal is not null)
         {
             r["successCodes"] = successCodesVal;
         }
 
         object? temporaryFailCodesVal = ISavable.Save(temporaryFailCodes,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (temporaryFailCodesVal is not null)
         {
             r["temporaryFailCodes"] = temporaryFailCodesVal;
         }
 
         object? permanentFailCodesVal = ISavable.Save(permanentFailCodes,
-                                        false, (string)this.id.AsT1!, relativeUris);
+                                        false, (string)(this.id.Value is None ? "" : id.Value)!, relativeUris);
         if (permanentFailCodesVal is not null)
         {
             r["permanentFailCodes"] = permanentFailCodesVal;

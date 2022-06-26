@@ -226,28 +226,28 @@ public class CommandOutputEnumSchema : ICommandOutputEnumSchema, ISavable
         }
 
         object? symbolsVal = ISavable.SaveRelativeUri(symbols, true,
-            relativeUris, null, (string)this.name.AsT1!);
+            relativeUris, null, (string)(this.name.Value is None ? "" : name.Value)!);
         if (symbolsVal is not null)
         {
             r["symbols"] = symbolsVal;
         }
 
         object? typeVal = ISavable.Save(type,
-                                        false, (string)this.name.AsT1!, relativeUris);
+                                        false, (string)(this.name.Value is None ? "" : name.Value)!, relativeUris);
         if (typeVal is not null)
         {
             r["type"] = typeVal;
         }
 
         object? labelVal = ISavable.Save(label,
-                                        false, (string)this.name.AsT1!, relativeUris);
+                                        false, (string)(this.name.Value is None ? "" : name.Value)!, relativeUris);
         if (labelVal is not null)
         {
             r["label"] = labelVal;
         }
 
         object? docVal = ISavable.Save(doc,
-                                        false, (string)this.name.AsT1!, relativeUris);
+                                        false, (string)(this.name.Value is None ? "" : name.Value)!, relativeUris);
         if (docVal is not null)
         {
             r["doc"] = docVal;
